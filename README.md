@@ -4,10 +4,11 @@
 
 ## 目錄
 
-- `skill/`：Skill 套件，也就是同事 clone 的內容——主 Skill、8 個 GSAP 技術 Skills、2 個 Eagle 工具、安裝程式與測試。文件：[使用教學](skill/使用教學.md)（[圖文版](skill/使用教學.html)）、[安裝說明](skill/INSTALL.md)、[工作規則](skill/AGENTS.md)、[轉版狀態](skill/轉版狀態.md)。`skill/01_產品/` 是 Common CSS、系統功能與內頁版型的共用技術參考，不進分享包。
-- `cases/`：案例——`projects/` 進行中案件、`final/` 與 `最終版彙整/` 完成品、[整體視覺資料庫](cases/template-library/README.md)（製作方向、資料規範與實測案例）。
-- `scripts/build_share_package.py`：從 `skill/` 打包 zip 到 `dist/`，或用 `--sync` 同步到只放 Skill 的 repo。
-- `.claude/launch.json`：各案件與教學頁的本機預覽設定。
+這個 repo 只放 Skill 套件，同事直接 clone 使用；案例不在這裡。
+
+- `skill/`：Skill 套件——主 Skill、8 個 GSAP 技術 Skills、2 個 Eagle 工具、安裝程式與測試。文件：[使用教學](skill/使用教學.md)（[圖文版](skill/使用教學.html)）、[安裝說明](skill/INSTALL.md)、[工作規則](skill/AGENTS.md)、[轉版狀態](skill/轉版狀態.md)。`skill/01_產品/` 是 Common CSS、系統功能與內頁版型的共用技術參考，不進分享包。
+- `scripts/build_share_package.py`：從 `skill/` 打包 zip 到 `dist/`（給沒有 git 的人）。
+- 案例（`projects/`、`final/`、`最終版彙整/`、`template-library/` 資料庫）在維護者本機的 `Visual-Solution-Workflow-case/cases/`，不進這個 repo。
 
 ## 工作入口
 

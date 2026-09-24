@@ -10,9 +10,11 @@
 
 ## 安裝
 
-把這個套件 clone 到本機固定資料夾（每台電腦各一份，不放雲端硬碟），在資料夾內開啟終端機：
+把 repo clone 到本機固定資料夾（每台電腦各一份，不放雲端硬碟；GitHub 帳號需先被加為協作者），套件在 `skill/`，指令都在那裡執行：
 
 ```bash
+git clone https://github.com/world-yingcen/Visual-Solution-Workflow.git
+cd Visual-Solution-Workflow/skill
 python3 install.py --dry-run
 python3 install.py
 python3 install.py --status

@@ -269,7 +269,9 @@ def git(root, *args, timeout=120):
 def update(root, target, dry_run=False):
     """取得新版套件內容：git pull，複製安裝再同步一次到安裝位置。"""
     lines = ['套件位置：%s' % root]
-    if not (root / '.git').exists():
+    # 套件可能是 repo 的子資料夾（例如 Visual-Solution-Workflow/skill），所以用 git 找 repo，不看 root/.git
+    inside_repo, _ = git(root, 'rev-parse', '--show-toplevel')
+    if not inside_repo:
         lines += ['', '這個資料夾不是 git clone，沒辦法自動更新。',
                   '向維護者取得新版資料夾覆蓋這一份，若當初是複製安裝，覆蓋後再跑一次 install.py。']
         return 1, lines

@@ -6,9 +6,11 @@
 
 安裝由使用者要求時執行。主 Skill 在每次開始或接續案件時會自動執行一次 `--update` 保持最新；其他時候不自動安裝依賴或修改權限。
 
-把套件 clone 到本機固定資料夾（每台電腦各一份，不放雲端硬碟），在此套件目錄使用 Python 3.9 以上：
+把 repo clone 到本機固定資料夾（每台電腦各一份，不放雲端硬碟；GitHub 帳號需先被加為協作者），套件在 `skill/` 子資料夾，指令都在那裡執行。需要 Python 3.9 以上：
 
 ```bash
+git clone https://github.com/world-yingcen/Visual-Solution-Workflow.git
+cd Visual-Solution-Workflow/skill
 python3 install.py --dry-run
 python3 install.py
 python3 install.py --status
