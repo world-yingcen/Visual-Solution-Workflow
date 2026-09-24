@@ -1,0 +1,5 @@
+interface:
+  display_name: "整體視覺網站設計與製作"
+  short_description: "從品牌方向、素材與核心原型，完成整體視覺網站實作與瀏覽器驗收"
+  brand_color: "#111111"
+  default_prompt: "使用 $visual-solution-immersive-director 盤點這個網站案件，先判斷製作模式與目前階段，再推進到下一個可驗收成果。"
