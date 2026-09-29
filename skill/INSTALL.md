@@ -26,6 +26,6 @@ python3 install.py --target ~/.codex/skills
 
 安裝器只處理這份套件明列的主 Skill、8 個 GSAP 技術支援與 2 個 Eagle 工具；即使 `skills/` 內另有資料夾，也不會順便安裝。Eagle Skill 的安裝不會另外安裝 Eagle 應用程式；團隊電腦既有的 Eagle 仍須在使用時保持開啟。
 
-`--update` 會取得 repo 更新並同步安裝；主 Skill 每次開始或接續案件會自動執行一次，使用者也可自行執行。更新失敗（沒有網路、不是 git clone、本機分歧）不影響既有安裝。`--uninstall` 依安裝紀錄移除該工具管理的項目，執行前先核對 `--status`。`--case` 是舊版 Claude 案件權限設定相容功能，並非使用主 Skill 的必要步驟；只有明確要求該設定時才使用。
+`--update` 會取得 repo 更新並同步安裝；主 Skill 每次開始或接續案件會自動執行一次，使用者也可自行執行。Codex 請使用 `python3 install.py --update --target ~/.codex/skills`，避免更新到預設的 Claude 技能目錄。若在受限案件工作區出現 `.git/FETCH_HEAD: Operation not permitted`，是該執行環境不能寫入案件外的來源庫；核對來源庫狀態後，取得執行環境的寫入核准再重跑，不要改檔案權限或重置 Git。沒有網路、不是 git clone 或本機分歧時，既有安裝不受影響。`--uninstall` 依安裝紀錄移除該工具管理的項目，執行前先核對 `--status`。`--case` 是舊版 Claude 案件權限設定相容功能，並非使用主 Skill 的必要步驟；只有明確要求該設定時才使用。
 
 既有舊角色安裝不會自動刪除；若要清理，先核對安裝位置與來源，再另外處理。工程工具依案件實際需要準備，不要求每案固定安裝 Sass、Node、Eagle 或 VS Code。

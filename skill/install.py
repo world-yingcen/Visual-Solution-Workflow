@@ -288,9 +288,14 @@ def update(root, target, dry_run=False):
 
     ok, out = git(root, 'pull', '--ff-only')
     if not ok:
-        lines += ['', '更新失敗（未改動任何檔案）：', out, '',
-                  '常見原因：沒有網路、沒有這個 repo 的權限，或本機有未推送的修改造成分歧。',
-                  '維護者自己的電腦有未推送的 commit 屬正常，不必更新。']
+        lines += ['', '更新失敗（未同步技能檔案）：', out, '']
+        if 'FETCH_HEAD' in out and 'Operation not permitted' in out:
+            lines += ['目前執行環境無法寫入來源庫的 Git 暫存檔；這不代表遠端 repo 拒絕存取。',
+                      '確認來源庫狀態與 --target 後，取得執行環境的寫入核准，再重跑同一命令。',
+                      '不要為此修改檔案權限或重置 Git 歷史。']
+        else:
+            lines += ['常見原因：沒有網路、沒有這個 repo 的權限，或本機有未推送的修改造成分歧。',
+                      '維護者自己的電腦有未推送的 commit 屬正常，不必更新。']
         return 1, lines
 
     ok, head_after = git(root, 'rev-parse', 'HEAD')

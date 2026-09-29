@@ -23,7 +23,7 @@ description: 從客戶資料與 CIS 主導整體視覺網站的原創方向、�
 
 開案、接續、新增產出及收尾時依 [PRD 與檔案管理](references/project-files.md) 維護：頁面／區塊資料集中、有效入口唯一、規格與決策同步、舊試作與目前工作分離。由同一任務負責；不再把提案、v1–v8、共用 CSS／JS 和舊試驗散堆同層。
 
-每次開始或接續案件（每個工作階段一次），先讓套件保持最新：讀取安裝清單 `~/.claude/skills/.visual-solution-install.json`（Codex 為 `~/.codex/skills/`）的 `source`，在該套件資料夾執行 `python3 install.py --update`。捷徑安裝立即生效，複製安裝會自動同步；更新後的規則從下一輪起適用。沒有網路、不是 git clone 或本機有分歧時，照現有版本繼續並簡短告知，不阻擋工作、不自行 reset。在套件資料夾本身維護 Skill 時不做這一步。
+每次開始或接續案件（每個工作階段一次），先讓套件保持最新：讀取安裝清單 `~/.claude/skills/.visual-solution-install.json`（Codex 為 `~/.codex/skills/.visual-solution-install.json`）的 `source`，在該套件資料夾執行更新，並以 `--target` 指向該安裝清單所在的 skills 目錄；Codex 範例為 `python3 install.py --update --target ~/.codex/skills`。捷徑安裝立即生效，複製安裝會自動同步；更新後的規則從下一輪起適用。若 `.git/FETCH_HEAD` 顯示 `Operation not permitted`，先確認來源 repo 乾淨及目標目錄正確；這通常是目前任務的沙盒無法寫入案件外的來源庫，不等於遠端權限不足。可透過執行環境提供的權限核准重試同一更新命令，不改檔案權限、不自行 reset；無法取得核准時如實標記尚未更新。沒有網路、不是 git clone 或本機有分歧時，照現有版本繼續並簡短告知，不阻擋工作。在套件資料夾本身維護 Skill 時不做這一步。
 
 先讀案件現有檔案、進度、確認決策與工程限制。已有方向或首頁確認就沿用，不重新提案或重問。資料不完整時先提出有依據的工作假設；品牌／用途完全未知才問最小必要問題。
 

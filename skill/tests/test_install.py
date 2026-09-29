@@ -204,6 +204,19 @@ class TestInstaller(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn('不是 git clone', '\n'.join(lines))
 
+    def test_update_explains_sandbox_fetch_head_error(self):
+        from unittest.mock import patch
+        failure = "error: cannot open '.git/FETCH_HEAD': Operation not permitted"
+        with patch.object(m, 'git', side_effect=[
+            (True, str(self.root)), (True, '0123456789abcdef'), (False, failure)
+        ]):
+            code, lines = m.update(self.root, self.target)
+        output = '\n'.join(lines)
+        self.assertEqual(code, 1)
+        self.assertIn('執行環境', output)
+        self.assertIn('不代表遠端 repo 拒絕存取', output)
+        self.assertIn('--target', output)
+
     def test_update_pulls_new_commits_and_reports_them(self):
         import subprocess
         origin = Path(self.tmp.name) / 'origin'
