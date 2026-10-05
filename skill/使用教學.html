@@ -584,7 +584,14 @@ h1{margin:0 0 22px;font-size:clamp(40px,calc(4.2vw + 4px),60px);font-weight:570;
       </div>
       <div class="sub">
         <h3 class="sub-title">A｜Claude Code：用 Plugin</h3>
-        <p>不需要 Python，也不用自己 clone；電腦要有 Git，且 GitHub 帳號已能存取這個 repo。</p>
+        <p>不需要 Python，也不用自己 clone。每台電腦裝一次，之後維護者推新版，你的電腦會自動更新。</p>
+        <h4>安裝前：先讓電腦登入 GitHub（每台電腦一次）</h4>
+        <p>repo 是私人的，Plugin 安裝時會用電腦裡的 Git 去 GitHub 抓檔案。只在瀏覽器登入 GitHub 網站不夠，電腦裡的 Git 也要登入，否則安裝會失敗。</p>
+        <ol class="loop" style="--cols:2" aria-label="登入 GitHub 步驟">
+          <li><span class="n">01</span><strong>加為協作者</strong><p>把 GitHub 帳號給維護者（LIN）加為協作者，到信箱收邀請信，按 <code>Accept invitation</code> 接受。</p></li>
+          <li><span class="n">02</span><strong>請 Claude Code 幫你登入</strong><code>幫我用 GitHub CLI 登入 GitHub，並設定好讓 git 可以存取私人 repo</code><p>它會安裝登入工具、打開瀏覽器，你在 GitHub 頁面按授權就完成。需要電腦管理者密碼時由你自己輸入。</p></li>
+        </ol>
+        <h4>安裝 Plugin</h4>
         <ol class="loop" style="--cols:3" aria-label="Plugin 安裝步驟">
           <li><span class="n">01</span><strong>加入來源</strong><code>/plugin marketplace add world-yingcen/Visual-Solution-Workflow</code><p>只要做一次。</p></li>
           <li><span class="n">02</span><strong>安裝</strong><code>/plugin install visual-solution@visual-solution-workflow</code><p>一次裝好主 Skill、8 支 GSAP、2 支 Eagle。</p></li>
@@ -1414,7 +1421,7 @@ Password for 'http://boy@192.168.168.134': <b>••••••••</b>
       </div>
       <div class="trouble" role="table" aria-label="疑難排解對照表">
         <div class="trow thead" role="row"><div role="columnheader">狀況</div><div role="columnheader">原因</div><div role="columnheader">處理</div></div>
-        <div class="trow" role="row"><div role="cell"><code>/plugin marketplace add</code> 失敗</div><div role="cell" data-label="原因">GitHub 帳號還沒被加為協作者，或這台電腦的 git 還不能存取私人 repo</div><div role="cell" data-label="處理">請維護者加協作者；先在終端機試 <code>git clone</code> 這個 repo，能 clone 再回 Claude Code 重試</div></div>
+        <div class="trow" role="row"><div role="cell"><code>/plugin marketplace add</code> 失敗</div><div role="cell" data-label="原因">GitHub 帳號還沒被加為協作者，或這台電腦的 git 還不能存取私人 repo</div><div role="cell" data-label="處理">確認已接受協作者邀請；照「安裝」的「安裝前：先讓電腦登入 GitHub」請 Claude Code 幫你登入，再重試</div></div>
         <div class="trow" role="row"><div role="cell">Plugin 裝好後出現兩份</div><div role="cell" data-label="原因">以前用安裝程式裝過，舊的還在 <code>~/.claude/skills</code></div><div role="cell" data-label="處理">到當初的 <code>skill/</code> 資料夾執行 <code>python3 install.py --uninstall</code>，再重新開啟 Claude Code</div></div>
         <div class="trow" role="row"><div role="cell">Plugin 沒拿到新版</div><div role="cell" data-label="原因">自建來源預設不自動更新</div><div role="cell" data-label="處理"><code>/plugin</code> → Marketplaces 開啟 Enable auto-update，或輸入 <code>/plugin marketplace update visual-solution-workflow</code></div></div>
         <div class="trow" role="row"><div role="cell">安裝後技能清單找不到</div><div role="cell" data-label="原因">AI 工具還沒重新載入</div><div role="cell" data-label="處理">重新開啟 Claude Code 或 Codex；執行 <code>--status</code> 確認</div></div>
