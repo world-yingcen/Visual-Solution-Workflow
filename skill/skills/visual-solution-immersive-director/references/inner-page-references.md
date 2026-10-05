@@ -10,4 +10,4 @@
 | [旅人消息列表](https://evo263525_demo.miracle-g1.tw/zh-tw/post/category/post-qndptiib?via=26)、[文章詳情](https://evo263525_demo.miracle-g1.tw/zh-tw/post/post-lkptunut?via=26) | 列表摘要與日期；詳情圖文、麵包屑及回上頁 | 當時有 Sample 內容，只作結構參考，不作內容完成度基準 |
 | [坂茂品牌分類](https://evo265987_demo.miracle-g1.tw/zh-tw/product/category/product-uhh449fi?via=21)、[聯絡](https://evo265987_demo.miracle-g1.tw/zh-tw/forms/formseries001-jyk140rt) | 多層側邊分類、分類介紹與子分類入口；聯絡頁有多據點、表單及驗證碼；Header 有詢問清單入口 | 適合分類深的產品資料。詢問清單流程未驗證；抽看的單一產品詳情主內容空白，不列為可用詳情範本 |
 
-將本案要保留的結構、需轉換的內容與不採用功能記入既有規格。不能由這些畫面推定平台套件、資料模型或串接能力，也不繼承其他客戶的品牌、素材與验收結論。
+將本案要保留的結構、需轉換的內容與不採用功能記入既有規格。不能由這些畫面推定平台套件、資料模型或串接能力，也不繼承其他客戶的品牌、素材與驗收結論。

@@ -4,4 +4,4 @@
 
 使用者明確要執行案件時，讀 [整體視覺主 Skill](skill/skills/visual-solution-immersive-director/SKILL.md)，依案件實際進度與確認紀錄接續。由當前任務整合設計與製作，不預設五角色或跨工具派工；Codex 與產圖工具依開案時記錄的授權沿用，不能以角色名稱代替真實檢查。
 
-安裝依 [skill/INSTALL.md](skill/INSTALL.md) 處理。在套件資料夾維護 Skill 時不自動更新、修改權限或安裝 Skills；執行案件時由主 Skill 在每次開始或接續時自動執行一次 `python3 install.py --update` 保持最新。查看狀態可用 `python3 skill/install.py --status`。本套件不預設已安裝，也不修改原高效流程。
+安裝依 [skill/INSTALL.md](skill/INSTALL.md) 處理：Claude Code 用 Plugin（repo 根目錄 `.claude-plugin/marketplace.json`、`skill/.claude-plugin/plugin.json`），Codex 用 install.py。在套件資料夾維護 Skill 時不自動更新、修改權限或安裝 Skills；執行案件時由主 Skill 在每次開始或接續時自動執行一次 `python3 install.py --update` 保持最新。查看狀態可用 `python3 skill/install.py --status`。本套件不預設已安裝，也不修改原高效流程。

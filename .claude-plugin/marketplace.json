@@ -1,0 +1,14 @@
+{
+  "name": "visual-solution-workflow",
+  "description": "整體視覺方案 Skills",
+  "owner": {
+    "name": "LIN(林盈岑)"
+  },
+  "plugins": [
+    {
+      "name": "visual-solution",
+      "source": "./skill",
+      "description": "整體視覺方案：主 Skill、8 個 GSAP 技術 Skills 與 2 個 Eagle 工具"
+    }
+  ]
+}

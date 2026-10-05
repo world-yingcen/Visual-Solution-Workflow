@@ -466,7 +466,7 @@ h1{margin:0 0 22px;font-size:clamp(40px,calc(4.2vw + 4px),60px);font-weight:570;
 
 <main id="top">
   <section class="intro" aria-labelledby="page-title">
-    <p class="intro-meta"><i aria-hidden="true"></i>Skill 使用教學 ・ 更新 2026-09-23</p>
+    <p class="intro-meta"><i aria-hidden="true"></i>Skill 使用教學 ・ 更新 2026-10-05</p>
     <h1 id="page-title"><span class="title-accent">整體視覺 Skill</span><br>使用教學</h1>
     <p class="intro-description">從安裝、開案到五個確認點，一頁看懂怎麼用 AI 完成整體視覺網站。<br class="desktop-break">你負責方向、取捨與最後確認；<span class="title-accent">整理資料、提案、做素材、實作與修正，都由 Skill 主動完成</span>。</p>
   </section>
@@ -579,8 +579,26 @@ h1{margin:0 0 22px;font-size:clamp(40px,calc(4.2vw + 4px),60px);font-weight:570;
     <section class="sec" id="install" aria-labelledby="install-title">
       <div class="sec-head">
         <p class="kicker">安裝</p>
-        <h2 id="install-title">三個指令完成安裝</h2>
-        <p>把 repo clone 到本機後，進到 <code>skill/</code> 資料夾開啟終端機，依序試跑、安裝、檢查狀態，再重新開啟 AI 工具。</p>
+        <h2 id="install-title">Claude Code 裝 Plugin，Codex 跑安裝程式</h2>
+        <p>看你用哪個工具：Claude Code 在對話框輸入兩行指令就裝好；Codex 把 repo clone 到本機，用安裝程式安裝。兩種都用的人，各自裝一次。repo 是私人的，GitHub 帳號要先請維護者加為協作者。</p>
+      </div>
+      <div class="sub">
+        <h3 class="sub-title">A｜Claude Code：用 Plugin</h3>
+        <p>不需要 Python，也不用自己 clone；電腦要有 Git，且 GitHub 帳號已能存取這個 repo。</p>
+        <ol class="loop" style="--cols:3" aria-label="Plugin 安裝步驟">
+          <li><span class="n">01</span><strong>加入來源</strong><code>/plugin marketplace add world-yingcen/Visual-Solution-Workflow</code><p>只要做一次。</p></li>
+          <li><span class="n">02</span><strong>安裝</strong><code>/plugin install visual-solution@visual-solution-workflow</code><p>一次裝好主 Skill、8 支 GSAP、2 支 Eagle。</p></li>
+          <li><span class="n">03</span><strong>重新開啟</strong><p>重新開啟 Claude Code。Skill 名稱多一段前綴，主 Skill 是：<code>visual-solution:visual-solution-immersive-director</code></p></li>
+        </ol>
+        <div class="trio">
+          <div><strong>開啟自動更新</strong><p>輸入 <code>/plugin</code> → Marketplaces → 選 <code>visual-solution-workflow</code> → 開啟 Enable auto-update。沒開就要手動輸入 <code>/plugin marketplace update visual-solution-workflow</code>。</p></div>
+          <div><strong>以前用安裝程式裝過</strong><p>先到當初的 <code>skill/</code> 資料夾執行 <code>python3 install.py --status</code> 核對，再 <code>python3 install.py --uninstall</code>，不然會出現兩份。</p></div>
+          <div><strong>移除</strong><p><code>/plugin uninstall visual-solution@visual-solution-workflow</code></p></div>
+        </div>
+      </div>
+      <div class="sub">
+        <h3 class="sub-title">B｜Codex：用安裝程式</h3>
+        <p>指令都加上 <code>--target ~/.codex/skills</code>。不想用 Plugin 的 Claude Code 使用者也可以照這段安裝，拿掉 <code>--target</code> 即可。</p>
       </div>
       <div class="install">
         <article class="req">
@@ -624,7 +642,7 @@ h1{margin:0 0 22px;font-size:clamp(40px,calc(4.2vw + 4px),60px);font-weight:570;
         <li><span class="n">01</span><strong>試跑</strong><code>python3 install.py --dry-run</code><p>只列出會做什麼、不寫入。第一次安裝會看到 11 行 [新增]。</p></li>
         <li><span class="n">02</span><strong>安裝</strong><code>python3 install.py</code><p>在 <code>~/.claude/skills</code> 建立 11 支 Skill 的捷徑，指向 clone 的資料夾。</p></li>
         <li><span class="n">03</span><strong>檢查</strong><code>python3 install.py --status</code><p>每一支都是 [正常]，最後一行是「主 Skill 正常，可以使用。」</p></li>
-        <li><span class="n">04</span><strong>重新開啟</strong><p>重新開啟 Claude Code，技能清單就會出現這些 Skill。</p></li>
+        <li><span class="n">04</span><strong>重新開啟</strong><p>重新開啟 Codex（或 Claude Code），技能清單就會出現這些 Skill。</p></li>
       </ol>
       <div class="trio">
         <div><strong>Codex 使用者</strong><p>在指令後加 <code>--target ~/.codex/skills</code>，例如 <code>python3 install.py --target ~/.codex/skills</code>，完成後重新開啟 Codex。</p></div>
@@ -637,7 +655,7 @@ h1{margin:0 0 22px;font-size:clamp(40px,calc(4.2vw + 4px),60px);font-weight:570;
           <article>
             <h4>更新到新版</h4>
             <dl>
-              <div><dt>怎麼更新</dt><dd>每次開始或接續案件時，Skill 會自動在套件資料夾執行一次 <code>python3 install.py --update</code>（<code>git pull</code>）保持最新；沒網路或失敗就照現有版本繼續並告訴你。想自己更新也是同一個指令。捷徑安裝立即生效，複製安裝會自動同步。</dd></div>
+              <div><dt>怎麼更新</dt><dd>（安裝程式安裝的；Plugin 見上方 A）每次開始或接續案件時，Skill 會自動在套件資料夾執行一次 <code>python3 install.py --update</code>（<code>git pull</code>）保持最新；沒網路或失敗就照現有版本繼續並告訴你。想自己更新也是同一個指令。捷徑安裝立即生效，複製安裝會自動同步。</dd></div>
               <div><dt>沒有 git 時</dt><dd>向維護者拿分享包 zip，解壓後執行 <code>python3 install.py --copy</code>。</dd></div>
             </dl>
           </article>
@@ -807,7 +825,7 @@ h1{margin:0 0 22px;font-size:clamp(40px,calc(4.2vw + 4px),60px);font-weight:570;
             <p>接著讀資料夾內的需求、CIS 與素材，把客戶事實、策略推論與缺口分開列出，再判斷製作模式。</p>
           </div>
         </div>
-        <figcaption>Claude Code 也可以直接輸入 <code>/visual-solution-immersive-director</code> 啟動；Codex 用 <code>$visual-solution-immersive-director</code>。回覆為示意，實際內容依案件而定。</figcaption>
+        <figcaption>Claude Code 也可以直接輸入 <code>/visual-solution:visual-solution-immersive-director</code> 啟動（用安裝程式裝的是 <code>/visual-solution-immersive-director</code>）；Codex 用 <code>$visual-solution-immersive-director</code>。回覆為示意，實際內容依案件而定。</figcaption>
       </figure>
       <div class="sub">
         <h3 class="sub-title">Skill 每一輪會做什麼</h3>
@@ -1392,10 +1410,13 @@ Password for 'http://boy@192.168.168.134': <b>••••••••</b>
       <div class="sec-head">
         <p class="kicker">疑難排解</p>
         <h2 id="troubleshoot-title">安裝或連線出問題時</h2>
-        <p>先執行 <code>python3 install.py --status</code>，對照顯示的狀態處理。</p>
+        <p>Plugin 的問題看前三列；用安裝程式安裝的，先執行 <code>python3 install.py --status</code>，對照顯示的狀態處理。</p>
       </div>
       <div class="trouble" role="table" aria-label="疑難排解對照表">
         <div class="trow thead" role="row"><div role="columnheader">狀況</div><div role="columnheader">原因</div><div role="columnheader">處理</div></div>
+        <div class="trow" role="row"><div role="cell"><code>/plugin marketplace add</code> 失敗</div><div role="cell" data-label="原因">GitHub 帳號還沒被加為協作者，或這台電腦的 git 還不能存取私人 repo</div><div role="cell" data-label="處理">請維護者加協作者；先在終端機試 <code>git clone</code> 這個 repo，能 clone 再回 Claude Code 重試</div></div>
+        <div class="trow" role="row"><div role="cell">Plugin 裝好後出現兩份</div><div role="cell" data-label="原因">以前用安裝程式裝過，舊的還在 <code>~/.claude/skills</code></div><div role="cell" data-label="處理">到當初的 <code>skill/</code> 資料夾執行 <code>python3 install.py --uninstall</code>，再重新開啟 Claude Code</div></div>
+        <div class="trow" role="row"><div role="cell">Plugin 沒拿到新版</div><div role="cell" data-label="原因">自建來源預設不自動更新</div><div role="cell" data-label="處理"><code>/plugin</code> → Marketplaces 開啟 Enable auto-update，或輸入 <code>/plugin marketplace update visual-solution-workflow</code></div></div>
         <div class="trow" role="row"><div role="cell">安裝後技能清單找不到</div><div role="cell" data-label="原因">AI 工具還沒重新載入</div><div role="cell" data-label="處理">重新開啟 Claude Code 或 Codex；執行 <code>--status</code> 確認</div></div>
         <div class="trow" role="row"><div role="cell"><span class="st st-quiet">[未安裝]</span></div><div role="cell" data-label="原因">尚未安裝或已被移除</div><div role="cell" data-label="處理">重新執行安裝</div></div>
         <div class="trow" role="row"><div role="cell"><span class="st st-bad">[斷掉]</span></div><div role="cell" data-label="原因">捷徑指向的資料夾被搬走或刪除</div><div role="cell" data-label="處理">把 clone 的資料夾放回原位，或在新位置重新執行 <code>python3 install.py</code></div></div>
@@ -1440,7 +1461,7 @@ Password for 'http://boy@192.168.168.134': <b>••••••••</b>
 
 <footer class="site-footer">
   <span>整體視覺方案 ／ Skill 使用教學</span>
-  <span>更新 2026-09-23 ・ 文字版 <code>使用教學.md</code></span>
+  <span>更新 2026-10-05 ・ 文字版 <code>使用教學.md</code></span>
 </footer>
 
 <script>
