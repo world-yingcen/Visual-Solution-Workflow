@@ -23,7 +23,13 @@ description: 整體視覺方案的網站製作主入口；使用者說「我要�
 
 開案、接續、新增產出及收尾時依 [PRD 與檔案管理](references/project-files.md) 維護：頁面／區塊資料集中、有效入口唯一、規格與決策同步、舊試作與目前工作分離。由同一任務負責；不再把提案、v1–v8、共用 CSS／JS 和舊試驗散堆同層。
 
-每次開始或接續案件（每個工作階段一次），先讓套件保持最新。以 Claude Code Plugin 安裝時（本 Skill 名稱帶 `visual-solution:` 前綴、位於 plugins 目錄），更新由 Claude Code 的 Plugin 機制處理，不執行 install.py；未開啟自動更新時簡短提醒使用者到 `/plugin` 的 Marketplaces 開啟。以 install.py 安裝時，讀取安裝清單 `~/.claude/skills/.visual-solution-install.json`（Codex 為 `~/.codex/skills/.visual-solution-install.json`）的 `source`，在該套件資料夾執行更新，並以 `--target` 指向該安裝清單所在的 skills 目錄；Codex 範例為 `python3 install.py --update --target ~/.codex/skills`。捷徑安裝立即生效，複製安裝會自動同步；更新後的規則從下一輪起適用。若 `.git/FETCH_HEAD` 顯示 `Operation not permitted`，先確認來源 repo 乾淨及目標目錄正確；這通常是目前任務的沙盒無法寫入案件外的來源庫，不等於遠端權限不足。可透過執行環境提供的權限核准重試同一更新命令，不改檔案權限、不自行 reset；無法取得核准時如實標記尚未更新。沒有網路、不是 git clone 或本機有分歧時，照現有版本繼續並簡短告知，不阻擋工作。在套件資料夾本身維護 Skill 時不做這一步。
+每次觸發本 Skill（明確呼叫或自動套用）都先執行「更新 → 重新讀取 → 開始工作」，每次觸發一次；同一次執行中讀取 references 不算重新觸發，也不因重新讀取入口而遞迴更新。這是預設前置步驟，不要求使用者每次另說「更新」。在套件資料夾本身維護 Skill 時保留工作中修改，不執行自我更新。
+
+- **install.py 安裝**：讀取安裝清單 `~/.claude/skills/.visual-solution-install.json`（Codex 為 `~/.codex/skills/.visual-solution-install.json`）的 `source` 與 `mode`，確認来源與目標後，在來源套件資料夾執行 `python3 install.py --update --target <該安裝清單所在的 skills 目錄>`。Codex 範例：`python3 install.py --update --target ~/.codex/skills`。由安裝器執行 `git pull --ff-only`，不在客戶案件 repo 執行 pull。來源有未提交修改或分歧時保留現況，不自行 reset、stash 或合併。
+- **確認本機內容**：捷徑安裝確認指向更新後來源；複製安裝確認已同步。安裝器回報 repo「已經是最新版」不代表安裝副本相同；若副本與來源不同，先確認差異不是使用者本機修改，才用同一來源的 `python3 install.py --copy --target <同一目標>` 同步。缺清單或來源不明時不能猜測目標或覆蓋其他來源 Skill。
+- **立即重讀**：更新及同步成功後，重新開啟實際安裝位置的 `SKILL.md` 全文，並讀取本次任務適用的 references，讓本次工作直接使用新版規則，不等下一輪。已有案件確認與使用者指示仍須保留。若執行環境只允許下次載入新版，說明需要重新載入，不宣稱本輪已套用。
+- **Claude Code Plugin 安裝**：由 Plugin 更新機制管理，不對 Plugin 快取執行 git pull 或 install.py。每次觸發先透過當下可用的 Plugin 更新能力檢查／更新，再重讀更新後入口；若本環境無法主動更新，明確告知尚未確認最新，提示透過 `/plugin` 更新或啟用自動更新，不能把自動更新設定視為本次已更新的證據。
+- **失敗處理**：權限受限時核對來源與目標，再走執行環境的核准流程重試，不修改檔案權限。沒有網路、不是 git clone、來源不明或本機有修改／分歧時，簡短告知原因與目前使用版本，重新讀取現有規則後繼續可做工作，不宣稱更新成功。
 
 先讀案件現有檔案、進度、確認決策與工程限制。已有方向或首頁確認就沿用，不重新提案或重問。資料不完整時先提出有依據的工作假設；品牌／用途完全未知才問最小必要問題。
 

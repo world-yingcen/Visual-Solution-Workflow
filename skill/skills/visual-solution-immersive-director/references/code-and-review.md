@@ -9,7 +9,7 @@
 | T03 | 設計對照、字型、續作 | [視覺系統](visual-system.md)、[交接](codex-handoff.md) |
 | T04～T08 | HTML、版面、Common、SCSS、互動狀態 | [完整 HTML／SCSS 規範](html-css-rules.md) |
 | T09 | 圖片、素材與來源 | [素材製作](asset-production.md) |
-| T10～T11 | JS 初始化、Swiper、整體視覺動態 | [JS 規範](javascript-rules.md) |
+| T10～T11 | JS 初始化、Swiper 輪播、AOS 區塊淡入淡出、marquee、整體視覺動態 | [JS 規範](javascript-rules.md)、[marquee 指定參考](evo-marquee-reference.md) |
 | T12 | 內容完整性 | [內容盤點](client-content-audit.md)、[整頁完整度](full-page-completeness.md) |
 | T13 | Header、Footer、內頁與平台 | [共用頁面規範](shared-page-rules.md)、[內頁設計](inner-pages.md) |
 | T14 | 檢查及通過條件 | [視覺 QA](visual-qa.md) |

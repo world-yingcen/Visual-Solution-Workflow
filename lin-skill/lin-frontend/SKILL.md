@@ -26,8 +26,12 @@ description: 依 LIN 切版規範實作、修改與校稿品牌及企業網站�
 | 任務 | 必讀 |
 |---|---|
 | HTML、SCSS、Common、命名、版面與互動狀態 | [HTML／SCSS](references/html-css-rules.md) |
-| JavaScript、Swiper、GSAP 初始化與清理 | [JavaScript](references/javascript-rules.md) |
+| JavaScript、Swiper、AOS、GSAP 初始化與清理 | [JavaScript](references/javascript-rules.md) |
 | Header、Footer、Nav、內頁與平台功能 | [共用頁面](references/shared-page-rules.md) |
+| EVO 選單、漢堡、按鈕、語系 | [Header 指定參考](references/evo-header-reference.md) |
+| 連續 marquee | [marquee 指定參考](references/evo-marquee-reference.md) |
+| 內頁 breadcrumb | [breadcrumb001 指定參考](references/evo-breadcrumb-reference.md) |
+| FAQ | [tpl-faq001 指定參考](references/evo-faq-reference.md) |
 | 開始修改、共用影響檢查與交付校稿 | [實作與校稿](references/implementation-review.md) |
 
 規範是工程約定，不能代替品牌構圖或素材。EVO 的 container、系統選單與版權列規定依對應文件適用範圍執行；其他框架不捏造 EVO 元件或後台資料綁定。
@@ -36,7 +40,7 @@ description: 依 LIN 切版規範實作、修改與校稿品牌及企業網站�
 
 先判斷缺陷屬於結構、樣式、JavaScript、套件、資料或環境，再用 DOM、computed style、console、network 或小型驗證找根因。修正回原始位置，不一直追加 override 或用負 margin 掩蓋占位。
 
-視覺與動畫必須幫助品牌、閱讀或操作。沿用既有 GSAP、ScrollTrigger、Swiper 及捲動系統；簡單效果用原生 CSS／JS。集中可調參數，處理 resize、去重、事件解除與 prefers-reduced-motion。未用到的工具或套件不安裝。
+視覺與動畫必須幫助品牌、閱讀或操作。輪播統一用 Swiper，區塊淡入淡出統一用 AOS，連續 marquee 沿用指定 EVO 元件；複雜時間軸、視差與釘選沿用既有 GSAP／ScrollTrigger 及捲動系統。其他簡單效果用原生 CSS／JS。集中可調參數，處理 resize、去重、事件解除與 prefers-reduced-motion。未用到的工具或套件不安裝。
 
 在可用環境編譯並開啟預覽，實際看畫面與操作；校稿依 references/implementation-review.md。無瀏覽器、缺素材或缺後台時，完成可執行部分並明列未驗證範圍，不把語法檢查當視覺通過。
 

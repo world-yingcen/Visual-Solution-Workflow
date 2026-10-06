@@ -4,7 +4,7 @@
 
 ## T10｜JavaScript 結構與初始化
 
-- 沿用案件既有套件版本與載入方式；一般簡單功能可由原生 JavaScript 完成時，不額外加入大型套件。輪播統一依 T11 使用 Swiper。
+- 沿用案件既有套件版本與載入方式；一般簡單功能可由原生 JavaScript 完成時，不額外加入大型套件。輪播統一依 T11 使用 Swiper，網站區塊淡入淡出統一使用 AOS。
 
 - 首頁專用 JavaScript 統一放 `js/index.js`，內頁專用 JavaScript 統一放 `js/innerpage.js`；首頁載入 index.js，各內頁載入 innerpage.js，不把頁面程式散寫在 HTML，也不將首頁與內頁功能混入同一入口。
 - Header／Footer 載入與全站共用互動仍集中於共用 JavaScript，沿用案件既有共用載入方式，不在 index.js 與 innerpage.js 各複製一份。既有 main.js 先盤點用途，不直接覆蓋或刪除；頁面專用功能依上述分工整理。
@@ -20,10 +20,16 @@
 - 預覽保留實際需要的 CSS／JS 載入，套件先於初始化程式。來源與版本沿用案件。
 - 有 Node 時對修改的 JS 執行 `node --check`；工具缺少要記未驗證，不能當成通過。語法檢查後仍須實際操作與查 console。
 
-## T11｜Swiper 與整體視覺動態
+## T11｜Swiper、AOS 與整體視覺動態
+
+連續 marquee 統一依 [tpl-marquee-block 指定寫法](evo-marquee-reference.md) 沿用 EVO `marquee001` 結構、CSS 循環與內容補足機制；它與下方的分頁輪播分開處理。
 
 輪播沿用本案 Swiper 版本及內建控制，不重寫既有箭頭、分頁、拖曳與循環功能。CSS／JS 版本一致，套件先於初始化，覆寫樣式置於套件 CSS 之後。控制項限元件 root；依張數與顯示數設定 loop，單張或沒有控制項不報錯。observer 等設定依需求啟用，不預設全開；檢查實例、resize 與 console，不只查 script 標籤。
 
-GSAP、ScrollTrigger、3D、WebGL、視差與釘選可依確認的設計使用，不套用簡單動態上限。依 [技術架構](technical-architecture.md) 管理場景及單一捲動責任；共用 HTML、圖片及字型尺寸穩定後必要時刷新量測，不靠重複初始化修正位置。
+優先沿用 Swiper 預設樣式與原生 CSS 變數；預設值符合需求就直接使用，不必在 Common 再宣告一次。需要調整時，先查實際載入版本的 CSS 或官方文件，確認變數名稱與支援範圍。全站共用的覆寫值集中放在專案共用樣式的 `:root`，載入於套件 CSS 之後，不直接修改 Swiper 套件檔案，也不另造同義變數。個別輪播確有設計差異時，只在該元件根元素覆寫必要的原生變數；原生變數無法涵蓋的外觀才補最小必要 CSS，保留原生結構、狀態及操作，避免每個區塊重寫一套箭頭與分頁樣式。
+
+網站區塊隨捲動進出畫面的淡入淡出統一使用 AOS，不另用 GSAP／ScrollTrigger 或自寫 IntersectionObserver 重做同類效果。沿用案件 AOS 版本與載入方式，全站初始化與共用動畫參數集中管理，區塊只設定必要差異。進入、離開、反向捲動與是否重播依已確認動態規格設定，實作前核對該版本支援方式，不預設所有區塊都只播一次或都要重播。共用片段、圖片或動態內容影響版面後，依套件機制更新量測，不重複初始化；減少動態或套件載入失敗時仍須完整顯示內容。
+
+GSAP／ScrollTrigger 用於已確認的時間軸、視差、釘選及複雜場景轉場；3D、WebGL 依設計需要使用。複雜時間軸內的透明度變化由該場景統一管理，不另外疊加 AOS 控制同一元素的 opacity／transform。依 [技術架構](technical-architecture.md) 管理場景及單一捲動責任；共用 HTML、圖片及字型尺寸穩定後必要時刷新量測，不靠重複初始化修正位置。
 
 在頁面離開、重掛載或元件移除時清理自身事件、observer、RAF、計時器、timeline／ScrollTrigger 與 GPU 資源。保留套件必要的執行時 style，用實例自身 revert／dispose 清理，不整批清除其他元件的 style、aria 或 id；避免多個動畫搶同一 transform。減少動態仍保留完整資訊與操作。
