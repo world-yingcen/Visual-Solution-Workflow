@@ -1,11 +1,11 @@
 # LIN｜HTML、樣式與 RWD
 
-本檔整理原套件保留的 LIN 工程條文與範例。尺寸與 RWD 依案件範圍；局部修改不自動授權全站改名或重構。既有框架命名沿用，tpl-* 慣例用於本規範的新靜態／EVO 區塊。
+本檔整理原套件保留的 LIN 工程條文與範例。尺寸與 RWD 依案件範圍；局部修改不自動授權全站改名或重構。既有框架命名沿用，新自製版型採 designer-tpl-*，平台元件保留契約原名。
 
 ## T04｜HTML、命名與語意
 
-- 自訂內容區塊使用 `tpl-model tpl-{語意名稱}` 作根 class；例如 `tpl-model tpl-about`。EVO 已有適用範本時，優先沿用其結構與必要識別，依 [T13](shared-page-rules.md) 調整樣式；同用途不同自訂版型有需要才加可辨識版本編號。
-- class 使用 kebab-case，不用 BEM 的 `__`／`--`。子元素使用 `tpl-container`、`text-block`、`image-block`、`card-box` 等短語意名稱，不要求每個子元素重複整段區塊名稱。
+- 設計師自製版型使用 `designer-tpl-{語意名稱}` 作根 class，例如 `designer-tpl-about`；不附加平台專用的 `tpl-model`，也不自行編造範本實例識別。使用者已轉達工程師確認此命名可用。EVO 已有適用元件時，保留其原本必要 class、data 與結構（例如 `tpl-model tpl-faq001`），依 [T13](shared-page-rules.md) 調整樣式，不改成 designer-tpl 前綴；同用途不同自製版型有需要才加可辨識版本編號。此規則用於新製作與本輪已授權調整的區塊，不自動批次改名既有案件。
+- 自製版型 class 使用 kebab-case，不用 BEM 的 `__`／`--`。子元素使用 `text-block`、`image-block`、`card-box` 等短語意名稱，版心沿用 Common container，不要求每個子元素重複整段區塊名稱。`tpl-container` 等平台 class 僅在沿用對應元件契約時保留，不作新自製區塊的預設命名。
 - 上述自訂命名規則不覆蓋 Swiper 原生 class 或 EVO 範本必要的 class、ID、data 屬性；先查樣式、初始化及平台依賴，不為統一命名而任意改掉。
 - 不用 left、right、top、bottom、upper、lower 或組合作為版面位置命名；同樣適用 JS 變數與 data 屬性。方向本身是功能時，previous／next 可用；圖示資源如 `arrow-left-icon` 可用。
 - 文字角色使用 `main-title`、`sub-title`、`en-title`、`description` 或明確用途名稱；不要用結構位置充當文字語意。避免無意義 wrapper、無理由增添框架與重複元件。
@@ -19,6 +19,23 @@
 - 圖層優先以清楚的定位與 `z-index` 管理；必要時可用負值，須實際確認元素不會掉到父層背景後方、消失或影響操作。
 - HTML 原始檔的一般外觀寫在 SCSS，不手寫 inline style；執行時需要即時計算的樣式依 T10 處理。不使用 inline on* 事件或 javascript: 連結；既有來源遇到不相容寫法，限縮修正範圍並檢查影響。
 - 平台產生的 wrapper、模組 ID 與雜湊識別不能憑空編造；後台相關事項見 [平台整合邊界](shared-page-rules.md#平台整合邊界)。
+
+### EVO 內頁的頁面識別與匯入邊界
+
+將轉 EVO 的內頁，依工程師 [HTML 匯入指南 §1](http://192.168.168.94/evomni_vue/docs/html-zip-import-cases/DESIGNER-GUIDE.md)，把自訂頁面 class 放在 `main` 內第一層 wrapper，供匯入後的 CSS／JS 識別：
+
+```html
+<main id="main-content" class="main-content">
+  <div class="inner-page about-page">
+    <!-- 本頁完整內容 -->
+  </div>
+</main>
+```
+
+- 靜態交付仍是可預覽的完整 HTML，保留 head、共用 Header／Footer 與必要資源；指南的內頁匯入範圍為 main 內容區，靜態 body 與 head 不隨之帶入。不可只把本頁必要 class 掛在 body，或依賴匯入範圍外的自訂祖先才能套到樣式。main 由正式平台 layout 提供，轉檔時由工程師對應內容，不額外嵌套第二個 main。
+- 本頁內容選擇器依實際結構撰寫，例如 `.about-page .main-title`；不要寫 `.about-page .main-content`，因為 main-content 是外層而非子元素。在靜態 DOM 核對命中節點，不靠轉檔自動改寫補救。
+- 本頁 overflow、間距與布局需求放在 wrapper 或對應區塊，檢查 sticky／釘選動畫所需條件；不要為單頁效果無差別修改全站 main-content。頁面作用域不涵蓋外面的 Header／Footer。
+- 平台前台自動產生的 body 頁型 class 與上述自訂 wrapper 是不同來源；若要控制某類頁面的共用 Header，先核對正式輸出，不從 URL 猜 class，也不認為後台畫布必定有同樣標記。首頁、框架及分類介紹依各自正式契約，不直接套用本內頁示例。
 
 ## T05｜版面配置與 RWD
 
@@ -57,27 +74,34 @@
 | `_index.scss` | 首頁專用樣式 |
 | `_innerpage-default.scss` | 多個內頁共同使用的基礎樣式 |
 | `_about.scss`、`_careers.scss`、`_contact.scss` 等 | 依案件頁面用途命名的專用樣式 |
-| `evomni-root.scss` | 統一匯入所需 SCSS 的編譯入口 |
-| `evomni-root.css` | 編譯輸出，頁面載入此檔，不直接手改 |
+| `evomni-root.scss` | 靜態切版的共用樣式入口，只匯入約定共用檔 |
+| `evomni-root.css` | 共用編譯輸出，由各頁 HTML 引用，不直接手改 |
+| 本頁編譯入口與 CSS（如 `about.scss` → `about.css`） | 只輸出本頁樣式，由對應 HTML 引用；名稱與路徑沿用既有工程 |
 
 - 使用者範例另有 `_downloads.scss`、`_knowledge.scss`、`_maintenance.scss`、`_news.scss`、`_team.scss`；依實際案件頁面建立，不將範例清單當成每案必備檔案。
-- 共用樣式集中於 Common 或內頁共用檔，各頁檔只寫該頁差異；例如內頁共用的標題區、麵包屑與內容容器可放 `_innerpage-default.scss`，不要在各頁重複。
-- 沿用基底匯入語法及必要依賴順序；共用基礎先於頁面專用樣式，新增檔案須納入 `evomni-root.scss`，確認編譯與實際載入正常。底線開頭的檔案供入口匯入，不各自產生獨立 CSS。
+- 切版時就分好共用與單頁來源。全站變數、字體、容器與元件放 Common／共用檔；跨內頁 Hero、CTA、麵包屑等放 `_innerpage-default.scss` 或既有共用元件檔，不藏在某一頁的專屬 SCSS。各頁檔只寫本頁樣式及必要差異。
+- 每頁 HTML 只引用約定共用 CSS、本頁 CSS 與實際需要的套件 CSS；例如 `about.html` 載入 `evomni-root.css` 與 `about.css`，不載入其他頁面 CSS。首頁樣式同樣由首頁單獨引用。共用與單頁分開編譯，不能把所有頁面重新包進共用 CSS 掩蓋依賴。
+- 沿用既有編譯工具與匯入語法，記錄「SCSS 來源 → 編譯 CSS → 引用 HTML」。底線 partial 可透過本頁薄入口輸出；已有多入口或框架按頁輸出就沿用，不強制新增 `pages/`、另一套建置工具或第二份相同樣式。單頁需要 Sass 變數／mixin 時使用既有編譯依賴，避免再次輸出整份 Common CSS。
+- 單頁選擇器限縮在本頁／區塊作用域，不能無意間修改其他頁共用選擇器。保留合理的共用基礎與單頁覆寫，不因 selector 重複就刪除；檢查實際載入順序、選擇器權重及 computed style，不能只認為後載入就一定覆蓋。
+- 上述是靜態製作與校稿的資源分工；EVO 正式站的全站／單頁輸出由工程師按本案轉檔方式對應同一份來源。使用者回報 evo266200 正式 root 仍須保留 common、index、innerpage-default、header、footer，其他內頁已有各自 CSS；這是該案現況，不能據此要求所有新案把 index 放進全站 root，也不能在既有站未核對前移除 index。
 
 ### 區塊寫法
 
-- 同一區塊的一般樣式集中在同一個 `.tpl-{語意名稱}` 根內巢狀撰寫；子元素、偽元素與互動狀態收在所屬父層。修改時回原位置整理，不零散追加覆寫。跨頁共用樣式仍放共用檔，各頁只保留自身差異。
+- 同一自製區塊的一般樣式集中在自己的 `.designer-tpl-{語意名稱}` 根內巢狀撰寫；平台元件則以契約原有根 class 限縮樣式，不另加或改成 designer-tpl；子元素、偽元素與互動狀態收在所屬父層。修改時回原位置整理，不零散追加覆寫。跨頁共用樣式仍放共用檔，各頁只保留自身差異。
 - RWD 依斷點集中：同一份 SCSS 中，相同條件的斷點集中成一個最外層 `@media`，其內再按區塊巢狀整理；不將 RWD 的 `@media` 放進個別元素或區塊根內。不跨檔把不同頁面的樣式混在一起。
+- 集中整理與將 RWD 移到檔尾僅適用於不改變原始覆寫結果的情況；不得跨越會影響 cascade 的規則強行合併或搬移。既有已確認樣式的斷點保真優先於排版慣例：無法確認等效時，保留原本分散的查詢及相對順序，說明原因，不為滿足「集中成一個」改變生效結果。整理後依本案範圍檢查受影響斷點與重疊區間。
 - RWD 區集中放在該檔的一般樣式之後，沿用案件斷點與覆寫順序；同時命中的條件須確認最終樣式正確。這是依斷點整理，不是允許任意追加重複覆寫。尺寸依案件內容決定，本規則不新增固定斷點。
+- 斷點保真（切版 → 編譯 → EVO 轉檔／匯入）：以設計師已確認的 SCSS 及其編譯 CSS 為唯一樣式基準，保留 `@media` 的條件、數值、單位、比較運算子、規則相對順序與生效範圍。不得為適應工具排序而自行新增 `.001px`／epsilon 邊界、將 `max-width` 改成另一組 range 條件、拆成互斥 band 或搬遷屬性。來源原本有意重疊的查詢仍依原 cascade 保留，不一律改成互斥；來源本身有缺陷時回原 SCSS 修正並記錄，不以轉檔補償偷偷改設計。
+- 若編輯器／轉檔工具無法保留上述基準，列出來源與輸出的 media／順序差異、受影響頁面及重現尺寸，停止該成果的匯入／交付／發布，回報工程師處理；不默默接受工具改寫、不要求設計師遷就奇怪斷點，也不直接關閉排序補償而忽略既有覆寫順序問題。其他不受影響的工作可繼續；修工具、匯入與發布仍依本次授權。
 
 ```scss
-.tpl-about {
+.designer-tpl-about {
   .main-title {
     // 一般標題樣式
   }
 }
 
-.tpl-service {
+.designer-tpl-service {
   .card-box {
     // 一般卡片樣式
   }
@@ -85,13 +109,13 @@
 
 // 以下 48rem 僅示意組織方式，實際斷點依案件設定。
 @media (max-width: 48rem) {
-  .tpl-about {
+  .designer-tpl-about {
     .main-title {
       // 此斷點的標題調整
     }
   }
 
-  .tpl-service {
+  .designer-tpl-service {
     .card-box {
       // 同一斷點的卡片調整
     }
@@ -107,7 +131,7 @@
 - 不自行替圖片加上 `filter`、`mix-blend-mode` 等效果。已確認且不隨互動改變的調色、明暗、模糊或合成效果，能在圖片本身處理就優先輸出處理後素材，保留原檔，記錄素材來源與處理版本。確實需要隨互動或背景變化的效果才使用 CSS，限縮作用範圍並在實際畫面檢查捲動及動畫效能；不以大面積濾鏡補救素材問題。
 
 ```scss
-.tpl-about {
+.designer-tpl-about {
   .card-box {
     padding: 24px;
     border: 1px solid var(--BorderColorPrimary, #333);
@@ -123,7 +147,7 @@
 - `hover`、`:active`、`:focus-visible` 狀態樣式收在所屬元素內，不另散落重複 selector。滑鼠能力判斷的 `@media (hover: hover) and (pointer: fine)` 隨元素狀態撰寫；RWD 尺寸斷點則依 T07 集中於檔案外層，兩者分開處理。實際確認 Tab 操作、焦點可見與手機點按，不能只看 hover 截圖。
 
 ```scss
-.tpl-about {
+.designer-tpl-about {
   .action-link {
     @media (hover: hover) and (pointer: fine) {
       &:hover {

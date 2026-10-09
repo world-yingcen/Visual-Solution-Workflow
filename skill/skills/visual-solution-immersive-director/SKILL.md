@@ -49,6 +49,8 @@ CIS 不完整或沒有 CIS 時，依 [視覺提案](references/visual-proposal.m
 
 涉及 HTML／SCSS／JavaScript 製作或修改時，必讀 [切版工程規範](references/frontend-standards.md)。這套規則只整合結構、命名、共用元件與初始化；不引入其他方案的母版限制、角色交接或簡單動態上限。既有案件局部修正不自動授權全站重構。
 
+預計使用 EVO 後台的案件，切版前必讀 [EVO 範本查核](references/evo-preflight.md)。由 AI 查工程師套件，在切版時同步實作已核對的逐筆編輯結構與欄位標記，不只列成後續轉檔待辦；同一份來源仍提供完整靜態校稿與互動。設計師不用判斷技術標記；缺契約逐區列待確認。工程師後續處理匯入、必要接入及編輯／儲存／發布驗證，不自動啟動匯入或打包。
+
 首次視覺提案、核心試做與完整首頁延伸時讀 [首次產出完成度基準](references/quality-baseline.md)：以關鍵構圖、接近正式品質的素材與真實內容段檢查第一輪。案例用於完成度比較，不套用其品牌風格或驗收結論。
 
 設計時讀 [創意邊界](references/creative-operating-model.md) 與 [設計準則](references/design-constitution.md)。前期明確品牌、目標和品質，保留概念、構圖、材質與技術的探索空間。

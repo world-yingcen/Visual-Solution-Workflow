@@ -4,6 +4,8 @@
 
 ## T13｜Header、Footer 與內頁
 
+每個網站首次製作時，就要一起完成 Cookie 提示與隱私權政策頁面，不延後到另一次內頁階段。Cookie 樣式與文字統一依照 [evo263525 Cookie 指定參考](evo-cookie-reference.md)；製作前必讀，文案逐字保留，「隱私權政策」文字必須連到本案實際可開啟、有內容的政策頁面，不使用空連結或占位頁。
+
 EVO 選單、root、漢堡、按鈕與語系以使用者指定的 [evo266200 Header 參考](evo-header-reference.md) 為工程依據；製作相關元件前必讀其結構、變數、狀態與來源限制，再依本案首頁調整樣式。
 
 內頁麵包屑以 [evo263525 breadcrumb001 參考](evo-breadcrumb-reference.md) 為工程依據，保留其語意結構、class、data 屬性與目前頁標示，集中管理內頁共用樣式。
