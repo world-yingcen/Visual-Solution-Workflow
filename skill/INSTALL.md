@@ -48,3 +48,7 @@ python3 install.py --target ~/.codex/skills
 `--update` 會取得 repo 更新並同步安裝；主 Skill 每次開始或接續案件會自動執行一次，使用者也可自行執行。Codex 請使用 `python3 install.py --update --target ~/.codex/skills`，避免更新到預設的 Claude 技能目錄。若在受限案件工作區出現 `.git/FETCH_HEAD: Operation not permitted`，是該執行環境不能寫入案件外的來源庫；核對來源庫狀態後，取得執行環境的寫入核准再重跑，不要改檔案權限或重置 Git。沒有網路、不是 git clone 或本機分歧時，既有安裝不受影響。`--uninstall` 依安裝紀錄移除該工具管理的項目，執行前先核對 `--status`。`--case` 是舊版 Claude 案件權限設定相容功能，並非使用主 Skill 的必要步驟；只有明確要求該設定時才使用。
 
 既有舊角色安裝不會自動刪除；若要清理，先核對安裝位置與來源，再另外處理。工程工具依案件實際需要準備，不要求每案固定安裝 Sass、Node、Eagle 或 VS Code。
+
+## LIN 共用規範（必要依賴）
+
+切版／校稿另需安裝 [lin-skill](https://github.com/world-yingcen/lin-skill) 的完整 lin-frontend。此套件／Plugin 不再內含工程條文副本，也不會自動安裝 LIN。請 clone 獨立 repo，依其 README 安裝；每次使用由 LIN 執行安全更新與重讀。缺少或更新失敗必須回報，不能宣稱已最新。方案設計流程與 RWD 範圍不變。

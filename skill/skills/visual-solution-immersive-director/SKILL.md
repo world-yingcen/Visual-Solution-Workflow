@@ -43,6 +43,8 @@ CIS 不完整或沒有 CIS 時，依 [視覺提案](references/visual-proposal.m
 
 若本案已有 Claude 自動呼叫 Codex 或 ChatGPT 網頁產圖管道，沿用已授權且可用的方式。在 Codex 內有工程與瀏覽器工具時直接執行；Handoff 是工作依據，不是要求使用者手動搬運指令的終點。工具不可用時如實標記缺口，不虛構已產圖、已測試或已交接。分工建議見下方「建議分工」。
 
+涉及切版、程式修改或校稿前，必讀 [獨立 LIN 接入](references/frontend-standards.md)，使用本執行端的 lin-frontend 更新並重讀共用規範。本方案只補方案差異，不使用歷史工程條文副本。
+
 ## 品質與工作方式
 
 使用 GSAP 實作或修正動態時，依 [GSAP 技術 Skills](references/gsap-skills.md) 按需讀取套件內的對應 Skill；它們負責技術正確性，不取代本 Skill 的品牌方向、動態分鏡、本套件工程規範或驗收範圍。

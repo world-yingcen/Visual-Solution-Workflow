@@ -15,3 +15,7 @@
 套件包含整體視覺主 Skill、8 支 GSAP 技術 Skills，以及 Eagle 相關 Skills；不含客戶案件、圖片、字型、案例資料庫或憑證。工程師提供的範本資料需另行取得。
 
 文件更新不代表已完成實際案件轉檔、後台整合或客戶驗收。
+
+## LIN 共用規範（必要依賴）
+
+切版／校稿另需安裝 [lin-skill](https://github.com/world-yingcen/lin-skill) 的完整 lin-frontend。此套件／Plugin 不再內含工程條文副本，也不會自動安裝 LIN。請 clone 獨立 repo，依其 README 安裝；每次使用由 LIN 執行安全更新與重讀。缺少或更新失敗必須回報，不能宣稱已最新。方案設計流程與 RWD 範圍不變。
