@@ -479,7 +479,11 @@ h1{margin:0 0 22px;font-size:clamp(40px,calc(4.2vw + 4px),60px);font-weight:570;
 <p>先做桌機首頁，再延伸內頁；平板、手機要另外提出。AI 說完成不等於你或客戶已確認。</p></section>
 <section class="sec" id="setup"><div class="sec-head"><h2>第一次使用｜先請 LIN 協助設定</h2></div><p>請 LIN／維護者協助安裝，告訴他你使用 Codex 還是 Claude Code。帳號授權或密碼由你本人操作，不要貼進對話。</p>
 <p>設定完成後重新開啟 AI 工具，貼下面這句確認。</p><h3>貼給 AI</h3><pre><code>請確認這台電腦可以使用 visual-solution-immersive-director，並告訴我是否已讀到 Skill。若缺少設定，請用白話告訴我要找誰協助，不要開始製作網站。</code></pre><p class="note"><strong>做到這裡再往下：</strong>AI 確認已讀到 Skill。若找不到，將回覆交給 LIN，不必自己研究安裝指令。</p></section>
-<section class="sec" id="prepare"><div class="sec-head"><h2>第 1 步｜準備案件資料</h2></div><p>建立一個案件資料夾，放入客戶簡介、Logo、品牌規範、圖片、文案與頁面需求。有 Figma 或參考網站就附上連結。</p>
+<section class="sec" id="prepare"><div class="sec-head"><h2>第 1 步｜準備案件資料</h2></div><p>每輪工作前，AI 先偵測 Skill 來源及案件資料夾是否由 Git 管理；有 Git 就先安全更新，再重新讀取規範與進度。連結安裝直接使用來源，不需複製。有未提交修改、版本分歧或連線失敗時保留現況，說明更新未完成。</p>
+<p>遇到 PDF，先檢查大小。單一檔案超過 10 MB（10,000,000 bytes）一律不讀取，請直接提供重點截圖或 Markdown（.md）。未超過上限才詢問要現在先讀還是用到再讀；稍後讀取的檔案集中到 04_型錄與原始素材/PDF_待用時讀取/，保留原檔並標記未讀取。</p>
+<p>切版完成後，LIN 會檢查圖片大小與格式，提醒你檢核專案容量；網站使用的非 WebP／SVG 圖片會列出路徑與大小，請自行轉檔。Claude 不代為轉檔、壓縮或批次處理圖片；WebP／SVG 也須確認實際容量。</p>
+<p>每案必備搜尋頁，HTML 與完整系統搜尋 CSS 依 LIN 的搜尋頁指定參考，不自行套品牌卡片版型；完成時需核對後載入的系統覆寫與實際文字樣式。</p>
+<p>建立一個案件資料夾，放入客戶簡介、Logo、品牌規範、圖片、文案與頁面需求。有 Figma 或參考網站就附上連結。</p>
 <p>在 AI 工具中開啟這個案件資料夾。資料不齊也可以開始，讓 AI 列出缺什麼；不要把別案素材混進來。</p><h3>貼給 AI</h3><pre><code>這是本案資料，請先整理你已經知道的內容，以及還缺什麼。
 請用設計師看得懂的方式說明，一次只問一個會影響製作的問題。</code></pre><p class="note"><strong>做到這裡再往下：</strong>AI 整理的品牌、網站目的與頁面需求沒有誤解。缺少的資料有列出來。</p></section>
 <section class="sec" id="start"><div class="sec-head"><h2>第 2 步｜告訴 AI 開始製作</h2></div><p>複製下面這段，把括號中的內容換成本案資訊。不知道的寫「尚未取得」。工程師提供的範本資料只要告訴 AI 放在哪，不用自己讀。</p><h3>貼給 AI</h3><pre><code>使用 visual-solution-immersive-director，開始這個案件。

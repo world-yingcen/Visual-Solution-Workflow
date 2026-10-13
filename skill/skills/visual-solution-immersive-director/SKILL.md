@@ -23,15 +23,17 @@ description: 整體視覺方案的網站製作主入口；使用者說「我要�
 
 開案、接續、新增產出及收尾時依 [PRD 與檔案管理](references/project-files.md) 維護：頁面／區塊資料集中、有效入口唯一、規格與決策同步、舊試作與目前工作分離。由同一任務負責；不再把提案、v1–v8、共用 CSS／JS 和舊試驗散堆同層。
 
-每次觸發本 Skill（明確呼叫或自動套用）都先執行「更新 → 重新讀取 → 開始工作」，每次觸發一次；同一次執行中讀取 references 不算重新觸發，也不因重新讀取入口而遞迴更新。這是預設前置步驟，不要求使用者每次另說「更新」。在套件資料夾本身維護 Skill 時保留工作中修改，不執行自我更新。
+每次開始新一輪工作（包含同一對話中的續作、修改與校稿），都先偵測本輪 Skill 來源及案件工作目錄是否由 Git 管理；有 Git 就先依 [工作前 Git 更新](references/git-workflow.md#每輪工作前更新-git-資料) 更新遠端資料，再重新讀取規範、進度及本輪需要的檔案，才開始工作。不要求使用者每次另說「更新」；捷徑／連結安裝也適用。每個 repo 每輪只檢查一次，讀 references 或重讀入口不遞迴觸發。維護套件本身時同樣先檢查，但保留工作中修改，不為更新覆蓋現況。
 
-- **install.py 安裝**：讀取安裝清單 `~/.claude/skills/.visual-solution-install.json`（Codex 為 `~/.codex/skills/.visual-solution-install.json`）的 `source` 與 `mode`，確認来源與目標後，在來源套件資料夾執行 `python3 install.py --update --target <該安裝清單所在的 skills 目錄>`。Codex 範例：`python3 install.py --update --target ~/.codex/skills`。由安裝器執行 `git pull --ff-only`，不在客戶案件 repo 執行 pull。來源有未提交修改或分歧時保留現況，不自行 reset、stash 或合併。
+- **install.py 安裝**：讀取安裝清單 `~/.claude/skills/.visual-solution-install.json`（Codex 為 `~/.codex/skills/.visual-solution-install.json`）的 `source` 與 `mode`，確認来源與目標後，在來源套件資料夾執行 `python3 install.py --update --target <該安裝清單所在的 skills 目錄>`。Codex 範例：`python3 install.py --update --target ~/.codex/skills`。由安裝器執行 `git pull --ff-only`；案件 repo 另依工作前 Git 更新規則處理，不混用套件安裝器。來源有未提交修改或分歧時保留現況，不自行 reset、stash 或合併。
 - **確認本機內容**：捷徑安裝確認指向更新後來源；複製安裝確認已同步。安裝器回報 repo「已經是最新版」不代表安裝副本相同；若副本與來源不同，先確認差異不是使用者本機修改，才用同一來源的 `python3 install.py --copy --target <同一目標>` 同步。缺清單或來源不明時不能猜測目標或覆蓋其他來源 Skill。
 - **立即重讀**：更新及同步成功後，重新開啟實際安裝位置的 `SKILL.md` 全文，並讀取本次任務適用的 references，讓本次工作直接使用新版規則，不等下一輪。已有案件確認與使用者指示仍須保留。若執行環境只允許下次載入新版，說明需要重新載入，不宣稱本輪已套用。
 - **Claude Code Plugin 安裝**：由 Plugin 更新機制管理，不對 Plugin 快取執行 git pull 或 install.py。每次觸發先透過當下可用的 Plugin 更新能力檢查／更新，再重讀更新後入口；若本環境無法主動更新，明確告知尚未確認最新，提示透過 `/plugin` 更新或啟用自動更新，不能把自動更新設定視為本次已更新的證據。
 - **失敗處理**：權限受限時核對來源與目標，再走執行環境的核准流程重試，不修改檔案權限。沒有網路、不是 git clone、來源不明或本機有修改／分歧時，簡短告知原因與目前使用版本，重新讀取現有規則後繼續可做工作，不宣稱更新成功。
 
-先讀案件現有檔案、進度、確認決策與工程限制。已有方向或首頁確認就沿用，不重新提案或重問。資料不完整時先提出有依據的工作假設；品牌／用途完全未知才問最小必要問題。
+遇到 PDF 時，先檢查單一檔案大小：超過 10 MB（10,000,000 bytes）一律明確拒絕讀取，即使使用者要求也不例外；未超過上限才依 [PDF 讀取與暫存](references/project-files.md#pdf-讀取與暫存) 詢問要先讀還是用到再讀。大小未確認或讀取選擇未確認前，不載入 PDF 內容。
+
+先讀案件現有檔案、進度、確認決策與工程限制；PDF 依已確認的讀取選擇處理。已有方向或首頁確認就沿用，不重新提案或重問。資料不完整時先提出有依據的工作假設；品牌／用途完全未知才問最小必要問題。
 
 CIS 不完整或沒有 CIS 時，依 [視覺提案](references/visual-proposal.md) 盤點既有品牌線索，由 AI 提出缺漏項目的具體建議與樣張，交使用者判斷、討論後形成網站視覺約定。工作假設不等於定案；不因缺 CIS 停止提案，也不把 AI 建議當成客戶正式規範。
 
@@ -133,6 +135,8 @@ CIS 不完整或沒有 CIS 時，依 [視覺提案](references/visual-proposal.m
 效果不成立就定位與修正，不包裝成「完成，之後可優化」。同一根因修正兩輪仍無改善就改變假設或做小型替代驗證；需更換已確認方向或缺關鍵資產時，提出具體差異供決策。
 
 ## 接續與完成
+
+切版完成後，依 [LIN 接入](references/frontend-standards.md) 讀取獨立 LIN 的 `references/implementation-review.md`「切版完成後的容量與圖片格式檢核」，執行圖片大小與格式檢查及使用者提醒；本方案不另維護共用條文。
 
 沿用案件進度檔；沒有時建立簡短 `experience-status.md`：模式、階段、確認紀錄、工具授權（Codex 執行、產圖工具）、規格／素材／預覽路徑、驗證版本與尺寸、缺陷及下一步。不要重建整套文件。
 

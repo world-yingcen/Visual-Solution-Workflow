@@ -2,6 +2,13 @@
 
 依公司文件「內部 Git 專案空間使用說明（放置 AI HTML）」（posthub 文件 2335，2026-09-21）整理成 CLI 流程，由本 Skill 在使用者要求「推到 git」「備份到 git」「同步 git」時直接執行，不要求使用者改用 VSCode 按鈕操作。伺服器是公司內網 `http://192.168.168.134/client-html-demo`，需在公司網路或 VPN 內；專案清單同一網址可查。
 
+## 每輪工作前更新 Git 資料
+
+- 每輪開始工作前，檢查本輪 Skill 的實際來源與案件工作目錄是否在 Git repo 中（包含 `.git` 為檔案的 worktree）；以 `git rev-parse --show-toplevel` 定位，不只看資料夾名稱。同一 repo 每輪一次；不是 Git 管理的資料夾不初始化、不建立遠端。
+- 有 Git 時先檢查工作目錄狀態、目前分支與既有 upstream。乾淨且有 upstream 才執行 `git pull --ff-only`，取得並套用該分支的遠端更新；Skill 有管理安裝器時使用其安全更新流程。連結安裝更新來源即可，不額外複製；複製安裝還須核對並同步副本。
+- 有未提交修改（含未追蹤檔案）、分支分歧、沒有 upstream、detached HEAD、來源不明、網路／認證失敗時，保留現況並明確說明尚未完成更新。沒有 upstream 不猜 origin/main，也不自行設定追蹤。不 reset、stash、強制拉取、解衝突、提交或推送來完成前置更新；讀現有資料後繼續不受影響的工作。
+- 更新成功後重新讀取實際使用的 Skill、README、進度及本輪需要的檔案，沿用已確認決策。只有取得並核對遠端的證據才能說已更新；檔案存在或連結有效不代表遠端最新。
+
 ## 界線
 
 - 只在使用者明確要求時執行，不在確認點以外主動推送。每次推送前列出目標專案、分支與將提交的檔案摘要，執行後回報結果。
@@ -29,13 +36,15 @@ git config --global user.email "帳號@world-group.com.tw"
 
 - 憑證管理員為空時設定（Mac `osxkeychain`，Windows `manager`），並告知使用者第一次推送要自己輸入一次帳密。
 
+系統檔案的忽略與解除追蹤依獨立 lin-frontend「實作與校稿」規範；建立專案及提交前核對，不覆蓋既有 `.gitignore`。
+
 ## 情況 A：新網頁建立新專案
 
 在網站資料夾執行。專案英文 ID 由使用者指定（英文、數字、連字號），`project.description` 填效率雲上的客戶名稱。
 
 ```bash
 git init -b main                 # 舊版 git：git init 後 git branch -M main
-printf '.DS_Store\nThumbs.db\n' > .gitignore
+# 先依 lin-frontend 規範補齊 .gitignore，保留既有規則
 git add -A
 git commit -m "首頁桌機版 v1"      # 白話寫這個版本是什麼
 git remote add origin http://192.168.168.134/client-html-demo/專案英文ID.git
