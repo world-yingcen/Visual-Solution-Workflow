@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>Ichia 毅嘉｜視覺提案 v1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0084BE;           /* CIS 標準色 PANTONE 3005C 實測值 */
+  --blue-deep:#0B5E86;      /* 新增延伸：深藍，僅用於小面積文字強調 */
+  --blue-tint:#E8F4FA;      /* 新增延伸：淡藍底 */
+  --ink:#141A1F;            /* 主要文字 */
+  --ink-2:#5A6672;          /* 次要文字 */
+  --line:#DFE4E8;
+  --paper:#FFFFFF;
+  --paper-2:#F4F6F8;        /* 淺灰分區底 */
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --text:"Inter","Noto Sans TC",system-ui,sans-serif;
+  --doc:"Noto Sans TC","Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper-2);color:var(--ink);font-family:var(--doc);font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+/* ── 提案文件外框 ── */
+.doc-head{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.doc-head .wrap{display:flex;align-items:center;gap:20px;height:72px}
+.doc-head img{height:26px}
+.doc-head h1{font-size:16px;margin:0;font-weight:500;letter-spacing:.02em}
+.badge{font-family:var(--text);font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--blue);color:var(--blue);padding:3px 10px;border-radius:2px}
+.badge.warn{border-color:#C8722A;color:#C8722A}
+.doc-nav{margin-left:auto;display:flex;gap:18px;font-size:13px}
+.doc-nav a{color:var(--ink-2);text-decoration:none}
+.doc-nav a:hover{color:var(--blue)}
+
+section.block{background:var(--paper);margin:0 0 2px;padding:64px 0}
+section.block:nth-child(even){background:#FBFCFD}
+h2.sec{font-family:var(--text);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin:0 0 6px;font-weight:600}
+h3.sec-zh{font-size:28px;margin:0 0 28px;font-weight:500;letter-spacing:.01em}
+h4{font-size:15px;margin:32px 0 10px;font-weight:700}
+p{margin:0 0 14px;max-width:none}
+.lead{font-size:17px;color:#2B333A;max-width:860px}
+small.note{display:block;color:var(--ink-2);font-size:12.5px;line-height:1.7;margin-top:8px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin-bottom:6px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0 18px}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--paper-2);font-weight:600;white-space:nowrap}
+code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:var(--paper-2);padding:1px 5px;border-radius:2px}
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{border:1px solid var(--line);background:#fff}
+.card img{width:100%;display:block}
+.card .cap{padding:10px 12px;font-size:12.5px;color:var(--ink-2);line-height:1.6}
+.tag{display:inline-block;font-family:var(--text);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-right:6px}
+.t-official{background:var(--blue-tint);color:var(--blue-deep)}
+.t-new{background:#FDF1E4;color:#9A5A16}
+.t-gap{background:#FBE9E9;color:#A33}
+
+/* 色票 */
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:18px 0}
+.sw{border:1px solid var(--line)}
+.sw i{display:block;height:88px}
+.sw span{display:block;padding:8px 10px;font-size:12px;line-height:1.5;font-family:var(--text)}
+.ratio{display:flex;height:46px;border:1px solid var(--line);margin:10px 0 6px;font-family:var(--text);font-size:11px;letter-spacing:.06em}
+.ratio div{display:flex;align-items:center;justify-content:center}
+
+/* 字體樣張 */
+.type-spec{border:1px solid var(--line);padding:28px 30px;background:#fff;margin-bottom:14px}
+.type-spec .meta{font-family:var(--text);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:14px}
+
+/* ICON */
+.icons{display:flex;gap:26px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.icons figure{margin:0;text-align:center;width:92px}
+.icons svg{display:block;margin:0 auto 6px}
+.icons figcaption{font-size:11.5px;color:var(--ink-2)}
+
+/* ── 2560×1280 關鍵畫面舞台 ── */
+.stage-outer{border:1px solid var(--line);background:#fff;overflow:hidden;position:relative}
+.stage-holder{position:relative;width:100%}
+.stage{width:2560px;height:1280px;transform-origin:top left;position:absolute;top:0;left:0;overflow:hidden;background:#fff}
+.stage-label{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--text);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin:26px 0 8px}
+
+/* 站體樣式（僅在 .stage 內生效） */
+.stage *{box-sizing:border-box}
+.stage .nav{position:absolute;top:0;left:0;right:0;height:132px;display:flex;align-items:center;padding:0 96px;gap:64px;z-index:9}
+.stage .nav .logo{height:46px}
+.stage .nav ul{list-style:none;display:flex;gap:52px;margin:0;padding:0;font-family:var(--text);font-size:21px;letter-spacing:.01em;color:#2B333A}
+.stage .nav .right{margin-left:auto;display:flex;align-items:center;gap:36px}
+.stage .nav .cta{font-family:var(--text);font-size:20px;border:1.5px solid var(--blue);color:var(--blue);padding:13px 30px;border-radius:2px;letter-spacing:.02em}
+.stage .nav .sr{width:26px;height:26px;stroke:#2B333A;fill:none;stroke-width:1.6}
+.stage h1.hero{font-family:var(--display);font-weight:300;font-size:132px;line-height:1.06;letter-spacing:-.015em;margin:0;color:var(--ink)}
+.stage h1.hero em{font-style:normal;font-weight:500}
+.stage .sub{font-family:var(--text);font-weight:300;font-size:30px;line-height:1.6;color:var(--ink-2);max-width:860px;margin:34px 0 0}
+.stage .eyebrow{font-family:var(--text);font-size:19px;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:18px}
+.stage .eyebrow::before{content:"";width:64px;height:1.5px;background:var(--blue)}
+.stage .sectitle{font-family:var(--display);font-weight:300;font-size:86px;line-height:1.1;letter-spacing:-.01em;margin:22px 0 0}
+.stage .sectitle strong{font-weight:500}
+.stage .body{font-family:var(--text);font-weight:300;font-size:24px;line-height:1.75;color:var(--ink-2)}
+.stage .btn{display:inline-flex;align-items:center;gap:16px;font-family:var(--text);font-size:21px;letter-spacing:.03em;color:#fff;background:var(--blue);padding:20px 40px;border-radius:2px}
+.stage .btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.stage .blend{mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(120% 120% at 50% 50%,#000 58%,rgba(0,0,0,0) 94%);mask-image:radial-gradient(120% 120% at 50% 50%,#000 58%,rgba(0,0,0,0) 94%)}
+.stage .softbox{position:absolute}
+.stage .softbox img{display:block;width:100%}
+.stage .softbox.mul img{mix-blend-mode:multiply}
+.stage .softbox::after{content:"";position:absolute;inset:-2px;background:radial-gradient(104% 104% at 50% 50%,rgba(255,255,255,0) 30%,var(--sb,#fff) 80%)}
+.stage .plate{-webkit-mask-image:radial-gradient(118% 118% at 50% 50%,#000 60%,rgba(0,0,0,0) 93%);mask-image:radial-gradient(118% 118% at 50% 50%,#000 60%,rgba(0,0,0,0) 93%)}
+.stage .grid-deco{position:absolute;opacity:.5;pointer-events:none}
+.stage .num{font-family:var(--display);font-weight:300;font-size:104px;letter-spacing:-.02em;color:var(--blue);line-height:1}
+.stage .numlabel{font-family:var(--text);font-size:19px;color:var(--ink-2);margin-top:8px;line-height:1.5}
+.stage .rule{height:1px;background:var(--line)}
+.stage .idx{font-family:var(--text);font-size:18px;letter-spacing:.2em;color:#9AA6B0}
+.stage .leader{position:absolute;pointer-events:none}
+.stage .leader span{font-family:var(--text);font-size:18px;letter-spacing:.06em;color:var(--ink-2);background:#fff;padding:0 8px}
+
+.legend{font-size:12.5px;color:var(--ink-2);margin-top:10px;line-height:1.75}
+.legend b{color:var(--ink)}
+.status-ok{color:#1B7A4B;font-weight:600}
+.status-wait{color:#C8722A;font-weight:600}
+.status-gap{color:#A33;font-weight:600}
+
+/* QA：#solo-1..4 只顯示單一關鍵畫面，1:1 渲染，供 2560×1280 實看與截圖 */
+body.solo{background:#fff}
+body.solo .doc-head,body.solo section.block,body.solo .stage-label,body.solo .legend{display:none}
+body.solo section#frames{display:block;padding:0}
+body.solo section#frames .wrap{max-width:none;padding:0}
+body.solo section#frames>.wrap>h2,body.solo section#frames>.wrap>h3,body.solo section#frames>.wrap>p.lead{display:none}
+body.solo .stage-outer{display:none;border:0}
+body.solo .stage-outer.solo-on{display:block}
+body.solo .stage-outer.solo-on .stage-holder{width:2560px;height:1280px}
+body.solo .stage-outer.solo-on .stage{transform:none !important}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}.swatches{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<header class="doc-head">
+  <div class="wrap">
+    <img src="素材/00_整體視覺設計/assets/logo.webp" alt="ICHIA">
+    <h1>視覺提案 v1｜整體視覺首頁（CREATE）</h1>
+    <span class="badge warn">本次建議・待確認</span>
+    <nav class="doc-nav">
+      <a href="#concept">概念</a><a href="#color">色彩</a><a href="#type">字體</a>
+      <a href="#graphic">圖形</a><a href="#frames">關鍵畫面</a><a href="#confirm">本次確認</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 0 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">00 / About this proposal</h2>
+    <h3 class="sec-zh">這份提案的狀態與邊界</h3>
+    <p class="lead">本頁是 <b>視覺提案</b>，只確認概念、色彩、字體、圖形、影像處理與 2560×1280 關鍵構圖。<b>動態尚未提案、尚未確認</b>；分鏡與捲動行為在視覺確認後另行提出。頁內所有比例、間距與尺寸為構圖規劃，實作階段可在不改變主次關係的前提下微調。</p>
+    <table>
+      <tr><th>案件</th><td>ICHIA TECHNOLOGIES, INC.（毅嘉科技）企業形象網站首頁</td></tr>
+      <tr><th>模式</th><td>CREATE 全新整體視覺改版（2026-09-19 使用者裁定）。現行上線版僅作內容事實對照，不沿用其設計。</td></tr>
+      <tr><th>已選方向</th><td><b>A｜From Component to Module（層疊組裝）＋ C 編輯式留白底盤</b>；客戶提供的流線型網格降級為銜接介質與資訊圖形，不做全站動態背景。</td></tr>
+      <tr><th>驗收尺寸</th><td>2560×1280 桌機優先，本階段不做 RWD。客戶校稿裝置 1280／1536／1920 列為交付前提醒。</td></tr>
+      <tr><th>語系</th><td>先做英文版；繁中版沿用同一套視覺系統，中文字體另列。</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 1 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">01 / Understanding</h2>
+    <h3 class="sec-zh">案件理解</h3>
+    <div class="grid g2">
+      <div>
+        <h4>客戶事實（來自 memo 與客供文件）</h4>
+        <ul>
+          <li>1983 年成立，總部桃園龜山；上市櫃企業形象網站。</li>
+          <li>三大解決方案：EMS 電子模組、IMS 整合模組、TMS 散熱模組。</li>
+          <li>四大據點：林口總部、蘇州、中山、馬來西亞檳城。</li>
+          <li>TA：全球汽車、機器人、光通訊、新能源產業客戶；另含全球人才招募。</li>
+          <li>轉換目標：合作諮詢表單、人才招募聯繫。</li>
+          <li>指定視覺：modern／clean／tech-forward、<b>light and bright</b>、ICHIA 藍作次要強調、國際企業的大氣穩重。</li>
+          <li><b>非常在意</b>：區塊之間流暢銜接，不要一塊一塊；不要 crowd、heavy。</li>
+        </ul>
+      </div>
+      <div>
+        <h4>策略推論（本次提案的判斷，非客戶原文）</h4>
+        <ul>
+          <li>客戶副標「from component manufacturing to <b>module integration</b>」本身就是最強的差異化敘事，值得成為整站的結構，而不只是一句話。</li>
+          <li>B2B 採購與人才兩種受眾共用首頁：前半段（Banner→Products）服務客戶決策，後半段（ESG→Careers）服務人才與投資人，兩者需靠同一套視覺語言串起來。</li>
+          <li>產品棚拍多為白／淺灰底，天然支持淺色基調——淺色不是妥協，是素材本來的優勢。</li>
+        </ul>
+        <h4>未知 / 待客戶確認</h4>
+        <ul>
+          <li>完整 CIS（字體、輔助圖形規範）未取得。</li>
+          <li>Banner 影片是否可接受「局部視窗」而非滿版。</li>
+          <li>ESG 五項跑分是否全上；Careers 地圖點擊進招募內頁的層級。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">02 / Brand &amp; assets</h2>
+    <h3 class="sec-zh">品牌與素材盤點</h3>
+    <p class="lead"><b>CIS 狀態：部分規範。</b>已實讀客戶提供的 CIS 圖頁「基本系統 Basic Element／標誌標準色 A-02」：標誌藍 PANTONE 3005C，四色 C100 M34 Y0 K2，並附藍字版與藍底反白版標誌。<b>未取得</b>標誌淨空與最小尺寸頁、字型規範頁、輔助圖騰規範頁、禁止用法頁。以下未標「客戶正式」者，皆為本次提案的新增延伸。</p>
+    <div class="grid g4">
+      <div class="card"><img src="素材/00_整體視覺設計/assets/logo.webp" style="padding:22px;background:#fff"><div class="cap"><span class="tag t-official">客戶正式</span>logo.webp 500×175，實測主色 <code>#0084BE</code></div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ems-fpc.webp"><div class="cap"><span class="tag t-official">客戶正式</span>EMS 軟板棚拍（原始 8640×5760，白底）</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"><div class="cap"><span class="tag t-official">客戶正式</span>IMS 石紋飾板點亮（<code>02 IMS/26_.jpg</code>）：藍色發光＝天然的品牌色出場</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/tms-fin.webp"><div class="cap"><span class="tag t-gap">素材缺口</span>TMS 僅有簡報內拆出的圖（散熱鰭片實拍 <code>19.png</code> 619×563），不足以做大圖特寫</div></div>
+    </div>
+    <table style="margin-top:22px">
+      <tr><th style="width:150px">資產</th><th>來源／路徑</th><th>狀態與用途</th></tr>
+      <tr><td>標誌</td><td><code>01 LOGO_OK/logo.webp</code>、CIS 標準色頁截圖</td><td><span class="status-ok">可用</span>。本案需要<b>反白版向量檔</b>用於深色影片視窗上的浮水印；目前只有點陣版。</td></tr>
+      <tr><td>EMS 產品</td><td><code>01 EMS/</code> 14 張，8640×5760</td><td><span class="status-ok">充足</span>。白／淺灰底，適合 <code>mix-blend-mode: multiply</code> 直接融入白場，不必逐張去背。</td></tr>
+      <tr><td>IMS 產品</td><td><code>02 IMS/</code> 25 張，8640×5760</td><td><span class="status-ok">最強素材</span>。含同一面板的「未點亮／點亮」成對照片，可直接做功能圖解。</td></tr>
+      <tr><td>TMS 產品</td><td><code>03 TMS/圖片1.png</code> 289×220＋<code>TMS Images on Slides.pptx</code>（拆出 22 張可用）</td><td><span class="status-wait">替代方案</span>。可用者為溫度場模擬（16）、流場標註圖（14）、散熱鰭片（17／19）、均熱板（20–22）、熱管（23）、水冷排（27／28），解析度 539–1400 寬。首頁以中小尺寸圖解可成立；內頁大圖仍須請客戶補棚拍。</tr>
+      <tr><td>據點與團隊</td><td><code>4大據點公司外觀/</code> 8 張、<code>團體照/</code> 8 張</td><td><span class="status-ok">據點外觀採用</span>（林口、蘇州、中山、馬來西亞各 1–2 張）。<b>團體照不採用</b>（2026-09-19 確認）：多為紅布條活動紀錄，與「國際企業大氣穩重」落差過大；人的部分改由據點建築、職能標註與跑分承擔。</td></tr>
+      <tr><td>ESG 影像</td><td>客戶示意（空拍森林河道）、<code>相關照片/esg-bg.webp</code></td><td><span class="status-ok">可用</span>。作為 ESG 段唯一的大面積自然影像，與全站白場形成對比。</td></tr>
+      <tr><td>流線型網格</td><td><code>相關照片/esg-bg-deco.webp</code>（白點陣於黑底）、<code>footer-bg.webp</code></td><td><span class="status-wait">需重製</span>。原件為深色，與淺色方向衝突；本次已轉為 ICHIA 藍點陣透明版（見 §06）。</td></tr>
+      <tr><td>Banner 影片</td><td>Vimeo 1083267148</td><td><span class="status-wait">待處理</span>。僅有連結，未取得可自架原始檔；中國境內播放需求未定案。</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="block" id="concept">
+  <div class="wrap">
+    <h2 class="sec">03 / Core concept</h2>
+    <h3 class="sec-zh">核心概念：模組從不離場</h3>
+    <p class="lead">整頁只有一個主角——一個正在被組裝的模組。它在 Hero 成形，在 Products 被拆成三種切面，在 ESG 與 Careers 退到背景成為指標與地圖的骨架，在 CTA 收合成一條線。<b>區塊之間之所以不會「一塊一塊」，不是因為加了轉場特效，而是因為主體從來沒有離開過畫面。</b></p>
+    <div class="grid g3" style="margin-top:24px">
+      <div><h4>氣質怎麼落到構圖</h4><p class="legend">白場佔絕大多數面積，產品永遠有呼吸區；標題用細字大級數（Light 300）取得「大氣」，而不是用粗體取得「強勢」。所有元素對齊同一組 12 欄網格與同一條左側基準線，精準對齊本身就是「精密」的視覺證據。</p></div>
+      <div><h4>氣質怎麼落到素材</h4><p class="legend">產品照不加場景合成、不加濾鏡，保留棚拍原本的中性光；白底以 multiply 融入頁面，讓產品像是放在紙上，而不是貼在畫面上。唯一的高飽和來源是產品自己發出的藍光（IMS 面板、Mini LED）。</p></div>
+      <div><h4>氣質怎麼落到光線</h4><p class="legend">全站光源設定為「上方柔光」：陰影一律向下、極淡、無色偏。藍色只在三處出現——產品自身發光、資訊指標、行動入口。除此之外不使用藍色塊面，確保藍是<b>次要強調色</b>而非主色。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">04 / Reference use</h2>
+    <h3 class="sec-zh">參考使用方式</h3>
+    <p class="lead">本案為 <b>原創（CREATE）</b>。四個客戶參考皆為品質與氣質基準，<b>不作為母版、不做忠實重建</b>。</p>
+    <table>
+      <tr><th style="width:140px">參考</th><th>實看狀態</th><th>取用</th><th>不取用</th><th>如何轉化</th></tr>
+      <tr><td>exo-one.com</td><td>已實看（2026-09-19，瀏覽器捲動）</td><td>「區塊沒有硬邊界、背景從不中斷」的結構原則</td><td>薄荷綠有機色團、生技語彙</td><td>把「連續背景」換成「連續主體」：不是背景色團貫穿，而是模組貫穿</td></tr>
+      <tr><td>mundus.com.tw</td><td>已實看（含公告 modal 與 cookie bar）</td><td>白／淺灰底＋細字大標的比例感；滿版影像帶作為段落之間的換氣</td><td>暖色強調、太陽能產業影像語彙</td><td>影像帶只用在 ESG 一處，作為全站唯一的大面積自然影像</td></tr>
+      <tr><td>aespula.com</td><td><b>未實看</b>：瀏覽器導向被拒</td><td>—</td><td>—</td><td>客戶明確「喜歡但要淺色版」，需補看後再校準；本提案未依據此站設計</td></tr>
+      <tr><td>tesla.com</td><td>未實看</td><td>—（memo 列為整體氣質參考）</td><td>—</td><td>本提案取的是「產品即主角、介面極簡」的通則，未取其任何具體版面</td></tr>
+    </table>
+    <small class="note">靜態觀察與實測動態分開記錄：以上皆為捲動與畫面觀察，未檢驗其動畫實作技術，不推測其使用的函式庫。</small>
+  </div>
+</section>
+
+<!-- 5 情緒板 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">05 / Mood</h2>
+    <h3 class="sec-zh">情緒板（全部使用本案真實素材）</h3>
+    <div class="grid g4">
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ems-film.webp"><div class="cap">中性光、白底、無陰影干擾——全站的基準光線</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"><div class="cap">石紋飾板點亮＝產品自身發出的藍，唯一允許的高飽和來源</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp"><div class="cap">長比例硬體＝天然的橫向構圖與跨欄元素</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/tms-cfd.webp"><div class="cap">TMS 溫度場模擬（<code>16.png</code>）＝技術可信度，作為圖解而非裝飾</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ims-console.webp"><div class="cap">車用座艙件＝與 TA（汽車產業）直接對話</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ems-miniled.webp"><div class="cap">唯一的深色影像：Mini LED 發光，作為節奏中的重音</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/esg-forest.webp"><div class="cap">ESG 段唯一的大面積自然影像，與白場對比</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/site-linkou.webp"><div class="cap">據點建築＝Careers 段的地域感，低飽和、小尺寸</div></div>
+    </div>
+    <small class="note">本情緒板不含任何圖庫或外部參考圖，全部為客戶提供之正式素材；`ems-miniled` 為深色影像，使用時需控制面積（見 §07 色彩控制）。</small>
+  </div>
+</section>
+
+<!-- 6 色彩 -->
+<section class="block" id="color">
+  <div class="wrap">
+    <h2 class="sec">06 / Color</h2>
+    <h3 class="sec-zh">色彩系統與用色比例</h3>
+    <div class="swatches">
+      <div class="sw"><i style="background:#FFFFFF;border-bottom:1px solid var(--line)"></i><span><b>#FFFFFF</b><br>Paper／主背景<br><span class="tag t-new">新增延伸</span></span></div>
+      <div class="sw"><i style="background:#F4F6F8"></i><span><b>#F4F6F8</b><br>Surface／分區底<br><span class="tag t-new">新增延伸</span></span></div>
+      <div class="sw"><i style="background:#0084BE"></i><span><b>#0084BE</b><br>ICHIA 藍／強調<br><span class="tag t-official">客戶正式</span></span></div>
+      <div class="sw"><i style="background:#E8F4FA"></i><span><b>#E8F4FA</b><br>Tint／資訊底<br><span class="tag t-new">新增延伸</span></span></div>
+      <div class="sw"><i style="background:#141A1F"></i><span><b>#141A1F</b><br>Ink／主文字<br><span class="tag t-new">新增延伸</span></span></div>
+      <div class="sw"><i style="background:#5A6672"></i><span><b>#5A6672</b><br>Ink-2／次文字<br><span class="tag t-new">新增延伸</span></span></div>
+    </div>
+    <h4>面積比例（口徑：首頁整頁的版面面積，<b>不含</b>產品／情境照片本身的色彩）</h4>
+    <div class="ratio">
+      <div style="width:62%;background:#FFFFFF;color:#5A6672;border-right:1px solid var(--line)">白 62%</div>
+      <div style="width:18%;background:#F4F6F8;color:#5A6672;border-right:1px solid var(--line)">淺灰 18%</div>
+      <div style="width:12%;background:#E8F4FA;color:#0B5E86;border-right:1px solid var(--line)">淡藍 12%</div>
+      <div style="width:6%;background:#0084BE;color:#fff">藍 6%</div>
+      <div style="width:2%;background:#141A1F;color:#fff">墨 2%</div>
+    </div>
+    <small class="note">此比例為<b>本次提案的規劃值</b>，非客戶 CIS 規定。ICHIA 藍控制在 6% 以內，對應客戶「blue as a secondary accent」的原文要求。ESG 段的森林影像與 Mini LED 深色影像屬於「場景例外」，不計入此比例，但單段內深色面積不超過該段 50%。</small>
+    <h4>色彩功能定義</h4>
+    <table>
+      <tr><th>功能</th><th>色值</th><th>使用範圍</th></tr>
+      <tr><td>背景 Background</td><td>#FFFFFF</td><td>全站基底；區塊之間不換底色（換底色＝製造「一塊一塊」）</td></tr>
+      <tr><td>分區 Surface</td><td>#F4F6F8</td><td>僅用於卡片、表格與 Footer；不作整段背景</td></tr>
+      <tr><td>強調 Accent</td><td>#0084BE</td><td>指標數字、細線、標籤、hover、主 CTA 底色</td></tr>
+      <tr><td>資訊底 Tint</td><td>#E8F4FA</td><td>跑分數據區、圖解底板</td></tr>
+      <tr><td>行動 CTA</td><td>#0084BE 實底 / 白字</td><td>Collaboration Inquiry、Join us 兩個主要入口</td></tr>
+      <tr><td>狀態 Status</td><td>#0084BE / #5A6672</td><td>目前段落指示、輪播進度；不引入第三色</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 7 色彩控制 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">07 / Color control</h2>
+    <h3 class="sec-zh">影像色彩控制</h3>
+    <div class="grid g2">
+      <div class="card">
+        <img src="素材/00_整體視覺設計/assets/ims-hmi-on.webp" style="mix-blend-mode:multiply;background:#fff">
+        <div class="cap"><b style="color:#1B7A4B">採用</b>：白底棚拍以 <code>multiply</code> 融入白場，保留產品原本的材質、反光與細節，不做二次調色。</div>
+      </div>
+      <div class="card">
+        <img src="素材/00_整體視覺設計/assets/ims-hmi-on.webp" style="filter:contrast(.72) brightness(1.22) saturate(.5)">
+        <div class="cap"><b style="color:#A33">避免</b>：為了「輕盈」而整體提亮去飽和——產品會失去黑件的質感與發光對比，看起來像未完成的示意圖。</div>
+      </div>
+    </div>
+    <ul style="margin-top:18px">
+      <li><b>產品色</b>：不調色。黑件保持黑（不可提亮成灰），銅件保持銅色，發光處不可壓暗。</li>
+      <li><b>環境色</b>：棚拍背景允許以 multiply 或白色遮罩淡出邊緣，但淡出範圍不得侵入產品本體 40px（以 2560 尺標計）以內。</li>
+      <li><b>人物</b>：本案首頁不使用團體照（已確認）。據點建築照保留真實天色，僅允許 −6% 飽和與極輕微亮度校正，使四張不同來源（實拍／空拍／3D 示意）看起來像同一組。</li>
+      <li><b>深色影像</b>（Mini LED、CFD 熱圖）：允許原樣使用，但需以白色留白框住，不做滿版出血，避免破壞 light and bright 基調。</li>
+      <li><b>禁止</b>：全幅漂白、假透明疊層、為統一而套的藍色濾鏡。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 字體 -->
+<section class="block" id="type">
+  <div class="wrap">
+    <h2 class="sec">08 / Typography</h2>
+    <h3 class="sec-zh">字體與排版</h3>
+    <p class="lead">客戶 CIS 未提供字型規範，以下為<b>本次提案的新增延伸</b>，樣張為本頁實際載入的字體（Google Fonts）。</p>
+    <div class="type-spec">
+      <div class="meta">Display — Archivo Light 300 ／ 實際載入中</div>
+      <div style="font-family:var(--display);font-weight:300;font-size:56px;line-height:1.08;letter-spacing:-.015em">Act with Purpose,<br>Impact with Vision</div>
+      <small class="note">選擇理由：Archivo 是工業感的 grotesk，字腔開、字寬穩，大級數細字時不會軟；與 ichia 標誌的斜體圓潤形成對比而不衝突。用於 Hero 與各段主標，字重固定 300／500 兩級。</small>
+    </div>
+    <div class="type-spec">
+      <div class="meta">Interface / Body — Inter 300・400・500 ／ 實際載入中</div>
+      <div style="font-family:var(--text);font-weight:300;font-size:22px;line-height:1.75;color:#5A6672;max-width:760px">From flexible circuits to high-reliability PCBA and Mini LED modules, Ichia delivers one-stop electronic module solutions trusted by top automotive brands.</div>
+      <div style="font-family:var(--text);font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#0084BE;margin-top:18px">Electronic Module Solutions</div>
+      <small class="note">內文行寬上限 <b>72 字元</b>（2560 版面約 1180px），行距 1.75；標籤字距 .2em 全大寫。數據數字沿用 Archivo Light，讓跑分與主標同一語系。</small>
+    </div>
+    <div class="type-spec">
+      <div class="meta">繁中版（第二階段） — Noto Sans TC 300・400・700 ／ 實際載入中</div>
+      <div style="font-family:var(--doc);font-weight:300;font-size:34px;line-height:1.5">從零組件製造到模組整合<br>持續為客戶創造有影響力的服務</div>
+      <small class="note">繁中標題不使用細於 300 的字重；中英混排時英文降 1 級字級以對齊視覺重心。<b>暫代狀態</b>：正式版若客戶指定企業字型，以客戶規範為準。</small>
+    </div>
+    <table style="margin-top:18px">
+      <tr><th>層級</th><th>字體／字重</th><th>2560 字級</th><th>用途</th></tr>
+      <tr><td>Hero</td><td>Archivo 300</td><td>132 / 行距 1.06</td><td>首屏主標，僅此一處</td></tr>
+      <tr><td>Section title</td><td>Archivo 300（關鍵字 500）</td><td>86 / 1.1</td><td>各段主標</td></tr>
+      <tr><td>Metric</td><td>Archivo 300</td><td>104</td><td>ESG／Careers 跑分數字</td></tr>
+      <tr><td>Body</td><td>Inter 300</td><td>24 / 1.75</td><td>段落敘述</td></tr>
+      <tr><td>Label</td><td>Inter 500 · .2em · uppercase</td><td>19</td><td>眉標、分類、狀態</td></tr>
+      <tr><td>Nav / Button</td><td>Inter 400</td><td>21</td><td>導覽與按鈕</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 9 ICON -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">09 / Icons</h2>
+    <h3 class="sec-zh">圖示系統</h3>
+    <p class="lead">客戶未提供正式圖示資產，以下為<b>本次新增提案</b>：線性、2px 線寬（2560 尺標）、直角端點、24 格網格、僅用單色（#141A1F 或 #0084BE），不使用填色與圓角，呼應工程製圖語彙。</p>
+    <div class="icons">
+      <figure><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#141A1F" stroke-width="1.5"><rect x="3" y="7" width="18" height="10"/><path d="M7 7V4M17 7V4M7 20v-3M17 20v-3M3 12h18"/></svg><figcaption>EMS 電子模組</figcaption></figure>
+      <figure><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#141A1F" stroke-width="1.5"><rect x="3" y="5" width="18" height="14"/><circle cx="8" cy="12" r="2.5"/><path d="M14 10h4M14 14h4"/></svg><figcaption>IMS 整合模組</figcaption></figure>
+      <figure><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#141A1F" stroke-width="1.5"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/><path d="M8 3v18M16 3v18" opacity=".35"/></svg><figcaption>TMS 散熱模組</figcaption></figure>
+      <figure><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0084BE" stroke-width="1.5"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="8"/></svg><figcaption>全球據點</figcaption></figure>
+      <figure><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0084BE" stroke-width="1.5"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg><figcaption>Careers</figcaption></figure>
+      <figure><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#141A1F" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg><figcaption>搜尋（memo 指定）</figcaption></figure>
+      <figure><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#141A1F" stroke-width="1.5"><path d="M4 12h15M14 7l5 5-5 5"/></svg><figcaption>前往／更多</figcaption></figure>
+      <figure><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#141A1F" stroke-width="1.5"><path d="M6 4l13 8-13 8z"/></svg><figcaption>影片播放</figcaption></figure>
+    </div>
+    <small class="note">操作圖示（搜尋、前往、播放）與分類圖示（EMS／IMS／TMS／據點／Careers）同一套網格與線寬；分類圖示僅出現在寬版選單與 Products 索引，內文中不重複使用，避免畫面變 crowd。</small>
+  </div>
+</section>
+
+<!-- 10 背景圖形 -->
+<section class="block" id="graphic">
+  <div class="wrap">
+    <h2 class="sec">10 / Graphic</h2>
+    <h3 class="sec-zh">背景圖形：流線型網格的淺色化</h3>
+    <p class="lead">客戶指定「輔助圖形可參考簡報中的流線型網格」。客戶資料夾中的對應檔案為<b>深色版</b>（黑底白點陣），與 light and bright 直接衝突。本次處理方式：<b>保留其點陣流線的結構，改為 ICHIA 藍、透明底的淺色版</b>，不重繪形狀。</p>
+    <div class="grid g2">
+      <div class="card"><img src="素材/00_整體視覺設計/assets/grid-deco-src.webp" style="background:#111"><div class="cap"><span class="tag t-official">客戶素材原件</span><code>相關照片/esg-bg-deco.webp</code>（黑底白點）— 不直接使用</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/grid-light.webp" style="background:#fff"><div class="cap"><span class="tag t-new">本次新增延伸</span>同一圖形轉為 #0084BE 點陣、透明底 — 本案使用版本</div></div>
+    </div>
+    <h4>使用規則</h4>
+    <table>
+      <tr><th>首次出現</th><td>Hero 右下，作為模組落位的「場」，透明度 35%，不與主標重疊。</td></tr>
+      <tr><td><b>後續用途</b></td><td>① Products→ESG 之間作為銜接帶（寬 2560、高 320，透明度 25%）；② Careers 段轉為四據點的定位骨架（點陣即地圖底）。</td></tr>
+      <tr><td><b>退場</b></td><td>CTA 段收束為單一條細線後消失，不帶進 Footer。</td></tr>
+      <tr><td><b>禁止</b></td><td>不得穿過內文、數據與 CTA；不得同一屏出現兩處；透明度上限 40%；不得重繪、變形或改色（藍色以外）。</td></tr>
+    </table>
+    <small class="note">此為本次提案的應用方式，客戶 CIS 未規範輔助圖形；若客戶後續提供正式圖騰規範，以客戶規範為準並回填本提案。</small>
+  </div>
+</section>
+
+<!-- 11 產品表現 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">11 / Product treatment</h2>
+    <h3 class="sec-zh">產品影像處理與層次</h3>
+    <div class="grid g3">
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ems-film.webp" style="mix-blend-mode:multiply"><div class="cap"><b>底層</b>：軟板／薄膜件，最大尺寸、最低對比，作為疊層的基底</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp" style="mix-blend-mode:multiply"><div class="cap"><b>中層</b>：電路板，橫向長件，斜向偏移 6°～8° 疊上，帶極淡投影</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp" style="mix-blend-mode:multiply"><div class="cap"><b>面層</b>：點亮的人機介面件，最小尺寸但最高對比＝視覺第一焦點</div></div>
+    </div>
+    <ul style="margin-top:16px">
+      <li><b>疊層規則</b>：三層之間的偏移量固定（X +120px、Y −90px，2560 尺標），投影 <code>0 24px 60px rgba(20,26,31,.10)</code>，不加外框。</li>
+      <li><b>比例</b>：產品實際尺寸差異不強求寫實，但同一疊層內不得出現「小件比大件大」的錯誤暗示；需要對照時以工程引線標註實際規格。</li>
+      <li><b>裁切</b>：產品不切邊出血；若需強調局部，以圓角矩形視窗裁切並保留完整輪廓的 15% 以上。</li>
+      <li><b>去背</b>：優先使用 multiply 融底（已驗證白底棚拍可行）；僅在需要與深色影像疊合時才製作去背檔，列為素材製作項。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 12 功能圖解 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">12 / Feature explainer</h2>
+    <h3 class="sec-zh">功能轉化為視覺說明：Hidden Display（IMS）</h3>
+    <p class="lead">選用客戶文案已載明的 IMS 能力「hidden displays and smart knobs」，且客戶素材中存在<b>同一飾板的未點亮（30.jpg）／點亮（31.jpg）成對照片</b>，另有石紋飾板的同款配對（28.jpg／26_.jpg），可做出有事實依據的圖解，不需任何示意插圖。</p>
+    <div class="grid g3">
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ims-hmi-off.webp" style="mix-blend-mode:multiply"><div class="cap"><b>原理</b> ①表面消隱：關閉時是一片完整的鋼琴烤漆飾板（<code>02 IMS/30.jpg</code>），看不出任何介面。</div></div>
+      <div class="card"><img src="素材/00_整體視覺設計/assets/ims-hmi-on.webp" style="mix-blend-mode:multiply"><div class="cap"><b>情境</b> ②通電顯示：同一片飾板通電後圖示浮現（<code>02 IMS/31.jpg</code>），駕駛在需要時才看到控制項。</div></div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;padding:28px;background:#E8F4FA">
+        <div style="font-family:var(--text);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0B5E86;margin-bottom:10px">Value</div>
+        <div style="font-family:var(--display);font-weight:300;font-size:26px;line-height:1.25;margin-bottom:12px">Fewer visible controls,<br>more usable surface.</div>
+        <div class="cap" style="padding:0;color:#0B5E86"><b>行動</b> ③ → View Full Solutions</div>
+      </div>
+    </div>
+    <small class="note">圖解僅呈現「可由客戶素材與文案證實」的行為（消隱／顯示）；不標示任何未經客戶確認的規格數值、反應時間或效能宣稱。</small>
+  </div>
+</section>
+
+<!-- 13 UI -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">13 / UI</h2>
+    <h3 class="sec-zh">UI 樣式（示意元件，非可操作功能）</h3>
+    <div class="grid g2">
+      <div>
+        <h4>按鈕與連結</h4>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+          <span style="font-family:var(--text);font-size:14px;color:#fff;background:#0084BE;padding:13px 28px;border-radius:2px">Collaboration Inquiry</span>
+          <span style="font-family:var(--text);font-size:14px;color:#0084BE;border:1.5px solid #0084BE;padding:11.5px 28px;border-radius:2px">Join us</span>
+          <span style="font-family:var(--text);font-size:14px;color:#141A1F;border-bottom:1.5px solid #0084BE;padding-bottom:3px">View Full Solutions →</span>
+        </div>
+        <small class="note">主 CTA 實底藍、次 CTA 描邊、第三層級為底線文字連結。圓角固定 2px；hover 時主 CTA 底色降至 #0B5E86、箭頭右移 8px（動態細節待動態提案）。</small>
+        <h4>標籤與分隔</h4>
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
+          <span style="font-family:var(--text);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#0B5E86;background:#E8F4FA;padding:4px 10px">01 EMS</span>
+          <span style="font-family:var(--text);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5A6672;border:1px solid #DFE4E8;padding:4px 10px">02 IMS</span>
+          <span style="flex:1;height:1px;background:#DFE4E8"></span>
+        </div>
+        <small class="note">分隔一律 1px #DFE4E8 細線，不使用陰影或色塊分隔段落——色塊分隔正是「一塊一塊」的來源。</small>
+      </div>
+      <div>
+        <h4>導覽</h4>
+        <div style="border:1px solid var(--line);padding:16px 20px;display:flex;align-items:center;gap:26px;background:#fff">
+          <img src="素材/00_整體視覺設計/assets/logo.webp" style="height:20px">
+          <span style="font-family:var(--text);font-size:13px;color:#2B333A">Know Ichia</span>
+          <span style="font-family:var(--text);font-size:13px;color:#0084BE;border-bottom:1.5px solid #0084BE;padding-bottom:2px">Products &amp; Solutions</span>
+          <span style="font-family:var(--text);font-size:13px;color:#2B333A">Career</span>
+          <span style="font-family:var(--text);font-size:13px;color:#2B333A">Contact us</span>
+          <svg style="margin-left:auto" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2B333A" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg>
+        </div>
+        <small class="note">透明底＋白場，捲動後加 1px 底線（不加陰影、不變色塊）。Products &amp; Solutions 為寬版選單，展開時顯示三線分類圖示與代表產品圖（memo 指定）。</small>
+        <h4>數據卡</h4>
+        <div style="display:flex;gap:16px">
+          <div style="background:#E8F4FA;padding:20px 24px;flex:1"><div style="font-family:var(--display);font-weight:300;font-size:40px;color:#0084BE;line-height:1">28<span style="font-size:20px">%</span></div><div style="font-family:var(--text);font-size:12px;color:#0B5E86;margin-top:6px">Reduction in GHG emissions</div></div>
+          <div style="border:1px solid var(--line);padding:20px 24px;flex:1"><div style="font-family:var(--display);font-weight:300;font-size:40px;color:#141A1F;line-height:1">2,898<span style="font-size:20px">+</span></div><div style="font-family:var(--text);font-size:12px;color:#5A6672;margin-top:6px">Number of employees</div></div>
+        </div>
+        <small class="note">ESG 用淡藍底（永續），Careers 用白底描邊（人）；兩者字級與結構相同，維持同一套語言。</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 關鍵畫面 -->
+<section class="block" id="frames">
+  <div class="wrap">
+    <h2 class="sec">14 / Key frames</h2>
+    <h3 class="sec-zh">2560×1280 關鍵畫面</h3>
+    <p class="lead">以下五屏皆為 <b>2560×1280 實際版面</b>，於本頁等比縮放顯示（縮放比例見各屏右側）。使用本案真實素材與 memo 定稿文案。<b>此為靜態構圖，動態尚未提案。</b></p>
+
+    <!-- Frame 1 Hero -->
+    <div class="stage-label"><span>Frame 01 — Hero ／ 模組成形</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <img class="grid-deco" src="素材/00_整體視覺設計/assets/grid-light.webp" style="right:-140px;bottom:-40px;width:1500px;opacity:.45">
+      <nav class="nav">
+        <img class="logo" src="素材/00_整體視覺設計/assets/logo.webp" alt="ICHIA">
+        <ul><li>Know Ichia</li><li style="color:#0084BE">Products &amp; Solutions</li><li>Career</li><li>Contact us</li></ul>
+        <div class="right">
+          <svg class="sr" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg>
+          <span class="cta">Contact Us</span>
+        </div>
+      </nav>
+      <div style="position:absolute;left:96px;top:300px;width:1180px">
+        <div class="eyebrow">Component → Module</div>
+        <h1 class="hero" style="margin-top:34px">Act with Purpose,<br><em>Impact with Vision</em></h1>
+        <p class="sub">From component manufacturing to module integration,<br>we continuously deliver impactful services to our customers.</p>
+        <div style="display:flex;align-items:center;gap:26px;margin-top:66px">
+          <span class="btn">Explore Solutions <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M4 12h15M14 7l5 5-5 5"/></svg></span>
+          <span style="display:inline-flex;align-items:center;gap:14px;font-family:var(--text);font-size:21px;color:#141A1F">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#0084BE"><path d="M6 4l13 8-13 8z"/></svg> Brand Film
+          </span>
+        </div>
+      </div>
+      <!-- 疊層模組 -->
+      <div style="position:absolute;right:120px;top:210px;width:1180px;height:900px">
+        <span class="softbox mul" style="left:-20px;top:330px;width:1160px;transform:rotate(-4deg)"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp"></span>
+        <span class="softbox" style="left:190px;top:60px;width:980px"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"></span>
+        <div class="leader" style="left:-330px;top:690px;width:620px">
+          <span style="position:absolute;left:0;top:6px">Flexible circuit · EMS</span>
+          <svg width="620" height="40" style="position:absolute;left:250px;top:0"><path d="M0 20 H300" stroke="#0084BE" stroke-width="1.5"/><circle cx="300" cy="20" r="4" fill="#0084BE"/></svg>
+        </div>
+      </div>
+      <div style="position:absolute;left:96px;bottom:54px;display:flex;align-items:center;gap:18px" class="idx">
+        <span>SCROLL</span><span style="width:120px;height:1px;background:#C9D2D9;display:block"></span><span>01 / 06</span>
+      </div>
+    </div></div></div>
+    <p class="legend"><b>第一焦點</b>：點亮的 IMS 面板（最高對比、最小面積）。<b>次要訊息</b>：Hero 主標與副標，細字大級數但低對比。<b>行動入口</b>：藍色實底 Explore Solutions。影片以「Brand Film」文字入口進入，不做滿版深色背景——這是為了保住 light and bright，需客戶確認是否接受。流線網格在右下、透明度 35%，不觸碰文字。</p>
+
+    <!-- Frame 2 Products -->
+    <div class="stage-label"><span>Frame 02 — Products &amp; Solutions ／ 同一模組的三次切面</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <div style="position:absolute;left:96px;top:120px;width:840px">
+        <div class="eyebrow">Product &amp; Solutions</div>
+        <h2 class="sectitle">Innovative Modules<br><strong>Engineered for Performance</strong></h2>
+        <div style="margin-top:80px">
+          <div style="display:flex;align-items:center;gap:22px;padding:26px 0;border-top:1px solid #DFE4E8">
+            <span class="idx" style="color:#9AA6B0">01</span>
+            <span style="font-family:var(--text);font-size:26px;color:#9AA6B0">Electronic Module Solutions</span>
+          </div>
+          <div style="padding:30px 0;border-top:1px solid #0084BE;border-bottom:1px solid #DFE4E8">
+            <div style="display:flex;align-items:center;gap:22px">
+              <span class="idx" style="color:#0084BE">02</span>
+              <span style="font-family:var(--display);font-weight:500;font-size:36px;color:#141A1F">Integrated Module Solutions</span>
+            </div>
+            <p class="body" style="margin:22px 0 0 64px;max-width:700px">Ichia creates sleek, intelligent modules that blend electronics, mechanics, and design—like smart knobs and hidden displays—for seamless human-machine interaction across industries.</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:22px;padding:26px 0;border-bottom:1px solid #DFE4E8">
+            <span class="idx" style="color:#9AA6B0">03</span>
+            <span style="font-family:var(--text);font-size:26px;color:#9AA6B0">Thermal Module Solutions</span>
+          </div>
+        </div>
+        <div style="margin-top:56px"><span class="btn ghost">View Full Solutions <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0084BE" stroke-width="1.6"><path d="M4 12h15M14 7l5 5-5 5"/></svg></span></div>
+      </div>
+      <div style="position:absolute;right:0;top:0;width:1420px;height:1280px;overflow:hidden">
+        <span class="softbox mul" style="left:40px;top:320px;width:1120px;opacity:.32;transform:rotate(-2deg)"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp"></span>
+        <span class="softbox mul" style="left:150px;top:150px;width:1080px"><img src="素材/00_整體視覺設計/assets/ims-console.webp"></span>
+        <span class="softbox mul" style="left:300px;top:720px;width:940px"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"></span>
+        <div class="leader" style="left:180px;top:1010px;width:700px">
+          <svg width="700" height="40"><path d="M0 20 H300" stroke="#0084BE" stroke-width="1.5"/><circle cx="0" cy="20" r="4" fill="#0084BE"/></svg>
+          <span style="position:absolute;left:310px;top:8px">Hidden display · illuminated surface</span>
+        </div>
+      </div>
+    </div></div></div>
+    <p class="legend"><b>如何消滅「一塊一塊」</b>：左欄索引三線始終在場，只有目前這一線展開描述；右側模組不離開畫面，只替換最上層的切面（此屏顯示 02 IMS）。段落沒有換底色、沒有分隔線橫貫全幅——整段維持與 Hero 相同的純白底，符合本案「Surface 不作整段背景」的色彩規則；層次全靠影像疊合與細線索引建立。</p>
+
+    <!-- Frame 3 ESG→Careers -->
+    <div class="stage-label"><span>Frame 03 — ESG → Careers ／ 段落交接</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <img src="素材/00_整體視覺設計/assets/esg-forest.webp" style="position:absolute;left:0;top:0;width:1500px;height:800px;object-fit:cover">
+      <div style="position:absolute;left:0;top:0;width:1500px;height:800px;background:linear-gradient(100deg,rgba(8,22,16,.80) 0%,rgba(8,22,16,.62) 42%,rgba(8,22,16,.12) 82%,rgba(8,22,16,0) 100%)"></div>
+      <div style="position:absolute;left:96px;top:120px;width:1100px;color:#fff">
+        <div class="eyebrow" style="color:#fff">Sustainability</div>
+        <h2 class="sectitle" style="color:#fff;margin-top:26px">Bridge To<br><strong>A Sustainable Future</strong></h2>
+        <p class="body" style="color:rgba(255,255,255,.95);font-weight:400;max-width:880px;margin-top:30px">Ichia is committed to building a sustainable and responsible future through concrete ESG actions—reducing carbon emissions, improving energy and water efficiency, and earning recognition as a certified green factory.</p>
+        <div style="margin-top:44px"><span class="btn" style="background:#fff;color:#141A1F">Read More <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#141A1F" stroke-width="1.6"><path d="M4 12h15M14 7l5 5-5 5"/></svg></span></div>
+      </div>
+      <div style="position:absolute;right:96px;top:170px;width:900px;background:#fff;padding:60px 72px;box-shadow:0 40px 90px rgba(20,26,31,.12)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px 48px">
+          <div><div class="num">28<span style="font-size:52px">%</span></div><div class="numlabel">Reduction in<br>GHG emissions</div></div>
+          <div><div class="num">23.5<span style="font-size:52px">%</span></div><div class="numlabel">Energy use<br>from renewables</div></div>
+          <div><div class="num">66<span style="font-size:52px">%</span></div><div class="numlabel">Waste recycled</div></div>
+          <div><div class="num">44<span style="font-size:52px">%</span></div><div class="numlabel">Female employees</div></div>
+        </div>
+        <div class="rule" style="margin:48px 0 40px"></div>
+        <div><div class="num" style="font-size:80px">NT$ 3,000,000<span style="font-size:44px">+</span></div><div class="numlabel">For clean-ups &amp; charity</div></div>
+      </div>
+      <img class="grid-deco" src="素材/00_整體視覺設計/assets/grid-light.webp" style="left:0;top:880px;width:2560px;opacity:.18">
+      <div style="position:absolute;left:96px;bottom:110px;width:1260px">
+        <div class="eyebrow">Careers</div>
+        <h2 class="sectitle" style="font-size:68px;margin-top:20px">Purpose Drives Us.<br><strong>Vision Unites Us.</strong></h2>
+        <div style="margin-top:44px"><span class="btn ghost">Join us <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0084BE" stroke-width="1.6"><path d="M4 12h15M14 7l5 5-5 5"/></svg></span></div>
+      </div>
+      <div style="position:absolute;right:96px;bottom:130px;display:flex;gap:72px;align-items:flex-end">
+        <div><div class="num" style="font-size:80px;color:#141A1F">2,898<span style="font-size:44px">+</span></div><div class="numlabel">Employees</div></div>
+        <div><div class="num" style="font-size:80px;color:#141A1F">47,171</div><div class="numlabel">Training hours</div></div>
+        <div><div class="num" style="font-size:80px;color:#141A1F">28<span style="font-size:44px">%</span></div><div class="numlabel">Female in senior roles</div></div>
+      </div>
+    </div></div></div>
+    <p class="legend"><b>交接設計</b>：ESG 的森林影像只佔左上 1500×800 並加上由左至右的深色漸層遮罩（保留右半森林細節、確保白字可讀），右側白場的數據板<b>壓在影像與白場的交界上</b>，讓兩個區塊共用同一塊版面；接著流線網格橫貫底部把視線帶進 Careers 標題，Careers 的跑分沿用 ESG 同一套數字樣式但改白底黑字——<b>同一語言、不同語氣</b>，所以讀起來是一段而不是兩段。五項 ESG 跑分此屏全數呈現（客戶問「5 個會不會太多」→ 提案作法：4＋1 分層，金額獨立一行，視覺上不並列成五格）。</p>
+
+
+    <!-- Frame 04 Careers 據點 -->
+    <div class="stage-label"><span>Frame 04 — Careers ／ 四大據點與地圖篩選</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <img src="素材/00_整體視覺設計/assets/map-light.webp" style="position:absolute;right:-180px;top:-260px;width:1560px;opacity:.85">
+      <div style="position:absolute;left:96px;top:130px;width:1060px">
+        <div class="eyebrow">Global Sites</div>
+        <h2 class="sectitle" style="font-size:76px;margin-top:22px">Four sites.<br><strong>One team.</strong></h2>
+        <p class="body" style="margin-top:34px;max-width:900px">From Linkou to Suzhou, Zhongshan to Penang — select a site to see the roles, facilities and teams based there.</p>
+        <div style="margin-top:64px">
+          <div style="display:flex;align-items:center;gap:26px;padding:28px 0;border-top:1px solid #DFE4E8;border-bottom:1px solid #0084BE;background:linear-gradient(90deg,rgba(232,244,250,.9),rgba(232,244,250,0))">
+            <span class="idx" style="color:#0084BE;padding-left:20px">01</span>
+            <span style="font-family:var(--display);font-weight:500;font-size:34px;color:#141A1F">LinKou</span>
+            <span style="font-family:var(--text);font-size:22px;color:#0B5E86">Global Headquarter · NPI + R&amp;D</span>
+            <span style="margin-left:auto;padding-right:24px;font-family:var(--text);font-size:21px;color:#0084BE">View openings →</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:26px;padding:28px 0;border-bottom:1px solid #DFE4E8">
+            <span class="idx" style="color:#9AA6B0;padding-left:20px">02</span>
+            <span style="font-family:var(--text);font-size:30px;color:#5A6672">Suzhou</span>
+            <span style="font-family:var(--text);font-size:22px;color:#9AA6B0">Factory · R&amp;D + Production Hub</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:26px;padding:28px 0;border-bottom:1px solid #DFE4E8">
+            <span class="idx" style="color:#9AA6B0;padding-left:20px">03</span>
+            <span style="font-family:var(--text);font-size:30px;color:#5A6672">ZhongShan</span>
+            <span style="font-family:var(--text);font-size:22px;color:#9AA6B0">Factory · Mechanical Solutions</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:26px;padding:28px 0;border-bottom:1px solid #DFE4E8">
+            <span class="idx" style="color:#9AA6B0;padding-left:20px">04</span>
+            <span style="font-family:var(--text);font-size:30px;color:#5A6672">Penang</span>
+            <span style="font-family:var(--text);font-size:22px;color:#9AA6B0">Factory · Expanding</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 地圖定位點（位置為示意，正式版需依實際座標校正） -->
+      <div style="position:absolute;left:1690px;top:640px">
+        <span style="display:block;width:26px;height:26px;border-radius:50%;background:#0084BE;box-shadow:0 0 0 14px rgba(0,132,190,.18)"></span>
+      </div>
+      <div style="position:absolute;left:1646px;top:530px"><span style="display:block;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #0084BE"></span></div>
+      <div style="position:absolute;left:1600px;top:660px"><span style="display:block;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #0084BE"></span></div>
+      <div style="position:absolute;left:1520px;top:1010px"><span style="display:block;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #0084BE"></span></div>
+
+      <!-- 選取據點的資訊卡 -->
+      <div style="position:absolute;left:1760px;top:560px;width:620px;background:#fff;box-shadow:0 34px 80px rgba(20,26,31,.16)">
+        <img src="素材/00_整體視覺設計/assets/site-linkou.webp" style="width:100%;height:330px;object-fit:cover;display:block">
+        <div style="padding:34px 38px">
+          <div style="font-family:var(--text);font-size:18px;letter-spacing:.2em;text-transform:uppercase;color:#0084BE">01 · Taiwan</div>
+          <div style="font-family:var(--display);font-weight:500;font-size:36px;margin:12px 0 10px">LinKou Global Headquarter</div>
+          <div style="font-family:var(--text);font-size:21px;line-height:1.6;color:#5A6672">FPC · SMT · Rubber · AMS<br>Thermal Module Solutions</div>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:96px;bottom:90px;display:flex;align-items:center;gap:36px">
+        <span class="btn">Join us <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M4 12h15M14 7l5 5-5 5"/></svg></span>
+        <span style="font-family:var(--text);font-size:21px;color:#5A6672">2,898+ employees · 47,171 training hours</span>
+      </div>
+    </div></div></div>
+    <p class="legend"><b>地圖互動＝一頁＋據點篩選</b>（2026-09-19 確認）：四個定位點與左側清單是同一組狀態，點擊任一個就切換右側資訊卡與 openings 篩選結果，全部停在同一個 Careers 頁，不需要維護四個內頁。<b>不使用團體照</b>（2026-09-19 確認），人的部分改由據點建築、職能標註與跑分承擔。點陣地球沿用客戶素材 <code>相關照片/map.webp</code> 轉製的淺色版，與 §10 的流線網格同一套圖形語言。<b>定位點位置目前為示意</b>，正式版需依實際地理座標校正。</p>
+    <!-- Frame 4 CTA + Footer -->
+    <div class="stage-label"><span>Frame 05 — CTA ／ Footer 收尾</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <div style="position:absolute;left:96px;top:110px;width:1200px">
+        <div class="eyebrow">Latest News</div>
+        <h2 class="sectitle" style="font-size:64px;margin-top:18px">Keep up with<br><strong>our latest updates</strong></h2>
+        <div style="margin-top:56px"><span style="font-family:var(--text);font-size:22px;color:#141A1F;border-bottom:1.5px solid #0084BE;padding-bottom:6px">All news &amp; announcements →</span></div>
+      </div>
+      <div style="position:absolute;right:96px;top:120px;display:flex;gap:40px">
+        <div style="width:620px">
+          <img src="素材/00_整體視覺設計/assets/site-malaysia.webp" style="width:100%;height:340px;object-fit:cover">
+          <div style="font-family:var(--text);font-size:18px;letter-spacing:.16em;color:#0084BE;margin:24px 0 12px">SAMPLE · 2026.09</div>
+          <div style="font-family:var(--display);font-weight:400;font-size:30px;line-height:1.35">Ichia Expands Manufacturing in Malaysia</div>
+        </div>
+        <div style="width:620px">
+          <img src="素材/00_整體視覺設計/assets/ems-miniled.webp" style="width:100%;height:340px;object-fit:cover">
+          <div style="font-family:var(--text);font-size:18px;letter-spacing:.16em;color:#0084BE;margin:24px 0 12px">SAMPLE · 2026.08</div>
+          <div style="font-family:var(--display);font-weight:400;font-size:30px;line-height:1.35">Ichia Enters the Optical Communication Module Field</div>
+        </div>
+      </div>
+      <div style="position:absolute;left:0;top:640px;right:0;height:1px;background:#DFE4E8"></div>
+      <div style="position:absolute;left:96px;top:730px;width:1100px">
+        <h2 class="sectitle" style="font-size:76px">Let's engineer<br><strong>what comes next.</strong></h2>
+        <div style="display:flex;gap:26px;margin-top:54px">
+          <span class="btn">Collaboration Inquiry</span>
+          <span class="btn ghost">Join us</span>
+        </div>
+      </div>
+      <div style="position:absolute;right:96px;top:730px;width:1180px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px 60px;font-family:var(--text);font-size:19px;line-height:1.7;color:#5A6672">
+          <div><b style="color:#141A1F;font-size:21px">Global Headquarter (LinKou)</b><br>268, Hwa-Ya 2nd Rd, Hwa-Ya Technology Park,<br>Gueishan, Taoyuan, Taiwan<br>+886 3-397-3345</div>
+          <div><b style="color:#141A1F;font-size:21px">Suzhou Factory</b><br>No.118, Jinshan Rd. New District,<br>Suzhou, Jiangsu, PRC<br>+86 512-82289922</div>
+          <div><b style="color:#141A1F;font-size:21px">ZhongShan Factory</b><br>No.26 East Yixian Road, Zhangjiabian,<br>Zhongshan Torch High-tech Industrial<br>+86 760-86929888</div>
+          <div><b style="color:#141A1F;font-size:21px">Malaysian Factory</b><br>Kulim Hi-Tech Park, Kedah ／ Prai Industrial<br>Estate, Penang, Malaysia<br>+604 390-3900</div>
+        </div>
+      </div>
+      <div style="position:absolute;left:96px;right:96px;bottom:60px;display:flex;align-items:center;gap:40px;border-top:1px solid #DFE4E8;padding-top:40px">
+        <img src="素材/00_整體視覺設計/assets/logo.webp" style="height:38px">
+        <span style="font-family:var(--text);font-size:17px;color:#9AA6B0">© 2026 ICHIA TECHNOLOGIES, INC.</span>
+        <span style="font-family:var(--text);font-size:17px;color:#5A6672">Privacy Policy</span>
+        <div style="margin-left:auto;display:flex;gap:26px;align-items:center">
+          <span style="font-family:var(--text);font-size:17px;color:#5A6672">LinkedIn</span>
+          <span style="font-family:var(--text);font-size:17px;color:#5A6672">WeChat</span>
+          <span style="font-family:var(--text);font-size:17px;color:#5A6672">TikTok</span>
+          <span style="font-family:var(--text);font-size:17px;color:#C9D2D9">Instagram</span>
+          <span style="font-family:var(--text);font-size:17px;color:#C9D2D9">YouTube</span>
+        </div>
+      </div>
+    </div></div></div>
+    <p class="legend"><b>收尾</b>：News 用 Sample 圖文（memo 指定），兩則橫排不做輪播箭頭以維持安靜；一條細線之後直接進 CTA，CTA 與頁尾聯絡資訊<b>共用同一屏</b>——這是刻意的：讓「決定合作」與「怎麼找到我們」在同一個視野內完成。Instagram／YouTube 以淡色呈現，對應 memo「先放 ICON、可後台隱藏」。Footer 不使用深色底，維持全站淺色基調。</p>
+  </div>
+</section>
+
+<!-- 15 全頁概要 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">15 / Full page</h2>
+    <h3 class="sec-zh">全頁概要與段落交接</h3>
+    <table>
+      <tr><th>#</th><th>段落</th><th>視覺主角</th><th>訊息／CTA</th><th>與上一段的交接</th><th>動態強弱（意向）</th></tr>
+      <tr><td>01</td><td>Hero</td><td>疊層模組（EMS 底／PCBA 中／IMS 面）</td><td>Act with Purpose, Impact with Vision＋Explore／Brand Film</td><td>—</td><td><b>強</b>（模組落位）</td></tr>
+      <tr><td>02</td><td>Product &amp; Solutions</td><td>同一模組的三次切面</td><td>三線描述＋View Full Solutions</td><td>Hero 的模組直接留在畫面右側，不淡出</td><td><b>強</b>（換層）</td></tr>
+      <tr><td>03</td><td>銜接帶</td><td>流線網格</td><td>無文字</td><td>模組縮小退成網格上的一點</td><td>中（過場）</td></tr>
+      <tr><td>04</td><td>ESG</td><td>森林影像＋數據板</td><td>Bridge To A Sustainable Future＋Read More</td><td>數據板壓在影像與白場交界</td><td>弱（閱讀）</td></tr>
+      <tr><td>05</td><td>Careers</td><td>點陣地球＋四據點建築（<b>不用團體照</b>）</td><td>Four sites. One team.＋Join us／View openings</td><td>沿用 ESG 的數字樣式，換白底；地球接續 §10 的點陣語言</td><td>中（地圖點擊＝一頁篩選）</td></tr>
+      <tr><td>06</td><td>Latest News</td><td>Sample 圖文兩則</td><td>Keep up with our latest updates</td><td>細線分隔，安靜段</td><td>弱（閱讀）</td></tr>
+      <tr><td>07</td><td>CTA ＋ Footer</td><td>字體與聯絡資訊</td><td>Collaboration Inquiry／Join us</td><td>網格收束為單線後消失</td><td>弱（收尾）</td></tr>
+    </table>
+    <small class="note">閱讀節奏：強—強—過場—<b>弱</b>—中—<b>弱</b>—弱。兩個安靜段（ESG 閱讀、News）是刻意保留的呼吸區，避免客戶擔心的 heavy。動態欄位僅為<b>意向</b>，正式分鏡在視覺確認後依 motion-proposal 另提。</small>
+  </div>
+</section>
+
+<!-- 16 資產表 -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">16 / Asset status</h2>
+    <h3 class="sec-zh">目前樣式資產</h3>
+    <table>
+      <tr><th>名稱</th><th>來源／路徑</th><th>格式／可拆層</th><th>用途</th><th>狀態</th></tr>
+      <tr><td><span class="tag t-official">客戶正式</span>logo</td><td><code>01 LOGO_OK/logo.webp</code></td><td>webp 500×175／不可拆層</td><td>導覽、頁尾</td><td><span class="status-wait">缺反白向量版</span></td></tr>
+      <tr><td><span class="tag t-official">客戶正式</span>EMS／IMS 棚拍</td><td><code>03 Section 1/01 EMS</code>、<code>02 IMS</code></td><td>jpg 8640×5760／白底可 multiply</td><td>Hero 疊層（35_、11、26_）、Products 切面、功能圖解（30／31）</td><td><span class="status-ok">可用</span></td></tr>
+      <tr><td><span class="tag t-official">客戶正式</span>TMS 圖</td><td><code>TMS Images on Slides.pptx</code>（已拆出 22 張）</td><td>png／GIF，最大 2161×891</td><td>TMS 切面、熱流圖解</td><td><span class="status-wait">僅夠中小尺寸</span></td></tr>
+      <tr><td><span class="tag t-new">本次新增</span>grid-light.png</td><td>由 <code>esg-bg-deco.webp</code> 轉製</td><td>png 透明底／可疊色</td><td>Hero、銜接帶、Careers 地圖骨架</td><td><span class="status-wait">待確認</span></td></tr>
+      <tr><td><span class="tag t-new">本次新增</span>map-light.png</td><td>由 <code>相關照片/map.webp</code> 轉製</td><td>png 透明底／可疊色</td><td>Frame 04 Careers 據點地圖</td><td><span class="status-wait">待確認</span></td></tr>
+      <tr><td><span class="tag t-new">本次新增</span>grid-wave-light.png</td><td>由 <code>footer-bg.webp</code> 轉製</td><td>png 透明底</td><td>備用（目前 Frame 未使用）</td><td><span class="status-wait">待確認</span></td></tr>
+      <tr><td><span class="tag t-official">客戶正式</span>團體照 8 張</td><td><code>05 Section 3/團體照/</code></td><td>jpg／png</td><td>—</td><td><span class="status-gap">本案不採用（已確認）</span></td></tr>
+      <tr><td><span class="tag t-new">本次新增</span>圖示 8 枚</td><td>本提案內嵌 SVG</td><td>svg／向量</td><td>分類與操作圖示</td><td><span class="status-wait">待確認</span></td></tr>
+      <tr><td><span class="tag t-new">本次新增</span>Archivo／Inter／Noto Sans TC</td><td>Google Fonts（本頁實際載入）</td><td>webfont</td><td>全站字體</td><td><span class="status-wait">待確認</span></td></tr>
+      <tr><td><span class="tag t-gap">缺口</span>Banner 影片檔</td><td>僅 Vimeo 連結</td><td>—</td><td>Hero 影片入口</td><td><span class="status-gap">待取得</span></td></tr>
+      <tr><td><span class="tag t-gap">缺口</span>TMS 正式棚拍</td><td>—</td><td>—</td><td>內頁大圖</td><td><span class="status-gap">待客戶提供</span></td></tr>
+    </table>
+    <small class="note">本頁 <code>assets/</code> 內的檔案均為由客戶原始素材產生的網頁用衍生檔（縮圖、格式轉換、網格淺色化），客戶原始檔未被修改或移動。</small>
+  </div>
+</section>
+
+<!-- 17 確認 -->
+<section class="block" id="confirm">
+  <div class="wrap">
+    <h2 class="sec">17 / Sign-off</h2>
+    <h3 class="sec-zh">本次確認項目</h3>
+    <div class="grid g2">
+      <div>
+        <h4>請確認（本次提案範圍）</h4>
+        <ul>
+          <li>核心概念：模組從不離場（A＋C）</li>
+          <li>色彩系統與面積比例（白 62／淺灰 18／淡藍 12／藍 6／墨 2）</li>
+          <li>字體：Archivo＋Inter（繁中 Noto Sans TC）</li>
+          <li>流線型網格的淺色化與使用規則</li>
+          <li>產品影像處理：multiply 融底、不調色、疊層偏移規則</li>
+          <li>圖示系統（線性 8 枚）</li>
+          <li>五屏關鍵構圖 Frame 01–05</li>
+          <li>全頁段落順序與交接方式</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#1B7A4B">已確認（2026-09-19，本案視覺約定）</h4>
+        <ul>
+          <li><b>Hero 影片不做滿版</b>：影片以「Brand Film」入口進入，Hero 保留疊層敘事與淺色基調。<span class="status-ok">已確認</span></li>
+          <li><b>ESG 五項跑分採 4＋1 分層</b>：四項百分比並列、公益金額獨立一行，不並列成五格。<span class="status-ok">已確認</span></li>
+        </ul>
+          <li><b>不使用團體照</b>：Careers 改由據點建築、職能標註與跑分承擔。<span class="status-ok">已確認</span></li>
+          <li><b>Careers 地圖＝一頁＋據點篩選</b>：點擊據點切換資訊卡與 openings 篩選，停在同一個 Careers 頁。<span class="status-ok">已確認</span></li>
+        </ul>
+        <h4>仍待處理（不影響本次視覺確認）</h4>
+        <ul>
+          <li>地圖定位點位置目前為示意，正式版需依實際地理座標校正。</li>
+          <li>四張據點建築來源不一（實拍／空拍／3D 示意），需統一色調處理。</li>
+        </ul>
+        <h4 style="color:#A33">尚未確認 / 不在本次範圍</h4>
+        <ul>
+          <li><b>動態、捲動行為、轉場時間</b>——全部未提案。</li>
+          <li>RWD（Tablet／Mobile）。</li>
+          <li>內頁版型、寬版選單展開內容。</li>
+          <li>aespula.com 未實看，其「淺色版」期待尚未納入校準。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function solo(){
+  var m=(location.hash||'').match(/^#solo-(\d)$/);
+  if(!m) return false;
+  document.body.classList.add('solo');
+  var outers=document.querySelectorAll('.stage-outer');
+  var i=parseInt(m[1],10)-1;
+  if(outers[i]) outers[i].classList.add('solo-on');
+  return true;
+}
+function fit(){
+  if(document.body.classList.contains('solo')) return;
+  document.querySelectorAll('.stage-holder').forEach(function(h){
+    var s=h.clientWidth/2560;
+    var st=h.querySelector('.stage');
+    st.style.transform='scale('+s+')';
+    h.style.height=(1280*s)+'px';
+    var lbl=h.closest('.stage-outer').previousElementSibling.querySelector('.scale-note');
+    if(lbl) lbl.textContent='2560 × 1280 ／ 顯示比例 '+(s*100).toFixed(0)+'%';
+  });
+}
+window.addEventListener('resize',fit);
+window.addEventListener('hashchange',function(){location.reload()});
+if(!solo()){window.addEventListener('load',fit);fit();}
+</script>
+</body>
+</html>

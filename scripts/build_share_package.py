@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a portable, client-file-free Skill package from skill/.
+"""Build a portable Skill package with explicitly listed tutorial examples.
 
 兩種用法：
 - 預設：在 dist/ 建立日期版資料夾與 zip（給沒有 git 的人）。
@@ -33,16 +33,76 @@ SKILLS = (
     'eagle-visual-solution-curator',
 )
 ROOT_FILES = ('README.md', 'install.py', 'INSTALL.md', 'AGENTS.md', '轉版狀態.md',
-              '使用教學.md', '使用教學.html', '.gitignore')
+              'index.html', 'guide-tools.html', '使用教學.md', '使用教學.html', '快速索引.md', '快速索引.html',
+              'css/manual.css', 'js/copy-code.js', 'js/scroll-top.js', '.gitignore')
+
+# 僅附上使用者指定的教學案例與必要素材；不掃描其他案件。
+TUTORIAL_FILES = (
+    'Ocean-Medi-歐群生醫/動態腳本-Banner層次與動態分鏡-v1.html',
+    'Ocean-Medi-歐群生醫/素材/02_設計/assets/cis/official-colors.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/assets/cis/official-patterns.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/assets/cis/official-secondary.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/assets/cis/official-type.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/assets/fonts/nunito-sans-bold.ttf',
+    'Ocean-Medi-歐群生醫/素材/02_設計/assets/fonts/nunito-sans-light.ttf',
+    'Ocean-Medi-歐群生醫/素材/02_設計/assets/fonts/nunito-sans-regular.ttf',
+    'Ocean-Medi-歐群生醫/素材/02_設計/banner-motion.css',
+    'Ocean-Medi-歐群生醫/素材/02_設計/banner-motion.js',
+    'Ocean-Medi-歐群生醫/素材/02_設計/cis.css',
+    'Ocean-Medi-歐群生醫/素材/02_設計/ocean-core.css',
+    'Ocean-Medi-歐群生醫/素材/02_設計/ocean-core.js',
+    'Ocean-Medi-歐群生醫/素材/02_設計/qa/try02-2560x1280-00-core.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/qa/try02-2560x1280-01-wellness.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/qa/try02-2560x1280-02-environment.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/qa/try02-2560x1280-03-energy.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/qa/try02-2560x1280-contact.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/qa/try02-2560x1280-transition.png',
+    'Ocean-Medi-歐群生醫/素材/02_設計/核心視覺片段.html',
+    'Ocean-Medi-歐群生醫/素材/修片＿網站照片/DSC00230.webp',
+    'Ocean-Medi-歐群生醫/素材/修片＿網站照片/DSC00253.webp',
+    'Ocean-Medi-歐群生醫/素材/修片＿網站照片/DSC00272.webp',
+    'Ocean-Medi-歐群生醫/素材/修片＿網站照片/DSC00457.webp',
+    'Ocean-Medi-歐群生醫/素材/首次設計/01 LOGO_OK/標誌中文置中標準組合(白色logo).png',
+    'Ocean-Medi-歐群生醫/素材/首次設計/01 LOGO_OK/標誌中文置中標準組合_標準色logo.png',
+    'Ocean-Medi-歐群生醫/視覺提案-v1.html',
+    'examples/ocean-medi/motion-end.png',
+    'examples/ocean-medi/motion-middle.png',
+    'examples/ocean-medi/motion-start.png',
+    'examples/ocean-medi/visual-proposal.png',
+    'Ichia-毅嘉科技/動態腳本-v1.html',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/ems-film.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/ems-fpc.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/ems-miniled.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/ems-pcba.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/esg-forest.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/grid-deco-src.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/grid-light.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/ims-console.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/ims-hmi-off.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/ims-hmi-on.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/ims-stone-on.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/logo.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/map-light.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/site-linkou.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/site-malaysia.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/tms-cfd.webp',
+    'Ichia-毅嘉科技/素材/00_整體視覺設計/assets/tms-fin.webp',
+    'Ichia-毅嘉科技/視覺提案-v1.html',
+    'examples/ichia/motion-end.png',
+    'examples/ichia/motion-middle.png',
+    'examples/ichia/motion-start.png',
+    'examples/ichia/visual-proposal.png',
+)
 IGNORE = shutil.ignore_patterns('.DS_Store', '__pycache__', '*.pyc')
 
 
 def copy_package(target):
     """把 skill/ 內明列的根目錄檔案、11 支 Skill 與 tests 放進 target；skills/ 與 tests/ 整個重建。"""
-    for filename in ROOT_FILES:
+    for filename in ROOT_FILES + TUTORIAL_FILES:
         source = PACKAGE / filename
         if not source.is_file():
             raise SystemExit('缺少檔案：skill/%s' % filename)
+        (target / filename).parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target / filename)
     skills_dir = target / 'skills'
     if skills_dir.exists():

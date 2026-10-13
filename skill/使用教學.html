@@ -1,590 +1,690 @@
 <!doctype html>
 <html lang="zh-Hant">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="整體視覺方案 Skill 的圖文使用教學：安裝、開案準備、五個確認點、回饋方式、EVO 靜態切版交付、Eagle 案例整理與疑難排解。">
-<title>整體視覺網站｜設計師操作教學</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap">
-<style>
-.beginner-guide pre{padding:20px;border:1px solid var(--line);border-radius:10px;background:var(--field);white-space:pre-wrap;overflow-wrap:anywhere;font:16px/1.9 var(--sans)}
-.beginner-guide pre code{font:inherit;white-space:inherit}
-/* 保留原教學的深淺色與閱讀樣式 */
-:root{color-scheme:dark;--bg:#141414;--surface:#1a1a1a;--raised:#212121;--field:#111111;--line:#2d2d2d;--text:#efefec;--muted:#c2c2c2;--accent:#c7dfb5;--accent-ink:#182412;--header:rgba(20,20,20,.94);--human:#e6b36f;--human-ink:#2c1c09;--human-text:#e6b36f;--human-line:#916c3e;--human-tint:#2a2118;--danger:#eea394;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:"Noto Sans TC","PingFang TC","Heiti TC","Microsoft JhengHei",sans-serif}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){color-scheme:light;--bg:#f7f7f3;--surface:#ffffff;--raised:#eeefea;--field:#f7f7f3;--line:#dddfd6;--text:#242620;--muted:#666a5e;--accent:#436634;--accent-ink:#ffffff;--header:rgba(247,247,243,.94);--human:#e6b36f;--human-ink:#2c1c09;--human-text:#8a5a1c;--human-line:#d8b683;--human-tint:#fbf0de;--danger:#b1442f}}
-:root[data-theme="light"]{color-scheme:light;--bg:#f7f7f3;--surface:#ffffff;--raised:#eeefea;--field:#f7f7f3;--line:#dddfd6;--text:#242620;--muted:#666a5e;--accent:#436634;--accent-ink:#ffffff;--header:rgba(247,247,243,.94);--human:#e6b36f;--human-ink:#2c1c09;--human-text:#8a5a1c;--human-line:#d8b683;--human-tint:#fbf0de;--danger:#b1442f}
-
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-button{font:inherit;color:inherit;cursor:pointer}
-code{font-family:var(--mono);font-size:.88em;overflow-wrap:anywhere}
-q{quotes:"「" "」"}
-:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.skip-link{position:fixed;left:12px;top:12px;z-index:30;padding:12px 16px;background:var(--accent);color:var(--accent-ink);transform:translateY(-200%)}
-.skip-link:focus{transform:none}
-.ico{width:32px;height:32px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-
-/* 頁首與開場 */
-.site-header{height:82px;padding:0 max(16px,4.5%);display:flex;align-items:center;justify-content:space-between;gap:28px;border-bottom:1px solid var(--line);background:var(--header)}
-.brand{display:flex;align-items:center;gap:11px;font-size:23px;font-weight:650;letter-spacing:.04em;white-space:nowrap;text-decoration:none}
-.brand-light{font-weight:400;margin-left:5px}
-.brand-mark{width:25px;height:25px;background:linear-gradient(var(--accent),var(--accent)) 0 0/10px 10px,linear-gradient(var(--accent),var(--accent)) 15px 0/10px 10px,linear-gradient(var(--accent),var(--accent)) 0 15px/10px 10px,linear-gradient(var(--accent),var(--accent)) 15px 15px/10px 10px;background-repeat:no-repeat;transform:rotate(-8deg)}
-.theme-button{width:34px;height:34px;padding:0;border:0;background:none;color:var(--muted);font-size:27px;line-height:1}
-.theme-button:hover{color:var(--text)}
-main{max-width:1600px;margin:0 auto}
-.intro{display:grid;justify-items:center;text-align:center;padding:60px max(16px,5%) 50px}
-.intro-meta{display:flex;align-items:center;gap:10px;margin:0 0 20px;color:var(--muted);font-size:14px;letter-spacing:.12em}
-.intro-meta i{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-h1{margin:0 0 22px;font-size:clamp(40px,calc(4.2vw + 4px),60px);font-weight:570;line-height:1.2;letter-spacing:-.04em;text-wrap:balance}
-.title-accent{color:var(--accent)}
-.intro-description{max-width:46em;margin:0;color:var(--muted);font-size:17px;line-height:1.9}
-
-/* 章節導覽 */
-.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding:12px max(16px,3%);border-block:1px solid var(--line);background:var(--header);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.toc ol{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:7px;max-width:1600px;margin:0 auto;padding:0;list-style:none}
-.toc a{display:block;padding:6px 12px;border:1px solid var(--line);border-radius:6px;color:var(--muted);font-size:15px;white-space:nowrap;text-decoration:none;transition:background .16s,color .16s,border-color .16s}
-.toc a:hover{border-color:var(--muted);color:var(--text)}
-.toc a[aria-current]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink);font-weight:600}
-
-/* 內容面板與章節 */
-.panel{margin:28px max(16px,3%) 0;padding:0 clamp(18px,2.8vw,48px) 52px;border:1px solid var(--line);border-radius:15px;background:var(--surface)}
-.sec{padding-top:62px;scroll-margin-top:78px}
-.sec+.sec{margin-top:70px;border-top:1px solid var(--line)}
-.kicker{margin:0 0 12px;color:var(--accent);font-size:15px;font-weight:650;letter-spacing:.06em}
-.sec-head h2{margin:0;font-size:clamp(32px,3.4vw,50px);line-height:1.2;letter-spacing:-.04em;text-wrap:balance}
-.sec-head>p:last-child:not(.kicker){max-width:52em;margin:18px 0 0;color:var(--muted);font-size:19px;line-height:1.8}
-.sec-head code,.lead code{color:var(--accent)}
-.sub{margin-top:54px}
-.handoff-guide h3{margin:42px 0 16px;font-size:25px;line-height:1.4}
-.handoff-guide p,.handoff-guide li{max-width:64em;line-height:1.9;overflow-wrap:anywhere}
-.handoff-guide pre{max-width:100%;overflow:auto;padding:20px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:14px/1.8 var(--mono)}
-.handoff-guide pre code{white-space:pre;overflow-wrap:normal;font-size:inherit}
-.handoff-table{max-width:100%;overflow:auto;margin:20px 0;border:1px solid var(--line);border-radius:10px}
-.handoff-table table{width:100%;min-width:620px;border-collapse:collapse;font-size:15px}
-.handoff-table th,.handoff-table td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
-.handoff-table th{background:var(--raised);color:var(--accent)}
-.sub-title{margin:0 0 22px;font-size:27px;line-height:1.3;letter-spacing:-.02em;text-wrap:balance}
-.sub-lead{max-width:52em;margin:-10px 0 24px;color:var(--muted);font-size:17px;line-height:1.8}
-.note{margin:20px 0 0;padding:18px 20px;border-left:3px solid var(--accent);background:var(--raised);color:var(--muted);font-size:16px;line-height:1.75}
-.note strong{color:var(--text)}
-.note code{color:var(--accent)}
-.pill{display:inline-block;width:max-content;max-width:100%;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.03em;line-height:1.5}
-.pill-accent{background:var(--accent);color:var(--accent-ink)}
-.pill-human{background:var(--human);color:var(--human-ink)}
-.pill-quiet{border:1px solid var(--line);background:var(--raised);color:var(--muted)}
-.pill-invert{background:var(--accent-ink);color:var(--accent)}
-.say{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--raised);color:var(--text);font-size:16px;line-height:1.65}
-.says{display:flex;flex-wrap:wrap;gap:8px}
-.says q{display:inline-block;padding:6px 12px;border:1px solid var(--line);border-radius:9px;background:var(--raised);font-size:15px;line-height:1.6}
-.example-mark{color:var(--muted);font-size:14px}
-
-/* 先看重點 */
-.points{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:40px 0 0;padding:0;list-style:none;border:1px solid var(--line);border-radius:13px;overflow:hidden}
-.points li{padding:26px;background:var(--bg);min-width:0}
-.points li+li{border-left:1px solid var(--line)}
-.points .ico{width:36px;height:36px;color:var(--accent)}
-.points h3{margin:20px 0 10px;font-size:22px;line-height:1.35}
-.points p{margin:0;color:var(--muted);font-size:17px;line-height:1.75}
-.points code{color:var(--text)}
-.duty{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:stretch;margin-top:14px;padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.duty-col{padding:22px;border-radius:9px;background:var(--raised);min-width:0}
-.duty-col.is-human{border:1px solid var(--human-line);background:linear-gradient(135deg,var(--human-tint),var(--raised) 72%)}
-.duty-col h3{margin:12px 0 0;font-size:21px}
-.duty-swap{align-self:center;color:var(--accent);font-size:22px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0;list-style:none}
-.chips li{padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:15px;line-height:1.5}
-
-/* 套件內容 */
-.pkg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:40px}
-.pkg-card{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.pkg-card h3{margin:6px 0 0;font-size:23px;line-height:1.35}
-.pkg-card>code{font-size:15px;color:var(--muted)}
-.pkg-card p{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
-.pkg-main,.pkg-gsap{grid-column:span 2}
-.pkg-main{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
-.pkg-main h3{font-size:30px;letter-spacing:-.02em}
-.pkg-main>code,.pkg-main p{color:var(--accent-ink);opacity:.82}
-.gsap-chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%}
-.gsap-chips code{padding:9px 12px;border-radius:7px;background:var(--raised);color:var(--text);font-size:14px}
-.fit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
-.fit article{padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.fit h3{display:flex;align-items:center;gap:10px;margin:0;font-size:21px}
-.fit ul{display:grid;gap:14px;margin:18px 0 0;padding:0;list-style:none}
-.fit li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;color:var(--muted);font-size:16px;line-height:1.7}
-.fit li .ico{width:20px;height:20px;margin-top:4px}
-.fit li b{color:var(--text);font-weight:600}
-.is-yes .ico{color:var(--accent)}
-.is-no .ico{color:var(--danger)}
-
-/* 安裝 */
-.install{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:12px;margin-top:40px}
-.req{min-width:0;padding:26px;border:1px solid var(--human-line);border-radius:12px;background:var(--bg)}
-.req h3{margin:18px 0 10px;font-size:22px}
-.steps{margin:0;padding-left:24px}
-.steps li{padding:12px 0 12px 4px;border-top:1px solid var(--line)}
-.steps li::marker{color:var(--human-text);font:14px var(--mono)}
-.steps strong{display:block;font-size:17px}
-.steps span{display:block;margin-top:4px;color:var(--muted);font-size:15px;line-height:1.65}
-.steps code{color:var(--accent)}
-.window{min-width:0;margin:0;border:1px solid var(--line);border-radius:12px;background:var(--field);overflow:hidden}
-.window-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--raised)}
-.window-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
-.window-bar span{margin-left:10px;overflow:hidden;color:var(--muted);font-size:13px;white-space:nowrap;text-overflow:ellipsis}
-.term{margin:0;padding:18px 20px;overflow-x:auto;color:var(--muted);font:14px/1.8 var(--mono);white-space:pre}
-.term b{color:var(--text);font-weight:600}
-.term .ps{color:var(--accent)}
-.term .ok{color:var(--accent)}
-.term .gap{opacity:.6}
-.window figcaption,.fig-note{padding:10px 20px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;line-height:1.6}
-.loop{display:grid;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));gap:12px;margin:36px 0 0;padding:0;list-style:none}
-.loop li{position:relative;min-width:0;padding:22px 20px;border:1px solid var(--line);border-radius:10px;background:var(--raised)}
-.loop li:not(:last-child)::after{content:"→";position:absolute;top:26px;right:-19px;z-index:1;display:grid;place-items:center;width:26px;height:26px;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--accent);font-size:15px}
-.loop .n{display:block;color:var(--accent);font:16px var(--mono)}
-.loop strong{display:block;margin:20px 0 8px;font-size:20px;line-height:1.4}
-.loop p{margin:0;color:var(--muted);font-size:16px;line-height:1.65}
-.loop code{display:inline-block;margin:0 0 8px;padding:4px 8px;border-radius:6px;background:var(--bg);color:var(--accent);font-size:13px}
-.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
-.trio>div{min-width:0;padding:20px 22px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
-.trio strong{display:block;margin-bottom:8px;font-size:18px}
-.trio p{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
-.trio code{color:var(--accent)}
-.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.duo article{min-width:0;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.duo h4{margin:0 0 14px;font-size:20px}
-.duo dl{display:grid;gap:12px;margin:0}
-.duo dl div{display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px}
-.duo dt{color:var(--muted);font-size:15px;font-weight:600}
-.duo dd{margin:0;font-size:16px;line-height:1.7}
-.duo dd code{color:var(--accent)}
-.duo.is-three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.duo h4 b{color:var(--accent);margin-right:8px}
-
-/* 開案前準備 */
-.prep{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px;align-items:start;margin-top:40px}
-.folder{position:relative;margin-top:34px;padding:22px 18px 18px;border:1px solid var(--human-line);border-radius:0 12px 12px 12px;background:linear-gradient(160deg,var(--human-tint),var(--bg) 72%)}
-.folder-tab{position:absolute;top:-34px;left:-1px;padding:6px 16px;border:1px solid var(--human-line);border-bottom:0;border-radius:10px 10px 0 0;background:var(--human-tint);color:var(--human-text);font-size:15px;font-weight:650}
-.files{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.files li{display:flex;align-items:center;gap:12px;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:16px}
-.ext{flex:0 0 50px;padding:2px 0;border-radius:5px;background:var(--raised);color:var(--muted);font:12px/1.6 var(--mono);letter-spacing:.04em;text-align:center}
-.folder figcaption{margin-top:14px;color:var(--muted);font-size:14px}
-.rows{display:grid;gap:0;margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
-.rows li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:18px 0;border-bottom:1px solid var(--line)}
-.rows .n{color:var(--human-text);font:16px/1.7 var(--mono)}
-.rows strong{display:block;font-size:19px;line-height:1.5}
-.rows p{margin:4px 0 0;color:var(--muted);font-size:16px;line-height:1.7}
-.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.mode{display:flex;flex-direction:column;gap:14px;min-width:0;padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.mode figure{margin:0;padding:12px 10px 8px;border-radius:9px;background:var(--raised)}
-.mode-name{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px}
-.mode-name h4{margin:0;font-size:22px}
-.mode-name span{color:var(--accent);font-size:15px;font-weight:650}
-.mode p{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
-
-/* 啟動與接續 */
-.chat-body{display:grid;gap:16px;padding:24px;background:var(--bg)}
-.msg{max-width:720px;padding:16px 20px;border:1px solid var(--line);border-radius:14px;font-size:16px;line-height:1.75}
-.msg p{margin:0}
-.msg ul{margin:6px 0 0;padding-left:20px}
-.msg-me{justify-self:end;border-top-right-radius:4px;background:var(--raised)}
-.msg-ai{justify-self:start;border-top-left-radius:4px;background:var(--surface)}
-.who{display:block;margin-bottom:8px;color:var(--muted);font-size:13px;font-weight:700;letter-spacing:.08em}
-.msg-ai .who{color:var(--accent)}
-.meta{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;margin:0 0 10px}
-.meta dt{color:var(--muted)}
-.meta dd{margin:0}
-.resume{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
-.resume-card{display:grid;gap:16px;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.resume-card p{margin:0;color:var(--muted);font-size:17px;line-height:1.75}
-.resume-card .note{margin:0}
-.doc-body{display:grid;gap:4px;padding:18px 22px;background:var(--bg);font-size:15px;line-height:1.8}
-.doc-body h4{margin:0 0 6px;font:600 15px var(--mono);color:var(--text)}
-.doc-line{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start;color:var(--muted)}
-.doc-line b{color:var(--text);font-weight:600}
-.box{width:16px;height:16px;margin-top:5px;border:1.5px solid var(--muted);border-radius:4px}
-.box.on{border-color:var(--accent);background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3.5 8.2 2.8 2.8 6.2-6.3' fill='none' stroke='%23182412' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
-:root[data-theme="light"] .box.on{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3.5 8.2 2.8 2.8 6.2-6.3' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .box.on{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3.5 8.2 2.8 2.8 6.2-6.3' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}}
-.dot{width:8px;height:8px;margin:8px 0 0 4px;border-radius:50%;background:var(--muted);opacity:.6}
-
-/* 流程圖（桌機每列 5 張，逐列折返） */
-.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:48px 22px;margin:40px 0 0;padding:0;list-style:none}
-.flow li{position:relative;min-width:0;min-height:176px;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.flow li.is-human{border-color:var(--human-line);background:linear-gradient(135deg,var(--human-tint),var(--bg) 76%)}
-.flow li.is-later{border-style:dashed}
-.flow .no{display:block;margin-bottom:14px;color:var(--accent);font:15px var(--mono)}
-.flow li.is-human .no{color:var(--human-text)}
-.flow strong{display:block;margin-top:14px;font-size:19px;line-height:1.4}
-.flow p{margin:8px 0 0;color:var(--muted);font-size:16px;line-height:1.6}
-.tag-human,.tag-skill{display:block;width:max-content;max-width:100%;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:750;letter-spacing:.04em}
-.tag-human{background:var(--human);color:var(--human-ink)}
-.tag-skill{background:var(--accent);color:var(--accent-ink)}
-.flow li::after{position:absolute;z-index:2;display:grid;place-items:center;width:24px;height:24px;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--accent);font-size:14px;line-height:1}
-.flow li:nth-child(-n+4)::after,.flow li:nth-child(n+11):nth-child(-n+13)::after{content:"→";top:50%;right:-23px;transform:translateY(-50%)}
-.flow li:nth-child(5)::after,.flow li:nth-child(10)::after{content:"↓";bottom:-36px;left:50%;transform:translateX(-50%)}
-.flow li:nth-child(n+6):nth-child(-n+9)::after{content:"←";top:50%;left:-23px;transform:translateY(-50%)}
-.flow li:nth-child(6){grid-area:2/5}.flow li:nth-child(7){grid-area:2/4}.flow li:nth-child(8){grid-area:2/3}.flow li:nth-child(9){grid-area:2/2}.flow li:nth-child(10){grid-area:2/1}
-.flow li:nth-child(11){grid-area:3/1}.flow li:nth-child(12){grid-area:3/2}.flow li:nth-child(13){grid-area:3/3}.flow li:nth-child(14){grid-area:3/4}
-.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;color:var(--muted);font-size:15px}
-.legend span{display:flex;align-items:center;gap:8px}
-.legend i{width:14px;height:14px;border-radius:4px;background:var(--accent)}
-.legend i.h{background:var(--human)}
-.legend i.d{border:1.5px dashed var(--muted);background:none}
-
-/* 各確認點 */
-.stage-pre{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px;align-items:center;padding:24px;border:1px dashed var(--line);border-radius:14px;background:var(--bg)}
-.stage-pre h3{margin:6px 0 0;font-size:24px}
-.stage-pre .pill{margin-top:10px}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.facts span{padding:6px 12px;border-radius:8px;font-size:15px}
-.facts .f1{background:var(--accent);color:var(--accent-ink)}
-.facts .f2{border:1px solid var(--accent);color:var(--accent)}
-.facts .f3{border:1px dashed var(--human-line);color:var(--human-text)}
-.cps{display:grid;gap:14px;margin-top:14px}
-.cp{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:30px;align-items:center;padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
-.cp-art{margin:0;padding:14px;border-radius:10px;background:var(--raised)}
-.cp-no{margin:0 0 6px;color:var(--human-text);font-size:15px;font-weight:700;letter-spacing:.08em}
-.cp h3,.stage-pre h3{margin:0 0 18px;font-size:30px;line-height:1.25;letter-spacing:-.02em}
-.dl{display:grid;gap:14px;margin:0}
-.dl>div{display:grid;grid-template-columns:100px minmax(0,1fr);gap:14px}
-.dl dt{padding-top:2px;color:var(--muted);font-size:15px;font-weight:600}
-.dl dd{margin:0;font-size:17px;line-height:1.75}
-.warn{margin:18px 0 0;padding:10px 14px;border:1px solid var(--human-line);border-radius:8px;background:var(--human-tint);font-size:15px;line-height:1.6}
-.devtools-tip{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:30px;align-items:center;margin-top:14px;padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
-.devtools-tip h3{margin:0 0 10px;font-size:22px}
-.devtools-tip ol{margin:0;padding-left:22px;color:var(--muted);font-size:16px;line-height:1.9}
-.devtools-tip ol b{color:var(--text);font-weight:600}
-.devtools{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--muted);font:14px var(--mono)}
-.devtools span{padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:var(--raised);color:var(--text)}
-.devtools .hl{border-color:var(--accent);color:var(--accent)}
-.devtools i{font-style:normal}
-.dev-canvas{margin-top:10px;display:grid;place-items:center;padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--field)}
-.dev-canvas div{width:min(100%,300px);aspect-ratio:2/1;border:1.5px solid var(--accent);border-radius:4px;display:grid;place-items:center;color:var(--accent);font:13px var(--mono)}
-
-/* 確認與回饋 */
-.ledger{border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow:hidden}
-.ledger-row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr) minmax(0,4fr);gap:16px;align-items:center;padding:14px 22px;border-top:1px solid var(--line);font-size:16px}
-.ledger-row:first-child{border-top:0}
-.ledger-head{background:var(--raised);color:var(--muted);font-size:14px;font-weight:700;letter-spacing:.06em}
-.ledger-row .m{color:var(--muted)}
-.ledger-row.is-future{color:var(--muted)}
-.ledger-foot{padding:12px 22px;border-top:1px solid var(--line);background:var(--raised);color:var(--muted);font-size:14px}
-.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0 0;padding:0;list-style:none}
-.rules li{min-width:0;padding:22px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
-.rules .n{display:block;color:var(--accent);font:16px var(--mono)}
-.rules strong{display:block;margin:22px 0 8px;font-size:20px;line-height:1.4}
-.rules p{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
-.formula{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px}
-.formula>div{position:relative;min-width:0;padding:20px 22px;border:1px solid var(--line);border-radius:10px;background:var(--raised)}
-.formula>div:not(:last-child)::after{content:"＋";position:absolute;top:50%;right:-29px;transform:translateY(-50%);color:var(--accent);font-size:22px;font-weight:300}
-.formula b{display:block;color:var(--accent);font-size:15px;letter-spacing:.06em}
-.formula span{display:block;margin-top:8px;font-size:19px;line-height:1.5}
-.formula small{display:block;margin-top:6px;color:var(--muted);font-size:14px}
-.example{margin:12px 0 0;padding:16px 20px;border:1px dashed var(--accent);border-radius:10px;font-size:17px;line-height:1.7}
-.example b{color:var(--accent);font-weight:600}
-.tips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.tip{display:flex;flex-direction:column;gap:12px;min-width:0;padding:22px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
-.tip span{color:var(--muted);font-size:15px;font-weight:600}
-.tip p{margin:0;padding-left:14px;border-left:3px solid var(--accent);font-size:17px;line-height:1.7}
-.grants{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.grants>div{display:grid;gap:12px;align-content:start;min-width:0;padding:22px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
-.grants strong{font-size:19px}
-.grants p{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
-
-/* 延伸要求 */
-.asks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:40px}
-.ask{display:flex;flex-direction:column;gap:14px;min-width:0;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.ask .ico{color:var(--accent)}
-.ask h3{margin:0;font-size:22px}
-.ask p{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
-
-/* Eagle */
-.relay{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:stretch;margin-top:40px;padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.relay>div{display:grid;gap:10px;align-content:start;min-width:0;padding:18px;border-radius:9px;background:var(--raised)}
-.relay>div.is-human{border:1px solid var(--human-line);background:linear-gradient(135deg,var(--human-tint),var(--raised) 75%)}
-.relay strong{font-size:18px;line-height:1.45}
-.relay>b{align-self:center;color:var(--accent);font-size:20px;font-weight:400}
-.eagle{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:12px;margin-top:12px;align-items:start}
-.eagle-left{display:grid;gap:14px;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.eagle-left h3{margin:0;font-size:21px}
-.bullets{display:grid;gap:12px;margin:0;padding-left:22px;color:var(--muted);font-size:16px;line-height:1.7}
-.bullets li::marker{color:var(--accent)}
-.bullets b{color:var(--text);font-weight:600}
-.record{display:grid;gap:0;padding:6px 22px 14px;background:var(--bg);font-size:15px}
-.record>div{display:grid;grid-template-columns:78px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
-.record>div:last-child{border-bottom:0}
-.record dt{color:var(--muted);font-weight:600}
-.record dd{margin:0;line-height:1.7;overflow-wrap:anywhere}
-.record dd ul{margin:0;padding:0;list-style:none}
-.record dd li b{color:var(--accent);font-weight:600}
-
-/* 案件資料夾 */
-.folders{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:12px;margin-top:40px;align-items:start}
-.tree{margin:0;padding:10px 0;border:1px solid var(--line);border-radius:12px;background:var(--bg);list-style:none}
-.tree li{display:grid;grid-template-columns:minmax(0,max-content) minmax(0,1fr);gap:6px 18px;align-items:baseline;padding:7px 20px 7px calc(20px + var(--d,0) * 22px);font-size:15px}
-.tree .nm{display:flex;align-items:center;gap:8px;font:14px var(--mono);white-space:nowrap}
-.tree .nm::before{content:"";width:15px;height:12px;flex:0 0 auto;border:1.5px solid var(--muted);border-radius:2px 3px 3px 3px;opacity:.8}
-.tree .is-file .nm::before{width:11px;height:14px;border-radius:2px}
-.tree .is-key{background:var(--raised)}
-.tree .is-key .nm{color:var(--accent)}
-.tree .is-key .nm::before{border-color:var(--accent)}
-.tree .ds{color:var(--muted);font-size:15px;line-height:1.6}
-.keyfiles{display:grid;gap:12px}
-.keyfiles article{padding:22px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
-.keyfiles code{color:var(--accent);font-size:16px}
-.keyfiles p{margin:10px 0 0;color:var(--muted);font-size:16px;line-height:1.7}
-
-/* 模型建議 */
-.models{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:40px}
-.model{min-width:0;padding:26px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.model.is-astra{border-color:var(--accent)}
-.model h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:0;font-size:30px;letter-spacing:-.02em}
-.model h3 span{color:var(--muted);font-size:16px;font-weight:500;letter-spacing:0}
-.model.is-astra h3{color:var(--accent)}
-.quote{margin:12px 0 0;padding:20px 24px;border:1px solid var(--line);border-radius:12px;background:var(--raised);font-size:18px;line-height:1.8}
-.quote cite{display:block;margin-top:8px;color:var(--muted);font-size:14px;font-style:normal}
-
-/* 常見問題、疑難排解、索引 */
-.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:40px}
-.faq article{min-width:0;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.faq h3{display:flex;gap:12px;margin:0 0 12px;font-size:20px;line-height:1.45}
-.faq h3::before{content:"Q";flex:0 0 auto;color:var(--accent);font:600 18px/1.6 var(--mono)}
-.faq p{margin:0 0 0 24px;color:var(--muted);font-size:16px;line-height:1.75}
-.faq code{color:var(--accent)}
-.trouble{margin-top:40px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.trow{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,5fr);gap:22px;padding:18px 22px;border-top:1px solid var(--line);background:var(--bg);font-size:16px;line-height:1.7}
-.trow:first-child{border-top:0}
-.trow>div{min-width:0}
-.thead{background:var(--raised);color:var(--muted);font-size:14px;font-weight:700;letter-spacing:.06em}
-.trow code{color:var(--accent)}
-.st{display:inline-block;margin:0 6px 4px 0;padding:1px 8px;border-radius:5px;font:13px/1.7 var(--mono);white-space:nowrap}
-.st-ok{background:var(--accent);color:var(--accent-ink)}
-.st-bad{border:1px solid var(--danger);color:var(--danger)}
-.st-warn{background:var(--human);color:var(--human-ink)}
-.st-quiet{border:1px solid var(--line);background:var(--raised);color:var(--muted)}
-.docs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:40px}
-.docs article{min-width:0;padding:20px 22px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
-.docs strong{display:block;margin-bottom:10px;font-size:18px}
-.docs code{display:inline-block;margin:0 6px 6px 0;padding:3px 8px;border-radius:6px;background:var(--raised);color:var(--accent);font-size:13px}
-.site-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;max-width:1600px;margin:0 auto;padding:30px max(16px,4.5%) 36px;color:var(--muted);font-size:14px}
-.site-footer code{color:var(--text)}
-
-/* 插圖：顏色全部取自主題色票，深淺色都能讀 */
-.ill{display:block;width:100%;height:auto}
-.ill text{font-family:var(--sans)}
-.ill .mono{font-family:var(--mono)}
-.ill .fb{fill:var(--bg)}.ill .fs{fill:var(--surface)}.ill .fr{fill:var(--raised)}.ill .fm{fill:var(--muted)}.ill .ft{fill:var(--text)}.ill .fa{fill:var(--accent)}.ill .fi{fill:var(--accent-ink)}.ill .fh{fill:var(--human)}
-.ill .fq{fill:var(--muted);fill-opacity:.2}
-.ill .kl{stroke:var(--line)}.ill .km{stroke:var(--muted)}.ill .ka{stroke:var(--accent)}.ill .kb{stroke:var(--bg)}.ill .kh{stroke:var(--human)}
-
-@media (max-width:1200px){
-  .loop{--cols:2!important}
-  .loop li:not(:last-child)::after{display:none}
-  .loop li:last-child:nth-child(odd){grid-column:1/-1}
-}
-@media (max-width:1000px){
-  .toc ol{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
-  .points{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .points li+li{border-left:0}
-  .points li:nth-child(even){border-left:1px solid var(--line)}
-  .points li:nth-child(n+3){border-top:1px solid var(--line)}
-  .pkg{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .gsap-chips{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .install,.prep,.cp,.stage-pre,.devtools-tip,.eagle,.folders,.duo.is-three{grid-template-columns:minmax(0,1fr)}
-  .modes,.tips,.rules,.asks,.docs{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .tips>:last-child:nth-child(odd),.rules>:last-child:nth-child(odd),.asks>:last-child:nth-child(odd),.docs>:last-child:nth-child(odd),.modes>:last-child:nth-child(odd){grid-column:1/-1}
-  .resume{grid-template-columns:minmax(0,1fr)}
-  .relay{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
-  .relay>b:nth-of-type(2){display:none}
-  .flow{grid-template-columns:minmax(0,1fr);gap:34px}
-  .flow li{grid-area:auto!important;min-height:0}
-  .flow li::after{content:"↓"!important;top:auto!important;right:auto!important;bottom:-29px!important;left:50%!important;transform:translateX(-50%)!important}
-  .flow li:last-child::after{display:none}
-  .cp-art{max-width:560px}
-}
-@media (max-width:700px){
-  body{font-size:17px}
-  .site-header{height:72px}
-  .brand{font-size:21px}
-  .intro{padding:40px 16px 34px}
-  .intro-description{font-size:16px}
-  .desktop-break{display:none}
-  .panel{padding-bottom:36px;border-radius:12px}
-  .sec{padding-top:44px}
-  .sec+.sec{margin-top:50px}
-  .sec-head h2{font-size:31px}
-  .sec-head>p:last-child:not(.kicker){font-size:17px}
-  .sub{margin-top:42px}
-  .sub-title{font-size:23px}
-  .points,.pkg,.fit,.modes,.tips,.rules,.asks,.docs,.faq,.models,.trio,.duo,.grants,.formula{grid-template-columns:minmax(0,1fr)}
-  .points li:nth-child(even){border-left:0}
-  .points li+li{border-top:1px solid var(--line)}
-  .pkg-main,.pkg-gsap{grid-column:auto}
-  .pkg-main h3{font-size:25px}
-  .duty{grid-template-columns:minmax(0,1fr);padding:14px}
-  .duty-swap{justify-self:center;transform:rotate(90deg)}
-  .loop{--cols:1!important}
-  .relay{grid-template-columns:minmax(0,1fr);padding:14px}
-  .relay>b{display:none}
-  .formula{gap:30px}
-  .formula>div:not(:last-child)::after{top:auto;right:auto;bottom:-27px;left:50%;transform:translateX(-50%)}
-  .cp,.stage-pre,.devtools-tip{padding:18px;gap:20px}
-  .cp h3,.stage-pre h3{font-size:25px}
-  .dl>div,.duo dl div{grid-template-columns:minmax(0,1fr);gap:2px}
-  .ledger-row{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:14px 16px}
-  .ledger-row>:last-child{grid-column:1/-1}
-  .ledger-head{display:none}
-  .trow{grid-template-columns:minmax(0,1fr);gap:6px;padding:16px}
-  .thead{display:none}
-  .trow>div[data-label]::before{content:attr(data-label);display:block;color:var(--muted);font-size:13px;font-weight:700;letter-spacing:.06em}
-  .tree li{grid-template-columns:minmax(0,1fr);gap:0;padding-right:14px;padding-left:calc(14px + var(--d,0) * 14px)}
-  .tree .ds{padding-left:23px;font-size:14px}
-  .record>div{grid-template-columns:minmax(0,1fr);gap:2px}
-  .model h3{font-size:26px}
-  .site-footer{flex-direction:column}
-}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="設計師操作手冊：案件準備、Claude 與 Codex 分工、產圖、視覺與動態確認、首頁與內頁、客戶校稿，以及靜態網站交付。">
+  <title>方案產業AI化_操作手冊｜完整流程</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap">
+  <link rel="stylesheet" href="css/manual.css">
+<script src="js/copy-code.js" defer></script>
+<script src="js/scroll-top.js" defer></script>
 </head>
-<body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="i-entry" viewBox="0 0 24 24"><path d="M13 3.5h6.5v17H13"/><path d="M3 12h11"/><path d="m10 8 4 4-4 4"/></symbol>
-  <symbol id="i-judge" viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5 1.7 0 3.1.5 4.2 1.4"/><path d="m15 17.2 2.3 2.3 4.7-4.8"/></symbol>
-  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="11" rx="1.5"/><path d="M9 20h6M12 15v5"/></symbol>
-  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
-  <symbol id="i-pages" viewBox="0 0 24 24"><rect x="7.5" y="3" width="13" height="16" rx="1.5"/><path d="M4.5 7v12.5A1.5 1.5 0 0 0 6 21h10.5"/><path d="M11 8h6M11 11.5h6M11 15h4"/></symbol>
-  <symbol id="i-devices" viewBox="0 0 24 24"><rect x="2.5" y="4" width="13" height="16" rx="1.5"/><rect x="17.5" y="9" width="4.5" height="11" rx="1"/><path d="M8 17h2"/></symbol>
-  <symbol id="i-resize" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="1.5"/><path d="M7 12h10"/><path d="m9 10-2 2 2 2M15 10l2 2-2 2"/></symbol>
-  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6H9l2 2.5h8.5A1.5 1.5 0 0 1 21 10v8.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5Z"/><path d="M9 14h6"/></symbol>
-  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="1.8"/><path d="m4 17 5-4.5 3.5 3 2.5-2 5 3.5"/></symbol>
-  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4.5 17.5a8.5 8.5 0 1 1 15 0"/><path d="m12 13.5 4-4.5"/><circle cx="12" cy="13.5" r="1.3"/></symbol>
-  <symbol id="i-branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2.5"/><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M6 7.5v9"/><path d="M18 10.5c0 4.5-12 2.5-12 6"/></symbol>
-  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/><path d="m9 15 2 2 4-4"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"/></symbol>
-  <symbol id="i-cross" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
-</svg>
 
-<a class="skip-link" href="#basics">跳至教學內容</a>
-<header class="site-header">
-  <a class="brand" href="#top" aria-label="回到使用教學頂端"><span class="brand-mark" aria-hidden="true"></span><span>整體<span class="brand-light">視覺方案</span></span></a>
-  <button class="theme-button" id="theme-toggle" type="button" aria-label="切換為淺色模式">☼</button>
-</header>
+<body class="page-flow">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-entry" viewBox="0 0 24 24">
+      <path d="M13 3.5h6.5v17H13" />
+      <path d="M3 12h11" />
+      <path d="m10 8 4 4-4 4" />
+    </symbol>
+    <symbol id="i-judge" viewBox="0 0 24 24">
+      <circle cx="9" cy="7.5" r="3.5" />
+      <path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5 1.7 0 3.1.5 4.2 1.4" />
+      <path d="m15 17.2 2.3 2.3 4.7-4.8" />
+    </symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24">
+      <rect x="2.5" y="4" width="19" height="11" rx="1.5" />
+      <path d="M9 20h6M12 15v5" />
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24">
+      <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" />
+      <circle cx="12" cy="12" r="2.8" />
+    </symbol>
+    <symbol id="i-pages" viewBox="0 0 24 24">
+      <rect x="7.5" y="3" width="13" height="16" rx="1.5" />
+      <path d="M4.5 7v12.5A1.5 1.5 0 0 0 6 21h10.5" />
+      <path d="M11 8h6M11 11.5h6M11 15h4" />
+    </symbol>
+    <symbol id="i-devices" viewBox="0 0 24 24">
+      <rect x="2.5" y="4" width="13" height="16" rx="1.5" />
+      <rect x="17.5" y="9" width="4.5" height="11" rx="1" />
+      <path d="M8 17h2" />
+    </symbol>
+    <symbol id="i-resize" viewBox="0 0 24 24">
+      <rect x="2.5" y="6" width="19" height="12" rx="1.5" />
+      <path d="M7 12h10" />
+      <path d="m9 10-2 2 2 2M15 10l2 2-2 2" />
+    </symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24">
+      <path d="M3 7.5A1.5 1.5 0 0 1 4.5 6H9l2 2.5h8.5A1.5 1.5 0 0 1 21 10v8.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5Z" />
+      <path d="M9 14h6" />
+    </symbol>
+    <symbol id="i-image" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="1.5" />
+      <circle cx="9" cy="10" r="1.8" />
+      <path d="m4 17 5-4.5 3.5 3 2.5-2 5 3.5" />
+    </symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24">
+      <path d="M4.5 17.5a8.5 8.5 0 1 1 15 0" />
+      <path d="m12 13.5 4-4.5" />
+      <circle cx="12" cy="13.5" r="1.3" />
+    </symbol>
+    <symbol id="i-branch" viewBox="0 0 24 24">
+      <circle cx="6" cy="5" r="2.5" />
+      <circle cx="6" cy="19" r="2.5" />
+      <circle cx="18" cy="8" r="2.5" />
+      <path d="M6 7.5v9" />
+      <path d="M18 10.5c0 4.5-12 2.5-12 6" />
+    </symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24">
+      <path d="M6 3h8l5 5v13H6z" />
+      <path d="M14 3v5h5" />
+      <path d="m9 15 2 2 4-4" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="m5 12.5 4.2 4.2L19 7" />
+    </symbol>
+    <symbol id="i-cross" viewBox="0 0 24 24">
+      <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" />
+    </symbol>
+  </svg>
 
-<main id="top"><section class="intro"><p class="intro-meta">設計師操作教學 ・ 2026-10-09</p><h1><span class="title-accent">不需要會寫程式</span><br>跟著步驟完成網站</h1><p class="intro-description">準備資料、貼指令、看預覽、給回饋。<br>下方指令可以直接複製，把括號內容換成本案資料。</p></section><nav class="toc" aria-label="教學章節"><ol><li><a href="#basics">先看這裡</a></li><li><a href="#setup">第一次使用</a></li><li><a href="#prepare">第 1 步</a></li><li><a href="#start">第 2 步</a></li><li><a href="#direction">第 3 步</a></li><li><a href="#visual">第 4 步</a></li><li><a href="#motion">第 5 步</a></li><li><a href="#try">第 6 步</a></li><li><a href="#homepage">第 7 步</a></li><li><a href="#inner">第 8 步</a></li><li><a href="#mobile">第 9 步</a></li><li><a href="#client">第 10 步</a></li><li><a href="#evo-handoff">第 11 步</a></li><li><a href="#resume">下次繼續／遇到問題時</a></li></ol></nav><div class="panel beginner-guide"><section class="sec" id="basics"><div class="sec-head"><h2>先看這裡｜不用會寫程式</h2></div><p>你只需要做四件事：準備資料、貼指令、看預覽、給回饋。程式與交付檔案由 AI 處理。</p>
-<p>這份教學適合從方向提案開始的整體視覺案件。如果已有設計稿，只要照稿切版，請看獨立 LIN 教學。</p>
-<p>先做桌機首頁，再延伸內頁；平板、手機要另外提出。AI 說完成不等於你或客戶已確認。</p></section>
-<section class="sec" id="setup"><div class="sec-head"><h2>第一次使用｜先請 LIN 協助設定</h2></div><p>請 LIN／維護者協助安裝，告訴他你使用 Codex 還是 Claude Code。帳號授權或密碼由你本人操作，不要貼進對話。</p>
-<p>設定完成後重新開啟 AI 工具，貼下面這句確認。</p><h3>貼給 AI</h3><pre><code>請確認這台電腦可以使用 visual-solution-immersive-director，並告訴我是否已讀到 Skill。若缺少設定，請用白話告訴我要找誰協助，不要開始製作網站。</code></pre><p class="note"><strong>做到這裡再往下：</strong>AI 確認已讀到 Skill。若找不到，將回覆交給 LIN，不必自己研究安裝指令。</p></section>
-<section class="sec" id="prepare"><div class="sec-head"><h2>第 1 步｜準備案件資料</h2></div><p>每輪工作前，AI 先偵測 Skill 來源及案件資料夾是否由 Git 管理；有 Git 就先安全更新，再重新讀取規範與進度。連結安裝直接使用來源，不需複製。有未提交修改、版本分歧或連線失敗時保留現況，說明更新未完成。</p>
-<p>遇到 PDF，先檢查大小。單一檔案超過 10 MB（10,000,000 bytes）一律不讀取，請直接提供重點截圖或 Markdown（.md）。未超過上限才詢問要現在先讀還是用到再讀；稍後讀取的檔案集中到 04_型錄與原始素材/PDF_待用時讀取/，保留原檔並標記未讀取。</p>
-<p>切版完成後，LIN 會檢查圖片大小與格式，提醒你檢核專案容量；網站使用的非 WebP／SVG 圖片會列出路徑與大小，請自行轉檔。Claude 不代為轉檔、壓縮或批次處理圖片；WebP／SVG 也須確認實際容量。</p>
-<p>每案必備搜尋頁，HTML 與完整系統搜尋 CSS 依 LIN 的搜尋頁指定參考，不自行套品牌卡片版型；完成時需核對後載入的系統覆寫與實際文字樣式。</p>
-<p>建立一個案件資料夾，放入客戶簡介、Logo、品牌規範、圖片、文案與頁面需求。有 Figma 或參考網站就附上連結。</p>
-<p>在 AI 工具中開啟這個案件資料夾。資料不齊也可以開始，讓 AI 列出缺什麼；不要把別案素材混進來。</p><h3>貼給 AI</h3><pre><code>這是本案資料，請先整理你已經知道的內容，以及還缺什麼。
-請用設計師看得懂的方式說明，一次只問一個會影響製作的問題。</code></pre><p class="note"><strong>做到這裡再往下：</strong>AI 整理的品牌、網站目的與頁面需求沒有誤解。缺少的資料有列出來。</p></section>
-<section class="sec" id="start"><div class="sec-head"><h2>第 2 步｜告訴 AI 開始製作</h2></div><p>複製下面這段，把括號中的內容換成本案資訊。不知道的寫「尚未取得」。工程師提供的範本資料只要告訴 AI 放在哪，不用自己讀。</p><h3>貼給 AI</h3><pre><code>使用 visual-solution-immersive-director，開始這個案件。
+  <a class="skip-link" href="#setup">跳至教學內容</a>
+  <header class="site-header"><a class="brand" href="index.html" aria-label="回到教學入口"><span class="brand-mark" aria-hidden="true"></span><span>方案產業AI化<span class="brand-light">_操作手冊</span></span></a>
+    <div class="guide-tools">
+      <nav class="guide-navigation" aria-label="教學模式"><a href="index.html">教學入口</a><a href="使用教學.html" aria-current="page">完整流程</a><a href="快速索引.html">依情境</a><a href="guide-tools.html">使用須知</a></nav><button class="theme-button" id="theme-toggle" type="button" aria-label="切換為淺色模式">☼</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="intro">
+      <h1><span class="title-accent">跟著步驟完成網站</span><br>從準備到靜態網站交付</h1>
+      <p class="intro-description">你負責準備資料、確認方向、看預覽與給回饋；AI 負責整理、設計、製作與檢查。<br>依目前階段貼對應指令，把括號內容換成本案資訊，不必一次貼完全部步驟。</p>
+    </section>
+    <nav class="toc" aria-label="教學章節">
+      <ol>
+        <li><a href="index.html">← 教學入口</a></li>
+        <li><a href="快速索引.html">← 情境索引</a></li>
+        <li><a href="#setup">第一次使用</a></li>
+        <li><a href="#prepare">1 資料準備</a></li>
+        <li><a href="#start">2 開始案件</a></li>
+        <li><a href="#assets">素材與產圖</a></li>
+        <li><a href="#direction">3 方向</a></li>
+        <li><a href="#visual">4 視覺</a></li>
+        <li><a href="#motion">5 動態</a></li>
+        <li><a href="#try">6 核心片段</a></li>
+        <li><a href="#homepage">7 完整首頁</a></li>
+        <li><a href="#inner">8 內頁</a></li>
+        <li><a href="#mobile">9 平板手機</a></li>
+        <li><a href="#client">10 客戶校稿</a></li>
+        <li><a href="#revisions">11 修改資料</a></li>
+        <li><a href="#delivery">12 靜態交付</a></li>
+        <li><a href="#resume">接續與切換</a></li>
+        <li><a href="#troubleshooting">問題處理</a></li>
+        <li><a href="#resources">文件入口</a></li>
+      </ol>
+    </nav>
+    <div class="panel beginner-guide">
+      <section class="sec" id="setup"><div class="sec-head"><h2>第一次使用｜從沒有安裝任何工具開始</h2></div><ol class="loop setup-flow" aria-label="第一次使用的三個設定階段"><li><span class="n">01</span><strong>準備帳號</strong><p>確認公司指定工具、登入與 repo 權限。</p></li><li><span class="n">02</span><strong>安裝 Skill</strong><p>讓 AI 依來源文件設定適用規範。</p></li><li><span class="n">03</span><strong>驗證可用</strong><p>重新開啟，確認規範與檔案都能讀到。</p></li></ol>
+<p>這一節假設你還沒安裝 AI 工具，也沒有任何 Skill。先完成下面三個階段，再開始案件；此時不需要先會寫程式，也不用先準備整套工程環境。</p>
+<h3>A｜準備帳號與使用權限</h3>
+<p>先向 LIN／維護者確認公司指定的工具、帳號與可使用權限：</p>
+<ul>
+<li><strong>Claude 帳號</strong>：需要能使用 Claude Code，之後才可操作本機檔案與製作網站。</li>
+<li><strong>ChatGPT 帳號</strong>：本案使用 Codex 或 ChatGPT 產圖時準備。</li>
+<li><strong>GitHub 帳號</strong>：把帳號名稱提供給 LIN，請他加入公司私人 Skill repo 的協作者，並接受邀請。</li>
+</ul>
+<p>還沒有帳號或不確定公司用哪個方案，先請維護者協助，不必自行購買。登入與帳號授權由你本人操作。</p>
+<h3>B｜安裝 Skill 與必要工具</h3>
+<p>Skill 是 AI 的工作規則，和 AI 軟體分開安裝。所需入口如下：</p>
+<ul>
+<li><strong>整體視覺主 Skill</strong>：從品牌資料開始提案及製作整體視覺網站。</li>
+<li><strong>LIN／lin-frontend</strong>：共用切版與校稿規範。</li>
+</ul>
+<p>AI 工具已能使用後，才把下面這段貼進目前使用的本機工作。Git（取得及管理檔案的工具）與 Python（執行安裝程式的工具）由 AI 先檢查，缺少時協助準備；需要電腦管理者密碼或公司權限時找維護者處理。</p>
+<p><strong>貼給已安裝的 AI：</strong></p>
+<pre><code class="language-text">這台電腦是第一次設定，尚未安裝網站製作的 Skill。
+目前使用工具：（填 Claude Code／Codex）。
+請先檢查本機 Git、Python 與 GitHub 存取權限，協助準備必要工具。
+整體視覺來源：https://github.com/world-yingcen/Visual-Solution-Workflow
+LIN 來源：https://github.com/world-yingcen/lin-skill
+請先讀這兩份來源的安裝文件，安裝本工具需要的整體視覺主 Skill 與完整 lin-frontend。
+來源庫放在固定本機位置，不放雲端同步資料夾；只安裝到目前工具對應的 Skills 位置。
+Claude Code 的整體視覺優先使用 Plugin；依文件採另一種方式時，同一工具不要重複安裝兩份。
+若尚無私人 repo 權限，請列出需要 LIN 協助的項目。
+需要登入或授權時讓我本人操作，不在對話中索取密碼。
+目前只設定工具與 Skill，不開始製作網站、不推送或部署。
+</code></pre>
+<p>Claude Code 與 Codex 都要使用的人，各自在對應工具完成一次安裝；在其中一個工具裝好，不代表另一個也能讀到。維護者的詳細操作見 <a href="INSTALL.md">安裝文件</a>。</p>
+<h3>C｜重新開啟並驗證，再開始案件</h3>
+<p>安裝完成後重新開啟目前使用的 AI 工具，開啟目前的本機工作，再貼下面這段：</p>
+<pre><code class="language-text">請確認本工具可使用 visual-solution-immersive-director 與 lin-frontend，並重新讀取規範。
+請回報實際安裝位置、使用版本與缺少的項目，確認能讀取目前本機資料夾。
+先不要開始製作網站。安裝或更新未完成的部分請如實標示，整理可執行的處理方式。
+</code></pre>
+<p class="note"><strong>做到這裡再往下：</strong> AI 已讀到本案所需的 Skill，也能讀取本機資料夾。若失敗，把錯誤畫面與回覆交給維護者；完成後再開啟真正的案件資料夾，進入第 1 步。</p>
+<h3>需要 ChatGPT 產圖時，再設定 Chrome</h3>
+<p>依本案選定的產圖方式準備。採用「Claude 操作 ChatGPT 網頁、你下載成品」時：先從 <a href="https://www.google.com/chrome/">Chrome 官方下載頁</a>安裝瀏覽器，再依 <a href="https://code.claude.com/docs/en/chrome">Claude in Chrome 官方設定說明</a>安裝與連接擴充功能，並由你本人在 Chrome 登入 ChatGPT。連接後請 Claude 確認能讀取指定分頁；此時只驗證連線，不產圖。</p>
+<p>若本案使用其他影像工具，依指定方式設定並記入進度，不必為此額外啟用 Chrome 產圖管道。Eagle 與網站編譯工具則在需要的製作階段再核對，不要求第一次就全部安裝。</p>
+</section>
+      <section class="sec" id="prepare"><div class="sec-head"><h2>第 1 步｜準備並開啟案件資料夾</h2></div><ol class="loop folder-prep-flow" aria-label="案件資料夾準備的三個步驟"><li><span class="n">01</span><strong>放到自己的 Google Drive</strong><p>複製專案提供的檔案，不在共用區執行。</p></li><li><span class="n">02</span><strong>確認 PDF 讀取方式</strong><p>先詢問要現在先讀，還是用到再讀。</p></li><li><span class="n">03</span><strong>請 Skill 整理資料夾</strong><p>盤點、分類，說明工作入口與資料缺口。</p></li></ol>
+<p>每輪開始工作前，AI 會先檢查 Skill 來源與案件工作資料夾是否由 Git 管理；有 Git 就先安全更新，再讀規範與進度。連結安裝不必重新複製。若有未提交修改、版本分歧或無法連線，會保留檔案、說明未完成更新，再繼續不受影響的工作。</p>
+<h3>A｜將專案檔案放到自己的 Google Drive</h3>
+<p>請將專案提供給你的檔案，複製到<strong>自己的 Google Drive 案件資料夾</strong>，請勿直接在共用區執行。</p>
+<p>使用電腦上可存取的 Google Drive 同步資料夾，等檔案同步完成後，再用 AI 工具開啟這份案件資料夾。</p>
+<h3>B｜確認 PDF 讀取方式</h3>
+<p>PDF 可以保留。Skill 會先列出案件資料夾及子資料夾中的 PDF 並檢查大小，未超過 10 MB 才在讀取內容前詢問：「這些 PDF 需要讓 AI 現在先讀嗎？還是有要用到再讀？」</p>
+<p><strong>單一 PDF 超過 10 MB（10,000,000 bytes），AI 一律拒絕讀取，即使你要求也不例外。請直接截圖提供需要的重點，或將重點整理成 Markdown（.md）檔案提供；原檔保留並標記未讀取。</strong></p>
+<p>為避免不必要的 token 消耗，選擇用到再讀的 PDF 會先集中到 <code>04_型錄與原始素材/PDF_待用時讀取/</code>，並標記尚未讀取；後續需要時只讀相關檔案或頁面。</p>
+<h3>C｜請 Skill 整理資料夾</h3>
+<p>檔案已放到自己的 Google Drive 後，請本案適用的 Skill 盤點並整理資料夾。你不需要先自行重新命名或分類。</p>
+<p><strong>貼給 AI：</strong></p>
+<pre><code class="language-text">使用本案適用的 Skill，幫我整理案件資料夾。
+案件位置：（填自己的 Google Drive 在本機的案件資料夾完整路徑）。
+我已將專案提供的檔案放好；請勿操作共用區的原始檔案。
+遇到 PDF 請先檢查大小，單一檔案超過 10 MB 一律拒絕讀取；未超過上限才詢問要現在先讀，還是有要用到再讀；選擇用到再讀的 PDF 請整理到獨立資料夾並標記尚未讀取。
+請先讀取資料與既有進度，再依本案規範整理資料夾、素材、文件及目前工作入口。
+保留既有網站的資源引用與已確認成果，列出整理結果及缺少的資料。
+本輪先整理資料，不開始設計或切版。
+</code></pre>
+<h3>整理後的資料夾會像這樣</h3><p>需求、品牌素材、頁面資料與待確認事項分開放；先看 README.md，就能找到目前的工作入口。</p><figure class="folder-result"><ul class="tree" aria-label="整理後的案件資料夾示意"><li class="is-key"><span class="nm">案件名稱/</span><span class="ds">自己的 Google Drive 案件資料夾</span></li><li class="is-file"><span class="nm">README.md</span><span class="ds">案件說明、目前入口與預覽方式</span></li><li><span class="nm">01_專案需求與規劃/</span><span class="ds">需求、網站架構、視覺與動態提案</span></li><li><span class="nm">02_品牌素材/</span><span class="ds">Logo、CIS、字型與共用品牌素材</span></li><li><span class="nm">03_頁面製作素材/</span><span class="ds">依頁面與區塊整理文案、圖像及製作資料</span></li><li class="is-child"><span class="nm">03_01_首頁/</span><span class="ds">首頁各區塊的資料</span></li><li class="is-child"><span class="nm">03_02_關於我們/</span><span class="ds">內頁資料；依本案頁面清單延伸</span></li><li><span class="nm">04_型錄與原始素材/</span><span class="ds">客供型錄、原始圖片與影片</span></li><li class="is-child"><span class="nm">PDF_待用時讀取/</span><span class="ds">已選擇用到再讀、尚未讀取的 PDF</span></li><li><span class="nm">05_待確認與交接/</span><span class="ds">進度、待確認事項與交付資料</span></li><li class="is-child is-file"><span class="nm">experience-status.md</span><span class="ds">目前進度與確認紀錄；已有進度檔就沿用</span></li><li><span class="nm">99_歸檔/</span><span class="ds">已被取代、但需要保留的提案與試作</span></li></ul><figcaption class="fig-note">這是整理後的示意。實際資料夾依案件內容與既有工程調整；Skill 會說明整理結果，不為配合示意重建已有網站。</figcaption></figure>
+<p class="note"><strong>做到這裡再往下：</strong> 檔案位於自己的 Google Drive 案件資料夾，PDF 的讀取方式與暫存位置已確認，Skill 已完成整理並說明資料位置與缺口。</p>
+</section>
+      <section class="sec" id="start">
+        <div class="sec-head">
+          <h2>第 2 步｜開始案件並確認工具分工</h2>
+        </div>
+        <div class="sub">
+          <h3 class="sub-title">參考用途：三種不同做法</h3>
+          <div class="modes">
+            <article class="mode">
+              <figure>
+                <svg class="ill" viewBox="0 0 300 124" role="img" aria-label="參考網站與本案網站的版面完全相同，只替換內容">
+                  <text class="fm" x="70" y="13" font-size="11" text-anchor="middle">參考網站</text>
+                  <text class="fm" x="230" y="13" font-size="11" text-anchor="middle">本案網站</text>
+                  <rect class="fb kl" x="14.5" y="22.5" width="111" height="87" rx="6" />
+                  <rect class="fq" x="20" y="28" width="100" height="7" rx="2" />
+                  <rect class="fq" x="20" y="40" width="100" height="32" rx="3" />
+                  <rect class="fm" x="28" y="50" width="44" height="5" rx="2" />
+                  <rect class="fm" x="28" y="59" width="30" height="3.5" rx="1.75" opacity=".6" />
+                  <rect class="fq" x="20" y="77" width="47" height="26" rx="3" />
+                  <rect class="fq" x="73" y="77" width="47" height="26" rx="3" />
+                  <path class="ka" d="M137 66h26m-6-6 6 6-6 6" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  <rect class="fb kl" x="174.5" y="22.5" width="111" height="87" rx="6" />
+                  <rect class="fq" x="180" y="28" width="100" height="7" rx="2" />
+                  <rect class="fq" x="180" y="40" width="100" height="32" rx="3" />
+                  <rect class="fa" x="188" y="50" width="44" height="5" rx="2" />
+                  <rect class="fa" x="188" y="59" width="30" height="3.5" rx="1.75" opacity=".7" />
+                  <rect class="fq" x="180" y="77" width="47" height="26" rx="3" />
+                  <rect class="fq" x="233" y="77" width="47" height="26" rx="3" />
+                  <rect class="fa" x="186" y="84" width="26" height="3.5" rx="1.75" opacity=".7" />
+                  <rect class="fa" x="239" y="84" width="26" height="3.5" rx="1.75" opacity=".7" />
+                </svg>
+              </figure>
+              <div class="mode-name">
+                <h4>照著做</h4><span>忠實重建</span>
+              </div>
+              <q class="say">首頁照這個網站忠實重建，內容換成本案</q>
+              <p>來源就是答案，不重新發想，逐項對照還原；缺少的來源素材會標出來，不會默默替換。</p>
+            </article>
+            <article class="mode">
+              <figure>
+                <svg class="ill" viewBox="0 0 300 124" role="img" aria-label="只把參考網站的一個特徵保留到本案，其餘版面不同">
+                  <text class="fm" x="70" y="13" font-size="11" text-anchor="middle">參考網站</text>
+                  <text class="fm" x="230" y="13" font-size="11" text-anchor="middle">本案網站</text>
+                  <rect class="fb kl" x="14.5" y="22.5" width="111" height="87" rx="6" />
+                  <rect class="fq" x="20" y="28" width="100" height="7" rx="2" />
+                  <rect class="fq" x="20" y="40" width="100" height="32" rx="3" />
+                  <rect class="fm" x="26" y="50" width="30" height="5" rx="2" opacity=".7" />
+                  <rect class="fa" x="70" y="43" width="30" height="20" rx="2" opacity=".45" />
+                  <rect class="fb ka" x="80.5" y="49.5" width="30" height="19" rx="2" stroke-width="1.5" />
+                  <rect class="ka" x="65.5" y="39.5" width="50" height="33" rx="4" fill="none" stroke-dasharray="3 2" />
+                  <rect class="fq" x="20" y="77" width="47" height="26" rx="3" />
+                  <rect class="fq" x="73" y="77" width="47" height="26" rx="3" />
+                  <path class="ka" d="M137 66h26m-6-6 6 6-6 6" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  <rect class="fb kl" x="174.5" y="22.5" width="111" height="87" rx="6" />
+                  <rect class="fq" x="180" y="28" width="100" height="7" rx="2" />
+                  <rect class="fq" x="180" y="40" width="40" height="63" rx="3" />
+                  <rect class="fm" x="186" y="48" width="26" height="5" rx="2" opacity=".7" />
+                  <rect class="fm" x="186" y="58" width="20" height="3.5" rx="1.75" opacity=".5" />
+                  <rect class="fa" x="228" y="43" width="30" height="20" rx="2" opacity=".45" />
+                  <rect class="fb ka" x="238.5" y="49.5" width="30" height="19" rx="2" stroke-width="1.5" />
+                  <rect class="ka" x="223.5" y="39.5" width="50" height="33" rx="4" fill="none" stroke-dasharray="3 2" />
+                  <rect class="fq" x="226" y="80" width="54" height="23" rx="3" />
+                </svg>
+              </figure>
+              <div class="mode-name">
+                <h4>只要某個特徵</h4><span>指定特徵轉譯</span>
+              </div>
+              <q class="say">只取這個 Banner 的照片錯位疊層，其他原創</q>
+              <p>列出要保留、要轉換、開放原創的部分，只把約定的特徵轉進本案。</p>
+            </article>
+            <article class="mode">
+              <figure>
+                <svg class="ill" viewBox="0 0 300 124" role="img" aria-label="參考網站只當完成度標準，本案網站是完全不同的原創版面">
+                  <text class="fm" x="70" y="13" font-size="11" text-anchor="middle">參考網站</text>
+                  <text class="fm" x="230" y="13" font-size="11" text-anchor="middle">本案網站</text>
+                  <g opacity=".45">
+                    <rect class="fb kl" x="14.5" y="22.5" width="111" height="87" rx="6" />
+                    <rect class="fq" x="20" y="28" width="100" height="7" rx="2" />
+                    <rect class="fq" x="20" y="40" width="100" height="32" rx="3" />
+                    <rect class="fq" x="20" y="77" width="47" height="26" rx="3" />
+                    <rect class="fq" x="73" y="77" width="47" height="26" rx="3" />
+                  </g>
+                  <text class="fm" x="150" y="55" font-size="10" text-anchor="middle">完成度</text>
+                  <path class="ka" d="M137 66h26" fill="none" stroke-width="1.8" stroke-dasharray="3 3" stroke-linecap="round" />
+                  <path class="ka" d="m157 60 6 6-6 6" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  <rect class="fb kl" x="174.5" y="22.5" width="111" height="87" rx="6" />
+                  <rect class="fq" x="180" y="28" width="100" height="7" rx="2" />
+                  <circle class="fa" cx="254" cy="58" r="21" opacity=".45" />
+                  <rect class="ft" x="184" y="46" width="36" height="6" rx="2" />
+                  <rect class="fm" x="184" y="57" width="30" height="3.5" rx="1.75" opacity=".6" />
+                  <rect class="fm" x="184" y="64" width="24" height="3.5" rx="1.75" opacity=".6" />
+                  <rect class="fa" x="184" y="72" width="20" height="7" rx="3.5" />
+                  <rect class="fq" x="180" y="86" width="100" height="17" rx="3" />
+                </svg>
+              </figure>
+              <div class="mode-name">
+                <h4>當作品質標準</h4><span>原創</span>
+              </div>
+              <q class="say">參考它的完成度，方向依品牌由你提案</q>
+              <p>參考只是證據，方向從本案品牌與內容發展，不套用參考網站的風格。</p>
+            </article>
+          </div>
+        </div>
+        <p>預設建議由 Claude 主導設計與每輪驗收；核心片段確認、整頁規格與素材齊全後，可由已授權的 Codex 執行完整首頁、內頁與細修。這是建議分工；若你只使用一個工具，直接告訴 AI，由目前可用工具推進並說明能力缺口。</p>
+        <p>同案授權記入進度，之後沿用。需要切換工具時，先請目前的 AI 記錄確認內容與下一步，再讓接手工具讀取，不必自己搬運整段對話。</p>
+        <p>參考用途請選清楚：<strong>忠實重建</strong>是沿用約定的版面及動態；<strong>指定特徵轉譯</strong>是保留喜歡的特徵、重新設計；<strong>原創方向</strong>是以本案品牌發想，參考只校準品質。</p>
+        <p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">使用 visual-solution-immersive-director，開始這個案件。
+案件資料夾：（填完整路徑）
 客戶／品牌：（填名稱）
-設計稿與參考：（填連結或檔案位置，沒有就寫沒有）
-參考用途：（整體接近／只喜歡某個效果／希望提出原創方向）
-工程師提供的範本資料：（填資料夾位置，未取得就寫尚未取得）
-先做桌機版首頁，完成後給我預覽；先不要做平板與手機。
-請在切版時一起做好 EVO 可編輯的內容結構，仍提供完整網站讓客戶校稿；確認後交工程師匯入與檢查。
-請自行處理切版規範與檔案整理，不確定的需求再一題一題問我。</code></pre><p class="note"><strong>做到這裡再往下：</strong>AI 說明接下來做什麼。若詢問產圖方式或工具授權，依實際可用方式回答；沒有的工具不要勉強開啟。</p></section>
-<section class="sec" id="direction"><div class="sec-head"><h2>第 3 步｜確認設計方向</h2></div><p>看 AI 提出的方向是否符合品牌、客群與網站目的。參考網站喜歡哪裡、不想照哪裡，直接說清楚。</p><h3>貼給 AI</h3><pre><code>我選擇方向（填名稱）。
-想保留：（填喜歡的部分）
-不想要：（填不適合的部分）
-請依這個方向往下做。</code></pre><p class="note"><strong>做到這裡再往下：</strong>你已選定方向。不喜歡就先調整，不用為了往下走而說好。</p></section>
-<section class="sec" id="visual"><div class="sec-head"><h2>第 4 步｜確認畫面</h2></div><p>看 AI 提供的視覺：構圖、字體、色彩、圖片、留白與內容順序。先確認畫面，不用在這一步判斷程式。</p>
-<p>這個流程以 2560×1280 桌機畫面為確認基準；螢幕不同時，請 AI 協助提供對應尺寸預覽。</p><h3>貼給 AI</h3><pre><code>請提供可以看的畫面，並告訴我這次要確認哪幾個地方。
-我確認的是靜態視覺，還不是動畫效果。</code></pre><p class="note"><strong>做到這裡再往下：</strong>主要畫面已符合方向。需要改的地方指出位置，附截圖最好。</p></section>
-<section class="sec" id="motion"><div class="sec-head"><h2>第 5 步｜確認動態想怎麼做</h2></div><p>請 AI 用白話描述：進入頁面會發生什麼、往下捲會發生什麼、按下去會發生什麼。聽不懂就請它示範。</p><h3>貼給 AI</h3><pre><code>請用白話說明每個主要動態的開始、過程與結束。
-不要只說動畫名稱；我需要知道使用者實際會看到什麼。</code></pre><p class="note"><strong>做到這裡再往下：</strong>你理解並同意動態方式；此時只是同意做法，還沒確認成品。</p></section>
-<section class="sec" id="try"><div class="sec-head"><h2>第 6 步｜先試玩主要效果</h2></div><p>AI 先做出核心互動片段。開啟它提供的預覽，自己捲動、點擊，感受速度、節奏與操作。</p>
-<p>片段通過，只代表這個片段通過。</p><h3>貼給 AI</h3><pre><code>請幫我開啟可操作的預覽，告訴我要怎麼試。
-如果這次還有沒做的部分，請先列出來。</code></pre><p class="note"><strong>做到這裡再往下：</strong>主要效果能操作，而且符合預期，再回覆「這個片段確認，請繼續完整首頁」。</p></section>
-<section class="sec" id="homepage"><div class="sec-head"><h2>第 7 步｜看完整首頁</h2></div><p>從頁首看到頁尾，試選單、按鈕、輪播與連結。確認圖片、文案與動態都完整，不只看第一屏。</p>
-<p>第一次製作也要有 Cookie 提示與可閱讀的隱私權政策頁。政策若仍是草稿，需請客戶確認內容。</p><h3>貼給 AI</h3><pre><code>請完成並自行檢查桌機首頁，開啟完整預覽給我。
-請告訴我還有哪些待補資料、暫代內容或尚未完成的功能。
-Cookie 提示與隱私權政策頁也請一起準備。</code></pre><p class="note"><strong>做到這裡再往下：</strong>完整首頁已實際看過、操作過；未完成項目清楚列出。滿意後再說「桌機首頁確認」。</p></section>
-<section class="sec" id="inner"><div class="sec-head"><h2>第 8 步｜製作內頁</h2></div><p>首頁確認後，提供要做的內頁清單與內容。AI 先做具代表性的內頁讓你看，再依確認方向延伸。</p>
-<p>客戶要自行修改的文字、圖片與清單，AI 會先判斷；用途不明時才問你。</p><h3>貼給 AI</h3><pre><code>桌機首頁已確認，接著做這些內頁：（填頁面名稱）。
+設計稿與參考：（填連結或位置，沒有就寫沒有）
+參考用途：（忠實重建／指定特徵轉譯／原創方向）
+想保留的參考特徵：（填具體區塊或效果，沒有就寫沒有）
+工程師範本資料：（填位置，未取得就寫尚未取得）
+Codex 執行已定規格：（授權／本案不使用）
+產圖方式：（預設 Claude 操作 ChatGPT 網頁、我下載成品／填其他指定方式）
+先做 2560×1280 桌機首頁；桌機內部確認後直接完成 RWD，再交客戶校稿。
+請依方向、視覺、動態、核心片段、完整首頁的順序讓我確認。
+請讀既有進度，將本案範圍、工具授權與產圖方式記錄下來。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> AI 說明本案流程、工具分工與缺少資料。</p>
+      </section>
+      <section class="sec" id="assets">
+        <div class="sec-head">
+          <h2>素材與產圖｜需要時在這裡配合</h2>
+        </div>
+        <p>AI 應先盤點客供素材，再提出缺少圖片的用途與構圖。正式 Logo、產品、角色及 IP 使用客供原檔，不用生成近似版。</p>
+        <p>預設產圖由 Claude 透過 Claude in Chrome 操作你已登入 ChatGPT 的 Chrome 網頁；你再下載成品到指定位置。先請維護者確認擴充功能與登入狀態。若無此工具或本案指定其他產圖方式，讓 AI 記錄替代方式及需要你配合的步驟。</p>
+        <p>每張圖先確認用途、主體位置、文字留白、比例與檔名。下載時照指定檔名存到案件素材資料夾，再告訴 AI 已放好；AI 實看後才裁切、壓縮與置入。不要只貼預覽縮圖當正式成品。</p>
+        <p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">請先列出本輪需要的圖片，以及可以沿用的客供素材。
+缺圖請給我可以看的構圖建議，說明用途、比例、文字留白、檔名與存放位置。
+依本案已記錄的產圖方式執行，需要我下載時逐張告訴我。
+成品放好後請實看，檢查是否適合版面，再處理與置入。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> 圖片用途與風格符合方向；正式素材、生成素材與暫代圖已區分，檔案能在案件資料夾找到。</p>
+      </section>
+      <section class="sec" id="direction">
+        <div class="sec-head">
+          <h2>第 3 步｜確認設計方向</h2>
+        </div>
+        <div class="sub">
+          <h3 class="sub-title">從方向到完整版本的確認流程</h3>
+          <ol class="flow" aria-label="設計、製作與確認的流程">
+            <li class="is-human"><span class="no">01</span><span class="tag-human">人工</span><strong>開案</strong>
+              <p>提供案件資料夾、客戶資料、CIS 與素材。</p>
+            </li>
+            <li><span class="no">02</span><span class="tag-skill">Skill</span><strong>盤點與模式判斷</strong>
+              <p>分開事實、推論與缺口，決定原創、特徵轉譯或忠實重建。</p>
+            </li>
+            <li><span class="no">03</span><span class="tag-skill">Skill</span><strong>提 2–3 個方向</strong>
+              <p>概念真正不同，附評分與推薦。</p>
+            </li>
+            <li class="is-human"><span class="no">04</span><span class="tag-human">人工</span><strong>① 方向確認</strong>
+              <p>選定一個，或授權 AI 依推薦代選。</p>
+            </li>
+            <li><span class="no">05</span><span class="tag-skill">Skill</span><strong>視覺提案</strong>
+              <p>用色比例、字體、ICON、人物與 2560×1280 關鍵構圖。</p>
+            </li>
+            <li class="is-human"><span class="no">06</span><span class="tag-human">人工</span><strong>② 視覺確認</strong>
+              <p>確認視覺，不等於確認動態。</p>
+            </li>
+            <li><span class="no">07</span><span class="tag-skill">Skill</span><strong>動態提案與分鏡</strong>
+              <p>起始、過程、結束，轉場與回捲。</p>
+            </li>
+            <li class="is-human"><span class="no">08</span><span class="tag-human">人工</span><strong>③ 動態確認</strong>
+              <p>先看分鏡，確認後才進實作。</p>
+            </li>
+            <li><span class="no">09</span><span class="tag-skill">Skill</span><strong>核心片段試做</strong>
+              <p>素材、規格與可操作預覽，在 2560×1280 自查。</p>
+            </li>
+            <li class="is-human"><span class="no">10</span><span class="tag-human">人工</span><strong>④ 核心片段確認</strong>
+              <p>實際捲動與操作，不是看截圖。</p>
+            </li>
+            <li><span class="no">11</span><span class="tag-skill">Skill</span><strong>完整桌機首頁</strong>
+              <p>全頁內容、動態節奏、Nav、Footer 與 CTA，自查到頁尾。</p>
+            </li>
+            <li class="is-human"><span class="no">12</span><span class="tag-human">人工</span><strong>⑤ 完整首頁確認</strong>
+              <p>整頁一次確認。</p>
+            </li>
+            <li class="is-human is-later"><span class="no">13</span><span class="tag-human">人工</span><strong>提出內頁</strong>
+              <p>代表頁先確認，再展開同類頁。</p>
+            </li>
+            <li class="is-human is-later"><span class="no">14</span><span class="tag-human">人工</span><strong>完成 RWD 再校稿</strong>
+              <p>桌機內部確認後接續 RWD，完整檢查再交客戶。</p>
+            </li>
+          </ol>
+        </div>
+        <p>原創案件由 AI 提出 2–3 個概念不同的方向，說明適合的原因與推薦。看它是否符合品牌、客群與網站目的；忠實重建則先確認保留與可替換範圍，沿用約定參考。</p>
+        <p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">我選擇方向：（填名稱）。
+想保留：（填喜歡的部分）。
+需要調整：（填不適合的部分）。
+請記錄確認方向，再準備視覺提案。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> 方向與參考使用邊界已清楚。沒有 CIS 時，AI 提出的色彩、字型等建議需經你確認，才能作為本案網站的視覺約定。</p>
+      </section>
+      <section class="sec" id="visual">
+        <div class="sec-head">
+          <h2>第 4 步｜確認視覺提案</h2>
+        </div>
+        <p>看實際構圖、色彩比例、字體、圖示、背景圖騰、形象圖片與功能圖解，以及它們怎麼用在主要區塊。AI 應提供可觀看的畫面，不能只有風格形容詞或色碼清單。</p>
+        <p>確認基準是 <strong>2560×1280 的瀏覽器內容區域</strong>。你的螢幕較小時，請 AI 提供該尺寸截圖或對應預覽，自己再看可操作版本；縮小截圖不代表已驗證小螢幕版。</p>
+        <aside class="tutorial-example" id="ocean-visual-example" aria-label="歐群生醫視覺提案案例"><h3>視覺提案案例｜Ocean Medi 歐群生醫</h3><p>這份提案示範如何把品牌依據、色彩比例、字體、圖示、照片與關鍵構圖放在同一份文件中確認。閱讀時看三件事：品牌資料如何影響設計、視覺元素如何一起使用，以及哪些是正式素材、哪些仍待確認。</p><a class="example-preview" href="Ocean-Medi-歐群生醫/視覺提案-v1.html" target="_blank" rel="noopener"><img src="examples/ocean-medi/visual-proposal.png" alt="歐群生醫視覺提案預覽" width="2560" height="1280" loading="lazy"></a><a class="example-link" href="Ocean-Medi-歐群生醫/視覺提案-v1.html" target="_blank" rel="noopener">開啟完整視覺提案案例</a><p class="example-note">這是歷史桌機提案的展示案例；本案品牌方向與製作順序仍依自己的案件及目前手冊執行。</p></aside>
+        <aside class="tutorial-example" id="ichia-visual-example" aria-label="毅嘉科技視覺提案案例">
+          <h3>視覺提案案例｜Ichia 毅嘉科技</h3>
+          <p>這份提案示範如何把「從零件到模組」的品牌概念，轉成層疊產品構圖、企業藍、編輯式留白與全頁關鍵畫面。下圖是首頁構圖；開啟完整提案可查看色彩、字體、圖形、影像處理，以及待確認項目。</p>
+          <a class="example-preview" href="Ichia-毅嘉科技/視覺提案-v1.html" target="_blank" rel="noopener"><img src="examples/ichia/visual-proposal.png" alt="毅嘉科技首頁視覺構圖：企業藍、留白與層疊模組" width="2560" height="1280" loading="lazy"></a>
+          <a class="example-link" href="Ichia-毅嘉科技/視覺提案-v1.html" target="_blank" rel="noopener">開啟完整視覺提案案例</a>
+          <p class="example-note">這是歷史桌機提案的展示案例；自己的案件仍依本案品牌方向與目前手冊執行。</p>
+        </aside>
+<p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">請提供本輪視覺提案與 2560×1280 關鍵構圖。
+請說明我需要確認的字體、色彩、圖片、圖形與內容順序，以及暫代素材。
+我會先確認靜態視覺；動畫方式在下一步另外確認。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> 主要畫面符合方向，再回覆「本輪視覺提案確認，請準備動態提案」。需要修改就指出頁面、區塊與位置。</p>
+      </section>
+      <section class="sec" id="motion">
+        <div class="sec-head">
+          <h2>第 5 步｜確認動態提案</h2>
+        </div>
+        <p>AI 用分鏡展示主要區塊的開始、過程與結束，說明往下捲動、往回捲動、點擊時會看到什麼，以及文字停留與閱讀時機。全頁要有強弱節奏，不能只設計首屏。</p>
+        <aside class="tutorial-example" id="ocean-motion-example" aria-label="歐群生醫動態分鏡案例"><h3>動態分鏡案例｜Ocean Medi 歐群生醫</h3><p>這份分鏡把同一個 Banner 分成起始、移動中、停留三個狀態，並列出圖層、觸發、速度、回捲與減少動態的做法。開啟完整案例後，可按上方按鈕切換分鏡，檢查前景位置與主體是否被遮擋。</p><div class="example-frames"><figure><a class="example-preview" href="Ocean-Medi-歐群生醫/動態腳本-Banner層次與動態分鏡-v1.html?frame=start" target="_blank" rel="noopener"><img src="examples/ocean-medi/motion-start.png" alt="01 起始：主體與文字先看清，透明前景停在邊界。" width="2560" height="1280" loading="lazy"></a><figcaption><strong>01 起始</strong><span>主體與文字先看清，透明前景停在邊界。</span></figcaption></figure><figure><a class="example-preview" href="Ocean-Medi-歐群生醫/動態腳本-Banner層次與動態分鏡-v1.html?frame=middle" target="_blank" rel="noopener"><img src="examples/ocean-medi/motion-middle.png" alt="02 移動中：前景向內移動，主體與文字維持穩定。" width="2560" height="1280" loading="lazy"></a><figcaption><strong>02 移動中</strong><span>前景向內移動，主體與文字維持穩定。</span></figcaption></figure><figure><a class="example-preview" href="Ocean-Medi-歐群生醫/動態腳本-Banner層次與動態分鏡-v1.html?frame=end" target="_blank" rel="noopener"><img src="examples/ocean-medi/motion-end.png" alt="03 停留：前景退回邊界，讓畫面穩定並銜接下一段。" width="2560" height="1280" loading="lazy"></a><figcaption><strong>03 停留</strong><span>前景退回邊界，讓畫面穩定並銜接下一段。</span></figcaption></figure></div><a class="example-link" href="Ocean-Medi-歐群生醫/動態腳本-Banner層次與動態分鏡-v1.html" target="_blank" rel="noopener">開啟完整動態分鏡案例</a><p class="example-note">這裡展示的是分鏡定格狀態；動態手感與流暢度在下一步核心片段試做時再確認。</p></aside>
+        <aside class="tutorial-example" id="ichia-motion-example" aria-label="毅嘉科技動態分鏡案例">
+          <h3>動態分鏡案例｜Ichia 毅嘉科技</h3>
+          <p>這份腳本把首頁、產品與 ESG 的銜接分成 Scene A、B、C，並說明全頁強弱節奏、捲動觸發、反向行為與減少動態方案。下方選用 Scene B「模組換層」的三個狀態，示範動態如何解釋產品內容。</p>
+          <div class="example-frames">
+            <figure><a class="example-preview" href="Ichia-毅嘉科技/動態腳本-v1.html#b" target="_blank" rel="noopener"><img src="examples/ichia/motion-start.png" alt="01 起始：首頁文字退場，模組維持原位。" width="1116" height="560" loading="lazy"></a><figcaption><strong>01 起始</strong><span>首頁文字退場，模組維持原位。</span></figcaption></figure>
+            <figure><a class="example-preview" href="Ichia-毅嘉科技/動態腳本-v1.html#b" target="_blank" rel="noopener"><img src="examples/ichia/motion-middle.png" alt="02 過程：面板滑開露出電路層，左欄同步顯示 EMS。" width="1116" height="560" loading="lazy"></a><figcaption><strong>02 過程</strong><span>面板滑開露出電路層，左欄同步顯示 EMS。</span></figcaption></figure>
+            <figure><a class="example-preview" href="Ichia-毅嘉科技/動態腳本-v1.html#b" target="_blank" rel="noopener"><img src="examples/ichia/motion-end.png" alt="03 結束：切換至 IMS 內容與產品構圖，完成段落銜接。" width="1116" height="560" loading="lazy"></a><figcaption><strong>03 結束</strong><span>切換至 IMS 內容與產品構圖，完成段落銜接。</span></figcaption></figure>
+          </div>
+          <a class="example-link" href="Ichia-毅嘉科技/動態腳本-v1.html" target="_blank" rel="noopener">開啟完整動態分鏡案例</a>
+          <p class="example-note">這是分鏡構圖示範，原腳本尚未實作動畫；實際速度與捲動手感需在核心片段試做時確認。</p>
+        </aside>
+<p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">請依確認的視覺準備動態分鏡。
+用白話說明每個主要區塊的開始、過程、結束，以及相鄰區塊怎麼銜接。
+請包含往回捲的行為、文字閱讀時間、按鈕操作，以及減少動態時的呈現。
+讓我先確認做法，再開始核心片段試做。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> 你理解並同意動態做法，再回覆「這版動態提案確認，請試做核心片段」。此時尚未確認實際動畫成品。</p>
+      </section>
+      <section class="sec" id="try">
+        <div class="sec-head">
+          <h2>第 6 步｜試玩核心片段</h2>
+        </div>
+        <p>AI 做出最能驗證構圖與動態的片段，提供可操作預覽。自己試正反向捲動、快速捲動、點擊與重新載入，確認速度、閱讀與操作符合預期。</p>
+        <p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">請完成核心片段並在 2560×1280 自行檢查。
+開啟可操作預覽，告訴我要怎麼試、這次包含哪些區塊，以及尚未完成的部分。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> 片段符合預期，再回覆「這版核心片段確認，請記錄規格並延伸完整桌機首頁」。片段通過只代表該範圍通過。</p>
+      </section>
+      <section class="sec" id="homepage">
+        <div class="sec-head">
+          <h2>第 7 步｜確認完整桌機首頁</h2>
+        </div>
+        <p>從頁首看到頁尾，檢查內容層級、圖片裁切、留白、全頁動態與 CTA（引導使用者採取行動的按鈕）。試選單、連結、輪播、下滑固定導覽與右下角回到頂部。</p>
+        <p>使用 Codex 分工時，由 AI 先整理全頁場景、規格及素材位置，再交接；完成後仍須實看驗收。AI 自查有缺陷應先修正，暫代文案、缺圖與未完成功能要明列。</p>
+        <p>切版完成後，AI 會提醒你檢核專案檔案大小，並列出網站使用的非 WebP／SVG 圖片及其路徑、大小。請自行轉成適合網頁的格式後提供；Claude 不代為轉檔、壓縮或批次處理圖片，以避免額外 token 消耗。WebP／SVG 也要確認實際容量。</p>
+        <p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">請完成並自行檢查完整桌機首頁，開啟目前有效版本的預覽。
+從頁首到頁尾確認構圖、圖片、文案、動畫、導覽與回到頂部。
+一起準備 Cookie 提示與可閱讀的隱私權政策頁；政策草稿請標示待客戶確認。
+請列出待補資料、暫代內容、未完成功能及實際測試範圍。
+切版完成後請提醒我檢核專案檔案大小，列出非 WebP／SVG 圖片的路徑與大小，由我自行轉檔；Claude 不代為處理。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> 你已實際看過整頁並操作，再回覆「首頁（填版本）的桌機畫面與動態確認」。政策內容由客戶確認；手機未做就不能記為完成。</p>
+      </section>
+      <section class="sec" id="inner">
+        <div class="sec-head">
+          <h2>第 8 步｜延伸內頁</h2>
+        </div>
+        <p>提供內頁清單與內容，AI 先盤點頁型，選代表頁給你確認再展開同類頁。關於我們、服務、ESG 等核心頁要有完整構圖與閱讀節奏；查閱與操作頁優先清楚穩定。</p>
+        <p>首頁與內頁共用同一套導覽、頁尾及回到頂部。客戶要自行更新的文字、圖片與清單由 AI 先盤點，只有用途不明或影響設計的部分再問你。</p>
+        <p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">桌機首頁已確認，接著製作這些內頁：（填頁面清單）。
 資料在：（填位置）。
-請先選一個有代表性的內頁給我確認，再延伸其他頁。
-客戶需要自行更新的內容請主動整理，不確定的再問我。</code></pre><p class="note"><strong>做到這裡再往下：</strong>內頁風格一致、內容正確，每頁都有預覽；需要客戶可編輯的項目沒有漏掉。</p></section>
-<section class="sec" id="mobile"><div class="sec-head"><h2>第 9 步｜需要時再做平板與手機</h2></div><p>案件有包含平板、手機時，在桌機確認後明確提出。用實際裝置或 AI 提供的對應預覽檢查，不只把桌機畫面縮小。</p>
-<p>案件未包含此範圍就跳過，不可當成已完成。</p><h3>貼給 AI</h3><pre><code>桌機已確認，現在請製作本案約定的平板與手機版本。
-保留內容與主要操作，依小螢幕調整版面與動態。
-請提供預覽，讓我檢查選單、文字、圖片與按鈕。</code></pre><p class="note"><strong>做到這裡再往下：</strong>本案約定的尺寸都看過，文字可讀、按鈕好點、內容沒有被切掉。</p></section>
-<section class="sec" id="client"><div class="sec-head"><h2>第 10 步｜給客戶校稿、整理修改</h2></div><p>請 AI 提供客戶可以查看的方式；需要發布或上傳時，先確認位置與權限。把客戶回饋附上頁面名稱與截圖。</p>
-<p>不要只說「怪怪的」，可說「關於我們第二區，標題太靠近圖片」。</p><h3>貼給 AI</h3><pre><code>請整理這次給客戶看的版本與尚待確認項目。
-這次修改如下：（貼回饋與截圖）。
-只改這些範圍，保留其他已確認的設計與動態。</code></pre><p class="note"><strong>做到這裡再往下：</strong>客戶確認的是哪個版本、哪些頁面與效果，都有記錄。未確認的不要標成通過。</p></section>
-<section class="sec" id="evo-handoff"><div class="sec-head"><h2>第 11 步｜交給工程師</h2></div><p>客戶確認後，請 AI 整理交付資料；你不用自己整理程式檔案的對照表。</p>
-<p>切版時，AI 就要一起做好已確認可支援的逐筆編輯內容，不等客戶確認後才重做。工程師接著處理匯入與必要串接；仍要測試修改、增刪、排序、儲存與發布後的畫面及動態。</p><h3>貼給 AI</h3><pre><code>客戶已確認這一版，請整理給工程師的交付資料。
-列出每頁使用的檔案、互動效果、客戶可編輯內容，以及尚待確認項目。
-檢查缺圖、連結、單頁是否完整及本案約定的裝置尺寸。
-清楚分開：AI 已檢查、客戶已確認、工程師待匯入／接入、後台編輯與發布待驗證。
-先不要自行打包、上傳或部署。</code></pre><p class="note"><strong>做到這裡再往下：</strong>工程師能找到完整網站、素材與交付說明；未驗證項目有明確標示。</p></section>
-<section class="sec" id="resume"><div class="sec-head"><h2>下次繼續／遇到問題時</h2></div><p>回到同一案件資料夾，優先接續原本對話。換對話也要指定同一資料夾，請 AI 先讀進度。</p>
-<p>看不懂回覆、預覽打不開或結果跑版，直接貼截圖與發生步驟，不必猜是哪個程式錯了。</p><h3>貼給 AI</h3><pre><code>使用 visual-solution-immersive-director，先讀這個案件的進度與已確認內容，不要重新開始。
-本次要做：（填這次工作）。
-請用白話告訴我現在需要做什麼，一次只問一題。</code></pre><p class="note"><strong>做到這裡再往下：</strong>AI 接續正確進度，保留已確認內容；若不能處理，請它整理問題給 LIN 或工程師。</p></section><section class="sec"><h2>給維護人員</h2><p>本篇不取代 <a href="skills/visual-solution-immersive-director/SKILL.md">主 Skill</a>；安裝維護請看 <a href="INSTALL.md">安裝文件</a>，另有內容一致的 <a href="使用教學.md">文字版</a>。</p></section></div></main>
+請先盤點頁型、內容及平台可支援功能，選代表頁給我確認後再展開同類頁。
+沿用確認的視覺、共用導覽、頁尾與回到頂部，維持整頁設計完成度。
+需要客戶自行更新的內容請主動整理，不確定用途的再問我。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> 各頁內容正確、風格一致、有實際預覽，且可編輯需求與平台待確認項目都有記錄。</p>
+      </section>
+      <section class="sec" id="mobile">
+        <div class="sec-head">
+          <h2>第 9 步｜完成 RWD，再交客戶校稿</h2>
+        </div>
+        <p>本手冊的製作流程包含 RWD（依不同螢幕調整版面）。桌機內部確認後直接接續平板與手機，完成檢查才交客戶校稿，不需要另外開一個工作情境。小螢幕需依內容調整排列、圖片裁切、導覽與動態，不能只把桌機整頁縮小。</p>
+        <p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">桌機已確認，現在請製作本案的平板與手機版本。
+範圍：（填頁面及約定尺寸，未定尺寸請先提出建議）。
+保留確認內容與主要操作，依小螢幕調整版面及動態。
+請提供對應預覽，讓我檢查選單、文字、圖片、按鈕及觸控操作。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> 約定頁面與尺寸已看過、操作過，文字可讀、按鈕好點、沒有內容裁切或橫向捲軸。沒有驗證的尺寸明列。</p>
+      </section>
+      <section class="sec" id="client"><div class="sec-head"><h2>第 10 步｜取得外網連結與客戶校稿</h2></div><ol class="loop client-review-flow" aria-label="取得客戶校稿外網連結的五個步驟"><li><span class="n">01</span><strong>效率雲開版</strong><p>取得本案版號。</p></li><li><span class="n">02</span><strong>建立 project</strong><p>已經有就沿用。</p></li><li><span class="n">03</span><strong>複製切版成果</strong><p>放入案件版號資料夾。</p></li><li><span class="n">04</span><strong>推到 Git</strong><p>依公司教學情況 A。</p></li><li><span class="n">05</span><strong>取得外網連結</strong><p>效率雲 → 62 DEMO。</p></li></ol>
+<p>桌機與 RWD 完成內部檢查後，依下面流程取得客戶可開啟的外網連結，再提供校稿。</p>
+<h3>A｜至效率雲開版，取得案件版號</h3>
+<p>至效率雲，開版本案的 Evomni，取得<strong>案件版號</strong>。後續的資料夾名稱與 Git 設定依這個版號及公司教學填寫。</p>
+<h3>B｜在本機建立 project 資料夾</h3>
+<p>在你的電腦本機建立一個名為 <strong>project</strong> 的資料夾，專門放靜態切版案件。<strong>已經建立過就沿用，不需要再開一個。</strong></p>
+<p>這個資料夾是校稿用的本機網站副本，和前面 Google Drive 的案件工作資料夾分開。</p>
+<h3>C｜建立案件版號資料夾，複製切版成果</h3>
+<p>在 <code>project</code> 裡新增資料夾，名稱就是<strong>案件版號</strong>，再將目前要校稿的靜態網站複製進去。首頁、內頁、CSS、JavaScript、圖片與字型等網站所需檔案都要完整複製；客戶資料與提案文件不用放入。</p>
+<pre><code class="language-text">project/
+└── （案件版號）/
+    ├── index.html
+    ├── 其他內頁.html
+    ├── css/
+    ├── js/
+    └── assets/
+</code></pre>
+<p>這是網站檔案的位置示意；沿用本案實際的資料夾與檔名。複製完成後先開啟首頁及內頁，確認圖片、連結與互動正常。</p>
+<h3>D｜依「情況 A」將專案推到 Git</h3>
+<p>開啟公司教學 <a href="http://posthub.miracle-single.tw/docsys/#/articles/publish/2335">內部 Git 專案空間使用說明（文件 2335）</a>，依 <strong>情況 A：新網頁建立新專案</strong> 執行。</p>
+<p>操作位置是本機 <code>project/案件版號/</code>。依文件填入本案資料，按順序完成教學中的三個指令；帳密由你本人輸入。公司 Git 需要在公司網路或 VPN 內操作。</p>
+<p>已有 Git 專案、這次只是更新校稿版時，沿用原專案的更新流程，不重複建立新專案。</p>
+<p><strong>公司提供的 Apple 捷徑：</strong></p>
+<ul>
+<li><a href="https://www.icloud.com/shortcuts/5e28341a3f6c423ebb1917a35d961a28">取得捷徑 1</a></li>
+<li><a href="https://www.icloud.com/shortcuts/20030ff8ec9d44c699b3f1f1eaa48221">取得捷徑 2</a></li>
+<li><a href="https://www.icloud.com/shortcuts/b259df305e9945778ff49f4397e32889">取得捷徑 3</a></li>
+</ul>
+<p>依公司教學確認各捷徑的用途與執行順序。</p>
+<h3>E｜到效率雲「62 DEMO」取得外網連結</h3>
+<p>三個指令完成、確認 Git 推送成功後，回到<strong>效率雲 → 62 DEMO</strong>，就能取得本案的<strong>外網連結</strong>。</p>
+<p>用這個連結檢查首頁、內頁與 RWD，確認客戶能正常查看，再將連結提供給客戶校稿。請 AI 在進度中記錄案件版號、外網連結及這次校稿版本。</p>
+<p class="note"><strong>做到這裡再往下：</strong> 客戶能透過 62 DEMO 外網連結查看完整網站，校稿版號與版本已記錄。</p>
+</section>
+      <section class="sec" id="revisions">
+        <div class="sec-head"><h2>第 11 步｜當你收到修改資料時</h2></div>
+<p>本機已經有這個專案，就開啟對應資料夾，將修改資料交給 Claude，沿用既有進度與確認版本繼續修改。還沒下載到這台電腦時，先依情況 B 取得專案。</p>
+<h3>情況 B｜想下載已存在的專案到自己電腦</h3>
+<ol>
+<li>開啟 VSCode，按下 <strong>Ctrl + Shift + P</strong>；Mac 請按 <strong>Cmd + Shift + P</strong>。</li>
+<li>輸入並選擇 <strong>Git: Clone</strong>。</li>
+<li>貼上本案的<strong>公司 Git 專案網址</strong>。</li>
+<li>選擇要存放在電腦裡的資料夾，建議選本機 <code>project</code>。依提示由你本人輸入帳號密碼，完成下載後開啟這個專案。</li>
+</ol>
+<p>下載操作可參考 <a href="https://code.visualstudio.com/docs/sourcecontrol/repos-remotes#clone-repositories">VSCode 官方 Git: Clone 說明</a>。</p>
+<h3>情況 C｜修改完網頁要同步上傳</h3>
+<p>修改完成並檢查桌機與 RWD 後，<strong>直接請 Claude 幫你提交並 push 到原本的公司 Git 專案</strong>，就能更新 62 DEMO 校稿版本。</p>
+<p><strong>貼給 Claude：</strong></p>
+<pre><code class="language-text">本案修改已完成，請幫我提交並 push 到原本的公司 Git 專案，更新 62 DEMO 校稿版。
+專案資料夾：（填本機 project 裡這個案件的完整路徑）。
+請確認這裡是最新的校稿檔案，沿用原本的儲存庫與分支，核對遠端變更並處理可判定的同步問題。
+需要登入時讓我本人操作；若有無法判定的衝突，請列出具體差異。
+完成後回報推送結果，並記錄這次修改版本與 62 DEMO 連結。
+</code></pre>
+<p>Claude 回報推送成功後，到<strong>效率雲 → 62 DEMO</strong> 開啟外網連結，確認最新內容與修改結果，再通知客戶繼續校稿。</p>
+<p class="note"><strong>做到這裡再往下：</strong> 修改內容已同步到 62 DEMO 並重新檢查。待客戶確認後，再整理靜態網站交付。</p>
+</section>
+      <section class="sec" id="delivery"><div class="sec-head"><h2>第 12 步｜整理靜態網站交付</h2></div><p>客戶確認後，請 AI 整理這一版的靜態網站、素材與交付說明。保留目前有效入口與原始製作檔案，讓接手的人能找到、預覽並維護網站。</p>
+<p><strong>貼給 AI：</strong></p>
+<pre><code class="language-text">客戶已確認這一版，請整理靜態網站交付資料。
+列出確認版號與版本、62 DEMO 連結、各頁入口，以及 HTML、CSS、JavaScript、素材與字型的位置。
+核對缺圖、連結、互動、頁面完整度與 RWD；排除 .DS_Store 等非交付檔案。
+記錄預覽方式、AI 已檢查與客戶已確認的範圍，以及仍需補充的資料。
+本次只整理靜態網站交付，不自行上傳或部署。
+</code></pre>
+<p class="note"><strong>做到這裡再往下：</strong> 接手的人能找到確認版網站、素材、預覽與維護說明；未完成項目及負責人清楚列出。</p>
+</section>
+      <section class="sec" id="resume">
+        <div class="sec-head">
+          <h2>下次繼續／切換工具</h2>
+        </div>
+        <p>回到同一案件資料夾，優先接續原對話。換電腦先等資料同步；換工具或新對話時，讓 AI 讀同一份進度，保留已確認內容。</p>
+        <p><strong>離開前貼給 AI：</strong></p>
+        <pre><code class="language-text">請更新本案進度，記錄目前階段、確認版本、工具授權、素材與預覽位置、已知問題及下一步。
+讓另一個工具或新對話讀取後能直接接續，不必重新提案。
+</code></pre>
+        <p><strong>接續時貼給 AI：</strong></p>
+        <pre><code class="language-text">使用（填 visual-solution-immersive-director／lin-frontend）。
+案件資料夾：（填完整路徑）。
+請先讀進度與已確認內容，說明目前階段、有效預覽及下一步，不要重新開始。
+本次工作：（填要做的內容）。
+請沿用既有授權，保留已確認的設計與動態。
+</code></pre>
+        <p class="note"><strong>做到這裡再往下：</strong> AI 接到正確階段及版本。模型選擇由 AI 依當前階段簡短建議；切換前留下進度，不用因換模型重開設計。</p>
+      </section>
+      <section class="sec" id="troubleshooting">
+        <div class="sec-head">
+          <h2>遇到問題｜直接提供位置與發生步驟</h2>
+        </div>
+        <div class="handoff-table">
+          <table>
+            <thead>
+              <tr>
+                <th>狀況</th>
+                <th>你可以怎麼做</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>找不到 Skill 或缺工具</td>
+                <td>貼完整回覆給維護者，請 AI 列出缺少項目與安裝來源</td>
+              </tr>
+              <tr>
+                <td>AI 讀錯案件或使用舊版本</td>
+                <td>提供正確資料夾，請它先找有效入口及確認紀錄</td>
+              </tr>
+              <tr>
+                <td>預覽打不開</td>
+                <td>貼網址、錯誤畫面及剛才操作，請 AI 檢查啟動與資源路徑</td>
+              </tr>
+              <tr>
+                <td>版面或動畫不對</td>
+                <td>附頁面、區塊、尺寸、截圖或錄影，說明預期及實際結果</td>
+              </tr>
+              <tr>
+                <td>素材生成後不知道存哪</td>
+                <td>請 AI 逐張提供檔名與案件內存放位置</td>
+              </tr>
+              <tr>
+                <td>工程庫或內網指南無法讀取</td>
+                <td>確認公司網路／VPN，請 AI 說明可繼續與受阻部分</td>
+              </tr>
+              </tbody>
+          </table>
+        </div>
+        <p><strong>貼給 AI：</strong></p>
+        <pre><code class="language-text">發生問題的頁面／區塊：（填位置）。
+我做了：（填操作步驟）。
+預期：（填想看到的結果）。
+實際：（填發生的情況，附截圖或錄影）。
+使用的預覽／站台與尺寸：（填已知資訊）。
+請先找原因，修正已授權範圍並重新驗證，保留其他已確認內容。
+如果目前無法處理，請整理缺口、影響及可執行方案給維護者或工程師。
+</code></pre>
+      </section>
+      <section class="sec" id="resources">
+        <div class="sec-head">
+          <h2>文件與維護入口</h2>
+        </div>
+        <p>本篇是設計師操作手冊，依 repo 中的工作規範整理，不取代 Skill。只更新教學不代表已完成客戶案件的製作、轉換或驗收。</p>
+        <ul>
+          <li><a href="%E5%BF%AB%E9%80%9F%E7%B4%A2%E5%BC%95.html">情境快速索引</a>：從目前已有成果選擇工作入口。</li>
+          <li><a href="%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.html">網頁閱讀版</a>：與本篇內容一致。</li>
+          <li><a href="skills/visual-solution-immersive-director/SKILL.md">整體視覺主 Skill</a>：設計、製作及確認流程。</li>
+          <li><a href="INSTALL.md">安裝與更新說明</a>：維護者使用。</li>
+          <li><a href="https://github.com/world-yingcen/lin-skill#readme">LIN 獨立 repo</a>：共用切版規範與安裝入口。</li>
+        </ul>
+        <p>LIN 不包含在整體視覺套件內，請維護者另外安裝完整規範。</p>
+      </section>
+    </div>
+  </main>
 
-<footer class="site-footer">
-  <span>整體視覺方案 ／ Skill 使用教學</span>
-  <span>更新 2026-10-09 ・ 文字版 <code>使用教學.md</code></span>
-</footer>
+  <footer class="site-footer">
+    <span>整體視覺方案 ／ Skill 使用教學</span>
+    <span>最後更新 2026-10-12 ・ 文字版 <code>使用教學.md</code></span>
+  </footer>
 
-<script>
-(() => {
-  'use strict';
-  const root = document.documentElement;
-  if (!root.lang) root.lang = 'zh-Hant';
+  <script>
+    (() => {
+      'use strict';
+      const root = document.documentElement;
+      if (!root.lang) root.lang = 'zh-Hant';
 
-  // 深淺色：預設跟隨系統；按鈕可切換，偏好只存在這台瀏覽器
-  const KEY = 'vs-tutorial-theme';
-  const button = document.getElementById('theme-toggle');
-  const prefersLight = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
-  const current = () => root.dataset.theme || (prefersLight && prefersLight.matches ? 'light' : 'dark');
-  const paint = () => {
-    const theme = current();
-    button.textContent = theme === 'dark' ? '☼' : '☾';
-    button.setAttribute('aria-label', theme === 'dark' ? '切換為淺色模式' : '切換為深色模式');
-  };
-  if (!root.dataset.theme) {
-    try { const saved = localStorage.getItem(KEY); if (saved === 'light' || saved === 'dark') root.dataset.theme = saved; } catch (error) { /* 儲存受限時照系統設定顯示 */ }
-  }
-  button.addEventListener('click', () => {
-    const next = current() === 'dark' ? 'light' : 'dark';
-    root.dataset.theme = next;
-    try { localStorage.setItem(KEY, next); } catch (error) { /* 只在本次瀏覽生效 */ }
-    paint();
-  });
-  if (prefersLight && prefersLight.addEventListener) prefersLight.addEventListener('change', paint);
-  new MutationObserver(paint).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
-  paint();
+      // 深淺色：預設跟隨系統；按鈕可切換，偏好只存在這台瀏覽器
+      const KEY = 'vs-tutorial-theme';
+      const button = document.getElementById('theme-toggle');
+      const prefersLight = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+      const current = () => root.dataset.theme || (prefersLight && prefersLight.matches ? 'light' : 'dark');
+      const paint = () => {
+        const theme = current();
+        button.textContent = theme === 'dark' ? '☼' : '☾';
+        button.setAttribute('aria-label', theme === 'dark' ? '切換為淺色模式' : '切換為深色模式');
+      };
+      if (!root.dataset.theme) {
+        try { const saved = localStorage.getItem(KEY); if (saved === 'light' || saved === 'dark') root.dataset.theme = saved; } catch (error) { /* 儲存受限時照系統設定顯示 */ }
+      }
+      button.addEventListener('click', () => {
+        const next = current() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem(KEY, next); } catch (error) { /* 只在本次瀏覽生效 */ }
+        paint();
+      });
+      if (prefersLight && prefersLight.addEventListener) prefersLight.addEventListener('change', paint);
+      new MutationObserver(paint).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+      paint();
 
-  // 章節導覽：標示目前閱讀的章節
-  const list = document.querySelector('.toc ol');
-  const links = Array.from(document.querySelectorAll('.toc a'));
-  const sections = links.map(link => document.getElementById(link.getAttribute('href').slice(1))).filter(Boolean);
-  if (!('IntersectionObserver' in window) || !sections.length) return;
-  const visible = new Set();
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => entry.isIntersecting ? visible.add(entry.target.id) : visible.delete(entry.target.id));
-    const active = sections.find(section => visible.has(section.id));
-    links.forEach(link => {
-      const on = Boolean(active) && link.getAttribute('href') === '#' + active.id;
-      if (on) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
-      if (on && list.scrollWidth > list.clientWidth) list.scrollTo({ left: Math.max(0, link.parentElement.offsetLeft - 24) });
-    });
-  }, { rootMargin: '-90px 0px -55% 0px' });
-  sections.forEach(section => observer.observe(section));
-})();
-</script>
+      // 章節導覽：標示目前閱讀的章節
+      const list = document.querySelector('.toc ol');
+      const links = Array.from(document.querySelectorAll('.toc a'));
+      const sections = links.map(link => document.getElementById(link.getAttribute('href').slice(1))).filter(Boolean);
+      if (!('IntersectionObserver' in window) || !sections.length) return;
+      const visible = new Set();
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => entry.isIntersecting ? visible.add(entry.target.id) : visible.delete(entry.target.id));
+        const active = sections.find(section => visible.has(section.id));
+        links.forEach(link => {
+          const on = Boolean(active) && link.getAttribute('href') === '#' + active.id;
+          if (on) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+          if (on && list.scrollWidth > list.clientWidth) list.scrollTo({ left: Math.max(0, link.parentElement.offsetLeft - 24) });
+        });
+      }, { rootMargin: '-90px 0px -55% 0px' });
+      sections.forEach(section => observer.observe(section));
+    })();
+  </script>
 </body>
+
 </html>

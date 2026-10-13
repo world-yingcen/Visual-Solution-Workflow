@@ -4,7 +4,7 @@
 
 ## 目錄
 
-這個 repo 只放 Skill 套件，同事直接 clone 使用；案例不在這裡。
+這個 repo 放 Skill 套件與手冊明列的展示案例，同事直接 clone 使用；完整案例資料庫另行維護。
 
 - `skill/`：Skill 套件——主 Skill、8 個 GSAP 技術 Skills、2 個 Eagle 工具、安裝程式與測試。文件：[使用教學](skill/使用教學.md)（[圖文版](skill/使用教學.html)）、[安裝說明](skill/INSTALL.md)、[工作規則](skill/AGENTS.md)、[轉版狀態](skill/轉版狀態.md)。`skill/01_產品/` 是 Common CSS、系統功能與內頁版型的共用技術參考，不進分享包。
 - `.claude-plugin/marketplace.json`、`skill/.claude-plugin/plugin.json`：讓 Claude Code 以 Plugin 安裝 `skill/`（`/plugin marketplace add world-yingcen/Visual-Solution-Workflow`）。Codex 仍用 install.py。
@@ -14,6 +14,10 @@
 
 ## 工作入口
 
+- [使用須知](skill/guide-tools.html)：舊版圖文教學的觀念與工具說明，與完整流程共用樣式。
+- [教學入口](skill/index.html)：選擇「完整流程」或「依情境」閱讀，同一專案內互相切換。
+- [情境快速索引](skill/快速索引.html)：從零開始、Webtech2 首頁重切、靜態首頁接內頁、高效初版優化、設計稿切版、網站修改與問題修正；提供資料清單與可複製指令。
+- 手冊第 4、5 步附上 `skill/Ocean-Medi-歐群生醫/`、`skill/Ichia-毅嘉科技/` 的視覺提案與動態分鏡展示案例，以及 `skill/examples/` 下的對應預覽圖；僅示範交付形式，分享包按固定檔案清單收錄。
 - [整體視覺網站設計與製作](skill/skills/visual-solution-immersive-director/SKILL.md)：以品牌方向、核心片段試做、素材製作與瀏覽器修正循環完成整體視覺網站。目前以 MASSIF／Elysian／Noctave／Axisform 類「整體視覺」為核心範圍；品牌賦能需先完成品牌母題與專屬資產。尚待真實案件端到端驗證。
 
 ## 設計與製作

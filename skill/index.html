@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="網站製作教學入口：閱讀完整流程，或依目前案件情境找到準備資料與開始指令。">
+  <title>方案產業AI化_操作手冊｜教學入口</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap">
+  <link rel="stylesheet" href="css/manual.css">
+<script src="js/scroll-top.js" defer></script>
+</head>
+
+<body class="page-entry"><a class="skip-link" href="#paths">跳至教學選擇</a>
+  <header class="site-header"><a class="brand" href="index.html" aria-label="回到教學入口"><span class="brand-mark" aria-hidden="true"></span><span>方案產業AI化<span class="brand-light">_操作手冊</span></span></a>
+    <div class="guide-tools">
+      <nav class="guide-navigation" aria-label="教學模式"><a href="index.html" aria-current="page">教學入口</a><a href="使用教學.html">完整流程</a><a href="快速索引.html">依情境</a><a href="guide-tools.html">使用須知</a></nav><button class="theme-button" id="theme-toggle" type="button" aria-label="切換為淺色模式">☼</button>
+    </div>
+  </header>
+  <main class="entry-main" id="top">
+    <section class="intro">
+      <h1><span class="title-accent">選擇你的閱讀方式</span><br>從流程或情境開始</h1>
+    </section>
+    <div class="entry-grid" id="paths"><a class="entry-card" href="使用教學.html">
+        <figure><svg viewBox="0 0 480 144" role="img" aria-label="由資料準備依序經過設計、製作與校稿">
+            <path d="M65 63h350" stroke="var(--line)" stroke-width="2" />
+            <g fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5">
+              <rect x="22" y="30" width="86" height="66" rx="8" />
+              <rect x="138" y="30" width="86" height="66" rx="8" />
+              <rect x="254" y="30" width="86" height="66" rx="8" />
+              <rect x="370" y="30" width="86" height="66" rx="8" />
+            </g>
+            <g fill="var(--accent)" font-size="18" text-anchor="middle"><text x="65" y="70">01</text><text x="181" y="70">02</text><text x="297" y="70">03</text><text x="413" y="70">04</text></g>
+            <g fill="var(--muted)" font-size="13" text-anchor="middle"><text x="65" y="126">資料準備</text><text x="181" y="126">設計確認</text><text x="297" y="126">網站製作</text><text x="413" y="126">校稿交付</text></g>
+          </svg></figure>
+        <h2>完整流程</h2>
+        <p>從資料準備、視覺與動態確認，到首頁、內頁、RWD、客戶校稿及靜態網站交付，依順序了解每個階段。</p><span class="entry-link">閱讀完整流程</span>
+      </a><a class="entry-card" href="快速索引.html">
+        <figure><svg viewBox="0 0 480 144" role="img" aria-label="依現在的成果選擇工作路徑">
+            <rect x="22" y="38" width="125" height="66" rx="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5" />
+            <path d="M147 71h45V27h70M192 71h70M192 71v44h70" fill="none" stroke="var(--accent)" stroke-width="1.5" />
+            <g fill="var(--surface)" stroke="var(--line)">
+              <rect x="262" y="8" width="180" height="38" rx="6" />
+              <rect x="262" y="52" width="180" height="38" rx="6" />
+              <rect x="262" y="96" width="180" height="38" rx="6" />
+            </g><text x="84" y="77" text-anchor="middle" fill="var(--accent)" font-size="15">目前成果</text>
+            <g fill="var(--muted)" font-size="13" text-anchor="middle"><text x="352" y="32">開始新案／設計稿切版</text><text x="352" y="76">首頁接內頁／初版優化</text><text x="352" y="120">問題修正／內容更新</text></g>
+          </svg></figure>
+        <h2>依情境</h2>
+        <p>從 6 種工作情境找到入口：新案、Webtech2 重切、內頁製作、高效初版優化、設計稿切版、內容修改與問題修正。</p><span class="entry-link">選擇目前情境</span>
+      </a></div>
+  </main>
+  <footer class="site-footer"><span>最後更新 2026-10-12</span></footer>
+  <script>
+    (() => {
+      'use strict';
+      const root = document.documentElement;
+      if (!root.lang) root.lang = 'zh-Hant';
+
+      // 深淺色：預設跟隨系統；按鈕可切換，偏好只存在這台瀏覽器
+      const KEY = 'vs-tutorial-theme';
+      const button = document.getElementById('theme-toggle');
+      const prefersLight = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+      const current = () => root.dataset.theme || (prefersLight && prefersLight.matches ? 'light' : 'dark');
+      const paint = () => {
+        const theme = current();
+        button.textContent = theme === 'dark' ? '☼' : '☾';
+        button.setAttribute('aria-label', theme === 'dark' ? '切換為淺色模式' : '切換為深色模式');
+      };
+      if (!root.dataset.theme) {
+        try { const saved = localStorage.getItem(KEY); if (saved === 'light' || saved === 'dark') root.dataset.theme = saved; } catch (error) { /* 儲存受限時照系統設定顯示 */ }
+      }
+      button.addEventListener('click', () => {
+        const next = current() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem(KEY, next); } catch (error) { /* 只在本次瀏覽生效 */ }
+        paint();
+      });
+      if (prefersLight && prefersLight.addEventListener) prefersLight.addEventListener('change', paint);
+      new MutationObserver(paint).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+      paint();
+
+      // 章節導覽：標示目前閱讀的章節
+      const list = document.querySelector('.toc ol');
+      const links = Array.from(document.querySelectorAll('.toc a'));
+      const sections = links.map(link => document.getElementById(link.getAttribute('href').slice(1))).filter(Boolean);
+      if (!('IntersectionObserver' in window) || !sections.length) return;
+      const visible = new Set();
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => entry.isIntersecting ? visible.add(entry.target.id) : visible.delete(entry.target.id));
+        const active = sections.find(section => visible.has(section.id));
+        links.forEach(link => {
+          const on = Boolean(active) && link.getAttribute('href') === '#' + active.id;
+          if (on) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+          if (on && list.scrollWidth > list.clientWidth) list.scrollTo({ left: Math.max(0, link.parentElement.offsetLeft - 24) });
+        });
+      }, { rootMargin: '-90px 0px -55% 0px' });
+      sections.forEach(section => observer.observe(section));
+    })();
+  </script>
+</body>
+
+</html>

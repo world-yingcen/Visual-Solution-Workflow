@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>Ichia 毅嘉｜動態提案與分鏡 v1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Inter:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0084BE;--blue-deep:#0B5E86;--blue-tint:#E8F4FA;
+  --ink:#141A1F;--ink-2:#5A6672;--line:#DFE4E8;--paper:#FFFFFF;--paper-2:#F4F6F8;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --text:"Inter","Noto Sans TC",system-ui,sans-serif;
+  --doc:"Noto Sans TC","Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper-2);color:var(--ink);font-family:var(--doc);font-size:15px;line-height:1.85}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+.doc-head{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.doc-head .wrap{display:flex;align-items:center;gap:20px;height:72px}
+.doc-head img{height:26px}
+.doc-head h1{font-size:16px;margin:0;font-weight:500}
+.badge{font-family:var(--text);font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid #C8722A;color:#C8722A;padding:3px 10px;border-radius:2px}
+.badge.ok{border-color:#1B7A4B;color:#1B7A4B}
+.doc-nav{margin-left:auto;display:flex;gap:16px;font-size:13px}
+.doc-nav a{color:var(--ink-2);text-decoration:none}
+section.block{background:var(--paper);margin:0 0 2px;padding:60px 0}
+section.block:nth-child(even){background:#FBFCFD}
+h2.sec{font-family:var(--text);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin:0 0 6px;font-weight:600}
+h3.sec-zh{font-size:28px;margin:0 0 24px;font-weight:500}
+h4{font-size:15px;margin:30px 0 10px;font-weight:700}
+p{margin:0 0 14px}
+.lead{font-size:17px;color:#2B333A;max-width:880px}
+small.note{display:block;color:var(--ink-2);font-size:12.5px;line-height:1.7;margin-top:8px}
+ul{margin:0 0 14px;padding-left:20px}li{margin-bottom:6px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0 18px}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:var(--paper-2);font-weight:600}
+th.k{white-space:nowrap;width:160px}
+code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:var(--paper-2);padding:1px 5px;border-radius:2px}
+.status-ok{color:#1B7A4B;font-weight:600}.status-wait{color:#C8722A;font-weight:600}.status-gap{color:#A33;font-weight:600}
+
+/* 分鏡舞台 */
+.sb{margin:22px 0 6px}
+.sb-label{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--text);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin:20px 0 6px}
+.sb-label b{color:var(--blue);letter-spacing:.14em}
+.stage-outer{border:1px solid var(--line);background:#fff;overflow:hidden}
+.stage-holder{position:relative;width:100%}
+.stage{width:2560px;height:1280px;transform-origin:top left;position:absolute;top:0;left:0;overflow:hidden;background:#fff}
+.stage *{box-sizing:border-box}
+.stage .softbox{position:absolute}
+.stage .softbox img{display:block;width:100%}
+.stage .softbox.mul img{mix-blend-mode:multiply}
+.stage .softbox::after{content:"";position:absolute;inset:-2px;background:radial-gradient(104% 104% at 50% 50%,rgba(255,255,255,0) 30%,#fff 80%)}
+.stage .nav{position:absolute;top:0;left:0;right:0;height:132px;display:flex;align-items:center;padding:0 96px;gap:64px;z-index:9}
+.stage .nav .logo{height:46px}
+.stage .nav ul{list-style:none;display:flex;gap:52px;margin:0;padding:0;font-family:var(--text);font-size:21px;color:#2B333A}
+.stage .nav .right{margin-left:auto;display:flex;align-items:center;gap:36px}
+.stage .nav .cta{font-family:var(--text);font-size:20px;border:1.5px solid var(--blue);color:var(--blue);padding:13px 30px;border-radius:2px}
+.stage h1.hero{font-family:var(--display);font-weight:300;font-size:132px;line-height:1.06;letter-spacing:-.015em;margin:0;color:var(--ink)}
+.stage h1.hero em{font-style:normal;font-weight:500}
+.stage .sub{font-family:var(--text);font-weight:300;font-size:30px;line-height:1.6;color:var(--ink-2);max-width:860px;margin:34px 0 0}
+.stage .eyebrow{font-family:var(--text);font-size:19px;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:18px}
+.stage .eyebrow::before{content:"";width:64px;height:1.5px;background:var(--blue)}
+.stage .sectitle{font-family:var(--display);font-weight:300;font-size:86px;line-height:1.1;margin:22px 0 0}
+.stage .sectitle strong{font-weight:500}
+.stage .body{font-family:var(--text);font-weight:300;font-size:24px;line-height:1.75;color:var(--ink-2)}
+.stage .btn{display:inline-flex;align-items:center;gap:16px;font-family:var(--text);font-size:21px;color:#fff;background:var(--blue);padding:20px 40px;border-radius:2px}
+.stage .btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.stage .idx{font-family:var(--text);font-size:18px;letter-spacing:.2em;color:#9AA6B0}
+.stage .num{font-family:var(--display);font-weight:300;font-size:104px;color:var(--blue);line-height:1}
+.stage .numlabel{font-family:var(--text);font-size:19px;color:var(--ink-2);margin-top:8px;line-height:1.5}
+/* 分鏡標註層 */
+.mark{position:absolute;font-family:var(--text);font-size:20px;letter-spacing:.04em;color:#C8722A;display:flex;align-items:center;gap:10px}
+.mark::before{content:"";width:34px;height:2px;background:#C8722A}
+.arrow{position:absolute;stroke:#C8722A;fill:none;stroke-width:3}
+.legend{font-size:12.5px;color:var(--ink-2);margin-top:10px;line-height:1.75}
+.legend b{color:var(--ink)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:900px){.pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="doc-head">
+  <div class="wrap">
+    <img src="素材/00_整體視覺設計/assets/logo.webp" alt="ICHIA">
+    <h1>動態提案與分鏡 v1</h1>
+    <span class="badge">動態待確認</span>
+    <span class="badge ok">視覺已確認 v1</span>
+    <nav class="doc-nav">
+      <a href="#rhythm">節奏</a><a href="#a">Scene A</a><a href="#b">Scene B</a><a href="#c">Scene C</a>
+      <a href="#reduce">減少動態</a><a href="#confirm">本次確認</a>
+    </nav>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">00 / Scope</h2>
+    <h3 class="sec-zh">這份提案的狀態與邊界</h3>
+    <p class="lead">視覺提案 v1 已於 2026-09-19 確認（概念、色彩、字體、圖形、影像處理、五屏構圖、段落順序）。<b>本頁只提動態</b>：捲動行為、圖層、觸發、起始／過程／結束、轉場與反向、減少動態方案。</p>
+    <table>
+      <tr><th class="k">已確認不可改</th><td>模組從不離場的核心概念；白場不換底色；藍為次要強調（≤6%）；Hero 影片為「Brand Film」入口非滿版；ESG 跑分 4＋1；不用團體照；Careers 地圖＝一頁＋據點篩選；五屏構圖的主次關係與正式素材。</td></tr>
+      <tr><th class="k">本輪提案範圍</th><td>三個核心片段：<b>Scene A</b> Hero 模組成形／<b>Scene B</b> Hero→Products 換層（第一次轉變）／<b>Scene C</b> Products→ESG→Careers 交接。其餘段落只給節奏強弱與銜接意向，標為規劃。</td></tr>
+      <tr><th class="k">尚未開始</th><td><b>原型尚未實作</b>。以下分鏡皆為構圖演算，不是已完成的動畫畫面；所有秒數與捲動距離標示為試做起點，未經實測。</td></tr>
+      <tr><th class="k">驗收尺寸</th><td>2560×1280，本階段不做 RWD。</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="block" id="rhythm">
+  <div class="wrap">
+    <h2 class="sec">01 / Motion language</h2>
+    <h3 class="sec-zh">整體動態語言</h3>
+    <div class="pair">
+      <div>
+        <h4>速度與緩動</h4>
+        <ul>
+          <li>進場一律 <code>power2.out</code>、0.8–1.1s；離場 <code>power2.in</code>、0.5s。不使用彈跳、回彈或 elastic。</li>
+          <li>捲動連動段落使用 <code>scrub: 0.6</code>（有阻尼的跟隨），不做 scrub:true 的硬綁定——硬綁定在 2560 寬的長距離會顯得神經質。</li>
+          <li>位移幅度上限：主體 120px、文字 32px、背景層 60px（2560 尺標）。不做大幅飛入。</li>
+        </ul>
+        <h4>流動與停留</h4>
+        <ul>
+          <li>只有三個 pin（固定舞台）：Hero→Products 換層、ESG 數據板交界、Careers 據點切換。其餘為自然文件流。</li>
+          <li>每個 pin 結束後至少 40vh 的安靜閱讀距離，才進下一個動態。</li>
+          <li>沒有任何持續播放的漂浮、呼吸或粒子——靜止是預設狀態。</li>
+        </ul>
+      </div>
+      <div>
+        <h4>高潮與安靜</h4>
+        <ul>
+          <li><b>唯一高潮</b>：Scene B 的換層（面板滑開露出電路層）。全站只有這一次「東西被拆開」。</li>
+          <li><b>次高潮</b>：Scene C 模組縮成點、融入點陣網格。</li>
+          <li><b>安靜段</b>：ESG 敘述、Latest News。只有淡入，沒有位移。</li>
+        </ul>
+        <h4>哪些元素永遠不動</h4>
+        <ul>
+          <li>導覽列（僅捲動後加 1px 底線）、正文段落、聯絡資訊、頁尾。</li>
+          <li>ICHIA 標誌不做任何變形、旋轉或遮罩動畫。</li>
+          <li>跑分數字只做一次 count-up，不循環。</li>
+        </ul>
+      </div>
+    </div>
+    <h4>全頁節奏（強弱與相鄰交接）</h4>
+    <table>
+      <tr><th>#</th><th>段落</th><th>強弱</th><th>動態行為</th><th>交給下一段的方式</th><th>狀態</th></tr>
+      <tr><td>01</td><td>Hero</td><td><b>強</b></td><td>模組三層依序落位＋標題兩行接力（Scene A）</td><td>模組留在畫面，不淡出</td><td>本輪分鏡</td></tr>
+      <tr><td>02</td><td>Product &amp; Solutions</td><td><b>強</b>（唯一高潮）</td><td>pin 舞台內換層：面板→電路層→散熱層（Scene B）</td><td>模組縮小退向右下</td><td>本輪分鏡</td></tr>
+      <tr><td>03</td><td>銜接帶</td><td>中</td><td>模組縮成點融入點陣網格（Scene C 前半）</td><td>網格橫移帶出森林遮罩</td><td>本輪分鏡</td></tr>
+      <tr><td>04</td><td>ESG</td><td><b>弱</b></td><td>森林 mask 揭開＋數據板滑入壓交界＋跑分 count-up 一次</td><td>白場延續，網格降至 18%</td><td>本輪分鏡</td></tr>
+      <tr><td>05</td><td>Careers</td><td>中</td><td>地球淡入；點擊據點切換資訊卡與 openings（非捲動驅動）</td><td>細線分隔進入安靜段</td><td>規劃</td></tr>
+      <tr><td>06</td><td>Latest News</td><td><b>弱</b></td><td>兩則圖文淡入，無位移、無輪播自動播放</td><td>一條細線</td><td>規劃</td></tr>
+      <tr><td>07</td><td>CTA ＋ Footer</td><td><b>弱</b></td><td>標題淡入；網格收束為單線後消失</td><td>—</td><td>規劃</td></tr>
+    </table>
+    <small class="note">節奏檢查：強—強—中—弱—中—弱—弱。兩個安靜段（ESG 閱讀、News）是刻意保留的呼吸區，對應客戶「不要 crowd、heavy」的要求；高潮只出現一次，避免全站持續強動態。</small>
+  </div>
+</section>
+
+<!-- Scene A -->
+<section class="block" id="a">
+  <div class="wrap">
+    <h2 class="sec">02 / Scene A</h2>
+    <h3 class="sec-zh">Scene A — Hero：模組成形</h3>
+    <p class="lead">目的：在不說話的三秒內讓訪客看懂「零件 → 模組」。標題講的事情，畫面同時做一次給他看。</p>
+
+    <div class="sb-label"><span><b>起始</b> — 頁面載入 0.0s ／ 捲動 0</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <nav class="nav"><img class="logo" src="素材/00_整體視覺設計/assets/logo.webp"><ul><li>Know Ichia</li><li style="color:#0084BE">Products &amp; Solutions</li><li>Career</li><li>Contact us</li></ul><div class="right"><span class="cta">Contact Us</span></div></nav>
+      <div style="position:absolute;left:96px;top:300px;width:1180px">
+        <div class="eyebrow" style="opacity:1">Component → Module</div>
+        <h1 class="hero" style="margin-top:34px;opacity:.16">Act with Purpose,<br><em>Impact with Vision</em></h1>
+      </div>
+      <div style="position:absolute;right:120px;top:210px;width:1180px;height:900px">
+        <span class="softbox mul" style="left:-20px;top:430px;width:1160px;transform:rotate(-4deg);opacity:.12"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp"></span>
+        <span class="softbox" style="left:190px;top:260px;width:980px;opacity:0"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"></span>
+      </div>
+      <img src="素材/00_整體視覺設計/assets/grid-light.webp" style="position:absolute;right:-140px;bottom:-40px;width:1500px;opacity:0">
+      <div class="mark" style="left:1420px;top:780px">三層皆在低位、透明度 0–12%</div>
+      <div class="mark" style="left:96px;top:560px">標題已在位，透明度 16%</div>
+    </div></div></div>
+    <p class="legend"><b>起始狀態</b>：導覽與 eyebrow 已可見（不讓首屏空白）；標題與模組層處於「尚未落位」狀態。此狀態最長停留 0.15s，不做 loading 畫面。</p>
+
+    <div class="sb-label"><span><b>過程</b> — 0.55s ／ 捲動 0</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <nav class="nav"><img class="logo" src="素材/00_整體視覺設計/assets/logo.webp"><ul><li>Know Ichia</li><li style="color:#0084BE">Products &amp; Solutions</li><li>Career</li><li>Contact us</li></ul><div class="right"><span class="cta">Contact Us</span></div></nav>
+      <div style="position:absolute;left:96px;top:300px;width:1180px">
+        <div class="eyebrow">Component → Module</div>
+        <h1 class="hero" style="margin-top:34px">Act with Purpose,<br><em style="opacity:.25">Impact with Vision</em></h1>
+        <p class="sub" style="opacity:0">From component manufacturing to module integration,<br>we continuously deliver impactful services to our customers.</p>
+      </div>
+      <div style="position:absolute;right:120px;top:210px;width:1180px;height:900px">
+        <span class="softbox mul" style="left:-20px;top:330px;width:1160px;transform:rotate(-4deg)"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp"></span>
+        <span class="softbox" style="left:190px;top:140px;width:980px;opacity:.55"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"></span>
+      </div>
+      <img src="素材/00_整體視覺設計/assets/grid-light.webp" style="position:absolute;right:-140px;bottom:-90px;width:1500px;opacity:.2">
+      <svg class="arrow" style="left:1700px;top:300px;width:200px;height:220px" viewBox="0 0 200 220"><path d="M100 10 V190"/><path d="M70 160 L100 195 L130 160"/></svg>
+      <div class="mark" style="left:1420px;top:560px">面板層下落中（+120px→0），透明度 55%</div>
+      <div class="mark" style="left:96px;top:700px">第二行仍在接力，副標尚未進場</div>
+    </div></div></div>
+    <p class="legend"><b>過程</b>：PCB 層先落位（0.0–0.6s），面板層延遲 0.25s 後下落（0.25–0.95s），形成「一層一層疊上去」的節奏。標題兩行以 0.12s 間隔接力，副標最後進場。網格由 0 淡到 45%。</p>
+
+    <div class="sb-label"><span><b>結束</b> — 1.1s ／ 捲動 0（＝已確認的 Frame 01）</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <nav class="nav"><img class="logo" src="素材/00_整體視覺設計/assets/logo.webp"><ul><li>Know Ichia</li><li style="color:#0084BE">Products &amp; Solutions</li><li>Career</li><li>Contact us</li></ul><div class="right"><span class="cta">Contact Us</span></div></nav>
+      <div style="position:absolute;left:96px;top:300px;width:1180px">
+        <div class="eyebrow">Component → Module</div>
+        <h1 class="hero" style="margin-top:34px">Act with Purpose,<br><em>Impact with Vision</em></h1>
+        <p class="sub">From component manufacturing to module integration,<br>we continuously deliver impactful services to our customers.</p>
+        <div style="display:flex;align-items:center;gap:26px;margin-top:66px">
+          <span class="btn">Explore Solutions</span>
+          <span style="display:inline-flex;align-items:center;gap:14px;font-family:var(--text);font-size:21px"><svg width="17" height="17" viewBox="0 0 24 24" fill="#0084BE"><path d="M6 4l13 8-13 8z"/></svg> Brand Film</span>
+        </div>
+      </div>
+      <div style="position:absolute;right:120px;top:210px;width:1180px;height:900px">
+        <span class="softbox mul" style="left:-20px;top:330px;width:1160px;transform:rotate(-4deg)"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp"></span>
+        <span class="softbox" style="left:190px;top:60px;width:980px"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"></span>
+      </div>
+      <img src="素材/00_整體視覺設計/assets/grid-light.webp" style="position:absolute;right:-140px;bottom:-40px;width:1500px;opacity:.45">
+      <div style="position:absolute;left:96px;bottom:54px;display:flex;align-items:center;gap:18px" class="idx"><span>SCROLL</span><span style="width:120px;height:1px;background:#C9D2D9;display:block"></span><span>01 / 06</span></div>
+      <div class="mark" style="left:1420px;top:150px;color:#1B7A4B">面板落位＝第一焦點，之後不再移動直到 Scene B</div>
+    </div></div></div>
+    <p class="legend"><b>結束</b>：與已確認的 Frame 01 完全一致。CTA 在 0.9s 即可點擊，不等動畫播完。</p>
+
+    <h4>Scene A 規格</h4>
+    <table>
+      <tr><th class="k">設計目的</th><td>用畫面示範「component → module」。訪客先看到落位中的面板（動的東西最先被注意），再讀標題，理解兩者是同一件事。</td></tr>
+      <tr><th class="k">圖層與空間</th><td>遠景＝點陣網格（不動，只淡入）／中景＝PCB（multiply 融白場）／近景＝點亮面板（正常疊加、柔邊）／文字層在左，永遠不與產品重疊。</td></tr>
+      <tr><th class="k">觸發與控制</th><td>頁面載入自動播放一次，不重播。捲動立即中斷進場動畫並跳到結束狀態（不強迫看完）。</td></tr>
+      <tr><th class="k">節奏參數<br>（試做起點）</th><td>PCB 0.0→0.6s；面板 0.25→0.95s（delay 0.25s）；標題行 1 0.1s、行 2 0.22s；副標 0.5s；CTA 0.7s；網格 0.3→1.1s。全部 <code>power2.out</code>。<b>未實測</b>。</td></tr>
+      <tr><th class="k">捲動 0→10%</th><td>模組整體 −60px、網格 +40px、標題 −24px，<code>scrub:.6</code>。輕微視差，建立「模組浮在紙上」的關係。</td></tr>
+      <tr><th class="k">進出與反向</th><td>回捲至頂不重播進場；快速捲動直接顯示結束狀態。resize 只重算位置，不重播。</td></tr>
+      <tr><th class="k">閱讀與 CTA</th><td>標題 0.35s 可讀，CTA 0.9s 可點。Brand Film 入口點擊後於原地開啟影片視窗（lightbox），不離開首頁。</td></tr>
+      <tr><th class="k">素材</th><td>皆為已確認的現有素材：<code>ems-pcba.jpg</code>、<code>ims-stone-on.jpg</code>、<code>grid-light.png</code>。<b>不需新增去背檔</b>（白底 multiply 已驗證可行）。</td></tr>
+      <tr><th class="k">技術與風險</th><td>DOM/CSS＋GSAP，無 Canvas。風險：<code>mix-blend-mode</code> 在動畫中可能觸發重繪成本，需在 2560 實測；若掉幀則改為預先合成的單張圖。</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- Scene B -->
+<section class="block" id="b">
+  <div class="wrap">
+    <h2 class="sec">03 / Scene B</h2>
+    <h3 class="sec-zh">Scene B — Hero → Products：同一個模組的三次切面（唯一高潮）</h3>
+    <p class="lead">目的：把「一塊一塊」這件事從結構上解決。捲動時模組<b>不離場</b>，只換最上面那一層；左欄索引同步移動。這是全站唯一一次「東西被拆開」。</p>
+
+    <div class="sb-label"><span><b>起始</b> — pin 進入，進度 0%</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <div style="position:absolute;left:96px;top:300px;width:1180px">
+        <h1 class="hero" style="opacity:.2">Act with Purpose,<br><em>Impact with Vision</em></h1>
+      </div>
+      <div style="position:absolute;right:120px;top:210px;width:1180px;height:900px">
+        <span class="softbox mul" style="left:-20px;top:330px;width:1160px;transform:rotate(-4deg)"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp"></span>
+        <span class="softbox" style="left:190px;top:60px;width:980px"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"></span>
+      </div>
+      <div class="mark" style="left:96px;top:760px">Hero 標題淡出中（20%）</div>
+      <div class="mark" style="left:1400px;top:1080px">模組維持原位，尚未開始移動</div>
+    </div></div></div>
+    <p class="legend"><b>起始</b>：舞台被 pin 住（固定 2560×1280），文件流停止前進，Hero 文字先退場，模組保持不動——這一刻訪客知道「畫面沒有換，只是東西要變了」。</p>
+
+    <div class="sb-label"><span><b>過程</b> — 進度 45%：換層瞬間（本片段的高潮）</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <div style="position:absolute;left:96px;top:130px;width:840px;opacity:.55">
+        <div class="eyebrow">Product &amp; Solutions</div>
+        <h2 class="sectitle" style="font-size:72px">Innovative Modules<br><strong>Engineered for Performance</strong></h2>
+      </div>
+      <div style="position:absolute;left:96px;top:620px;width:840px">
+        <div style="display:flex;align-items:center;gap:22px;padding:24px 0;border-top:1px solid #0084BE">
+          <span class="idx" style="color:#0084BE">01</span>
+          <span style="font-family:var(--display);font-weight:500;font-size:34px">Electronic Module Solutions</span>
+        </div>
+      </div>
+      <div style="position:absolute;right:0;top:0;width:1420px;height:1280px;overflow:hidden">
+        <span class="softbox mul" style="left:100px;top:360px;width:1160px;transform:rotate(-3deg)"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp"></span>
+        <span class="softbox" style="left:330px;top:120px;width:940px;transform:translate(180px,-120px) rotate(4deg);opacity:.45"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"></span>
+      </div>
+      <svg class="arrow" style="left:1880px;top:180px;width:260px;height:180px" viewBox="0 0 260 180"><path d="M20 150 L230 30"/><path d="M190 26 L236 24 L232 70"/></svg>
+      <div class="mark" style="left:1300px;top:420px">面板層滑開、淡出 → 露出電路層</div>
+      <div class="mark" style="left:96px;top:1000px">左欄索引 01 EMS 同步點亮</div>
+    </div></div></div>
+    <p class="legend"><b>過程（高潮）</b>：面板層往右上滑開 180px 並降到 45% 透明度，露出下方的 PCB 電路層；同一時間左欄索引亮起 01 EMS。這是「拆開」與「命名」同時發生的一刻——動態在這裡負責<b>解釋內容</b>，不是裝飾。</p>
+
+    <div class="sb-label"><span><b>結束</b> — 進度 100%：02 IMS（＝已確認的 Frame 02）</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <div style="position:absolute;left:96px;top:120px;width:840px">
+        <div class="eyebrow">Product &amp; Solutions</div>
+        <h2 class="sectitle">Innovative Modules<br><strong>Engineered for Performance</strong></h2>
+        <div style="margin-top:80px">
+          <div style="display:flex;align-items:center;gap:22px;padding:26px 0;border-top:1px solid #DFE4E8">
+            <span class="idx" style="color:#9AA6B0">01</span><span style="font-family:var(--text);font-size:26px;color:#9AA6B0">Electronic Module Solutions</span>
+          </div>
+          <div style="padding:30px 0;border-top:1px solid #0084BE;border-bottom:1px solid #DFE4E8">
+            <div style="display:flex;align-items:center;gap:22px">
+              <span class="idx" style="color:#0084BE">02</span>
+              <span style="font-family:var(--display);font-weight:500;font-size:36px">Integrated Module Solutions</span>
+            </div>
+            <p class="body" style="margin:22px 0 0 64px;max-width:700px">Ichia creates sleek, intelligent modules that blend electronics, mechanics, and design—like smart knobs and hidden displays.</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:22px;padding:26px 0;border-bottom:1px solid #DFE4E8">
+            <span class="idx" style="color:#9AA6B0">03</span><span style="font-family:var(--text);font-size:26px;color:#9AA6B0">Thermal Module Solutions</span>
+          </div>
+        </div>
+        <div style="margin-top:56px"><span class="btn ghost">View Full Solutions</span></div>
+      </div>
+      <div style="position:absolute;right:0;top:0;width:1420px;height:1280px;overflow:hidden">
+        <span class="softbox mul" style="left:40px;top:320px;width:1120px;opacity:.32;transform:rotate(-2deg)"><img src="素材/00_整體視覺設計/assets/ems-pcba.webp"></span>
+        <span class="softbox mul" style="left:150px;top:150px;width:1080px"><img src="素材/00_整體視覺設計/assets/ims-console.webp"></span>
+        <span class="softbox mul" style="left:300px;top:720px;width:940px"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"></span>
+      </div>
+      <div class="mark" style="left:1240px;top:1120px;color:#1B7A4B">模組從頭到尾沒有離開畫面</div>
+    </div></div></div>
+    <p class="legend"><b>結束</b>：與已確認的 Frame 02 一致。第三段 03 TMS 以同樣方式接續（疊上散熱層：溫度場模擬圖 <code>16.png</code> 與散熱鰭片 <code>19.png</code>），此處未重複列出。</p>
+
+    <h4>Scene B 規格</h4>
+    <table>
+      <tr><th class="k">設計目的</th><td>用結構解決客戶最在意的「不要一塊一塊」。主體連續 → 段落之間沒有斷點，同時讓三條產品線的關係（同一個模組的不同層）被看懂。</td></tr>
+      <tr><th class="k">圖層與空間</th><td>固定舞台內四層：索引文字（左，不動）／電路層（中景）／面板層（近景，可滑開）／散熱層（第三段疊入）。景深靠尺寸與對比，不用 blur。</td></tr>
+      <tr><th class="k">觸發與控制</th><td>ScrollTrigger pin，捲動驅動，<code>scrub:.6</code>。左欄索引可點擊直接跳到該段進度（鍵盤 Tab 可達）。不使用 hover 作為唯一入口。</td></tr>
+      <tr><th class="k">節奏參數<br>（試做起點）</th><td>pin 距離 <b>180vh</b>（三段各約 60vh，2026-09-19 確認）。每段內：0–25% 換層、25–70% 停留閱讀、70–100% 準備下一層。<b>未實測</b>；若 2560 下停留過短，先縮短換層區間（0–20%）以換回閱讀時間，不是先加長 pin。</td></tr>
+      <tr><th class="k">進出與反向</th><td>反向捲動＝逐層裝回去（面板滑回、索引回到上一項），完全可逆。快速捲過去：直接落在 03 TMS 結束狀態，不留半透明中間態。resize 重新計算 pin 高度並保持目前段落。</td></tr>
+      <tr><th class="k">閱讀與 CTA</th><td>每段停留區間（25–75%）文字完全靜止可讀；View Full Solutions 全程可點。文字不在移動中出現。</td></tr>
+      <tr><th class="k">品牌資產邊界</th><td>產品照只做整體位移、透明度與縮放，<b>不裁切、不變形、不重繪</b>。三條線的產品不互相合成為假的單一產品。</td></tr>
+      <tr><th class="k">素材</th><td>EMS <code>ems-pcba.jpg</code>／IMS <code>ims-console.jpg</code>＋<code>ims-stone-on.jpg</code>／TMS <code>tms-cfd.jpg</code>＋<code>tms-fin.jpg</code>。TMS 解析度僅 619–651 寬，<b>只能用於中小尺寸</b>，這是本片段的素材限制。</td></tr>
+      <tr><th class="k">技術與風險</th><td>DOM/CSS＋GSAP ScrollTrigger pin，無 Canvas、無 WebGL。風險：① pin 舞台在 2560×1280 的重繪成本；② 三層 multiply 疊加同時動可能掉幀 → 備案是換層瞬間改用預合成圖；③ TMS 圖放大會糊。</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- Scene C -->
+<section class="block" id="c">
+  <div class="wrap">
+    <h2 class="sec">04 / Scene C</h2>
+    <h3 class="sec-zh">Scene C — Products → ESG → Careers：模組退場、網格接手</h3>
+    <p class="lead">目的：讓主角有一個合理的退場方式，並把點陣網格從裝飾升級成「接力的人」。模組縮成一個點，融進網格；網格橫移，帶出 ESG。</p>
+
+    <div class="sb-label"><span><b>起始</b> — Products 結束，模組開始退場</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <div style="position:absolute;left:96px;top:120px;width:840px;opacity:.35">
+        <div class="eyebrow">Product &amp; Solutions</div>
+        <h2 class="sectitle" style="font-size:72px">Innovative Modules<br><strong>Engineered for Performance</strong></h2>
+      </div>
+      <div style="position:absolute;right:0;top:0;width:1420px;height:1280px;overflow:hidden">
+        <span class="softbox mul" style="left:420px;top:460px;width:680px;opacity:.7"><img src="素材/00_整體視覺設計/assets/ims-stone-on.webp"></span>
+      </div>
+      <img src="素材/00_整體視覺設計/assets/grid-light.webp" style="position:absolute;left:0;bottom:-120px;width:2560px;opacity:.25">
+      <div class="mark" style="left:1180px;top:900px">模組縮至 60%、透明度 70%，往右下移動</div>
+      <div class="mark" style="left:96px;top:1080px">網格自下方升起（25%）</div>
+    </div></div></div>
+
+    <div class="sb-label"><span><b>過程</b> — 交接中途：模組成為網格上的一點（此屏是相鄰場景的交接畫面）</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <img src="素材/00_整體視覺設計/assets/esg-forest.webp" style="position:absolute;left:0;top:0;width:1500px;height:800px;object-fit:cover;clip-path:inset(0 62% 0 0)">
+      <div style="position:absolute;left:0;top:0;width:1500px;height:800px;background:linear-gradient(100deg,rgba(8,22,16,.80) 0%,rgba(8,22,16,.62) 42%,rgba(8,22,16,0) 82%);clip-path:inset(0 62% 0 0)"></div>
+      <div style="position:absolute;left:96px;top:120px;width:1100px;color:#fff;opacity:0">
+        <div class="eyebrow" style="color:#fff">Sustainability</div>
+        <h2 class="sectitle" style="color:#fff;margin-top:26px;font-size:76px">Bridge To<br><strong>A Sustainable Future</strong></h2>
+      </div>
+      <div class="mark" style="left:96px;top:300px">ESG 標題與敘述在森林完全揭開（70%）後才淡入 — 中途不出現半可讀文字</div>
+      <img src="素材/00_整體視覺設計/assets/grid-light.webp" style="position:absolute;left:0;top:560px;width:2560px;opacity:.5">
+      <div style="position:absolute;left:1560px;top:660px"><span style="display:block;width:30px;height:30px;border-radius:50%;background:#0084BE;box-shadow:0 0 0 16px rgba(0,132,190,.16)"></span></div>
+      <div style="position:absolute;right:96px;top:300px;width:900px;background:#fff;padding:60px 72px;box-shadow:0 40px 90px rgba(20,26,31,.12);transform:translateX(420px);opacity:.45">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+          <div><div class="num">28<span style="font-size:52px">%</span></div><div class="numlabel">Reduction in GHG</div></div>
+          <div><div class="num">23.5<span style="font-size:52px">%</span></div><div class="numlabel">Renewables</div></div>
+        </div>
+      </div>
+      <svg class="arrow" style="left:1120px;top:620px;width:420px;height:120px" viewBox="0 0 420 120"><path d="M400 20 L40 80"/><path d="M76 48 L34 84 L74 108"/></svg>
+      <div class="mark" style="left:640px;top:920px">森林由左向右 mask 揭開（clip-path）</div>
+      <div class="mark" style="left:1600px;top:1040px">數據板自右滑入，最終壓在影像與白場交界</div>
+    </div></div></div>
+    <p class="legend"><b>中途畫面</b>：此刻三件事同時在場——退場的模組（已成為網格上的藍點）、正在揭開的森林、正在滑入的數據板。誰連續（網格）、誰退場（模組）、誰接手（森林與數據）一目了然，而且畫面沒有任何一刻是空白的。</p>
+
+    <div class="sb-label"><span><b>結束</b> — ESG 完成（＝已確認的 Frame 03 上半）</span><span class="scale-note"></span></div>
+    <div class="stage-outer"><div class="stage-holder"><div class="stage">
+      <img src="素材/00_整體視覺設計/assets/esg-forest.webp" style="position:absolute;left:0;top:0;width:1500px;height:800px;object-fit:cover">
+      <div style="position:absolute;left:0;top:0;width:1500px;height:800px;background:linear-gradient(100deg,rgba(8,22,16,.80) 0%,rgba(8,22,16,.62) 42%,rgba(8,22,16,.12) 82%,rgba(8,22,16,0) 100%)"></div>
+      <div style="position:absolute;left:96px;top:120px;width:1100px;color:#fff">
+        <div class="eyebrow" style="color:#fff">Sustainability</div>
+        <h2 class="sectitle" style="color:#fff;margin-top:26px">Bridge To<br><strong>A Sustainable Future</strong></h2>
+        <p class="body" style="color:rgba(255,255,255,.95);font-weight:400;max-width:880px;margin-top:30px">Ichia is committed to building a sustainable and responsible future through concrete ESG actions—reducing carbon emissions, improving energy and water efficiency, and earning recognition as a certified green factory.</p>
+        <div style="margin-top:44px"><span class="btn" style="background:#fff;color:#141A1F">Read More</span></div>
+      </div>
+      <div style="position:absolute;right:96px;top:170px;width:900px;background:#fff;padding:60px 72px;box-shadow:0 40px 90px rgba(20,26,31,.12)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px 48px">
+          <div><div class="num">28<span style="font-size:52px">%</span></div><div class="numlabel">Reduction in<br>GHG emissions</div></div>
+          <div><div class="num">23.5<span style="font-size:52px">%</span></div><div class="numlabel">Energy use<br>from renewables</div></div>
+          <div><div class="num">66<span style="font-size:52px">%</span></div><div class="numlabel">Waste recycled</div></div>
+          <div><div class="num">44<span style="font-size:52px">%</span></div><div class="numlabel">Female employees</div></div>
+        </div>
+        <div style="height:1px;background:#DFE4E8;margin:48px 0 40px"></div>
+        <div><div class="num" style="font-size:80px">NT$ 3,000,000<span style="font-size:44px">+</span></div><div class="numlabel">For clean-ups &amp; charity</div></div>
+      </div>
+      <img src="素材/00_整體視覺設計/assets/grid-light.webp" style="position:absolute;left:0;top:880px;width:2560px;opacity:.18">
+      <div class="mark" style="left:96px;top:1000px;color:#1B7A4B">跑分 count-up 一次，不循環</div>
+    </div></div></div>
+
+    <h4>Scene C 規格</h4>
+    <table>
+      <tr><th class="k">設計目的</th><td>讓主角合理退場，並讓點陣網格接手成為連續性的載體——網格不是裝飾，是把三個段落縫起來的線。</td></tr>
+      <tr><th class="k">圖層與空間</th><td>退場層＝模組（縮放＋位移＋淡出）／連續層＝點陣網格（橫移，貫穿三段）／進場層＝森林（clip-path 揭開）＋數據板（X 位移）。</td></tr>
+      <tr><th class="k">觸發與控制</th><td>ScrollTrigger pin（ESG 交界），<code>scrub:.6</code>。跑分 count-up 由進入視窗觸發，只執行一次，1.2s。</td></tr>
+      <tr><th class="k">節奏參數<br>（試做起點）</th><td>pin 距離 120vh。0–35% 模組退場並縮成點；30–70% 森林揭開；55–85% 數據板滑入定位；85–100% count-up。<b>未實測</b>。</td></tr>
+      <tr><th class="k">進出與反向</th><td>反向：數據板退出 → 森林收回 → 藍點放大還原成模組。中途停下時，森林與數據板必定停在完整狀態之一，<b>不允許停在半揭開</b>（設 snap 到 0 或 1）。</td></tr>
+      <tr><th class="k">閱讀與 CTA</th><td>ESG 敘述在森林完全揭開後才淡入（70% 之後），確保不在移動中閱讀。Read More 在 80% 後可點。</td></tr>
+      <tr><th class="k">素材</th><td><code>esg-forest.jpg</code>（客戶提供）、<code>grid-light.png</code>、<code>ims-stone-on.jpg</code>。無新增需求。</td></tr>
+      <tr><th class="k">技術與風險</th><td>CSS <code>clip-path</code>＋GSAP。風險：clip-path 動畫在大尺寸影像上的效能；備案是改用 CSS mask 或兩張圖交叉淡入。</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="block" id="reduce">
+  <div class="wrap">
+    <h2 class="sec">05 / Reduced motion &amp; robustness</h2>
+    <h3 class="sec-zh">減少動態與異常狀況</h3>
+    <div class="pair">
+      <div>
+        <h4>減少動態方案（<code>prefers-reduced-motion: reduce</code>）</h4>
+        <ul>
+          <li>Scene A：所有元素直接以結束狀態呈現，僅保留 0.2s 淡入。</li>
+          <li>Scene B：<b>取消 pin</b>，三條產品線改為一般文件流的三個並列區塊，各自帶自己的產品圖；索引仍可點擊。內容完全不減少。</li>
+          <li>Scene C：森林與數據板直接就位，不做 mask 揭開；跑分直接顯示最終數字，不做 count-up。</li>
+          <li>視差、位移一律停用；透明度變化保留（不造成前庭不適）。</li>
+        </ul>
+        <small class="note">減少動態是無障礙設定，不是 RWD 階段，也不是行動版 fallback。</small>
+      </div>
+      <div>
+        <h4>異常與邊界</h4>
+        <ul>
+          <li><b>快速捲動／跳段</b>：每個 pin 都設進度 snap，離開時一律落在完整狀態，不留半透明中間態。</li>
+          <li><b>resize</b>：重算 pin 高度並保持目前段落，不重播、不跳回頂端。</li>
+          <li><b>鍵盤</b>：索引與 CTA 皆可 Tab 聚焦，focus 樣式為 2px 藍色外框；不依賴 hover。</li>
+          <li><b>影片</b>：Brand Film 為點擊開啟的 lightbox，不自動播放、不作背景循環（也避免中國境內 Vimeo 播放問題擴大到整個首屏）。</li>
+          <li><b>導覽列</b>：捲動時不收合、不變高度，因此沒有「收合後占位空間」的問題。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">06 / Build scope</h2>
+    <h3 class="sec-zh">本輪試做範圍與 2560×1280 驗收條件</h3>
+    <p class="lead">動態確認後，先做<b>核心片段</b>，不直接展開整頁。</p>
+    <table>
+      <tr><th>試做範圍</th><td>Scene A（Hero 成形）＋ Scene B（換層，含三段完整索引）＋ Scene C 的前半（模組退場融入網格）。ESG 完整段、Careers、News、CTA 在核心片段確認後才延伸。</td></tr>
+      <tr><th>驗收條件</th><td>① 2560×1280 實際捲動，換層可逆、無半透明中間態；② 每段停留區間文字靜止可讀；③ 反向捲動完全還原；④ resize 後保持段落；⑤ console 無 error；⑥ 減少動態模式下內容不減少。</td></tr>
+      <tr><th>效能</th><td>換層瞬間以瀏覽器工具實測；若明顯掉幀，依 Scene B 備案改用預合成圖。<b>目前沒有任何效能數據</b>，不預先宣稱流暢。</td></tr>
+      <tr><th>不涵蓋</th><td>RWD、內頁、寬版選單展開、表單串接、影片自架、實際 openings 資料。</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="block" id="confirm">
+  <div class="wrap">
+    <h2 class="sec">07 / Sign-off</h2>
+    <h3 class="sec-zh">本次確認項目</h3>
+    <div class="pair">
+      <div>
+        <h4>請確認</h4>
+        <ul>
+          <li>整體動態語言：緩動、幅度上限、只有三個 pin、沒有持續漂浮</li>
+          <li>全頁節奏：強—強—中—弱—中—弱—弱，高潮只出現一次</li>
+          <li>Scene A 進場順序與可中斷行為</li>
+          <li>Scene B 換層＝唯一高潮，以及反向可逆的規則</li>
+          <li>Scene C 模組退場並由網格接手</li>
+          <li>減少動態方案（Scene B 取消 pin、內容不減少）</li>
+          <li>本輪試做範圍與驗收條件</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#1B7A4B">已確認（2026-09-19）</h4>
+        <ul>
+          <li><b>Scene B 的 pin 距離＝180vh</b>（三段各約 60vh），節奏取俐落。<span class="status-ok">已確認</span></li>
+          <li><b>TMS 那一層＝中小尺寸圖解</b>（溫度場模擬＋散熱鰭片組合），不做大圖特寫；三條線份量不完全對等但可成立。<span class="status-ok">已確認</span></li>
+        </ul>
+        <h4 style="color:#A33">尚未確認 / 不在本次範圍</h4>
+        <ul>
+          <li>所有秒數與捲動距離皆為<b>試做起點，未實測</b>。</li>
+          <li><b>原型尚未實作</b>；本頁為構圖分鏡，不是已完成的動畫畫面。</li>
+          <li>效能數據、RWD、內頁。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function fit(){
+  document.querySelectorAll('.stage-holder').forEach(function(h){
+    var s=h.clientWidth/2560, st=h.querySelector('.stage');
+    st.style.transform='scale('+s+')';
+    h.style.height=(1280*s)+'px';
+    var o=h.closest('.stage-outer'), lbl=o.previousElementSibling&&o.previousElementSibling.querySelector('.scale-note');
+    if(lbl) lbl.textContent='2560 × 1280 ／ '+(s*100).toFixed(0)+'%';
+  });
+}
+window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+</script>
+</body>
+</html>

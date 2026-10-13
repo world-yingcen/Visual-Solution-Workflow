@@ -1,0 +1,23 @@
+/* CIS pp.32–36. White is a neutral canvas, not an additional brand colour. */
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300;font-display:swap;src:url('./assets/fonts/nunito-sans-light.ttf') format('truetype')}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:400;font-display:swap;src:url('./assets/fonts/nunito-sans-regular.ttf') format('truetype')}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:700;font-display:swap;src:url('./assets/fonts/nunito-sans-bold.ttf') format('truetype')}
+:root{--paper:#fff;--ink:#273d48;--blue:#00a0e8;--pale:#9dd4ee;--rule:#9fc9e0;--deep:#273d48;--deep-soft:#273d48}
+body{font-family:'Nunito Sans','Noto Sans TC','Noto Sans CJK TC',sans-serif;font-synthesis:none}
+.scene-copy h1,.scene-copy h2,.sample-title,.contact-panel h2{font-family:'Nunito Sans',sans-serif;font-weight:700}
+.eyebrow,.contact-kicker,.header-meta,.desktop-nav a,.header-cta,.portal-caption,.scene-index,.scene-summary a,.telemetry-heading>span,.flow-instruction{font-weight:400}
+.contact-panel{background:linear-gradient(135deg,#fff 20%,#9dd4ee 100%);color:#273d48}
+.contact-copy,.contact-kicker,.kicker,.muted,figcaption,a{color:#273d48}
+.world-wellness .world-scrim{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.94) 22%,rgba(255,255,255,.65) 39%,transparent 65%)}
+.world-water .world-scrim{background:linear-gradient(270deg,#fff 0%,rgba(255,255,255,.94) 23%,rgba(255,255,255,.58) 40%,transparent 63%)}
+.world-energy .world-scrim{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.95) 24%,rgba(255,255,255,.65) 44%,transparent 70%)}
+.is-air .site-header,.is-air .system-telemetry{background:rgba(255,255,255,.94);border-color:#9fc9e0}
+.is-air .header-meta,.is-air .desktop-nav a,.is-air .eyebrow,.is-air .scene-summary a,.is-air .flow-instruction,.is-air .system-telemetry li,.is-air .telemetry-heading small{color:#273d48}
+.is-air .scene-copy-2 h2 span:last-child,.is-air .scene-copy-3 h2 span:first-child{color:#00a0e8}
+.is-air .header-cta,.header-cta,.button,.link-sample{border-color:#273d48}
+.graphic{background:linear-gradient(135deg,#fff,#9dd4ee)}
+.note,.tag.new{background:rgba(157,212,238,.2)}
+.icon,.stat{color:#00a0e8}
+.official-board{display:block;width:100%;height:auto;border:1px solid #e6e6e6;margin:26px 0}
+/* Existing cinematic effects are prototype experiments, not official CIS patterns. */
+.depth-glass,.grain{display:none}
