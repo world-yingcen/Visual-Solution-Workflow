@@ -15,6 +15,8 @@ description: 整體視覺方案的網站製作主入口；使用者說「我要�
 
 ## 2560×1280 桌機優先
 
+動態案件須一起規劃一般模式與減少動態模式：品牌內容、必要功能與完成度一致，差別在動態表現及完整閱讀布局。不能只停掉 GSAP 而保留隱藏內容或 pin 空白；提案依 [動態規範](references/motion-proposal.md)，工程解法依 [LIN 接入](references/frontend-standards.md) 讀取獨立 LIN 的 `references/reduced-motion.md`，驗收依 [視覺 QA](references/visual-qa.md)。減少動態不是另開 RWD 階段。
+
 本 Skill 的預設第一階段固定使用 **2560×1280 CSS viewport**，涵蓋核心視覺片段、完整桌機首頁與瀏覽器 QA。構圖、圖片裁切、字級、捲動距離、互動節奏與效能都以這個尺寸實看並記錄；不要以較小桌機畫面代替 2560×1280 驗收。
 
 本階段不做 RWD：不另外設計、實作或驗收 Tablet／Mobile，不產生手機 fallback，不以手機可行性阻擋桌機方向。既有專案若已有 responsive 程式，保留且不要為桌機工作任意刪除，但本輪只保證 2560×1280。只有使用者後續明確要求 RWD，才另立範圍、讀取相應規格並跨裝置驗收；桌機完成不能宣稱 RWD 完成。
