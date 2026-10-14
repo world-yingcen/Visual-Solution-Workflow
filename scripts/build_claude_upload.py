@@ -14,9 +14,6 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 NAME = 'visual-solution-cloud'
-SUPPORT = ('gsap-core', 'gsap-timeline', 'gsap-scrolltrigger', 'gsap-performance',
-           'gsap-plugins', 'gsap-utils', 'gsap-react', 'gsap-frameworks',
-           'eagle', 'eagle-visual-solution-curator')
 IGNORE = shutil.ignore_patterns('.DS_Store', '__pycache__', '*.pyc', '.git', 'agents')
 
 
@@ -40,13 +37,10 @@ def copy_guide(source, target):
     (target / 'SKILL.md').rename(target / 'GUIDE.md')
 
 
-def prepare(package, lin):
+def prepare(package):
     resources = package / 'resources'
     workflow = resources / 'workflow'
     copy_guide(ROOT / 'skill/skills/visual-solution-immersive-director', workflow)
-    copy_guide(lin, resources / 'lin')
-    for name in SUPPORT:
-        copy_guide(ROOT / 'skill/skills' / name, resources / name)
 
     p = workflow / 'GUIDE.md'
     text = p.read_text()
@@ -55,7 +49,7 @@ def prepare(package, lin):
                    '不執行本機 install.py、Plugin 安裝或套件來源 Git 更新。'
                    '原始來源維護仍用 Git，更新上傳版須重新打包並上傳。')
     text = text.replace('使用本執行端的 lin-frontend 更新並重讀共用規範',
-                        '讀取本包 resources/lin/GUIDE.md 與本輪對應參考')
+                        '使用本次已啟用的獨立 LIN Skill 與本輪對應參考')
     text = between(text, '## 建議分工', '## 確認與持續推進',
                    '## 網頁／App 執行分工\n\n'
                    '由目前 Claude 依可用工具完成已授權工作。產圖先整理素材工單；'
@@ -66,24 +60,17 @@ def prepare(package, lin):
                    '圖片壓縮／转檔仍由使用者自行處理，Claude 不代做。')
     p.write_text(text.replace('預设', '預設').replace('转檔', '轉檔'))
 
-    p = resources / 'lin/GUIDE.md'
-    text = p.read_text()
-    text = between(text, '## 每輪工作：', '先讀案件說明、',
-                   '## 上傳包的工作環境\n\n'
-                   '本包已內附 LIN 快照。每輪重讀此文件及必要 references，不安裝獨立 Skill、'
-                   '不執行 install.py 或對上傳包 git pull。只使用已提供的案件檔案與實際可用工具；'
-                   '不假設能讀使用者電腦或公司內網。正式平台契約仍要核對，缺資料列待確認。\n\n'
-                   '## 開始工作\n\n')
-    p.write_text(text)
-
     (workflow / 'references/frontend-standards.md').write_text(
-        '# 共用切版規範｜本包 LIN 快照\n\n'
-        '切版／修改／校稿前必讀 [LIN 工作規則](../../lin/GUIDE.md)，'
-        '再按需讀 ../../lin/references/ 的對應規範。本包只作可攜式來源快照，'
-        '不要求另行安裝或存取本機 Git；線上來源更新不會自動更新此上傳包。\n\n'
-        '品牌方向、確認關卡與 2560×1280 桌機優先仍依 workflow。'
-        'LIN 提供共用工程規範；缺平台資料或正式環境時記錄未驗證，'
-        '不能把靜態預覽當成後台編輯／發布驗證通過。\n')
+        '# 共用切版規範｜使用者獨立上傳的 LIN\n\n'
+        '本 workflow 包不內附 LIN。使用者已另行上傳並啟用 LIN Skill；'
+        '切版／修改／校稿時先確認本對話可使用該 Skill，再依其工程規範執行。'
+        '以實際可用 Skill 名稱與內容為準，不猜另一個上傳包的檔案路徑。\n\n'
+        'LIN 管 HTML／SCSS／JS、SEO、系統搜尋／詢問車、套件接入、雙模式動態與工程師交接。'
+        '不要從此包舊摘要自行複製一份工程規則取代 LIN。'
+        '若當次無法取得 LIN，先完成品牌／視覺／動態提案等不受影響工作，'
+        '明列工程規範缺口，請使用者確認已啟用或提供規範；不虛構已讀取。\n\n'
+        'workflow 的品牌方向、確認關卡與 2560×1280 桌機優先仍有效。'
+        '沒有平台資料或正式環境時記錄待驗，不要求本機安裝或 Git 更新。\n')
 
     p = workflow / 'references/asset-production.md'
     text = p.read_text()
@@ -94,10 +81,22 @@ def prepare(package, lin):
              if line.startswith('- 生成素材：') else line for line in lines]
     p.write_text('\n'.join(lines) + '\n')
 
-    p = workflow / 'references/gsap-skills.md'
-    text = p.read_text().replace('請使用根目錄安裝程式安裝整包，不只單獨搬主 Skill。',
-                                 '本上傳包已內附為 resources 下的 GUIDE.md，按需讀取，不另行安裝。')
-    p.write_text(text)
+    (workflow / 'references/gsap-skills.md').write_text(
+        '# GSAP｜使用者分別上傳的技術 Skills\n\n'
+        '本包不內附 GSAP。使用者會分別上傳並啟用，依實際可用清單按需使用；'
+        '不要求安裝本機套件、不猜其他上傳包路徑、不宣稱每輪已載入全部。\n\n'
+        '| 需求 | 對應 Skill |\n|---|---|\n'
+        '| 基本動畫、easing、matchMedia | gsap-core |\n'
+        '| 時間軸與連續轉場 | gsap-timeline |\n'
+        '| 捲動、pin、scrub | gsap-scrolltrigger |\n'
+        '| 效能 | gsap-performance |\n'
+        '| 額外 plugin | gsap-plugins |\n'
+        '| 數值工具 | gsap-utils |\n'
+        '| 已有 React／Next.js | gsap-react |\n'
+        '| 已有 Vue／Nuxt／Svelte | gsap-frameworks |\n\n'
+        '沿用案件實際 GSAP 版本，技術範例不取代 LIN 結構與品牌分鏡。'
+        '缺相關 Skill 時明列尚未取得，先完成可做的規劃或查已授權官方資料；'
+        '不自行加入框架、效果或套件。')
 
     # Embedded guides are resources, not additional independently installed Skills.
     for p in package.rglob('*.md'):
@@ -118,13 +117,13 @@ def prepare(package, lin):
 
     (package / 'SKILL.md').write_text('''---
 name: visual-solution-cloud
-description: 在 Claude 網頁／App 依品牌資料規劃與製作整體視覺網站，內附 LIN 切版、SEO、系統搜尋／詢問車、GSAP 與工程師交接規範；適用提案、切版、校稿與續作。
+description: 在 Claude 網頁／App 依品牌資料規劃與製作整體視覺網站，專注品牌、視覺、動態提案與確認流程，切版與動畫技術使用另外啟用的 LIN／GSAP Skills；適用提案、製作及續作。
 ---
 
 # 整體視覺網站｜Claude 網頁／App 上傳版
 
 以繁體中文與台灣用語協作。先讀 [整體視覺主流程](resources/workflow/GUIDE.md)，
-切版／修改／校稿再讀 [LIN](resources/lin/GUIDE.md)，只載入當前需要的參考。
+切版／修改／校稿依使用者另外啟用的 LIN；動畫技術按需使用獨立 GSAP Skills。
 resources 內的 GUIDE.md 都是本包參考，不是需要另外安裝的 Skill。
 
 ## 此上傳環境的優先規則
@@ -147,23 +146,12 @@ resources 內的 GUIDE.md 都是本包參考，不是需要另外安裝的 Skill
   預設第一階段 2560×1280 桌機，RWD 待使用者另行要求。
 - 單一 PDF 超過 10 MB 一律不讀，請提供重點截圖或 .md；未超過上限先問
   現在讀或用到再讀。圖片容量與格式要檢查，轉檔／壓縮由使用者自行處理。
-- 每頁只有一個 h1 是公司內部規定；其餘 SEO 責任依 LIN。
-  搜尋結果區沿用完整系統 HTML／CSS；詢問車是不可改的公版功能。
-  動態須有一般／減少動態兩模式，GSAP pin／scrub 不可留下隱藏內容或留白。
-- 切版完成後建立或更新唯一的「工程師交接說明.md」，
-  記錄資源、功能、可編輯需求、待接入與兩模式驗收狀態。
-  保留方向／視覺／動態／核心片段／整頁確認關卡。
+- 工程、SEO、系統公版功能、雙模式動態與工程師交接細則由獨立 LIN 維護；
+  本包不複製另一份。不因缺工具就宣稱已套用或驗證；保留 workflow 的確認關卡。
 
-## 主要工程參考
+## 獨立依賴的使用方式
 
-- [HTML／SCSS](resources/lin/references/html-css-rules.md)
-- [JavaScript](resources/lin/references/javascript-rules.md)
-- [切版端 SEO](resources/lin/references/frontend-seo.md)
-- [系統搜尋頁](resources/lin/references/evo-search-reference.md)
-- [公版詢問車](resources/lin/references/evo-inquiry-cart-reference.md)
-- [EVO 套件宣告](resources/lin/references/evo-vendor-libraries.md)
-- [雙模式動態](resources/lin/references/reduced-motion.md)
-- [工程師交接](resources/lin/references/engineer-handoff.md)
+- [LIN 接入說明](resources/workflow/references/frontend-standards.md)
 - [GSAP 按需索引](resources/workflow/references/gsap-skills.md)
 
 來源 commit 與內容雜湊見 SOURCE.json。上傳後仍需在 Claude 啟用並測試。
@@ -185,20 +173,20 @@ def validate(package):
         raise ValueError('參考連結缺漏：\n' + '\n'.join(failures))
 
 
-def build(lin, output):
+def build(output):
     if output.exists():
         raise ValueError('輸出已存在，不覆蓋：' + str(output))
-    sources = {'workflow': revision(ROOT), 'lin': revision(lin)}
+    sources = {'workflow': revision(ROOT)}
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as temp:
         package = Path(temp) / NAME
-        prepare(package, lin)
+        prepare(package)
         validate(package)
         checksums = {p.relative_to(package).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                      for p in sorted(package.rglob('*')) if p.is_file()}
         (package / 'SOURCE.json').write_text(json.dumps(
             {'built_at': datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),
-             'sources': sources, 'files': checksums}, ensure_ascii=False, indent=2) + '\n')
+             'sources': sources, 'external_skills': ['lin-frontend', 'gsap-*'], 'files': checksums}, ensure_ascii=False, indent=2) + '\n')
         with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
             for p in sorted(package.rglob('*')):
                 if p.is_file():
@@ -211,7 +199,6 @@ def build(lin, output):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--lin-source', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    build(args.lin_source.expanduser().resolve(), args.output.expanduser().resolve())
+    build(args.output.expanduser().resolve())

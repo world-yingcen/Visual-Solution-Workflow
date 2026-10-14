@@ -59,10 +59,11 @@ Claude 網頁／App 的 Customize → Skills → Upload a skill 使用專用包�
 
 ```bash
 python3 scripts/build_claude_upload.py \
-  --lin-source /本機固定位置/lin-skill/lin-frontend \
-  --output dist/claude-upload/visual-solution-cloud-日期.zip
+  --output dist/claude-upload/visual-solution-cloud-workflow-only-日期.zip
 ```
 
-把 `--lin-source` 換成實際 LIN 來源位置，檔名日期換成本次日期；同名輸出已存在時不覆蓋。產物只有一個 `visual-solution-cloud/` 根資料夾與入口 SKILL.md；workflow、LIN、GSAP 與 Eagle 指南作為內附參考，無須分別上傳。LIN 僅在建置時複製為可攜式快照，不回寫或另維護共用來源；SOURCE.json 記錄 commit 與各檔案雜湊。打包器檢查內部連結、ZIP 完整性，排除 Git、安裝器、案例與其他本機資料。
+檔名日期換成本次日期；同名輸出已存在時不覆蓋。產物只有一個 `visual-solution-cloud/` 根資料夾與入口 SKILL.md，僅附 workflow 的流程參考。LIN 與 GSAP 由使用者另外上傳／啟用，本包不重複內附；Eagle 與系統 CSS 也不打包。SOURCE.json 記錄 workflow commit、外部 Skill 依賴與各檔案雜湊。打包器檢查內部連結、ZIP 完整性，排除 Git、安裝器、案例與其他本機資料。
+
+2026-10-14 先前產出的整合包 `visual-solution-cloud-20261014.zip` 已由 workflow-only 包取代；已獨立上傳 LIN／GSAP 的使用者不要使用舊整合包。
 
 此包優先套用網頁／App 環境規則，不要求本機安裝、Git 更新、Chrome 或 Eagle 連線。使用者須提供案件檔案；未接入工具或無法存取內網時列缺口，不宣稱已在本機或正式後台驗證。上傳後啟用 Skill，另以本案需求測試；打包檢查不代表已通過 Claude 實際上傳／執行。來源更新後由維護者重新打包並重新上傳，不會自動追蹤本機 Git。
