@@ -48,8 +48,8 @@ def prepare(package):
                    '此為 Claude 網頁／App 上傳快照。每輪先重讀本包規範與已提供的案件進度；'
                    '不執行本機 install.py、Plugin 安裝或套件來源 Git 更新。'
                    '原始來源維護仍用 Git，更新上傳版須重新打包並上傳。')
-    text = text.replace('使用本執行端的 lin-frontend 更新並重讀共用規範',
-                        '使用本次已啟用的獨立 LIN Skill 與本輪對應參考')
+    text = text.replace('使用本執行端的 Lin-EVO 更新並重讀共用規範',
+                        '使用本次已啟用的獨立 Lin-EVO Skill 與本輪對應參考')
     text = between(text, '## 建議分工', '## 確認與持續推進',
                    '## 網頁／App 執行分工\n\n'
                    '由目前 Claude 依可用工具完成已授權工作。產圖先整理素材工單；'
@@ -61,14 +61,14 @@ def prepare(package):
     p.write_text(text.replace('預设', '預設').replace('转檔', '轉檔'))
 
     (workflow / 'references/frontend-standards.md').write_text(
-        '# 共用切版規範｜使用者獨立上傳的 LIN\n\n'
-        '本 workflow 包不內附 LIN。使用者已另行上傳並啟用 LIN Skill；'
+        '# 共用切版規範｜使用者獨立上傳的 Lin-EVO\n\n'
+        '本 workflow 包不內附 Lin-EVO。使用者已另行上傳並啟用 Lin-EVO Skill；'
         '切版／修改／校稿時先確認本對話可使用該 Skill，再依其工程規範執行。'
         '以實際可用 Skill 名稱與內容為準，不猜另一個上傳包的檔案路徑。\n\n'
-        'LIN 管 HTML／SCSS／JS、SEO、系統搜尋／詢問車、套件接入、雙模式動態與工程師交接。'
-        '不要從此包舊摘要自行複製一份工程規則取代 LIN。'
+        'Lin-EVO 管 HTML／SCSS／JS、SEO、系統搜尋／詢問車、套件接入、雙模式動態與工程師交接。'
+        '不要從此包舊摘要自行複製一份工程規則取代 Lin-EVO。'
         '如果執行端確實有本機安裝能力，缺少本輪需要的 Skill 時使用者已授權從已確認來源直接安裝。'
-        '若當次無法取得 LIN，先完成品牌／視覺／動態提案等不受影響工作，'
+        '若當次無法取得 Lin-EVO，先完成品牌／視覺／動態提案等不受影響工作，'
         '明列工程規範缺口，請使用者確認已啟用或提供規範；不虛構已讀取。\n\n'
         'workflow 的品牌方向、確認關卡與 2560×1280 桌機優先仍有效。'
         '沒有平台資料或正式環境時記錄待驗，不要求本機安裝或 Git 更新。\n')
@@ -95,7 +95,7 @@ def prepare(package):
         '| 數值工具 | gsap-utils |\n'
         '| 已有 React／Next.js | gsap-react |\n'
         '| 已有 Vue／Nuxt／Svelte | gsap-frameworks |\n\n'
-        '沿用案件實際 GSAP 版本，技術範例不取代 LIN 結構與品牌分鏡。'
+        '沿用案件實際 GSAP 版本，技術範例不取代 Lin-EVO 結構與品牌分鏡。'
         '缺相關 Skill 時明列尚未取得，先完成可做的規劃或查已授權官方資料；'
         '不自行加入框架、效果或套件。')
 
@@ -118,7 +118,7 @@ def prepare(package):
 
     (package / 'SKILL.md').write_text('''---
 name: Visual-Solution-Workflow
-description: 在 Claude 網頁／App 依品牌資料規劃與製作整體視覺網站，專注品牌、視覺、動態提案與確認流程，切版與動畫技術使用另外啟用的 LIN／GSAP Skills；適用提案、製作及續作。
+description: 在 Claude 網頁／App 依品牌資料規劃與製作整體視覺網站，專注品牌、視覺、動態提案與確認流程，切版與動畫技術使用另外啟用的 Lin-EVO／GSAP Skills；適用提案、製作及續作。
 ---
 
 # Visual-Solution-Workflow
@@ -126,7 +126,7 @@ description: 在 Claude 網頁／App 依品牌資料規劃與製作整體視覺�
 整體視覺網站流程｜Claude 網頁／App 上傳版
 
 以繁體中文與台灣用語協作。先讀 [整體視覺主流程](resources/workflow/GUIDE.md)，
-切版／修改／校稿依使用者另外啟用的 LIN；動畫技術按需使用獨立 GSAP Skills。
+切版／修改／校稿依使用者另外啟用的 Lin-EVO；動畫技術按需使用獨立 GSAP Skills。
 resources 內的 GUIDE.md 都是本包參考，不是需要另外安裝的 Skill。
 
 ## 此上傳環境的優先規則
@@ -140,8 +140,8 @@ resources 內的 GUIDE.md 都是本包參考，不是需要另外安裝的 Skill
 - 只讀對話已提供或工具已授權可存取的檔案。不能直接讀使用者的 /Users 路徑、
   Google Drive 同步資料夾、公司內網或 localhost。需要來源時請使用者提供相關
   HTML／CSS／JS、文字或重點截圖；連結能否存取以本次工具結果為準。
-- 本包只內附 workflow 流程參考，不內附 LIN、GSAP、Eagle 或系統搜尋 CSS。
-  工程規範使用另外啟用的 LIN，動畫技術使用獨立 GSAP Skills。
+- 本包只內附 workflow 流程參考，不內附 Lin-EVO、GSAP、Eagle 或系統搜尋 CSS。
+  工程規範使用另外啟用的 Lin-EVO，動畫技術使用獨立 GSAP Skills。
   沒有本案後台、evomni-page-composer 或客戶素材，不能編造平台 API／資料綁定。
 - Chrome、Eagle、Codex 派工與影像工具只在本次確實可用並已授權時操作。
   不可用時完成不依賴工具的部分並列缺口，不要求先安裝全部工具才開始。
@@ -154,12 +154,12 @@ resources 內的 GUIDE.md 都是本包參考，不是需要另外安裝的 Skill
   預設第一階段 2560×1280 桌機，RWD 待使用者另行要求。
 - 單一 PDF 超過 10 MB 一律不讀，請提供重點截圖或 .md；未超過上限先問
   現在讀或用到再讀。圖片容量與格式要檢查，轉檔／壓縮由使用者自行處理。
-- 工程、SEO、系統公版功能、雙模式動態與工程師交接細則由獨立 LIN 維護；
+- 工程、SEO、系統公版功能、雙模式動態與工程師交接細則由獨立 Lin-EVO 維護；
   本包不複製另一份。不因缺工具就宣稱已套用或驗證；保留 workflow 的確認關卡。
 
 ## 獨立依賴的使用方式
 
-- [LIN 接入說明](resources/workflow/references/frontend-standards.md)
+- [Lin-EVO 接入說明](resources/workflow/references/frontend-standards.md)
 - [GSAP 按需索引](resources/workflow/references/gsap-skills.md)
 
 來源 commit 與內容雜湊見 SOURCE.json。上傳後仍需在 Claude 啟用並測試。
@@ -194,7 +194,7 @@ def build(output):
                      for p in sorted(package.rglob('*')) if p.is_file()}
         (package / 'SOURCE.json').write_text(json.dumps(
             {'built_at': datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),
-             'sources': sources, 'external_skills': ['lin-frontend', 'gsap-*'], 'files': checksums}, ensure_ascii=False, indent=2) + '\n')
+             'sources': sources, 'external_skills': ['Lin-EVO', 'gsap-*'], 'files': checksums}, ensure_ascii=False, indent=2) + '\n')
         with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
             for p in sorted(package.rglob('*')):
                 if p.is_file():

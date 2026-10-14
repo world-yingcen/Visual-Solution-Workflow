@@ -13,7 +13,7 @@
 | 既有專案為 React／Next.js | [gsap-react](../../gsap-react/SKILL.md) |
 | 既有專案為 Vue／Nuxt／Svelte 等 | [gsap-frameworks](../../gsap-frameworks/SKILL.md) |
 
-沿用案件 GSAP 版本、共用初始化、銷毀與捲動系統。範例不是直接覆蓋 LIN 結構的模板；涉及版本差異時再查相應官方文件。Skill 的安裝不等於安裝 GSAP JavaScript 套件，也不授權更新案件依賴。
+沿用案件 GSAP 版本、共用初始化、銷毀與捲動系統。範例不是直接覆蓋 Lin-EVO 結構的模板；涉及版本差異時再查相應官方文件。Skill 的安裝不等於安裝 GSAP JavaScript 套件，也不授權更新案件依賴。
 
 ## 隨附來源與限制
 

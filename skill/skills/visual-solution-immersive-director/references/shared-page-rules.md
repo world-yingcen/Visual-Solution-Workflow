@@ -1,6 +1,6 @@
 # 整體視覺｜shared-page-rules 接入
 
-本檔僅為舊連結相容入口，不含共用規範副本。先依 [LIN 接入](frontend-standards.md) 完成更新與重讀，再完整讀取已安裝 lin-frontend 的 `references/shared-page-rules.md`；不能讀到本檔就當作已讀工程規範。
+本檔僅為舊連結相容入口，不含共用規範副本。先依 [Lin-EVO 接入](frontend-standards.md) 完成更新與重讀，再完整讀取已安裝 Lin-EVO 的 `references/shared-page-rules.md`；不能讀到本檔就當作已讀工程規範。
 
 ## 方案差異
 
@@ -8,12 +8,12 @@
 
 ## T13｜Header、Footer 與內頁
 
-對應條文請讀上述 LIN 文件的對應主題章節；先遵守本檔方案差異。
+對應條文請讀上述 Lin-EVO 文件的對應主題章節；先遵守本檔方案差異。
 
 ## 全站導覽行為
 
-對應條文請讀上述 LIN 文件的對應主題章節；先遵守本檔方案差異。
+對應條文請讀上述 Lin-EVO 文件的對應主題章節；先遵守本檔方案差異。
 
 ## 平台整合邊界
 
-對應條文請讀上述 LIN 文件的對應主題章節；先遵守本檔方案差異。
+對應條文請讀上述 Lin-EVO 文件的對應主題章節；先遵守本檔方案差異。

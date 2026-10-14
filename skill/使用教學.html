@@ -122,18 +122,18 @@
       <section class="sec" id="setup"><div class="sec-head"><h2>第一次使用｜從沒有安裝任何工具開始</h2></div><ol class="loop setup-flow" aria-label="第一次使用的三個設定階段"><li><span class="n">01</span><strong>準備帳號</strong><p>確認公司指定工具、登入與 repo 權限。</p></li><li><span class="n">02</span><strong>安裝 Skill</strong><p>讓 AI 依來源文件設定適用規範。</p></li><li><span class="n">03</span><strong>驗證可用</strong><p>重新開啟，確認規範與檔案都能讀到。</p></li></ol>
 <p>這一節假設你還沒安裝 AI 工具，也沒有任何 Skill。先完成下面三個階段，再開始案件；此時不需要先會寫程式，也不用先準備整套工程環境。</p>
 <h3>A｜準備帳號與使用權限</h3>
-<p>先向 LIN／維護者確認公司指定的工具、帳號與可使用權限：</p>
+<p>先向 Lin-EVO／維護者確認公司指定的工具、帳號與可使用權限：</p>
 <ul>
 <li><strong>Claude 帳號</strong>：需要能使用 Claude Code，之後才可操作本機檔案與製作網站。</li>
 <li><strong>ChatGPT 帳號</strong>：本案使用 Codex 或 ChatGPT 產圖時準備。</li>
-<li><strong>GitHub 帳號</strong>：把帳號名稱提供給 LIN，請他加入公司私人 Skill repo 的協作者，並接受邀請。</li>
+<li><strong>GitHub 帳號</strong>：把帳號名稱提供給 Lin-EVO，請他加入公司私人 Skill repo 的協作者，並接受邀請。</li>
 </ul>
 <p>還沒有帳號或不確定公司用哪個方案，先請維護者協助，不必自行購買。登入與帳號授權由你本人操作。</p>
 <h3>B｜安裝 Skill 與必要工具</h3>
 <p>Skill 是 AI 的工作規則，和 AI 軟體分開安裝。所需入口如下：</p>
 <ul>
 <li><strong>整體視覺主 Skill</strong>：從品牌資料開始提案及製作整體視覺網站。</li>
-<li><strong>LIN／lin-frontend</strong>：共用切版與校稿規範。</li>
+<li><strong>Lin-EVO／Lin-EVO</strong>：共用切版與校稿規範。</li>
 </ul>
 <p>AI 工具已能使用後，才把下面這段貼進目前使用的本機工作。Git（取得及管理檔案的工具）與 Python（執行安裝程式的工具）由 AI 先檢查，缺少時協助準備；需要電腦管理者密碼或公司權限時找維護者處理。</p>
 <p><strong>貼給已安裝的 AI：</strong></p>
@@ -141,18 +141,18 @@
 目前使用工具：（填 Claude Code／Codex）。
 請先檢查本機 Git、Python 與 GitHub 存取權限，協助準備必要工具。
 整體視覺來源：https://github.com/world-yingcen/Visual-Solution-Workflow
-LIN 來源：https://github.com/world-yingcen/lin-skill
-請先讀這兩份來源的安裝文件，安裝本工具需要的整體視覺主 Skill 與完整 lin-frontend。
+Lin-EVO 來源：https://github.com/world-yingcen/lin-skill
+請先讀這兩份來源的安裝文件，安裝本工具需要的整體視覺主 Skill 與完整 Lin-EVO。
 來源庫放在固定本機位置，不放雲端同步資料夾；只安裝到目前工具對應的 Skills 位置。
 Claude Code 的整體視覺優先使用 Plugin；依文件採另一種方式時，同一工具不要重複安裝兩份。
-若尚無私人 repo 權限，請列出需要 LIN 協助的項目。
+若尚無私人 repo 權限，請列出需要 Lin-EVO 協助的項目。
 需要登入或授權時讓我本人操作，不在對話中索取密碼。
 目前只設定工具與 Skill，不開始製作網站、不推送或部署。
 </code></pre>
 <p>Claude Code 與 Codex 都要使用的人，各自在對應工具完成一次安裝；在其中一個工具裝好，不代表另一個也能讀到。維護者的詳細操作見 <a href="INSTALL.md">安裝文件</a>。</p>
 <h3>C｜重新開啟並驗證，再開始案件</h3>
 <p>安裝完成後重新開啟目前使用的 AI 工具，開啟目前的本機工作，再貼下面這段：</p>
-<pre><code class="language-text">請確認本工具可使用 visual-solution-immersive-director 與 lin-frontend，並重新讀取規範。
+<pre><code class="language-text">請確認本工具可使用 visual-solution-immersive-director 與 Lin-EVO，並重新讀取規範。
 請回報實際安裝位置、使用版本與缺少的項目，確認能讀取目前本機資料夾。
 先不要開始製作網站。安裝或更新未完成的部分請如實標示，整理可執行的處理方式。
 </code></pre>
@@ -558,7 +558,7 @@ Codex 執行已定規格：（授權／本案不使用）
 讓另一個工具或新對話讀取後能直接接續，不必重新提案。
 </code></pre>
         <p><strong>接續時貼給 AI：</strong></p>
-        <pre><code class="language-text">使用（填 visual-solution-immersive-director／lin-frontend）。
+        <pre><code class="language-text">使用（填 visual-solution-immersive-director／Lin-EVO）。
 案件資料夾：（填完整路徑）。
 請先讀進度與已確認內容，說明目前階段、有效預覽及下一步，不要重新開始。
 本次工作：（填要做的內容）。
@@ -626,9 +626,9 @@ Codex 執行已定規格：（授權／本案不使用）
           <li><a href="%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.html">網頁閱讀版</a>：與本篇內容一致。</li>
           <li><a href="skills/visual-solution-immersive-director/SKILL.md">整體視覺主 Skill</a>：設計、製作及確認流程。</li>
           <li><a href="INSTALL.md">安裝與更新說明</a>：維護者使用。</li>
-          <li><a href="https://github.com/world-yingcen/lin-skill#readme">LIN 獨立 repo</a>：共用切版規範與安裝入口。</li>
+          <li><a href="https://github.com/world-yingcen/lin-skill#readme">Lin-EVO 獨立 repo</a>：共用切版規範與安裝入口。</li>
         </ul>
-        <p>LIN 不包含在整體視覺套件內，請維護者另外安裝完整規範。</p>
+        <p>Lin-EVO 不包含在整體視覺套件內，請維護者另外安裝完整規範。</p>
       </section>
     </div>
   </main>

@@ -1,6 +1,6 @@
 # 整體視覺方案｜切版規範總索引
 
-本方案索引。T04～T08、T10、T13 由獨立 LIN 提供，連結文件僅保留接入與方案差異；其餘編號對應本方案已有規範，不表示移入高效流程。只讀本輪適用文件，但須完整讀取所選章節；未變且本輪已讀內容不重讀。
+本方案索引。T04～T08、T10、T13 由獨立 Lin-EVO 提供，連結文件僅保留接入與方案差異；其餘編號對應本方案已有規範，不表示移入高效流程。只讀本輪適用文件，但須完整讀取所選章節；未變且本輪已讀內容不重讀。
 
 | 編號 | 主題 | 本套件規範 |
 |---|---|---|
@@ -8,7 +8,7 @@
 | T02 | 環境、檔案、Git | 下方 T02、[檔案管理](project-files.md) |
 | T03 | 設計對照、字型、續作 | [視覺系統](visual-system.md)、[交接](codex-handoff.md) |
 | T04～T08 | HTML、版面、Common、SCSS、互動狀態 | [完整 HTML／SCSS 規範](html-css-rules.md) |
-| T09 | 圖片、素材與來源 | [素材製作](asset-production.md)；容量與格式檢核依 [LIN 接入](frontend-standards.md) 讀取獨立 LIN 的 references/implementation-review.md |
+| T09 | 圖片、素材與來源 | [素材製作](asset-production.md)；容量與格式檢核依 [Lin-EVO 接入](frontend-standards.md) 讀取獨立 Lin-EVO 的 references/implementation-review.md |
 | T10～T11 | JS 初始化、Swiper 輪播、AOS 區塊淡入淡出、marquee、整體視覺動態 | [JS 規範](javascript-rules.md)、[marquee 指定參考](evo-marquee-reference.md) |
 | T12 | 內容完整性 | [內容盤點](client-content-audit.md)、[整頁完整度](full-page-completeness.md) |
 | T13 | Header、Footer、內頁與平台 | [共用頁面規範](shared-page-rules.md)、[內頁設計](inner-pages.md) |
@@ -26,6 +26,6 @@
 
 ## T15｜新增共用項目與修改後檢查
 
-依 [LIN 接入](frontend-standards.md) 讀取獨立 LIN 的 references/implementation-review.md 與本輪相關工程規範；共用影響、單頁隔離、斷點保真、可編輯性及交付表均以該來源維護。
+依 [Lin-EVO 接入](frontend-standards.md) 讀取獨立 Lin-EVO 的 references/implementation-review.md 與本輪相關工程規範；共用影響、單頁隔離、斷點保真、可編輯性及交付表均以該來源維護。
 
 本方案仍以實際視覺／動態 QA 與使用者確認為準；預設 2560×1280，RWD 另行授權，不能把工程檢查當作設計確認。

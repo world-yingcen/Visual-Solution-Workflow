@@ -27,7 +27,7 @@ git config --global credential.helper
 ```
 
 - 沒有 git：Mac 請使用者執行 `xcode-select --install`；Windows 到官網下載安裝，一路使用預設。需要管理者密碼時請使用者找安志或阿久，Skill 不代為輸入。
-- `user.name` 統一為「暱稱(全名)」或「全名」，例如 `LIN(林盈岑)`、`劉淑慧`；`user.email` 是公司信箱 `@world-group.com.tw`。缺少或格式不符時，請使用者提供後由 Skill 設定：
+- `user.name` 統一為「暱稱(全名)」或「全名」，例如 `Lin-EVO(林盈岑)`、`劉淑慧`；`user.email` 是公司信箱 `@world-group.com.tw`。缺少或格式不符時，請使用者提供後由 Skill 設定：
 
 ```bash
 git config --global user.name "暱稱(全名)"
@@ -36,7 +36,7 @@ git config --global user.email "帳號@world-group.com.tw"
 
 - 憑證管理員為空時設定（Mac `osxkeychain`，Windows `manager`），並告知使用者第一次推送要自己輸入一次帳密。
 
-系統檔案的忽略與解除追蹤依獨立 lin-frontend「實作與校稿」規範；建立專案及提交前核對，不覆蓋既有 `.gitignore`。
+系統檔案的忽略與解除追蹤依獨立 Lin-EVO「實作與校稿」規範；建立專案及提交前核對，不覆蓋既有 `.gitignore`。
 
 ## 情況 A：新網頁建立新專案
 
@@ -44,7 +44,7 @@ git config --global user.email "帳號@world-group.com.tw"
 
 ```bash
 git init -b main                 # 舊版 git：git init 後 git branch -M main
-# 先依 lin-frontend 規範補齊 .gitignore，保留既有規則
+# 先依 Lin-EVO 規範補齊 .gitignore，保留既有規則
 git add -A
 git commit -m "首頁桌機版 v1"      # 白話寫這個版本是什麼
 git remote add origin http://192.168.168.134/client-html-demo/專案英文ID.git

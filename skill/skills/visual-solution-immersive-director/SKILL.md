@@ -17,7 +17,7 @@ description: 整體視覺方案的網站製作主入口；使用者說「我要�
 
 ## 2560×1280 桌機優先
 
-動態案件須一起規劃一般模式與減少動態模式：品牌內容、必要功能與完成度一致，差別在動態表現及完整閱讀布局。不能只停掉 GSAP 而保留隱藏內容或 pin 空白；提案依 [動態規範](references/motion-proposal.md)，工程解法依 [LIN 接入](references/frontend-standards.md) 讀取獨立 LIN 的 `references/reduced-motion.md`，驗收依 [視覺 QA](references/visual-qa.md)。減少動態不是另開 RWD 階段。
+動態案件須一起規劃一般模式與減少動態模式：品牌內容、必要功能與完成度一致，差別在動態表現及完整閱讀布局。不能只停掉 GSAP 而保留隱藏內容或 pin 空白；提案依 [動態規範](references/motion-proposal.md)，工程解法依 [Lin-EVO 接入](references/frontend-standards.md) 讀取獨立 Lin-EVO 的 `references/reduced-motion.md`，驗收依 [視覺 QA](references/visual-qa.md)。減少動態不是另開 RWD 階段。
 
 本 Skill 的預設第一階段固定使用 **2560×1280 CSS viewport**，涵蓋核心視覺片段、完整桌機首頁與瀏覽器 QA。構圖、圖片裁切、字級、捲動距離、互動節奏與效能都以這個尺寸實看並記錄；不要以較小桌機畫面代替 2560×1280 驗收。
 
@@ -49,7 +49,7 @@ CIS 不完整或沒有 CIS 時，依 [視覺提案](references/visual-proposal.m
 
 若本案已有 Claude 自動呼叫 Codex 或 ChatGPT 網頁產圖管道，沿用已授權且可用的方式。在 Codex 內有工程與瀏覽器工具時直接執行；Handoff 是工作依據，不是要求使用者手動搬運指令的終點。工具不可用時如實標記缺口，不虛構已產圖、已測試或已交接。分工建議見下方「建議分工」。
 
-涉及切版、程式修改或校稿前，必讀 [獨立 LIN 接入](references/frontend-standards.md)，使用本執行端的 lin-frontend 更新並重讀共用規範。本方案只補方案差異，不使用歷史工程條文副本。
+涉及切版、程式修改或校稿前，必讀 [獨立 Lin-EVO 接入](references/frontend-standards.md)，使用本執行端的 Lin-EVO 更新並重讀共用規範。本方案只補方案差異，不使用歷史工程條文副本。
 
 ## 品質與工作方式
 
@@ -140,7 +140,7 @@ CIS 不完整或沒有 CIS 時，依 [視覺提案](references/visual-proposal.m
 
 ## 接續與完成
 
-切版完成後，依 [LIN 接入](references/frontend-standards.md) 讀取獨立 LIN 的 `references/implementation-review.md`「切版完成後的容量與圖片格式檢核」，執行圖片大小與格式檢查及使用者提醒；本方案不另維護共用條文。
+切版完成後，依 [Lin-EVO 接入](references/frontend-standards.md) 讀取獨立 Lin-EVO 的 `references/implementation-review.md`「切版完成後的容量與圖片格式檢核」，執行圖片大小與格式檢查及使用者提醒；本方案不另維護共用條文。
 
 沿用案件進度檔；沒有時建立簡短 `experience-status.md`：模式、階段、確認紀錄、工具授權（Codex 執行、產圖工具）、規格／素材／預覽路徑、驗證版本與尺寸、缺陷及下一步。不要重建整套文件。
 
