@@ -137,8 +137,9 @@ resources 內的 GUIDE.md 都是本包參考，不是需要另外安裝的 Skill
 - 只讀對話已提供或工具已授權可存取的檔案。不能直接讀使用者的 /Users 路徑、
   Google Drive 同步資料夾、公司內網或 localhost。需要來源時請使用者提供相關
   HTML／CSS／JS、文字或重點截圖；連結能否存取以本次工具結果為準。
-- 本包內附系統參考已核對的規則與搜尋 CSS，但沒有本案後台、
-  evomni-page-composer 工程工具庫或客戶素材；不能編造平台 API／資料綁定。
+- 本包只內附 workflow 流程參考，不內附 LIN、GSAP、Eagle 或系統搜尋 CSS。
+  工程規範使用另外啟用的 LIN，動畫技術使用獨立 GSAP Skills。
+  沒有本案後台、evomni-page-composer 或客戶素材，不能編造平台 API／資料綁定。
 - Chrome、Eagle、Codex 派工與影像工具只在本次確實可用並已授權時操作。
   不可用時完成不依賴工具的部分並列缺口，不要求先安裝全部工具才開始。
 - 有程式執行能力才處理已提供的工程；有瀏覽器才實看、實測。
