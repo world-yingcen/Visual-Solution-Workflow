@@ -52,3 +52,17 @@ python3 install.py --target ~/.codex/skills
 ## LIN 共用規範（必要依賴）
 
 切版／校稿另需安裝 [lin-skill](https://github.com/world-yingcen/lin-skill) 的完整 lin-frontend。此套件／Plugin 不再內含工程條文副本，也不會自動安裝 LIN。請 clone 獨立 repo，依其 README 安裝；每次使用由 LIN 執行安全更新與重讀。缺少或更新失敗必須回報，不能宣稱已最新。方案設計流程與 RWD 範圍不變。
+
+## Claude 網頁／App：專用上傳 ZIP
+
+Claude 網頁／App 的 Customize → Skills → Upload a skill 使用專用包；不要上傳整個維護 repo，也不要將上方 install.py 分享包當成單一上傳 Skill。維護者在 repo 根目錄執行：
+
+```bash
+python3 scripts/build_claude_upload.py \
+  --lin-source /本機固定位置/lin-skill/lin-frontend \
+  --output dist/claude-upload/visual-solution-cloud-日期.zip
+```
+
+把 `--lin-source` 換成實際 LIN 來源位置，檔名日期換成本次日期；同名輸出已存在時不覆蓋。產物只有一個 `visual-solution-cloud/` 根資料夾與入口 SKILL.md；workflow、LIN、GSAP 與 Eagle 指南作為內附參考，無須分別上傳。LIN 僅在建置時複製為可攜式快照，不回寫或另維護共用來源；SOURCE.json 記錄 commit 與各檔案雜湊。打包器檢查內部連結、ZIP 完整性，排除 Git、安裝器、案例與其他本機資料。
+
+此包優先套用網頁／App 環境規則，不要求本機安裝、Git 更新、Chrome 或 Eagle 連線。使用者須提供案件檔案；未接入工具或無法存取內網時列缺口，不宣稱已在本機或正式後台驗證。上傳後啟用 Skill，另以本案需求測試；打包檢查不代表已通過 Claude 實際上傳／執行。來源更新後由維護者重新打包並重新上傳，不會自動追蹤本機 Git。
