@@ -99,7 +99,7 @@
       <ol>
         <li><a href="index.html">← 教學入口</a></li>
         <li><a href="快速索引.html">← 情境索引</a></li>
-        <li><a href="#setup">第一次使用</a></li>
+        <li><a href="#skill-environment">環境與 Skill</a></li><li><a href="#setup">本機首次設定</a></li>
         <li><a href="#prepare">1 資料準備</a></li>
         <li><a href="#start">2 開始案件</a></li>
         <li><a href="#assets">素材與產圖</a></li>
@@ -109,31 +109,32 @@
         <li><a href="#try">6 核心片段</a></li>
         <li><a href="#homepage">7 完整首頁</a></li>
         <li><a href="#inner">8 內頁</a></li>
-        <li><a href="#mobile">9 平板手機</a></li>
+        <li><a href="#frontend-checklist">切版共同檢查</a></li><li><a href="#mobile">9 平板手機</a></li>
         <li><a href="#client">10 客戶校稿</a></li>
         <li><a href="#revisions">11 修改資料</a></li>
         <li><a href="#delivery">12 靜態交付</a></li>
-        <li><a href="#resume">接續與切換</a></li>
+        <li><a href="#evo-transfer">Miffy-EVO 轉換</a></li><li><a href="#resume">接續與切換</a></li>
         <li><a href="#troubleshooting">問題處理</a></li>
         <li><a href="#resources">文件入口</a></li>
       </ol>
     </nav>
     <div class="panel beginner-guide">
+<section class="sec" id="skill-environment"><div class="sec-head"><h2>先選使用環境與 Skill</h2></div><p>先依使用環境選入口。Claude 網頁／App 上傳 ZIP；Claude Code／Codex 使用本機 Git 安裝。兩種環境的整體視覺入口名稱不同，Lin-EVO 與 Miffy-EVO 名稱相同。</p><ul><li>Claude 網頁／App：上傳並啟用 Visual-Solution-Workflow 與 Lin-EVO；要轉 EVO 時另啟用 Miffy-EVO。GSAP 按需分別上傳，workflow 包不內附這些 Skill。</li><li>先說「使用 Visual-Solution-Workflow，討論本案視覺與動態方向」；方向確認後說「使用 Lin-EVO，依已確認設計切版」；靜態版確認後再說「使用 Miffy-EVO，轉成 EVO 匯入成果」。</li><li>Claude Code／Codex：整體視覺入口仍為 visual-solution-immersive-director；切版用 Lin-EVO，轉換用 Miffy-EVO。由 AI 檢查已確認來源並安裝本輪缺少的相關 Skill。</li><li>本機 Git 來源每輪先安全更新；上傳的 ZIP 是快照，不會自動更新。規範更新後重新上傳，停用舊名稱／舊版本，避免同時啟用兩份。</li><li>網頁／App 請提供案件檔案或工具可存取的來源；不能假設能讀本機 /Users、Google Drive 同步資料夾、localhost、公司內網或 Eagle。缺能力時列出未驗證範圍。</li></ul><p><strong>2026-10-14 上傳包：</strong></p><ul><li><a href="https://github.com/world-yingcen/Visual-Solution-Workflow/blob/main/dist/claude-upload/Visual-Solution-Workflow-20261014-EVO.zip">Visual-Solution-Workflow</a></li><li><a href="https://github.com/world-yingcen/Visual-Solution-Workflow/blob/main/dist/claude-upload/Lin-EVO-20261014.zip">Lin-EVO</a></li><li><a href="https://github.com/world-yingcen/Visual-Solution-Workflow/blob/main/dist/claude-upload/Miffy-EVO-20261014.zip">Miffy-EVO</a></li></ul></section>
       <section class="sec" id="setup"><div class="sec-head"><h2>第一次使用｜從沒有安裝任何工具開始</h2></div><ol class="loop setup-flow" aria-label="第一次使用的三個設定階段"><li><span class="n">01</span><strong>準備帳號</strong><p>確認公司指定工具、登入與 repo 權限。</p></li><li><span class="n">02</span><strong>安裝 Skill</strong><p>讓 AI 依來源文件設定適用規範。</p></li><li><span class="n">03</span><strong>驗證可用</strong><p>重新開啟，確認規範與檔案都能讀到。</p></li></ol>
-<p>這一節假設你還沒安裝 AI 工具，也沒有任何 Skill。先完成下面三個階段，再開始案件；此時不需要先會寫程式，也不用先準備整套工程環境。</p>
+<p>本節適用 Claude Code／Codex 本機環境，假設你還沒安裝 AI 工具，也沒有任何 Skill。先完成下面三個階段，再開始案件；此時不需要先會寫程式，也不用先準備整套工程環境。</p>
 <h3>A｜準備帳號與使用權限</h3>
-<p>先向 Lin-EVO／維護者確認公司指定的工具、帳號與可使用權限：</p>
+<p>先向 維護者確認公司指定的工具、帳號與可使用權限：</p>
 <ul>
 <li><strong>Claude 帳號</strong>：需要能使用 Claude Code，之後才可操作本機檔案與製作網站。</li>
 <li><strong>ChatGPT 帳號</strong>：本案使用 Codex 或 ChatGPT 產圖時準備。</li>
-<li><strong>GitHub 帳號</strong>：把帳號名稱提供給 Lin-EVO，請他加入公司私人 Skill repo 的協作者，並接受邀請。</li>
+<li><strong>GitHub 帳號</strong>：把帳號名稱提供給維護者，請他加入公司私人 Skill repo 的協作者，並接受邀請。</li>
 </ul>
 <p>還沒有帳號或不確定公司用哪個方案，先請維護者協助，不必自行購買。登入與帳號授權由你本人操作。</p>
 <h3>B｜安裝 Skill 與必要工具</h3>
 <p>Skill 是 AI 的工作規則，和 AI 軟體分開安裝。所需入口如下：</p>
 <ul>
 <li><strong>整體視覺主 Skill</strong>：從品牌資料開始提案及製作整體視覺網站。</li>
-<li><strong>Lin-EVO／Lin-EVO</strong>：共用切版與校稿規範。</li>
+<li><strong>Lin-EVO</strong>：共用切版與校稿規範。</li><li><strong>Miffy-EVO</strong>：已確認靜態版轉成 EVO 匯入成果，需要轉換時使用。</li>
 </ul>
 <p>AI 工具已能使用後，才把下面這段貼進目前使用的本機工作。Git（取得及管理檔案的工具）與 Python（執行安裝程式的工具）由 AI 先檢查，缺少時協助準備；需要電腦管理者密碼或公司權限時找維護者處理。</p>
 <p><strong>貼給已安裝的 AI：</strong></p>
@@ -145,7 +146,7 @@ Lin-EVO 來源：https://github.com/world-yingcen/lin-skill
 請先讀這兩份來源的安裝文件，安裝本工具需要的整體視覺主 Skill 與完整 Lin-EVO。
 來源庫放在固定本機位置，不放雲端同步資料夾；只安裝到目前工具對應的 Skills 位置。
 Claude Code 的整體視覺優先使用 Plugin；依文件採另一種方式時，同一工具不要重複安裝兩份。
-若尚無私人 repo 權限，請列出需要 Lin-EVO 協助的項目。
+若尚無私人 repo 權限，請列出需要維護者協助的項目。
 需要登入或授權時讓我本人操作，不在對話中索取密碼。
 目前只設定工具與 Skill，不開始製作網站、不推送或部署。
 </code></pre>
@@ -311,12 +312,12 @@ Codex 執行已定規格：（授權／本案不使用）
         </div>
         <p>AI 應先盤點客供素材，再提出缺少圖片的用途與構圖。正式 Logo、產品、角色及 IP 使用客供原檔，不用生成近似版。</p>
         <p>預設產圖由 Claude 透過 Claude in Chrome 操作你已登入 ChatGPT 的 Chrome 網頁；你再下載成品到指定位置。先請維護者確認擴充功能與登入狀態。若無此工具或本案指定其他產圖方式，讓 AI 記錄替代方式及需要你配合的步驟。</p>
-        <p>每張圖先確認用途、主體位置、文字留白、比例與檔名。下載時照指定檔名存到案件素材資料夾，再告訴 AI 已放好；AI 實看後才裁切、壓縮與置入。不要只貼預覽縮圖當正式成品。</p>
+        <p>每張圖先確認用途、主體位置、文字留白、比例與檔名。下載時照指定檔名存到案件素材資料夾，再告訴 AI 已放好；AI 實看並提出需要調整的地方；轉檔／壓縮由你自行處理，提供完成檔後再置入。不要只貼預覽縮圖當正式成品。</p>
         <p><strong>貼給 AI：</strong></p>
         <pre><code class="language-text">請先列出本輪需要的圖片，以及可以沿用的客供素材。
 缺圖請給我可以看的構圖建議，說明用途、比例、文字留白、檔名與存放位置。
 依本案已記錄的產圖方式執行，需要我下載時逐張告訴我。
-成品放好後請實看，檢查是否適合版面，再處理與置入。
+成品放好後請實看，檢查是否適合版面；列出需要我自行轉檔／壓縮的項目，提供完成檔後再置入。
 </code></pre>
         <p class="note"><strong>做到這裡再往下：</strong> 圖片用途與風格符合方向；正式素材、生成素材與暫代圖已區分，檔案能在案件資料夾找到。</p>
       </section>
@@ -468,6 +469,7 @@ Codex 執行已定規格：（授權／本案不使用）
 </code></pre>
         <p class="note"><strong>做到這裡再往下：</strong> 各頁內容正確、風格一致、有實際預覽，且可編輯需求與平台待確認項目都有記錄。</p>
       </section>
+<section class="sec" id="frontend-checklist"><div class="sec-head"><h2>切版與校稿｜這次新增的共同檢查</h2></div><p>這裡是操作提醒；詳細工程規則由 Lin-EVO 維護，不在教學另放一份系統程式。</p><h3>頁面與 SEO</h3><p>每案有搜尋結果頁；每個完整頁面只有一個 h1，h2～h6 依內容層級排列。只有 Navi 使用 header 標籤。逐頁核對 title、描述、圖片 alt、連結及圖片尺寸；正式網址、索引與後台資料交工程師確認。</p><h3>詢問車與搜尋頁</h3><p>公版 CSS 可依案件確認需求調整，公版 HTML／JS 不改。搜尋頁未指定調整時忠實沿用參考，標題、摘要與按鈕都要核對實際樣式。</p><h3>產品頁與分類選單</h3><p>產品頁可新增 .inquiry-group，將加入詢問單放在購買按鈕群下方、商品資訊底部，保留原生綁定。分類選單沿用 left_menu001，桌機保留案件外觀，手機下拉邏輯是公版；分類文字導頁、箭頭獨立展開、顯示目前分類，清單不得被遮住。</p><h3>案件設定</h3><p>購買按鈕隱藏依頁面與實際用途判斷，包含手機版本；不誤隱藏其他功能。1199px、18px 箭頭、container-75、字級倍率及配色是案件確認值，不強制所有網站使用。案件選單差異集中在 _left-menu.scss 或既有同用途檔案，於公版 CSS 後載入。</p><h3>動態與套件</h3><p>一般模式播放確認過的動畫；減少動態模式仍完整呈現內容與操作。GSAP pin／scrub 要有正常閱讀的替代布局，不能只停動畫而留下空白或疊層。EVO 套件沿用平台版本與載入方式，不自行加 CDN；Swiper／GLightbox 用 data-vendor，Lenis 需先確認本案系統已更新開放，GSAP／AOS 由編輯器工具列開啟。</p><h3>圖片與容量</h3><p>切版後檢核專案檔案大小，AI 列出非 WebP／SVG 圖片的路徑與大小，由使用者自行轉檔／壓縮。WebP／SVG 也要看實際容量，AI 不代做圖片轉檔。</p><h3>Demo 與交接</h3><p>依使用者要求可獨立模擬加入、數量、移除及表單，不真的寄出詢問。正式接入前排除 Demo 程式及示範資料，只保留原生系統處理器；有產頁腳本就同步更新。每次切版／功能修改同步唯一的工程師交接說明.md，列已完成、待接入、未實測及公版待修項目。</p></section>
       <section class="sec" id="mobile">
         <div class="sec-head">
           <h2>第 9 步｜完成 RWD，再交客戶校稿</h2>
@@ -542,12 +544,20 @@ Codex 執行已定規格：（授權／本案不使用）
 <p><strong>貼給 AI：</strong></p>
 <pre><code class="language-text">客戶已確認這一版，請整理靜態網站交付資料。
 列出確認版號與版本、62 DEMO 連結、各頁入口，以及 HTML、CSS、JavaScript、素材與字型的位置。
-核對缺圖、連結、互動、頁面完整度與 RWD；排除 .DS_Store 等非交付檔案。
+核對缺圖、連結、互動、頁面完整度、搜尋頁與 RWD；排除 .DS_Store 等非交付檔案。
+建立或更新唯一的工程師交接說明.md，列本案公版 CSS 調整、正式功能接入、Demo 停用方式及待驗項目。
 記錄預覽方式、AI 已檢查與客戶已確認的範圍，以及仍需補充的資料。
 本次只整理靜態網站交付，不自行上傳或部署。
 </code></pre>
 <p class="note"><strong>做到這裡再往下：</strong> 接手的人能找到確認版網站、素材、預覽與維護說明；未完成項目及負責人清楚列出。</p>
 </section>
+<section class="sec" id="evo-transfer"><div class="sec-head"><h2>靜態版確認後｜交給 Miffy-EVO 轉換</h2></div><p>靜態版確認後，若本案需要 EVO 後台，再交給 Miffy-EVO 轉換。Lin-EVO 負責來源切版與修正，Miffy-EVO 負責轉換、匯入包及接入查核；不重新提案或重新切整站。</p><pre><code class="language-text">使用 Miffy-EVO，將本案已確認的靜態網站轉成 EVO 匯入成果。
+案件檔案：（填已確認版本與提供位置）。
+請先核對工程工具庫更新與本案平台版本，沿用已確認設計與互動。
+核對可編輯需求、HTML／SCSS／JS、素材及原生系統功能的接入分工。
+更新唯一的工程師交接說明.md，列出匯入包位置、接入步驟與未實測項目。
+沒有後台環境時請標示整合後待驗，不宣稱已匯入或發布。
+</code></pre><p>轉換完成仍須在本案後台與發布前台核對可編輯內容、素材、CSS／JS、搜尋及詢問功能；未實測項目列待驗。</p></section>
       <section class="sec" id="resume">
         <div class="sec-head">
           <h2>下次繼續／切換工具</h2>
@@ -558,7 +568,7 @@ Codex 執行已定規格：（授權／本案不使用）
 讓另一個工具或新對話讀取後能直接接續，不必重新提案。
 </code></pre>
         <p><strong>接續時貼給 AI：</strong></p>
-        <pre><code class="language-text">使用（填 visual-solution-immersive-director／Lin-EVO）。
+        <pre><code class="language-text">使用（依環境與工作填 Visual-Solution-Workflow／visual-solution-immersive-director／Lin-EVO／Miffy-EVO）。
 案件資料夾：（填完整路徑）。
 請先讀進度與已確認內容，說明目前階段、有效預覽及下一步，不要重新開始。
 本次工作：（填要做的內容）。
@@ -635,7 +645,7 @@ Codex 執行已定規格：（授權／本案不使用）
 
   <footer class="site-footer">
     <span>整體視覺方案 ／ Skill 使用教學</span>
-    <span>最後更新 2026-10-12 ・ 文字版 <code>使用教學.md</code></span>
+    <span>最後更新 2026-10-14 ・ 文字版 <code>使用教學.md</code></span>
   </footer>
 
   <script>

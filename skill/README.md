@@ -18,7 +18,7 @@
 
 桌機完成並經內部確認後，直接接續 RWD，完整檢查後再交客戶校稿；各情境的啟動指令已包含這項範圍，不需另選 RWD 情境。Webtech2 已完成首頁時，由 Lin-EVO 依新規範重切視覺相同的靜態網站，再延伸內頁。
 
-第一次使用先請 Lin-EVO／維護者協助設定，之後照教學貼指令即可。不需要先讀工程規範。
+第一次使用先請 維護者協助設定，之後照教學貼指令即可。不需要先讀工程規範。
 
 ## 維護人員請看
 
@@ -32,4 +32,10 @@
 
 ## Lin-EVO 共用規範（必要依賴）
 
-切版／校稿另需安裝 [lin-skill](https://github.com/world-yingcen/lin-skill) 的完整 Lin-EVO。此套件／Plugin 不再內含工程條文副本，也不會自動安裝 Lin-EVO。請 clone 獨立 repo，依其 README 安裝；每次使用由 Lin-EVO 執行安全更新與重讀。缺少或更新失敗必須回報，不能宣稱已最新。方案設計流程與 RWD 範圍不變。
+切版／校稿另需安裝 [lin-skill](https://github.com/world-yingcen/lin-skill) 的完整 Lin-EVO。此套件／Plugin 不再內含工程條文副本，本機缺少本輪需要的 Lin-EVO 時，可依已授權來源安裝；網頁／App 則由使用者另外上傳。請 clone 獨立 repo，依其 README 安裝；每次使用由 Lin-EVO 執行安全更新與重讀。缺少或更新失敗必須回報，不能宣稱已最新。方案設計流程與 RWD 範圍不變。
+
+## Claude 網頁／App 與新版切版檢查
+
+上傳入口為 `Visual-Solution-Workflow`，切版為 `Lin-EVO`，靜態版轉 EVO 為 `Miffy-EVO`；本機整體視覺入口仍為 `visual-solution-immersive-director`。上傳包、環境差異與開始指令見 [手冊環境說明](使用教學.html#skill-environment)。
+
+搜尋／詢問公版、分類選單、SEO、雙模式動態、圖片容量與工程師交接的操作提醒見 [切版共同檢查](使用教學.html#frontend-checklist)；轉換接續見 [Miffy-EVO 轉換](使用教學.html#evo-transfer)。詳細條文由獨立 Lin-EVO／Miffy-EVO 維護。
