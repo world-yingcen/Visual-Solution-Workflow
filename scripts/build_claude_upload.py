@@ -13,7 +13,7 @@ import zipfile
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
-NAME = 'visual-solution-cloud'
+NAME = 'Visual-Solution-Workflow'
 IGNORE = shutil.ignore_patterns('.DS_Store', '__pycache__', '*.pyc', '.git', 'agents')
 
 
@@ -117,11 +117,13 @@ def prepare(package):
         p.write_text(text)
 
     (package / 'SKILL.md').write_text('''---
-name: visual-solution-cloud
+name: Visual-Solution-Workflow
 description: 在 Claude 網頁／App 依品牌資料規劃與製作整體視覺網站，專注品牌、視覺、動態提案與確認流程，切版與動畫技術使用另外啟用的 LIN／GSAP Skills；適用提案、製作及續作。
 ---
 
-# 整體視覺網站｜Claude 網頁／App 上傳版
+# Visual-Solution-Workflow
+
+整體視覺網站流程｜Claude 網頁／App 上傳版
 
 以繁體中文與台灣用語協作。先讀 [整體視覺主流程](resources/workflow/GUIDE.md)，
 切版／修改／校稿依使用者另外啟用的 LIN；動畫技術按需使用獨立 GSAP Skills。
