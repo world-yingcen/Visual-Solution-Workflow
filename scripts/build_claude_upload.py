@@ -47,18 +47,14 @@ def prepare(package):
     text = between(text, '每次開始新一輪工作', '遇到 PDF 時',
                    '此為 Claude 網頁／App 上傳快照。每輪先重讀本包規範與已提供的案件進度；'
                    '不執行本機 install.py、Plugin 安裝或套件來源 Git 更新。'
-                   '原始來源維護仍用 Git，更新上傳版須重新打包並上傳。')
+                   '原始來源維護仍用 Git，更新上傳版須重新打包並上傳。'
+                   '這不免除案件工作前的 Git 檢查：有實際案件 Git 工具時依工作前規則 fetch 與核對版本；'
+                   '缺工具則說明限制並詢問是否需要帶著操作，不把快照當遠端最新版。'
+                   '已轉 EVO 停用的原靜態 Git 不再更新或推送。')
     text = text.replace('使用本執行端的 Lin-EVO 更新並重讀共用規範',
                         '使用本次已啟用的獨立 Lin-EVO Skill 與本輪對應參考')
-    text = between(text, '## 建議分工', '## 確認與持續推進',
-                   '## 網頁／App 執行分工\n\n'
-                   '由目前 Claude 依可用工具完成已授權工作。產圖先整理素材工單；'
-                   '有本次可用且已授權的產圖工具才使用，否則交付 prompt，'
-                   '請使用者產圖後提供成品。不預设可操作本機 Chrome、ChatGPT 登入分頁或 Codex。'
-                   '需要本機切版／瀏覽器實測而此環境不可執行時，產出程式與交接說明，'
-                   '標記未驗證；不要求沒有接入的跨工具派工授權。'
-                   '圖片壓縮／转檔仍由使用者自行處理，Claude 不代做。')
-    p.write_text(text.replace('預设', '預設').replace('转檔', '轉檔'))
+    # Keep the maintained Claude/manual-image division unchanged.
+    p.write_text(text)
 
     (workflow / 'references/frontend-standards.md').write_text(
         '# 共用切版規範｜使用者獨立上傳的 Lin-EVO\n\n'
@@ -71,16 +67,7 @@ def prepare(package):
         '若當次無法取得 Lin-EVO，先完成品牌／視覺／動態提案等不受影響工作，'
         '明列工程規範缺口，請使用者確認已啟用或提供規範；不虛構已讀取。\n\n'
         'workflow 的品牌方向、確認關卡與 2560×1280 桌機優先仍有效。'
-        '沒有平台資料或正式環境時記錄待驗，不要求本機安裝或 Git 更新。\n')
-
-    p = workflow / 'references/asset-production.md'
-    text = p.read_text()
-    lines = text.splitlines()
-    lines = [('- 生成素材：先寫本案素材工單與 prompt，使用本次實際可用且已授權的影像工具。'
-              '工具不可用時交付 prompt，請使用者產圖後提供成品；不假設能操作本機 Chrome '
-              '或已登入的 ChatGPT。保留來源與確認狀態，正式 Logo／產品／IP 使用客供原檔。')
-             if line.startswith('- 生成素材：') else line for line in lines]
-    p.write_text('\n'.join(lines) + '\n')
+        '沒有平台資料或正式環境時記錄待驗，不要求本機安裝或 Skill 來源 Git 更新。\n')
 
     (workflow / 'references/gsap-skills.md').write_text(
         '# GSAP｜使用者分別上傳的技術 Skills\n\n'
@@ -102,6 +89,8 @@ def prepare(package):
     # Embedded guides are resources, not additional independently installed Skills.
     for p in package.rglob('*.md'):
         text = p.read_text()
+        text = text.replace('先讀同套件的 [Eagle 工具規則](../../eagle/SKILL.md)',
+                            '先讀本次已啟用的 Eagle Skill／工具文件（本包不內附，不能猜另一包路徑）')
         text = text.replace('../visual-solution-immersive-director/', '../workflow/')
         text = re.sub(r'(\]\([^\n)]*/)(SKILL\.md)([)#])', r'\1GUIDE.md\3', text)
         # Repair inherited references/foo.md links only when foo exists beside the guide.
@@ -136,22 +125,25 @@ resources 內的 GUIDE.md 都是本包參考，不是需要另外安裝的 Skill
 
 - 這是來源版本快照，不能自動連到使用者本機 Git 或追蹤 GitHub 最新版。
   每輪重讀本包與案件進度；更新規則需由維護者重新打包、由使用者重新上傳。
-  不執行 install.py、Plugin 安裝、本機清理或外部部署。
+  不執行快照中的本機安裝器、Plugin 更新或本機清理；案件 Git 與後台操作另依實際工具及本次授權。
 - 只讀對話已提供或工具已授權可存取的檔案。不能直接讀使用者的 /Users 路徑、
   Google Drive 同步資料夾、公司內網或 localhost。需要來源時請使用者提供相關
   HTML／CSS／JS、文字或重點截圖；連結能否存取以本次工具結果為準。
 - 本包只內附 workflow 流程參考，不內附 Lin-EVO、GSAP、Eagle 或系統搜尋 CSS。
   工程規範使用另外啟用的 Lin-EVO，動畫技術使用獨立 GSAP Skills。
   沒有本案後台、evomni-page-composer 或客戶素材，不能編造平台 API／資料綁定。
-- Chrome、Eagle、Codex 派工與影像工具只在本次確實可用並已授權時操作。
-  不可用時完成不依賴工具的部分並列缺口，不要求先安裝全部工具才開始。
+- 案件全程使用 Claude App；素材由 Claude 提供 prompt，使用者至 ChatGPT 產圖，
+  下載後放入本案 image/，自行處理 WebP 與容量，再由 Lin 更新引用並檢查。
+  不自動派工 Codex 或操作 ChatGPT 產圖；Eagle／瀏覽器僅在可用且授權範圍內查看參考。
 - 使用者已授權本機缺少本輪相關 Skill 時，從已確認來源直接安裝，
   不逐次請示、不覆蓋同名衝突或本機修改；但沒有本機安裝工具的網頁／App
   不能假裝已安裝，改用已啟用 Skill 或提供明確上傳方式。
   此授權不涵蓋應用程式、JS 套件、工程工具庫與系統權限變更。
 - 有程式執行能力才處理已提供的工程；有瀏覽器才實看、實測。
   缺能力時提供可下載成果與驗收步驟，明列未驗證，不宣稱已測通過。
-  預設第一階段 2560×1280 桌機，RWD 待使用者另行要求。
+  預設第一階段 2560×1280 桌機；已依操作手冊指定桌機後做 RWD 時，確認後直接接續。
+- 尚未轉 EVO 的 Git 切版案件，換電腦前先確認範圍與是否需帶操，完成 commit 並 push；
+  另一台取得同一版本後先讀交接。已轉 EVO 的案件改至後台，原靜態 Git 不再修改或 push。
 - 單一 PDF 超過 10 MB 一律不讀，請提供重點截圖或 .md；未超過上限先問
   現在讀或用到再讀。圖片容量與格式要檢查，轉檔／壓縮由使用者自行處理。
 - 工程、SEO、系統公版功能、雙模式動態與工程師交接細則由獨立 Lin-EVO 維護；
@@ -194,7 +186,7 @@ def build(output):
                      for p in sorted(package.rglob('*')) if p.is_file()}
         (package / 'SOURCE.json').write_text(json.dumps(
             {'built_at': datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),
-             'sources': sources, 'external_skills': ['Lin-EVO', 'gsap-*'], 'files': checksums}, ensure_ascii=False, indent=2) + '\n')
+             'sources': sources, 'external_skills': ['Lin-EVO', 'Miffy-EVO', 'gsap-*'], 'files': checksums}, ensure_ascii=False, indent=2) + '\n')
         with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
             for p in sorted(package.rglob('*')):
                 if p.is_file():

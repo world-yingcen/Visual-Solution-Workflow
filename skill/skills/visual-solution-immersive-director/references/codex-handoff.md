@@ -1,8 +1,8 @@
-# Codex Implementation Handoff
+# Claude App Implementation Brief
 
 ## Purpose
 
-Turn the current approved scope into an execution brief. Before the core slice, only its design and behavior need implementation detail. In Codex, execute this brief directly with available tools; do not stop at writing a prompt or ask the user to relay it. Preserve an existing authorized automatic agent pipeline when present.
+Turn the current approved scope into an execution brief within the same Claude App case. Before the core slice, only its design and behavior need implementation detail. After the user approves the core slice, use Lin-EVO for the full homepage and subsequent authorized implementation. Do not delegate to Codex or ask the user to relay instructions between AI tools. Execute with available, authorized tools and report capability gaps honestly.
 
 Separate two categories clearly:
 - **Approved design/fidelity decisions**: preserve them.
@@ -77,7 +77,7 @@ Provide:
 - required package versions only when material,
 - preprocessing requirements,
 - fallback rules,
-- generated assets by path: by default images are produced before the handoff (Claude drives ChatGPT web, the user downloads the results), so the brief references finished files. Include asset work orders only when the case explicitly authorizes the coding agent to generate images: for each image, purpose, subject placement, text safe area, perspective, light direction, material, ratio, output size/format and target path. Canonical logo, product, character and IP files are supplied, never generated.
+- generated assets by path: Claude writes the Prompt; the user manually generates images in ChatGPT and downloads them to the specified `image/` folder. Reference only finished files actually received and inspected; list missing assets separately. Each work order records purpose, subject placement, text safe area, perspective, light direction, material, ratio, output size/format and full target path. Image conversion and compression remain manual user tasks. Canonical logo, product, character and IP files are supplied, never generated.
 
 ### 8. Layer Stack / Pointer Ownership
 Repeat the approved layer map in compact form.

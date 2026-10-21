@@ -349,7 +349,7 @@ Examples:
 - explicit no-placeholder/no-substitution rules,
 - repository constraints.
 
-This section should make hidden assumptions explicit before Codex starts coding.
+This section should make hidden assumptions explicit before implementation starts.
 
 ## 16. Acceptance Criteria
 

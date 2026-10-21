@@ -1,4 +1,8 @@
-# 安裝整體視覺主 Skill
+# 維護者｜Skill 設定與安裝
+
+設計師教學以已完成設定的 Claude 帳號或團隊空間為前提，不要求同事下載 Skill 包或逐案安裝。以下為維護者保留的設定、打包及本機維護說明。
+
+若同事使用不同帳號，需完成分享或組織配置，並確認對方已可使用；只上傳到維護者個人帳號不會自動對所有人開放。可依 [Claude 官方 Skill 說明](https://support.claude.com/en/articles/12512180-use-skills-in-claude)設定。
 
 現行製作流程只有 `visual-solution-immersive-director` 一個主 Skill。`eagle` 與 `eagle-visual-solution-curator` 是團隊共用的資源庫工具，會一起安裝，但不是網站製作角色。
 
@@ -51,7 +55,23 @@ python3 install.py --target ~/.codex/skills
 
 ## Lin-EVO 共用規範（必要依賴）
 
-切版／校稿另需安裝 [lin-skill](https://github.com/world-yingcen/lin-skill) 的完整 Lin-EVO。此套件／Plugin 不再內含工程條文副本，也不會自動安裝 Lin-EVO。請 clone 獨立 repo，依其 README 安裝；每次使用由 Lin-EVO 執行安全更新與重讀。缺少或更新失敗必須回報，不能宣稱已最新。方案設計流程與 RWD 範圍不變。
+切版／校稿及 EVO 轉換另需安裝 [lin-skill](https://github.com/world-yingcen/lin-skill) 的 Lin-EVO＋Miffy-EVO。此整體視覺套件／Plugin 不內含工程條文副本；請 clone 獨立 repo，依其 README 安裝兩個 Skill，並核對 `Miffy-EVO/evomni-html/` 的 VERSION、規範、範例與檢查器。Lin／Miffy 共用同一份工程師套件；工程師套件由人工更新，不以 Git 更新成功推定其為工程師最新版。缺少或更新失敗必須回報。方案設計流程與 RWD 範圍不變。
+
+## Claude 網頁／App：Lin-EVO＋Miffy-EVO 整合包
+
+維護者可使用 repo 根目錄的 `dist/claude-upload/Lin-EVO-Miffy-EVO-20261022.zip`，來自獨立 lin-skill 的同一份來源，含工程師 `evomni-html 1.1.0`。啟用後可用「使用 Lin-EVO」或「使用 Miffy-EVO」分流；停用舊版獨立 Lin／Miffy 上傳包。整體視覺流程另啟用 `dist/claude-upload/Visual-Solution-Workflow-20261022.zip`。這兩包包含工作前 Git 檢查、換電腦前 commit／push 與已轉 EVO 後停用原 Git 的最新規則。
+
+本機 Codex／Claude Code 安裝與 Claude App 雲端上傳是不同位置。安裝器同步成功，不代表雲端 Skill 已更新；需在 Claude App 重新上傳這兩包、啟用新版並停用舊版，於新對話確認能讀取新版規則。
+
+維護者核對獨立來源後，在本 repo 根目錄執行（替換實際來源與日期）：
+
+```bash
+python3 scripts/build_evo_upload.py --source /你的本機路徑/lin-skill --output dist/claude-upload/Lin-EVO-Miffy-EVO-YYYYMMDD.zip
+```
+
+打包器只讀來源；將 Lin／Miffy 入口轉為包內指南，保留工程師套件原檔，核對參考連結、套件逐檔一致及 ZIP 完整性，並將來源 commit、版本與雜湊寫入 SOURCE.json。不覆蓋既有包，不安裝或推送。這是 Skill 上傳包，不是客戶網站匯入 ZIP。
+
+工程師提供新版時先依 Miffy 規範人工更新來源，再重建整合包並更新受管理帳號或組織的 Skill 設定。打包檢查不代表已通過 Claude 實際上傳或案件後台驗收。網頁／App 沒有本機檔案或內網存取能力時，需提供案件檔案；無法執行檢查器時依清單檢核後交後台預檢，不能偽造檢查報告。
 
 ## Claude 網頁／App：專用上傳 ZIP
 
