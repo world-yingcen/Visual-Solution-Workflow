@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="設計師操作手冊：案件準備、Claude 與 Codex 分工、產圖、視覺與動態確認、首頁與內頁、客戶校稿，以及靜態網站交付。">
-  <title>方案產業AI化_操作手冊｜完整流程</title>
+  <meta name="description" content="設計師操作手冊：案件準備、Claude App 操作、產圖、視覺與動態確認、首頁與內頁、客戶校稿，以及 EVO 轉換、匯入與驗證。">
+  <title>方案產業AI化_操作手冊｜layout 第一次製作完整流程</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap">
@@ -92,102 +92,82 @@
 
   <main id="top">
     <section class="intro">
-      <h1><span class="title-accent">跟著步驟完成網站</span><br>從準備到靜態網站交付</h1>
+      <h1><span class="title-accent">layout 第一次製作</span><br>完整流程</h1>
       <p class="intro-description">你負責準備資料、確認方向、看預覽與給回饋；AI 負責整理、設計、製作與檢查。<br>依目前階段貼對應指令，把括號內容換成本案資訊，不必一次貼完全部步驟。</p>
     </section>
     <nav class="toc" aria-label="教學章節">
       <ol>
-        <li><a href="index.html">← 教學入口</a></li>
-        <li><a href="快速索引.html">← 情境索引</a></li>
-        <li><a href="#skill-environment">環境與 Skill</a></li><li><a href="#setup">本機首次設定</a></li>
-        <li><a href="#prepare">1 資料準備</a></li>
+        <li><a href="#skill-environment">Skill 分工</a></li><li><a href="#setup">登入與確認</a></li>
+        <li><a href="#prepare">1 整理檔案</a></li>
         <li><a href="#start">2 開始案件</a></li>
-        <li><a href="#assets">素材與產圖</a></li>
-        <li><a href="#direction">3 方向</a></li>
-        <li><a href="#visual">4 視覺</a></li>
-        <li><a href="#motion">5 動態</a></li>
-        <li><a href="#try">6 核心片段</a></li>
-        <li><a href="#homepage">7 完整首頁</a></li>
-        <li><a href="#inner">8 內頁</a></li>
-        <li><a href="#frontend-checklist">切版共同檢查</a></li><li><a href="#mobile">9 平板手機</a></li>
-        <li><a href="#client">10 客戶校稿</a></li>
-        <li><a href="#revisions">11 修改資料</a></li>
-        <li><a href="#delivery">12 靜態交付</a></li>
-        <li><a href="#evo-transfer">Miffy-EVO 轉換</a></li><li><a href="#resume">接續與切換</a></li>
-        <li><a href="#troubleshooting">問題處理</a></li>
-        <li><a href="#resources">文件入口</a></li>
+        <li><a href="#direction">3 確認設計方向</a></li>
+        <li><a href="#visual">4 確認視覺提案</a></li>
+        <li><a href="#motion">5 確認動態提案</a></li>
+        <li><a href="#try">6 試玩核心片段</a></li>
+        <li><a href="#homepage">7 Lin-EVO 切版</a></li>
+        <li><a href="#mobile">8 Lin-EVO 完成 RWD</a></li>
+        <li><a href="#client">9 推送 Git 與校稿</a></li>
       </ol>
     </nav>
     <div class="panel beginner-guide">
-<section class="sec" id="skill-environment"><div class="sec-head"><h2>先選使用環境與 Skill</h2></div><p>先依使用環境選入口。Claude 網頁／App 上傳 ZIP；Claude Code／Codex 使用本機 Git 安裝。兩種環境的整體視覺入口名稱不同，Lin-EVO 與 Miffy-EVO 名稱相同。</p><ul><li>Claude 網頁／App：上傳並啟用 Visual-Solution-Workflow 與 Lin-EVO；要轉 EVO 時另啟用 Miffy-EVO。GSAP 按需分別上傳，workflow 包不內附這些 Skill。</li><li>先說「使用 Visual-Solution-Workflow，討論本案視覺與動態方向」；方向確認後說「使用 Lin-EVO，依已確認設計切版」；靜態版確認後再說「使用 Miffy-EVO，轉成 EVO 匯入成果」。</li><li>Claude Code／Codex：整體視覺入口仍為 visual-solution-immersive-director；切版用 Lin-EVO，轉換用 Miffy-EVO。由 AI 檢查已確認來源並安裝本輪缺少的相關 Skill。</li><li>本機 Git 來源每輪先安全更新；上傳的 ZIP 是快照，不會自動更新。規範更新後重新上傳，停用舊名稱／舊版本，避免同時啟用兩份。</li><li>網頁／App 請提供案件檔案或工具可存取的來源；不能假設能讀本機 /Users、Google Drive 同步資料夾、localhost、公司內網或 Eagle。缺能力時列出未驗證範圍。</li></ul><p><strong>2026-10-14 上傳包：</strong></p><ul><li><a href="https://github.com/world-yingcen/Visual-Solution-Workflow/blob/main/dist/claude-upload/Visual-Solution-Workflow-20261014-EVO.zip">Visual-Solution-Workflow</a></li><li><a href="https://github.com/world-yingcen/Visual-Solution-Workflow/blob/main/dist/claude-upload/Lin-EVO-20261014.zip">Lin-EVO</a></li><li><a href="https://github.com/world-yingcen/Visual-Solution-Workflow/blob/main/dist/claude-upload/Miffy-EVO-20261014.zip">Miffy-EVO</a></li></ul></section>
-      <section class="sec" id="setup"><div class="sec-head"><h2>第一次使用｜從沒有安裝任何工具開始</h2></div><ol class="loop setup-flow" aria-label="第一次使用的三個設定階段"><li><span class="n">01</span><strong>準備帳號</strong><p>確認公司指定工具、登入與 repo 權限。</p></li><li><span class="n">02</span><strong>安裝 Skill</strong><p>讓 AI 依來源文件設定適用規範。</p></li><li><span class="n">03</span><strong>驗證可用</strong><p>重新開啟，確認規範與檔案都能讀到。</p></li></ol>
-<p>本節適用 Claude Code／Codex 本機環境，假設你還沒安裝 AI 工具，也沒有任何 Skill。先完成下面三個階段，再開始案件；此時不需要先會寫程式，也不用先準備整套工程環境。</p>
-<h3>A｜準備帳號與使用權限</h3>
-<p>先向 維護者確認公司指定的工具、帳號與可使用權限：</p>
-<ul>
-<li><strong>Claude 帳號</strong>：需要能使用 Claude Code，之後才可操作本機檔案與製作網站。</li>
-<li><strong>ChatGPT 帳號</strong>：本案使用 Codex 或 ChatGPT 產圖時準備。</li>
-<li><strong>GitHub 帳號</strong>：把帳號名稱提供給維護者，請他加入公司私人 Skill repo 的協作者，並接受邀請。</li>
-</ul>
-<p>還沒有帳號或不確定公司用哪個方案，先請維護者協助，不必自行購買。登入與帳號授權由你本人操作。</p>
-<h3>B｜安裝 Skill 與必要工具</h3>
-<p>Skill 是 AI 的工作規則，和 AI 軟體分開安裝。所需入口如下：</p>
-<ul>
-<li><strong>整體視覺主 Skill</strong>：從品牌資料開始提案及製作整體視覺網站。</li>
-<li><strong>Lin-EVO</strong>：共用切版與校稿規範。</li><li><strong>Miffy-EVO</strong>：已確認靜態版轉成 EVO 匯入成果，需要轉換時使用。</li>
-</ul>
-<p>AI 工具已能使用後，才把下面這段貼進目前使用的本機工作。Git（取得及管理檔案的工具）與 Python（執行安裝程式的工具）由 AI 先檢查，缺少時協助準備；需要電腦管理者密碼或公司權限時找維護者處理。</p>
-<p><strong>貼給已安裝的 AI：</strong></p>
-<pre><code class="language-text">這台電腦是第一次設定，尚未安裝網站製作的 Skill。
-目前使用工具：（填 Claude Code／Codex）。
-請先檢查本機 Git、Python 與 GitHub 存取權限，協助準備必要工具。
-整體視覺來源：https://github.com/world-yingcen/Visual-Solution-Workflow
-Lin-EVO 來源：https://github.com/world-yingcen/lin-skill
-請先讀這兩份來源的安裝文件，安裝本工具需要的整體視覺主 Skill 與完整 Lin-EVO。
-來源庫放在固定本機位置，不放雲端同步資料夾；只安裝到目前工具對應的 Skills 位置。
-Claude Code 的整體視覺優先使用 Plugin；依文件採另一種方式時，同一工具不要重複安裝兩份。
-若尚無私人 repo 權限，請列出需要維護者協助的項目。
-需要登入或授權時讓我本人操作，不在對話中索取密碼。
-目前只設定工具與 Skill，不開始製作網站、不推送或部署。
-</code></pre>
-<p>Claude Code 與 Codex 都要使用的人，各自在對應工具完成一次安裝；在其中一個工具裝好，不代表另一個也能讀到。維護者的詳細操作見 <a href="INSTALL.md">安裝文件</a>。</p>
-<h3>C｜重新開啟並驗證，再開始案件</h3>
-<p>安裝完成後重新開啟目前使用的 AI 工具，開啟目前的本機工作，再貼下面這段：</p>
-<pre><code class="language-text">請確認本工具可使用 visual-solution-immersive-director 與 Lin-EVO，並重新讀取規範。
-請回報實際安裝位置、使用版本與缺少的項目，確認能讀取目前本機資料夾。
-先不要開始製作網站。安裝或更新未完成的部分請如實標示，整理可執行的處理方式。
-</code></pre>
-<p class="note"><strong>做到這裡再往下：</strong> AI 已讀到本案所需的 Skill，也能讀取本機資料夾。若失敗，把錯誤畫面與回覆交給維護者；完成後再開啟真正的案件資料夾，進入第 1 步。</p>
-<h3>需要 ChatGPT 產圖時，再設定 Chrome</h3>
-<p>依本案選定的產圖方式準備。採用「Claude 操作 ChatGPT 網頁、你下載成品」時：先從 <a href="https://www.google.com/chrome/">Chrome 官方下載頁</a>安裝瀏覽器，再依 <a href="https://code.claude.com/docs/en/chrome">Claude in Chrome 官方設定說明</a>安裝與連接擴充功能，並由你本人在 Chrome 登入 ChatGPT。連接後請 Claude 確認能讀取指定分頁；此時只驗證連線，不產圖。</p>
-<p>若本案使用其他影像工具，依指定方式設定並記入進度，不必為此額外啟用 Chrome 產圖管道。Eagle 與網站編譯工具則在需要的製作階段再核對，不要求第一次就全部安裝。</p>
+<section class="sec" id="skill-environment">
+<div class="sec-head"><h2>直接使用已設定好的 Skill</h2></div>
+<p class="note"><strong>不需要自行下載、上傳或重複安裝 Skill。</strong></p>
+<p>本手冊一律使用 Claude App。Skill 由維護者事先在 Claude 網頁版統一設定與更新；使用已完成設定的帳號或團隊空間，直接依工作階段貼指令即可。</p>
+<ul><li>Visual-Solution-Workflow：整理品牌資料、確認視覺與動態方向，推進整體網站製作流程。</li>
+<li>Lin-EVO：依確認設計切版、修改與校稿。</li>
+<li>Miffy-EVO：將已確認的靜態網站轉成 EVO 匯入成果，檢查、打包並協助後台驗證。</li></ul>
+<p>找不到 Skill 時，請維護者確認目前帳號或團隊空間的使用權限，不必自行尋找安裝包。不同帳號須先完成分享或組織配置，不能把維護者個人帳號的安裝視為所有同事都已可用。</p>
+<p>Skill 是工作規則，不等於取得檔案或後台權限。請提供案件檔案或 Claude App 已獲授權的可讀取來源；只貼本機路徑不代表能讀取。實際匯入與驗證仍需目標站台及操作權限。</p>
 </section>
-      <section class="sec" id="prepare"><div class="sec-head"><h2>第 1 步｜準備並開啟案件資料夾</h2></div><ol class="loop folder-prep-flow" aria-label="案件資料夾準備的三個步驟"><li><span class="n">01</span><strong>放到自己的 Google Drive</strong><p>複製專案提供的檔案，不在共用區執行。</p></li><li><span class="n">02</span><strong>確認 PDF 讀取方式</strong><p>先詢問要現在先讀，還是用到再讀。</p></li><li><span class="n">03</span><strong>請 Skill 整理資料夾</strong><p>盤點、分類，說明工作入口與資料缺口。</p></li></ol>
-<p>每輪開始工作前，AI 會先檢查 Skill 來源與案件工作資料夾是否由 Git 管理；有 Git 就先安全更新，再讀規範與進度。連結安裝不必重新複製。若有未提交修改、版本分歧或無法連線，會保留檔案、說明未完成更新，再繼續不受影響的工作。</p>
+      <section class="sec" id="setup">
+<div class="sec-head"><h2>第一次使用｜登入並確認可用</h2></div>
+<ol class="loop setup-flow" aria-label="開始使用的三個步驟"><li><span class="n">01</span><strong>登入 Claude</strong><p>進入已設定好的帳號或團隊空間。</p></li><li><span class="n">02</span><strong>確認可用</strong><p>請 Claude 讀取規範並回報缺項。</p></li><li><span class="n">03</span><strong>提供案件資料</strong><p>依目前階段直接開始工作。</p></li></ol>
+<p>Skill 已由維護者負責設定。你只需登入指定帳號或團隊空間、確認規範可用，再提供案件資料；之後沿用設定，不必每次重新安裝。</p>
+<h3>A｜登入指定的 Claude</h3>
+<p>開啟 Claude App，登入維護者已完成設定的帳號或團隊空間。登入與授權由你本人操作；若看不到指定 Skill，將畫面交給維護者處理。</p>
+<h3>B｜確認 Skill 可用</h3>
+<p>第一次使用或設定更新後，貼上：</p>
+<pre><code class="language-text">本案一律使用 Claude App，不切換其他 AI 工具，也不另行詢問工具分工。
+Skill 由維護者統一設定；請直接讀取 Visual-Solution-Workflow、Lin-EVO 與 Miffy-EVO。
+請確認設計流程、Lin 切版與 Miffy 轉 EVO 的規範都能讀到，並核對隨附 evomni-html 的版本及檢查器。
+回報實際讀到的版本與缺少項目；不能只因我說已設定就視為可用。
+若缺少 Skill，列出需由維護者處理的項目，不要求我下載或安裝。
+目前只確認 Skill，不開始製作網站、不推送或部署。
+</code></pre>
+<h3>C｜提供案件資料，開始工作</h3>
+<p>確認可用後，依第 1 步提供案件檔案與既有進度。之後接續原對話即可；開新對話時提供最新進度，不必重做 Skill 設定。</p>
+<p><strong>做到這裡再往下：</strong> Claude 已讀到本案所需規範。若有缺少項目，先交由維護者處理；可用後直接開始案件。</p>
+<h3>需要產圖時再準備</h3>
+<p>由 Claude 先整理圖片用途、構圖、比例與產圖提示詞（Prompt）。你再將提示詞貼到 ChatGPT 產圖，確認成品後，依指定檔名下載至本案的 <code>image/</code> 資料夾，供後續切版使用；完整存放位置由 Claude 說明。</p>
+</section>
+      <section class="sec" id="prepare"><div class="sec-head"><h2>第 1 步｜連結、整理檔案</h2></div><ol class="loop folder-prep-flow" aria-label="案件資料夾準備的三個步驟"><li><span class="n">01</span><strong>放到自己的 Google Drive</strong><p>複製專案提供的檔案，不在共用區執行。</p></li><li><span class="n">02</span><strong>確認 PDF 讀取方式</strong><p>先詢問要現在先讀，還是用到再讀。</p></li><li><span class="n">03</span><strong>請 Skill 整理資料夾</strong><p>盤點、分類，說明工作入口與資料缺口。</p></li></ol>
+<p>每輪開始前，請提供最新案件檔案與進度，讓 Claude 核對目前版本再接續。Skill 設定與版本由維護者統一維護，不需要每輪重新安裝。</p>
 <h3>A｜將專案檔案放到自己的 Google Drive</h3>
 <p>請將專案提供給你的檔案，複製到<strong>自己的 Google Drive 案件資料夾</strong>，請勿直接在共用區執行。</p>
-<p>使用電腦上可存取的 Google Drive 同步資料夾，等檔案同步完成後，再用 AI 工具開啟這份案件資料夾。</p>
 <h3>B｜確認 PDF 讀取方式</h3>
+<p class="note"><strong>PDF 以「能不讀就不讀，必要時才讀」為原則。</strong> 整份讀取可能消耗大量 token，尤其是頁數多、圖文複雜的文件。若能用重點文字、指定頁面的截圖或既有整理資料說明，就不必讀取整份 PDF；確實需要時，也只讀與本次工作相關的頁面，避免重複讀取。</p>
 <p>PDF 可以保留。Skill 會先列出案件資料夾及子資料夾中的 PDF 並檢查大小，未超過 10 MB 才在讀取內容前詢問：「這些 PDF 需要讓 AI 現在先讀嗎？還是有要用到再讀？」</p>
 <p><strong>單一 PDF 超過 10 MB（10,000,000 bytes），AI 一律拒絕讀取，即使你要求也不例外。請直接截圖提供需要的重點，或將重點整理成 Markdown（.md）檔案提供；原檔保留並標記未讀取。</strong></p>
 <p>為避免不必要的 token 消耗，選擇用到再讀的 PDF 會先集中到 <code>04_型錄與原始素材/PDF_待用時讀取/</code>，並標記尚未讀取；後續需要時只讀相關檔案或頁面。</p>
 <h3>C｜請 Skill 整理資料夾</h3>
-<p>檔案已放到自己的 Google Drive 後，請本案適用的 Skill 盤點並整理資料夾。你不需要先自行重新命名或分類。</p>
+<p>檔案備妥並提供給 Claude App 後，請 Skill 盤點、分類。沒有資料夾寫入工具時，由 Claude 提供整理後的檔案與目錄清單，你下載保存到自己的案件資料夾，不宣稱已修改電腦上的原檔。</p>
 <p><strong>貼給 AI：</strong></p>
-<pre><code class="language-text">使用本案適用的 Skill，幫我整理案件資料夾。
-案件位置：（填自己的 Google Drive 在本機的案件資料夾完整路徑）。
-我已將專案提供的檔案放好；請勿操作共用區的原始檔案。
+<pre><code class="language-text">使用 Visual-Solution-Workflow，依整體視覺網站的案件規範，盤點並整理本案資料夾。
+請一律依標準目錄歸位，正式網站工程放在 06-切版/，進度與交接文件放在 05_待確認與交接/；搬移既有檔案時同步修正引用並驗證。
+本輪只整理案件資料、素材與既有進度，不開始設計或切版。
+
+PDF 以必要時才讀為原則，優先使用重點文字、指定頁面截圖或既有整理資料；確實需要時只讀相關頁面，避免整份或重複讀取。
 遇到 PDF 請先檢查大小，單一檔案超過 10 MB 一律拒絕讀取；未超過上限才詢問要現在先讀，還是有要用到再讀；選擇用到再讀的 PDF 請整理到獨立資料夾並標記尚未讀取。
 請先讀取資料與既有進度，再依本案規範整理資料夾、素材、文件及目前工作入口。
 保留既有網站的資源引用與已確認成果，列出整理結果及缺少的資料。
-本輪先整理資料，不開始設計或切版。
 </code></pre>
-<h3>整理後的資料夾會像這樣</h3><p>需求、品牌素材、頁面資料與待確認事項分開放；先看 README.md，就能找到目前的工作入口。</p><figure class="folder-result"><ul class="tree" aria-label="整理後的案件資料夾示意"><li class="is-key"><span class="nm">案件名稱/</span><span class="ds">自己的 Google Drive 案件資料夾</span></li><li class="is-file"><span class="nm">README.md</span><span class="ds">案件說明、目前入口與預覽方式</span></li><li><span class="nm">01_專案需求與規劃/</span><span class="ds">需求、網站架構、視覺與動態提案</span></li><li><span class="nm">02_品牌素材/</span><span class="ds">Logo、CIS、字型與共用品牌素材</span></li><li><span class="nm">03_頁面製作素材/</span><span class="ds">依頁面與區塊整理文案、圖像及製作資料</span></li><li class="is-child"><span class="nm">03_01_首頁/</span><span class="ds">首頁各區塊的資料</span></li><li class="is-child"><span class="nm">03_02_關於我們/</span><span class="ds">內頁資料；依本案頁面清單延伸</span></li><li><span class="nm">04_型錄與原始素材/</span><span class="ds">客供型錄、原始圖片與影片</span></li><li class="is-child"><span class="nm">PDF_待用時讀取/</span><span class="ds">已選擇用到再讀、尚未讀取的 PDF</span></li><li><span class="nm">05_待確認與交接/</span><span class="ds">進度、待確認事項與交付資料</span></li><li class="is-child is-file"><span class="nm">experience-status.md</span><span class="ds">目前進度與確認紀錄；已有進度檔就沿用</span></li><li><span class="nm">99_歸檔/</span><span class="ds">已被取代、但需要保留的提案與試作</span></li></ul><figcaption class="fig-note">這是整理後的示意。實際資料夾依案件內容與既有工程調整；Skill 會說明整理結果，不為配合示意重建已有網站。</figcaption></figure>
+<h3>整理後的資料夾會像這樣</h3><p>需求、品牌素材、頁面資料與待確認事項分開放；先看 README.md，就能找到目前的工作入口。</p><figure class="folder-result"><ul class="tree" aria-label="整理後的案件資料夾示意"><li class="is-key"><span class="nm">案件名稱/</span><span class="ds">自己的 Google Drive 案件資料夾</span></li><li class="is-file"><span class="nm">README.md</span><span class="ds">案件說明、目前入口與預覽方式</span></li><li><span class="nm">01_專案需求與規劃/</span><span class="ds">需求、網站架構、視覺與動態提案</span></li><li><span class="nm">02_品牌素材/</span><span class="ds">Logo、CIS、字型與共用品牌素材</span></li><li><span class="nm">03_頁面製作素材/</span><span class="ds">依頁面與區塊整理文案、圖像及製作資料</span></li><li class="is-child"><span class="nm">03_01_首頁/</span><span class="ds">首頁各區塊的資料</span></li><li class="is-child"><span class="nm">03_02_關於我們/</span><span class="ds">內頁資料；依本案頁面清單延伸</span></li><li><span class="nm">04_型錄與原始素材/</span><span class="ds">客供型錄、原始圖片與影片</span></li><li class="is-child"><span class="nm">PDF_待用時讀取/</span><span class="ds">已選擇用到再讀、尚未讀取的 PDF</span></li><li><span class="nm">05_待確認與交接/</span><span class="ds">進度、待確認事項與交付資料</span></li><li class="is-child is-file"><span class="nm">experience-status.md</span><span class="ds">目前進度與確認紀錄；已有進度檔就沿用</span></li><li class="is-child is-file"><span class="nm">工程師交接說明.md</span><span class="ds">切版後建立並持續更新的唯一交接文件</span></li><li><span class="nm">06-切版/</span><span class="ds">正式網站程式與使用素材；第 7 步開始使用</span></li><li><span class="nm">99_歸檔/</span><span class="ds">已被取代、但需要保留的提案與試作</span></li></ul><figcaption class="fig-note">整理案件時一律依這份標準目錄歸位，新案件與既有案件都適用。06-切版/ 統一存放正式網站工程，第 7 步開始使用；先建立資料夾不代表已完成切版。搬移既有檔案時須同步修正資源引用與預覽路徑，並更新 README.md 的實際入口。</figcaption></figure>
 <p class="note"><strong>做到這裡再往下：</strong> 檔案位於自己的 Google Drive 案件資料夾，PDF 的讀取方式與暫存位置已確認，Skill 已完成整理並說明資料位置與缺口。</p>
 </section>
       <section class="sec" id="start">
         <div class="sec-head">
-          <h2>第 2 步｜開始案件並確認工具分工</h2>
+          <h2>第 2 步｜在 Claude App 開始案件</h2>
         </div>
         <div class="sub">
           <h3 class="sub-title">參考用途：三種不同做法</h3>
@@ -287,39 +267,23 @@ Claude Code 的整體視覺優先使用 Plugin；依文件採另一種方式時�
             </article>
           </div>
         </div>
-        <p>預設建議由 Claude 主導設計與每輪驗收；核心片段確認、整頁規格與素材齊全後，可由已授權的 Codex 執行完整首頁、內頁與細修。這是建議分工；若你只使用一個工具，直接告訴 AI，由目前可用工具推進並說明能力缺口。</p>
-        <p>同案授權記入進度，之後沿用。需要切換工具時，先請目前的 AI 記錄確認內容與下一步，再讓接手工具讀取，不必自己搬運整段對話。</p>
         <p>參考用途請選清楚：<strong>忠實重建</strong>是沿用約定的版面及動態；<strong>指定特徵轉譯</strong>是保留喜歡的特徵、重新設計；<strong>原創方向</strong>是以本案品牌發想，參考只校準品質。</p>
         <p><strong>貼給 AI：</strong></p>
-        <pre><code class="language-text">使用 visual-solution-immersive-director，開始這個案件。
-案件資料夾：（填完整路徑）
-客戶／品牌：（填名稱）
+        <pre><code class="language-text">使用 Visual-Solution-Workflow，接續已整理好的案件資料，開始本案。
+
+請先讀取案件資料與既有進度，整理品牌、網站需求、素材及缺少的資料；已有資訊不重複詢問。
+
 設計稿與參考：（填連結或位置，沒有就寫沒有）
 參考用途：（忠實重建／指定特徵轉譯／原創方向）
 想保留的參考特徵：（填具體區塊或效果，沒有就寫沒有）
-工程師範本資料：（填位置，未取得就寫尚未取得）
-Codex 執行已定規格：（授權／本案不使用）
-產圖方式：（預設 Claude 操作 ChatGPT 網頁、我下載成品／填其他指定方式）
-先做 2560×1280 桌機首頁；桌機內部確認後直接完成 RWD，再交客戶校稿。
-請依方向、視覺、動態、核心片段、完整首頁的順序讓我確認。
-請讀既有進度，將本案範圍、工具授權與產圖方式記錄下來。
+
+需要產圖時，由你提供提示詞（Prompt）、檔名與 image/ 資料夾的完整位置，我貼到 ChatGPT 產圖，確認後下載至該資料夾。
+
+先做 2560×1280 桌機首頁，依方向、視覺、動態、核心片段、完整首頁的順序讓我確認。
+桌機內部確認後接續 RWD，完成檢查再交客戶校稿。
+
+請將本案範圍、確認結果與下一步記入進度；已有確認內容直接沿用，不重新開始。
 </code></pre>
-        <p class="note"><strong>做到這裡再往下：</strong> AI 說明本案流程、工具分工與缺少資料。</p>
-      </section>
-      <section class="sec" id="assets">
-        <div class="sec-head">
-          <h2>素材與產圖｜需要時在這裡配合</h2>
-        </div>
-        <p>AI 應先盤點客供素材，再提出缺少圖片的用途與構圖。正式 Logo、產品、角色及 IP 使用客供原檔，不用生成近似版。</p>
-        <p>預設產圖由 Claude 透過 Claude in Chrome 操作你已登入 ChatGPT 的 Chrome 網頁；你再下載成品到指定位置。先請維護者確認擴充功能與登入狀態。若無此工具或本案指定其他產圖方式，讓 AI 記錄替代方式及需要你配合的步驟。</p>
-        <p>每張圖先確認用途、主體位置、文字留白、比例與檔名。下載時照指定檔名存到案件素材資料夾，再告訴 AI 已放好；AI 實看並提出需要調整的地方；轉檔／壓縮由你自行處理，提供完成檔後再置入。不要只貼預覽縮圖當正式成品。</p>
-        <p><strong>貼給 AI：</strong></p>
-        <pre><code class="language-text">請先列出本輪需要的圖片，以及可以沿用的客供素材。
-缺圖請給我可以看的構圖建議，說明用途、比例、文字留白、檔名與存放位置。
-依本案已記錄的產圖方式執行，需要我下載時逐張告訴我。
-成品放好後請實看，檢查是否適合版面；列出需要我自行轉檔／壓縮的項目，提供完成檔後再置入。
-</code></pre>
-        <p class="note"><strong>做到這裡再往下：</strong> 圖片用途與風格符合方向；正式素材、生成素材與暫代圖已區分，檔案能在案件資料夾找到。</p>
       </section>
       <section class="sec" id="direction">
         <div class="sec-head">
@@ -372,7 +336,8 @@ Codex 執行已定規格：（授權／本案不使用）
             </li>
           </ol>
         </div>
-        <p>原創案件由 AI 提出 2–3 個概念不同的方向，說明適合的原因與推薦。看它是否符合品牌、客群與網站目的；忠實重建則先確認保留與可替換範圍，沿用約定參考。</p>
+        <p>確認設計方向前，Claude 必須先實際查看並分析你提供的參考網站、截圖或影片；沒有可用參考時，就透過 Eagle 查找與查看，可使用已連接的 Eagle 工具或已授權的螢幕操作。兩種方式擇一完成即可，不要求一定連接 Eagle。若都沒有可分析的參考，先補資料或完成工具設定，再往下進行。</p>
+        <p>原創案件由 AI 提出 2–3 個概念不同的方向，說明適合的原因與推薦。看它是否符合品牌、客群與網站目的；忠實重建則先確認保留與可替換範圍，沿用約定參考。看過參考不等於方向已確認，仍須由你確認設計方向。</p>
         <p><strong>貼給 AI：</strong></p>
         <pre><code class="language-text">我選擇方向：（填名稱）。
 想保留：（填喜歡的部分）。
@@ -386,6 +351,7 @@ Codex 執行已定規格：（授權／本案不使用）
           <h2>第 4 步｜確認視覺提案</h2>
         </div>
         <p>看實際構圖、色彩比例、字體、圖示、背景圖騰、形象圖片與功能圖解，以及它們怎麼用在主要區塊。AI 應提供可觀看的畫面，不能只有風格形容詞或色碼清單。</p>
+        <p>視覺提案時，Claude 會盤點客供素材並列出缺圖。需要產圖時，先確認用途與構圖，再由 Claude 提供 Prompt、檔名與 <code>image/</code> 資料夾的完整位置，你貼到 ChatGPT 產圖，確認後下載至該資料夾。正式 Logo、產品、角色及 IP 沿用客供原檔。</p>
         <p>確認基準是 <strong>2560×1280 的瀏覽器內容區域</strong>。你的螢幕較小時，請 AI 提供該尺寸截圖或對應預覽，自己再看可操作版本；縮小截圖不代表已驗證小螢幕版。</p>
         <aside class="tutorial-example" id="ocean-visual-example" aria-label="歐群生醫視覺提案案例"><h3>視覺提案案例｜Ocean Medi 歐群生醫</h3><p>這份提案示範如何把品牌依據、色彩比例、字體、圖示、照片與關鍵構圖放在同一份文件中確認。閱讀時看三件事：品牌資料如何影響設計、視覺元素如何一起使用，以及哪些是正式素材、哪些仍待確認。</p><a class="example-preview" href="Ocean-Medi-歐群生醫/視覺提案-v1.html" target="_blank" rel="noopener"><img src="examples/ocean-medi/visual-proposal.png" alt="歐群生醫視覺提案預覽" width="2560" height="1280" loading="lazy"></a><a class="example-link" href="Ocean-Medi-歐群生醫/視覺提案-v1.html" target="_blank" rel="noopener">開啟完整視覺提案案例</a><p class="example-note">這是歷史桌機提案的展示案例；本案品牌方向與製作順序仍依自己的案件及目前手冊執行。</p></aside>
         <aside class="tutorial-example" id="ichia-visual-example" aria-label="毅嘉科技視覺提案案例">
@@ -393,14 +359,7 @@ Codex 執行已定規格：（授權／本案不使用）
           <p>這份提案示範如何把「從零件到模組」的品牌概念，轉成層疊產品構圖、企業藍、編輯式留白與全頁關鍵畫面。下圖是首頁構圖；開啟完整提案可查看色彩、字體、圖形、影像處理，以及待確認項目。</p>
           <a class="example-preview" href="Ichia-毅嘉科技/視覺提案-v1.html" target="_blank" rel="noopener"><img src="examples/ichia/visual-proposal.png" alt="毅嘉科技首頁視覺構圖：企業藍、留白與層疊模組" width="2560" height="1280" loading="lazy"></a>
           <a class="example-link" href="Ichia-毅嘉科技/視覺提案-v1.html" target="_blank" rel="noopener">開啟完整視覺提案案例</a>
-          <p class="example-note">這是歷史桌機提案的展示案例；自己的案件仍依本案品牌方向與目前手冊執行。</p>
         </aside>
-<p><strong>貼給 AI：</strong></p>
-        <pre><code class="language-text">請提供本輪視覺提案與 2560×1280 關鍵構圖。
-請說明我需要確認的字體、色彩、圖片、圖形與內容順序，以及暫代素材。
-我會先確認靜態視覺；動畫方式在下一步另外確認。
-</code></pre>
-        <p class="note"><strong>做到這裡再往下：</strong> 主要畫面符合方向，再回覆「本輪視覺提案確認，請準備動態提案」。需要修改就指出頁面、區塊與位置。</p>
       </section>
       <section class="sec" id="motion">
         <div class="sec-head">
@@ -419,234 +378,132 @@ Codex 執行已定規格：（授權／本案不使用）
           <a class="example-link" href="Ichia-毅嘉科技/動態腳本-v1.html" target="_blank" rel="noopener">開啟完整動態分鏡案例</a>
           <p class="example-note">這是分鏡構圖示範，原腳本尚未實作動畫；實際速度與捲動手感需在核心片段試做時確認。</p>
         </aside>
-<p><strong>貼給 AI：</strong></p>
-        <pre><code class="language-text">請依確認的視覺準備動態分鏡。
-用白話說明每個主要區塊的開始、過程、結束，以及相鄰區塊怎麼銜接。
-請包含往回捲的行為、文字閱讀時間、按鈕操作，以及減少動態時的呈現。
-讓我先確認做法，再開始核心片段試做。
-</code></pre>
         <p class="note"><strong>做到這裡再往下：</strong> 你理解並同意動態做法，再回覆「這版動態提案確認，請試做核心片段」。此時尚未確認實際動畫成品。</p>
       </section>
       <section class="sec" id="try">
         <div class="sec-head">
           <h2>第 6 步｜試玩核心片段</h2>
         </div>
+        <p>核心片段仍由 <strong>Visual-Solution-Workflow</strong> 試做與調整，讓你確認實際構圖與動態。確認通過後，才呼叫 Lin-EVO 接續完整網站切版。</p>
         <p>AI 做出最能驗證構圖與動態的片段，提供可操作預覽。自己試正反向捲動、快速捲動、點擊與重新載入，確認速度、閱讀與操作符合預期。</p>
-        <p><strong>貼給 AI：</strong></p>
-        <pre><code class="language-text">請完成核心片段並在 2560×1280 自行檢查。
-開啟可操作預覽，告訴我要怎麼試、這次包含哪些區塊，以及尚未完成的部分。
-</code></pre>
-        <p class="note"><strong>做到這裡再往下：</strong> 片段符合預期，再回覆「這版核心片段確認，請記錄規格並延伸完整桌機首頁」。片段通過只代表該範圍通過。</p>
+        <p class="note"><strong>做到這裡再往下：</strong> 片段符合預期，再回覆「這版核心片段確認，請記錄確認版本、動態規格與素材位置，接著使用 Lin-EVO 延伸完整桌機首頁」。片段通過只代表該範圍通過。</p>
       </section>
       <section class="sec" id="homepage">
         <div class="sec-head">
-          <h2>第 7 步｜確認完整桌機首頁</h2>
+          <h2>第 7 步｜使用 Lin-EVO 製作完整桌機首頁</h2>
         </div>
+        <p class="note"><strong>注意：若已有可用的系統範本，請直接提供連結，指出要參考的區塊，並明確告訴 Lin-EVO：「這是系統範本，請依照這個參考區塊切版。」</strong></p>
+        <p>核心片段確認後，從這一步開始使用 <strong>Lin-EVO</strong> 切版，沿用已確認的設計、動態與素材，不重新提案。後續內頁、RWD 與切版修正也使用 Lin-EVO；靜態網站確認後，再由 Miffy-EVO 進行 EVO 轉換。</p>
         <p>從頁首看到頁尾，檢查內容層級、圖片裁切、留白、全頁動態與 CTA（引導使用者採取行動的按鈕）。試選單、連結、輪播、下滑固定導覽與右下角回到頂部。</p>
-        <p>使用 Codex 分工時，由 AI 先整理全頁場景、規格及素材位置，再交接；完成後仍須實看驗收。AI 自查有缺陷應先修正，暫代文案、缺圖與未完成功能要明列。</p>
+        <p>由 Claude App 依確認的全頁場景、規格與素材製作，完成後仍須實看驗收。自查有缺陷應先修正；暫代文案、缺圖、未完成功能及無法實測的項目要明列。</p>
         <p>切版完成後，AI 會提醒你檢核專案檔案大小，並列出網站使用的非 WebP／SVG 圖片及其路徑、大小。請自行轉成適合網頁的格式後提供；Claude 不代為轉檔、壓縮或批次處理圖片，以避免額外 token 消耗。WebP／SVG 也要確認實際容量。</p>
         <p><strong>貼給 AI：</strong></p>
-        <pre><code class="language-text">請完成並自行檢查完整桌機首頁，開啟目前有效版本的預覽。
+        <pre><code class="language-text">使用 Lin-EVO，接續已確認的核心片段，完成並自行檢查完整桌機首頁，開啟目前有效版本的預覽。
 從頁首到頁尾確認構圖、圖片、文案、動畫、導覽與回到頂部。
-一起準備 Cookie 提示與可閱讀的隱私權政策頁；政策草稿請標示待客戶確認。
+一起準備 Cookie 提示與可閱讀的隱私權政策頁。
 請列出待補資料、暫代內容、未完成功能及實際測試範圍。
 切版完成後請提醒我檢核專案檔案大小，列出非 WebP／SVG 圖片的路徑與大小，由我自行轉檔；Claude 不代為處理。
 </code></pre>
-        <p class="note"><strong>做到這裡再往下：</strong> 你已實際看過整頁並操作，再回覆「首頁（填版本）的桌機畫面與動態確認」。政策內容由客戶確認；手機未做就不能記為完成。</p>
+        <h3>Lin-EVO 切版完成後，資料夾會像這樣</h3>
+        <p>正式切版一律放在案件資料夾的 <code>06-切版/</code>，與客戶資料、提案及原始素材分開。以下展開這個資料夾的內容；進度檔與工程師交接說明統一放在 05_待確認與交接/，不在切版資料夾重複建立。從案件根目錄 README.md 查閱實際首頁入口與預覽方式。</p>
+        <figure class="folder-result">
+          <ul class="tree" aria-label="Lin-EVO 首頁切版成果資料夾示意">
+            <li class="is-key"><span class="nm">06-切版/</span><span class="ds">案件資料夾內的正式切版成果</span></li>
+            <li class="is-file"><span class="nm">index.html</span><span class="ds">首頁入口</span></li>
+            <li class="is-file"><span class="nm">about.html</span><span class="ds">關於我們；後續內頁示例</span></li>
+            <li class="is-file"><span class="nm">search.html</span><span class="ds">搜尋結果頁</span></li>
+            <li class="is-file"><span class="nm">privacy.html</span><span class="ds">隱私權政策頁</span></li>
+            <li><span class="nm">scss/</span><span class="ds">樣式原始檔</span></li>
+            <li class="is-child is-file"><span class="nm">_common.scss</span><span class="ds">全站變數與共用樣式</span></li>
+            <li class="is-child is-file"><span class="nm">_header.scss</span><span class="ds">導覽樣式</span></li>
+            <li class="is-child is-file"><span class="nm">_footer.scss</span><span class="ds">頁尾樣式</span></li>
+            <li class="is-child is-file"><span class="nm">_innerpage-default.scss</span><span class="ds">內頁共用樣式</span></li>
+            <li class="is-child is-file"><span class="nm">evomni-root.scss</span><span class="ds">共用樣式編譯入口</span></li>
+            <li class="is-child is-file"><span class="nm">_index.scss</span><span class="ds">首頁樣式；存檔編譯至 css/index.css</span></li>
+            <li class="is-child is-file"><span class="nm">_about.scss</span><span class="ds">關於我們樣式；存檔編譯至 css/about.css</span></li>
+            <li><span class="nm">css/</span><span class="ds">網頁實際載入的編譯結果，不直接手改</span></li>
+            <li class="is-child is-file"><span class="nm">evomni-root.css</span><span class="ds">共用編譯結果</span></li>
+            <li class="is-child is-file"><span class="nm">index.css</span><span class="ds">首頁編譯結果</span></li>
+            <li class="is-child is-file"><span class="nm">about.css</span><span class="ds">關於我們編譯結果</span></li>
+            <li><span class="nm">js/</span><span class="ds">導覽、輪播與動態等互動程式</span></li>
+            <li class="is-child is-file"><span class="nm">header.js</span><span class="ds">選單、漢堡與語系互動</span></li>
+            <li class="is-child is-file"><span class="nm">footer.js</span><span class="ds">回頂部與全站共用初始化</span></li>
+            <li class="is-child is-file"><span class="nm">index.js</span><span class="ds">首頁專屬互動</span></li>
+            <li class="is-child is-file"><span class="nm">about.js</span><span class="ds">內頁專屬互動；有需要才建立</span></li>
+            <li><span class="nm">assets/</span><span class="ds">網站實際使用的素材</span></li>
+            <li class="is-child"><span class="nm">image/</span><span class="ds">圖片、Logo 與圖示</span></li>
+            <li class="is-child"><span class="nm">fonts/</span><span class="ds">本案使用的字型檔；有檔案時才建立</span></li>
+          </ul>
+          <figcaption class="fig-note">切版成果統一放在 <code>06-切版/</code>。檔案分工、編譯設定與資源載入由 Lin 依規範處理；需要你配合操作時，會提供具體步驟。</figcaption>
+        </figure>
       </section>
-      <section class="sec" id="inner">
-        <div class="sec-head">
-          <h2>第 8 步｜延伸內頁</h2>
-        </div>
-        <p>提供內頁清單與內容，AI 先盤點頁型，選代表頁給你確認再展開同類頁。關於我們、服務、ESG 等核心頁要有完整構圖與閱讀節奏；查閱與操作頁優先清楚穩定。</p>
-        <p>首頁與內頁共用同一套導覽、頁尾及回到頂部。客戶要自行更新的文字、圖片與清單由 AI 先盤點，只有用途不明或影響設計的部分再問你。</p>
-        <p><strong>貼給 AI：</strong></p>
-        <pre><code class="language-text">桌機首頁已確認，接著製作這些內頁：（填頁面清單）。
-資料在：（填位置）。
-請先盤點頁型、內容及平台可支援功能，選代表頁給我確認後再展開同類頁。
-沿用確認的視覺、共用導覽、頁尾與回到頂部，維持整頁設計完成度。
-需要客戶自行更新的內容請主動整理，不確定用途的再問我。
-</code></pre>
-        <p class="note"><strong>做到這裡再往下：</strong> 各頁內容正確、風格一致、有實際預覽，且可編輯需求與平台待確認項目都有記錄。</p>
-      </section>
-<section class="sec" id="frontend-checklist"><div class="sec-head"><h2>切版與校稿｜這次新增的共同檢查</h2></div><p>這裡是操作提醒；詳細工程規則由 Lin-EVO 維護，不在教學另放一份系統程式。</p><h3>頁面與 SEO</h3><p>每案有搜尋結果頁；每個完整頁面只有一個 h1，h2～h6 依內容層級排列。只有 Navi 使用 header 標籤。逐頁核對 title、描述、圖片 alt、連結及圖片尺寸；正式網址、索引與後台資料交工程師確認。</p><h3>詢問車與搜尋頁</h3><p>公版 CSS 可依案件確認需求調整，公版 HTML／JS 不改。搜尋頁未指定調整時忠實沿用參考，標題、摘要與按鈕都要核對實際樣式。</p><h3>產品頁與分類選單</h3><p>產品頁可新增 .inquiry-group，將加入詢問單放在購買按鈕群下方、商品資訊底部，保留原生綁定。分類選單沿用 left_menu001，桌機保留案件外觀，手機下拉邏輯是公版；分類文字導頁、箭頭獨立展開、顯示目前分類，清單不得被遮住。</p><h3>案件設定</h3><p>購買按鈕隱藏依頁面與實際用途判斷，包含手機版本；不誤隱藏其他功能。1199px、18px 箭頭、container-75、字級倍率及配色是案件確認值，不強制所有網站使用。案件選單差異集中在 _left-menu.scss 或既有同用途檔案，於公版 CSS 後載入。</p><h3>動態與套件</h3><p>一般模式播放確認過的動畫；減少動態模式仍完整呈現內容與操作。GSAP pin／scrub 要有正常閱讀的替代布局，不能只停動畫而留下空白或疊層。EVO 套件沿用平台版本與載入方式，不自行加 CDN；Swiper／GLightbox 用 data-vendor，Lenis 需先確認本案系統已更新開放，GSAP／AOS 由編輯器工具列開啟。</p><h3>圖片與容量</h3><p>切版後檢核專案檔案大小，AI 列出非 WebP／SVG 圖片的路徑與大小，由使用者自行轉檔／壓縮。WebP／SVG 也要看實際容量，AI 不代做圖片轉檔。</p><h3>Demo 與交接</h3><p>依使用者要求可獨立模擬加入、數量、移除及表單，不真的寄出詢問。正式接入前排除 Demo 程式及示範資料，只保留原生系統處理器；有產頁腳本就同步更新。每次切版／功能修改同步唯一的工程師交接說明.md，列已完成、待接入、未實測及公版待修項目。</p></section>
       <section class="sec" id="mobile">
         <div class="sec-head">
-          <h2>第 9 步｜完成 RWD，再交客戶校稿</h2>
+          <h2>第 8 步｜PC 看稿確認後，使用 Lin-EVO 完成 RWD</h2>
         </div>
-        <p>本手冊的製作流程包含 RWD（依不同螢幕調整版面）。桌機內部確認後直接接續平板與手機，完成檢查才交客戶校稿，不需要另外開一個工作情境。小螢幕需依內容調整排列、圖片裁切、導覽與動態，不能只把桌機整頁縮小。</p>
+        <p>PC 首頁製作完成並經看稿確認後，請 Lin-EVO 接續完成首頁 RWD。保留已確認的設計與內容，依不同螢幕調整排列、圖片裁切、導覽與動態，不是直接縮小桌機畫面。</p>
         <p><strong>貼給 AI：</strong></p>
-        <pre><code class="language-text">桌機已確認，現在請製作本案的平板與手機版本。
-範圍：（填頁面及約定尺寸，未定尺寸請先提出建議）。
+        <pre><code class="language-text">PC 首頁已完成並看稿確認，請使用 Lin-EVO 完成首頁 RWD。
+請沿用已確認的首頁版本；平板與手機尺寸尚未約定時，先提出建議。
 保留確認內容與主要操作，依小螢幕調整版面及動態。
 請提供對應預覽，讓我檢查選單、文字、圖片、按鈕及觸控操作。
 </code></pre>
-        <p class="note"><strong>做到這裡再往下：</strong> 約定頁面與尺寸已看過、操作過，文字可讀、按鈕好點、沒有內容裁切或橫向捲軸。沒有驗證的尺寸明列。</p>
       </section>
-      <section class="sec" id="client"><div class="sec-head"><h2>第 10 步｜取得外網連結與客戶校稿</h2></div><ol class="loop client-review-flow" aria-label="取得客戶校稿外網連結的五個步驟"><li><span class="n">01</span><strong>效率雲開版</strong><p>取得本案版號。</p></li><li><span class="n">02</span><strong>建立 project</strong><p>已經有就沿用。</p></li><li><span class="n">03</span><strong>複製切版成果</strong><p>放入案件版號資料夾。</p></li><li><span class="n">04</span><strong>推到 Git</strong><p>依公司教學情況 A。</p></li><li><span class="n">05</span><strong>取得外網連結</strong><p>效率雲 → 62 DEMO。</p></li></ol>
-<p>桌機與 RWD 完成內部檢查後，依下面流程取得客戶可開啟的外網連結，再提供校稿。</p>
-<h3>A｜至效率雲開版，取得案件版號</h3>
-<p>至效率雲，開版本案的 Evomni，取得<strong>案件版號</strong>。後續的資料夾名稱與 Git 設定依這個版號及公司教學填寫。</p>
+      <section class="sec" id="client">
+<div class="sec-head"><h2>第 9 步｜首頁完成後，推送到 Git</h2></div>
+<ol class="loop client-review-flow" aria-label="首頁發布流程摘要">
+<li><span class="n">01</span><strong>效率雲開版</strong><p>確認網站代號。</p></li>
+<li><span class="n">02</span><strong>建立本機資料夾</strong><p>project → 你的網站代號。</p></li>
+<li><span class="n">03</span><strong>複製並開啟</strong><p>複製 06-切版 的內容，再將網站代號資料夾拖入 VSCode。</p></li>
+<li><span class="n">04</span><strong>執行指令與推送</strong><p>逐一完成三個指令，再修改 HTML、commit 與 push。</p></li>
+<li><span class="n">05</span><strong>取得外網連結</strong><p>回效率雲開版位置，開啟連結確認。</p></li>
+</ol>
+<p>首頁 PC 與 RWD 完成並經看稿確認後，先將首頁校稿版推送到公司 Git，再取得 62 DEMO 外網連結。這一步不必等待內頁全部完成；尚未完成的頁面需明列，避免誤認為整站已交付。</p>
+<h3>內部 Git 操作教學</h3>
+<h3>A｜到效率雲開版</h3>
+<p>先到效率雲開版本案的 Evomni，確認本案的<strong>網站代號</strong>，後續資料夾名稱與指令中的專案資料都使用這個代號。</p>
 <h3>B｜在本機建立 project 資料夾</h3>
-<p>在你的電腦本機建立一個名為 <strong>project</strong> 的資料夾，專門放靜態切版案件。<strong>已經建立過就沿用，不需要再開一個。</strong></p>
-<p>這個資料夾是校稿用的本機網站副本，和前面 Google Drive 的案件工作資料夾分開。</p>
-<h3>C｜建立案件版號資料夾，複製切版成果</h3>
-<p>在 <code>project</code> 裡新增資料夾，名稱就是<strong>案件版號</strong>，再將目前要校稿的靜態網站複製進去。首頁、內頁、CSS、JavaScript、圖片與字型等網站所需檔案都要完整複製；客戶資料與提案文件不用放入。</p>
+<p>在你的電腦本機選一個固定位置，建立名為 <strong>project</strong> 的資料夾，專門存放 Git 切版專案。<strong>已經有 project 就沿用，不用重複建立。</strong></p>
+<p><strong>project 裡只能放切版專案資料，其他資料一律不要放。</strong> 客戶原始資料、提案、參考與案件管理文件留在原本的案件資料夾，不放進這裡。</p>
+<h3>C｜在 project 裡建立「你的網站代號」資料夾</h3>
+<p>在 <code>project</code> 裡新增一個資料夾，名稱填入效率雲開版取得的<strong>網站代號</strong>，不是直接命名為「你的網站代號」。</p>
+<h3>D｜複製 06-切版 裡的全部檔案</h3>
+<p>打開案件資料夾中的 <code>06-切版/</code>，將裡面的所有切版檔案與子資料夾，完整複製到 <code>project/你的網站代號/</code>。<strong>複製的是 06-切版 裡面的內容，不是把整個 06-切版 資料夾再包進去。</strong> 原案件檔案保留。</p>
 <pre><code class="language-text">project/
-└── （案件版號）/
+└── 你的網站代號/
     ├── index.html
-    ├── 其他內頁.html
+    ├── 已完成的其他頁面.html
+    ├── scss/
     ├── css/
     ├── js/
     └── assets/
 </code></pre>
-<p>這是網站檔案的位置示意；沿用本案實際的資料夾與檔名。複製完成後先開啟首頁及內頁，確認圖片、連結與互動正常。</p>
-<h3>D｜依「情況 A」將專案推到 Git</h3>
-<p>開啟公司教學 <a href="http://posthub.miracle-single.tw/docsys/#/articles/publish/2335">內部 Git 專案空間使用說明（文件 2335）</a>，依 <strong>情況 A：新網頁建立新專案</strong> 執行。</p>
-<p>操作位置是本機 <code>project/案件版號/</code>。依文件填入本案資料，按順序完成教學中的三個指令；帳密由你本人輸入。公司 Git 需要在公司網路或 VPN 內操作。</p>
-<p>已有 Git 專案、這次只是更新校稿版時，沿用原專案的更新流程，不重複建立新專案。</p>
-<p><strong>公司提供的 Apple 捷徑：</strong></p>
-<ul>
-<li><a href="https://www.icloud.com/shortcuts/5e28341a3f6c423ebb1917a35d961a28">取得捷徑 1</a></li>
-<li><a href="https://www.icloud.com/shortcuts/20030ff8ec9d44c699b3f1f1eaa48221">取得捷徑 2</a></li>
-<li><a href="https://www.icloud.com/shortcuts/b259df305e9945778ff49f4397e32889">取得捷徑 3</a></li>
-</ul>
-<p>依公司教學確認各捷徑的用途與執行順序。</p>
-<h3>E｜到效率雲「62 DEMO」取得外網連結</h3>
-<p>三個指令完成、確認 Git 推送成功後，回到<strong>效率雲 → 62 DEMO</strong>，就能取得本案的<strong>外網連結</strong>。</p>
-<p>用這個連結檢查首頁、內頁與 RWD，確認客戶能正常查看，再將連結提供給客戶校稿。請 AI 在進度中記錄案件版號、外網連結及這次校稿版本。</p>
-<p class="note"><strong>做到這裡再往下：</strong> 客戶能透過 62 DEMO 外網連結查看完整網站，校稿版號與版本已記錄。</p>
-</section>
-      <section class="sec" id="revisions">
-        <div class="sec-head"><h2>第 11 步｜當你收到修改資料時</h2></div>
-<p>本機已經有這個專案，就開啟對應資料夾，將修改資料交給 Claude，沿用既有進度與確認版本繼續修改。還沒下載到這台電腦時，先依情況 B 取得專案。</p>
-<h3>情況 B｜想下載已存在的專案到自己電腦</h3>
+<p>以上為位置示意，實際依 <code>06-切版/</code> 的完整內容複製。首頁 <code>index.html</code> 應直接位於網站代號資料夾內；先確認來源沒有混入帳密或其他非切版資料。</p>
+<h3>E｜將網站代號資料夾拖曳到 VSCode</h3>
+<p>將 <strong>「你的網站代號」資料夾直接拖曳到 VSCode</strong> 開啟，不是拖入外層的 <code>project</code>。確認左側檔案總管顯示的是這個網站的檔案。</p>
+<h3>F｜開啟終端機，逐一執行三個指令</h3>
+<p>在 VSCode 上方選單選擇 <strong>「終端機 → 新增終端機」</strong>，確認目前位置是 <code>project/你的網站代號/</code>。</p>
+<p>開啟公司教學 <a href="http://posthub.miracle-single.tw/docsys/#/articles/publish/2335">內部 Git 專案空間使用說明（文件 2335）</a>，依 <strong>「情況 A：新網頁建立新專案」</strong> 的三個指令操作：填入本案資料，<strong>一個一個輸入並執行，確認成功後才執行下一個</strong>，直到最後一個發布到 <code>.62</code> 的指令完成。指令內容以公司教學為準，不自行改寫。</p>
+<p>公司 Git 需要公司網路或 VPN；帳密由你本人輸入。若指令出現錯誤，先處理錯誤，不直接繼續下一個。</p>
+<h3>G｜修改一個 HTML，commit 並 push</h3>
+<p>最後一個發布到 <code>.62</code> 的指令完成後，在這個專案裡打開任一 HTML，刪除一段<strong>不影響功能的普通說明註解</strong>並存檔，產生一次檔案變更。不要刪除畫面內容、版權聲明、系統標記或程式需要的註解；不確定哪段可刪時，請 Lin 協助確認。</p>
+<p>在 VSCode 左側開啟 <strong>「原始檔控制」</strong>，檢查變更內容，暫存要提交的變更、填寫提交訊息並 <strong>commit（提交）</strong>，接著 <strong>push（推送）</strong> 到公司 Git。確認推送成功；只存檔或只 commit 都還沒有推送到遠端。</p>
+<h3>H｜回效率雲開版位置取得連結</h3>
+<p>推送完成後，回到<strong>效率雲本案開版的位置</strong>，查看 <strong>62 DEMO 連結</strong>。打開連結確認這次首頁內容與圖片正常顯示，才算完成本次發布；尚未出現連結或仍是舊內容時，先查發布狀態，不直接當成成功。</p>
+<p>用這個連結檢查首頁與 RWD，確認客戶能正常查看，再提供首頁校稿。請 AI 在進度中記錄案件版號、外網連結、本次校稿版本與尚未完成的內頁。後續內頁完成後，沿用同一 Git 專案更新校稿版。</p>
+<h3>I｜到 GitLab 取得 Git 專案網址</h3>
 <ol>
-<li>開啟 VSCode，按下 <strong>Ctrl + Shift + P</strong>；Mac 請按 <strong>Cmd + Shift + P</strong>。</li>
-<li>輸入並選擇 <strong>Git: Clone</strong>。</li>
-<li>貼上本案的<strong>公司 Git 專案網址</strong>。</li>
-<li>選擇要存放在電腦裡的資料夾，建議選本機 <code>project</code>。依提示由你本人輸入帳號密碼，完成下載後開啟這個專案。</li>
+<li>在公司網路或 VPN 環境下，開啟 <a href="http://192.168.168.134/client-html-demo/">GitLab 切版專案列表</a>。</li>
+<li>找到<strong>你的網站代號</strong>，點進該專案。</li>
+<li>點選頁面上方藍色的 <strong>Code</strong> 按鈕。</li>
+<li>在展開的選單中，複製 <strong>Clone with HTTP</strong> 的網址。</li>
 </ol>
-<p>下載操作可參考 <a href="https://code.visualstudio.com/docs/sourcecontrol/repos-remotes#clone-repositories">VSCode 官方 Git: Clone 說明</a>。</p>
-<h3>情況 C｜修改完網頁要同步上傳</h3>
-<p>修改完成並檢查桌機與 RWD 後，<strong>直接請 Claude 幫你提交並 push 到原本的公司 Git 專案</strong>，就能更新 62 DEMO 校稿版本。</p>
-<p><strong>貼給 Claude：</strong></p>
-<pre><code class="language-text">本案修改已完成，請幫我提交並 push 到原本的公司 Git 專案，更新 62 DEMO 校稿版。
-專案資料夾：（填本機 project 裡這個案件的完整路徑）。
-請確認這裡是最新的校稿檔案，沿用原本的儲存庫與分支，核對遠端變更並處理可判定的同步問題。
-需要登入時讓我本人操作；若有無法判定的衝突，請列出具體差異。
-完成後回報推送結果，並記錄這次修改版本與 62 DEMO 連結。
-</code></pre>
-<p>Claude 回報推送成功後，到<strong>效率雲 → 62 DEMO</strong> 開啟外網連結，確認最新內容與修改結果，再通知客戶繼續校稿。</p>
-<p class="note"><strong>做到這裡再往下：</strong> 修改內容已同步到 62 DEMO 並重新檢查。待客戶確認後，再整理靜態網站交付。</p>
+<p>這就是本案的 <strong>Git 專案網址</strong>，請記錄在案件進度中，供之後下載專案或交接使用；它和效率雲取得的網站預覽連結不同。</p>
+<p class="note git-reminder">以上是第一次建立專案的流程；<strong>已有 Git 專案時沿用原專案，不重複執行新專案初始化。</strong></p>
 </section>
-      <section class="sec" id="delivery"><div class="sec-head"><h2>第 12 步｜整理靜態網站交付</h2></div><p>客戶確認後，請 AI 整理這一版的靜態網站、素材與交付說明。保留目前有效入口與原始製作檔案，讓接手的人能找到、預覽並維護網站。</p>
-<p><strong>貼給 AI：</strong></p>
-<pre><code class="language-text">客戶已確認這一版，請整理靜態網站交付資料。
-列出確認版號與版本、62 DEMO 連結、各頁入口，以及 HTML、CSS、JavaScript、素材與字型的位置。
-核對缺圖、連結、互動、頁面完整度、搜尋頁與 RWD；排除 .DS_Store 等非交付檔案。
-建立或更新唯一的工程師交接說明.md，列本案公版 CSS 調整、正式功能接入、Demo 停用方式及待驗項目。
-記錄預覽方式、AI 已檢查與客戶已確認的範圍，以及仍需補充的資料。
-本次只整理靜態網站交付，不自行上傳或部署。
-</code></pre>
-<p class="note"><strong>做到這裡再往下：</strong> 接手的人能找到確認版網站、素材、預覽與維護說明；未完成項目及負責人清楚列出。</p>
-</section>
-<section class="sec" id="evo-transfer"><div class="sec-head"><h2>靜態版確認後｜交給 Miffy-EVO 轉換</h2></div><p>靜態版確認後，若本案需要 EVO 後台，再交給 Miffy-EVO 轉換。Lin-EVO 負責來源切版與修正，Miffy-EVO 負責轉換、匯入包及接入查核；不重新提案或重新切整站。</p><pre><code class="language-text">使用 Miffy-EVO，將本案已確認的靜態網站轉成 EVO 匯入成果。
-案件檔案：（填已確認版本與提供位置）。
-請先核對工程工具庫更新與本案平台版本，沿用已確認設計與互動。
-核對可編輯需求、HTML／SCSS／JS、素材及原生系統功能的接入分工。
-更新唯一的工程師交接說明.md，列出匯入包位置、接入步驟與未實測項目。
-沒有後台環境時請標示整合後待驗，不宣稱已匯入或發布。
-</code></pre><p>轉換完成仍須在本案後台與發布前台核對可編輯內容、素材、CSS／JS、搜尋及詢問功能；未實測項目列待驗。</p></section>
-      <section class="sec" id="resume">
-        <div class="sec-head">
-          <h2>下次繼續／切換工具</h2>
-        </div>
-        <p>回到同一案件資料夾，優先接續原對話。換電腦先等資料同步；換工具或新對話時，讓 AI 讀同一份進度，保留已確認內容。</p>
-        <p><strong>離開前貼給 AI：</strong></p>
-        <pre><code class="language-text">請更新本案進度，記錄目前階段、確認版本、工具授權、素材與預覽位置、已知問題及下一步。
-讓另一個工具或新對話讀取後能直接接續，不必重新提案。
-</code></pre>
-        <p><strong>接續時貼給 AI：</strong></p>
-        <pre><code class="language-text">使用（依環境與工作填 Visual-Solution-Workflow／visual-solution-immersive-director／Lin-EVO／Miffy-EVO）。
-案件資料夾：（填完整路徑）。
-請先讀進度與已確認內容，說明目前階段、有效預覽及下一步，不要重新開始。
-本次工作：（填要做的內容）。
-請沿用既有授權，保留已確認的設計與動態。
-</code></pre>
-        <p class="note"><strong>做到這裡再往下：</strong> AI 接到正確階段及版本。模型選擇由 AI 依當前階段簡短建議；切換前留下進度，不用因換模型重開設計。</p>
-      </section>
-      <section class="sec" id="troubleshooting">
-        <div class="sec-head">
-          <h2>遇到問題｜直接提供位置與發生步驟</h2>
-        </div>
-        <div class="handoff-table">
-          <table>
-            <thead>
-              <tr>
-                <th>狀況</th>
-                <th>你可以怎麼做</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>找不到 Skill 或缺工具</td>
-                <td>貼完整回覆給維護者，請 AI 列出缺少項目與安裝來源</td>
-              </tr>
-              <tr>
-                <td>AI 讀錯案件或使用舊版本</td>
-                <td>提供正確資料夾，請它先找有效入口及確認紀錄</td>
-              </tr>
-              <tr>
-                <td>預覽打不開</td>
-                <td>貼網址、錯誤畫面及剛才操作，請 AI 檢查啟動與資源路徑</td>
-              </tr>
-              <tr>
-                <td>版面或動畫不對</td>
-                <td>附頁面、區塊、尺寸、截圖或錄影，說明預期及實際結果</td>
-              </tr>
-              <tr>
-                <td>素材生成後不知道存哪</td>
-                <td>請 AI 逐張提供檔名與案件內存放位置</td>
-              </tr>
-              <tr>
-                <td>工程庫或內網指南無法讀取</td>
-                <td>確認公司網路／VPN，請 AI 說明可繼續與受阻部分</td>
-              </tr>
-              </tbody>
-          </table>
-        </div>
-        <p><strong>貼給 AI：</strong></p>
-        <pre><code class="language-text">發生問題的頁面／區塊：（填位置）。
-我做了：（填操作步驟）。
-預期：（填想看到的結果）。
-實際：（填發生的情況，附截圖或錄影）。
-使用的預覽／站台與尺寸：（填已知資訊）。
-請先找原因，修正已授權範圍並重新驗證，保留其他已確認內容。
-如果目前無法處理，請整理缺口、影響及可執行方案給維護者或工程師。
-</code></pre>
-      </section>
-      <section class="sec" id="resources">
-        <div class="sec-head">
-          <h2>文件與維護入口</h2>
-        </div>
-        <p>本篇是設計師操作手冊，依 repo 中的工作規範整理，不取代 Skill。只更新教學不代表已完成客戶案件的製作、轉換或驗收。</p>
-        <ul>
-          <li><a href="%E5%BF%AB%E9%80%9F%E7%B4%A2%E5%BC%95.html">情境快速索引</a>：從目前已有成果選擇工作入口。</li>
-          <li><a href="%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8.html">網頁閱讀版</a>：與本篇內容一致。</li>
-          <li><a href="skills/visual-solution-immersive-director/SKILL.md">整體視覺主 Skill</a>：設計、製作及確認流程。</li>
-          <li><a href="INSTALL.md">安裝與更新說明</a>：維護者使用。</li>
-          <li><a href="https://github.com/world-yingcen/lin-skill#readme">Lin-EVO 獨立 repo</a>：共用切版規範與安裝入口。</li>
-        </ul>
-        <p>Lin-EVO 不包含在整體視覺套件內，請維護者另外安裝完整規範。</p>
-      </section>
+      <div class="scenario-action"><a href="快速索引.html">來去看情境使用</a></div>
     </div>
   </main>
-
-  <footer class="site-footer">
-    <span>整體視覺方案 ／ Skill 使用教學</span>
-    <span>最後更新 2026-10-14 ・ 文字版 <code>使用教學.md</code></span>
-  </footer>
 
   <script>
     (() => {
@@ -677,22 +534,59 @@ Codex 執行已定規格：（授權／本案不使用）
       new MutationObserver(paint).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
       paint();
 
-      // 章節導覽：標示目前閱讀的章節
-      const list = document.querySelector('.toc ol');
-      const links = Array.from(document.querySelectorAll('.toc a'));
-      const sections = links.map(link => document.getElementById(link.getAttribute('href').slice(1))).filter(Boolean);
-      if (!('IntersectionObserver' in window) || !sections.length) return;
-      const visible = new Set();
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => entry.isIntersecting ? visible.add(entry.target.id) : visible.delete(entry.target.id));
-        const active = sections.find(section => visible.has(section.id));
-        links.forEach(link => {
-          const on = Boolean(active) && link.getAttribute('href') === '#' + active.id;
-          if (on) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
-          if (on && list.scrollWidth > list.clientWidth) list.scrollTo({ left: Math.max(0, link.parentElement.offsetLeft - 24) });
+      // 完整流程｜.toc：依章節頂端追蹤閱讀位置，長章節與回捲仍保留高亮。
+      const toc = document.querySelector('.toc');
+      const list = toc && toc.querySelector('ol');
+      if (!list) return;
+      const entries = Array.from(toc.querySelectorAll('a[href^="#"]')).map(link => ({
+        link,
+        section: document.getElementById(link.getAttribute('href').slice(1))
+      })).filter(entry => entry.section);
+      if (!entries.length) return;
+      const desktop = window.matchMedia('(min-width: 1201px)');
+      const readingOffset = 32; // 章節越過閱讀線後切換；窄螢幕加上頂部導覽高度。
+      let pending = false;
+      let currentEntry = null;
+      const updateToc = () => {
+        pending = false;
+        const threshold = desktop.matches ? readingOffset : toc.offsetHeight + readingOffset;
+        let active = entries[0];
+        for (const entry of entries) {
+          if (entry.section.getBoundingClientRect().top <= threshold) active = entry;
+        }
+        // 頁尾最後一節可能不足一個視窗高，仍須亮起最後的錨點。
+        if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+          active = entries[entries.length - 1];
+        }
+        if (active === currentEntry) return;
+        currentEntry = active;
+        entries.forEach(entry => {
+          if (entry === active) entry.link.setAttribute('aria-current', 'location');
+          else entry.link.removeAttribute('aria-current');
         });
-      }, { rootMargin: '-90px 0px -55% 0px' });
-      sections.forEach(section => observer.observe(section));
+        // 只捲動導覽清單，不呼叫 scrollIntoView，避免把正文拉離閱讀位置。
+        const box = list.getBoundingClientRect();
+        const item = active.link.getBoundingClientRect();
+        if (desktop.matches) {
+          if (item.top < box.top) list.scrollTop += item.top - box.top - 4;
+          else if (item.bottom > box.bottom) list.scrollTop += item.bottom - box.bottom + 4;
+        } else {
+          if (item.left < box.left) list.scrollLeft += item.left - box.left - 4;
+          else if (item.right > box.right) list.scrollLeft += item.right - box.right + 4;
+        }
+      };
+      const scheduleToc = () => {
+        if (pending) return;
+        pending = true;
+        window.requestAnimationFrame(updateToc);
+      };
+      window.addEventListener('scroll', scheduleToc, { passive: true });
+      window.addEventListener('resize', () => { currentEntry = null; scheduleToc(); });
+      window.addEventListener('hashchange', scheduleToc);
+      window.addEventListener('pageshow', scheduleToc);
+      window.addEventListener('load', scheduleToc);
+      if (document.fonts) document.fonts.ready.then(scheduleToc);
+      updateToc();
     })();
   </script>
 </body>

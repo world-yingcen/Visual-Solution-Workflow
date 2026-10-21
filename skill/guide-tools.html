@@ -91,17 +91,17 @@
     </div>
   </header>
 <main id="top">
-<section class="intro"><h1><span class="title-accent">先了解 Skill 怎麼協作</span><br>再開始製作網站</h1><p class="intro-description">圖文認識分工、確認點與常用工具。<br>要開始操作時，切換到完整流程或依情境。</p></section>
+<section class="intro"><h1><span class="title-accent">先了解 Skill 怎麼協作</span><br>再開始製作網站</h1><p class="intro-description">圖文認識分工、確認點與常用工具。<br>要開始操作時，切換到 layout 第一次製作完整流程或依情境。</p></section>
 <nav class="toc" aria-label="使用須知章節"><ol><li><a href="#basics">重點</a></li><li><a href="#package">Skill 套件</a></li><li><a href="#operations">操作入口</a></li><li><a href="#flow">五個確認點</a></li><li><a href="#feedback">確認與回饋</a></li><li><a href="#eagle">Eagle</a></li><li><a href="#folders">進度與資料夾</a></li><li><a href="#models">模型選擇</a></li><li><a href="#faq">常見問題</a></li><li><a href="#troubleshoot">問題處理</a></li><li><a href="#docs">文件索引</a></li></ol></nav>
 <div class="panel"><section class="sec" id="basics" aria-labelledby="basics-title">
       <div class="sec-head">
         <p class="kicker">先看重點</p>
         <h2 id="basics-title">一個入口，五次確認</h2>
-        <p>整體視覺網站只用一支主 Skill。你不必先想好構圖、動畫或技術解法，AI 會主動推進，只在五個確認點停下來等你判斷。</p>
+        <p>整體視覺案件先從 Visual-Solution-Workflow 開始，核心片段確認後交給 Lin-EVO 切版。你不必先想好構圖、動畫或技術解法，五個設計確認點會讓你依序判斷；RWD 看稿與 Git 發布另依操作流程確認。</p>
       </div>
       <ul class="points">
-        <li><svg class="ico" aria-hidden="true"><use href="#i-entry"/></svg><h3>只有一個入口</h3><p><code>visual-solution-immersive-director</code> 同時負責設計、素材、切版與自查，不分派角色，也不會自動開多個 AI 代理。</p></li>
-        <li><svg class="ico" aria-hidden="true"><use href="#i-judge"/></svg><h3>你判斷，AI 製作</h3><p>你提供資料、做確認與取捨；整理資料、提案、做素材、實作、實看與修正都由 Skill 主動完成。</p></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-entry"/></svg><h3>依階段接續 Skill</h3><p><code>Visual-Solution-Workflow</code> 負責方向、視覺、動態與核心片段；確認後由 Lin-EVO 製作完整首頁、內頁與 RWD，再由 Miffy-EVO 處理 EVO 轉換。</p></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-judge"/></svg><h3>你判斷，AI 製作</h3><p>你提供資料、確認方向，並操作產圖與圖片轉檔；Claude 負責整理、提案、提供 Prompt、實作與檢查，依你的回饋修正。</p></li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-monitor"/></svg><h3>2560×1280 桌機優先</h3><p>構圖、裁切、字級與捲動節奏都在這個尺寸驗收。本手冊包含 RWD：桌機內部確認後接續平板與手機，檢查完成才交客戶校稿。</p></li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-eye"/></svg><h3>「好」只確認看到的</h3><p>靜態視覺通過不代表動態通過，片段通過也不代表整頁通過。</p></li>
       </ul>
@@ -109,47 +109,47 @@
         <div class="duty-col is-human">
           <span class="pill pill-human">你負責</span>
           <h3>方向、取捨與最後確認</h3>
-          <ul class="chips"><li>提供資料與素材</li><li>選定方向</li><li>確認視覺</li><li>確認動態</li><li>確認核心片段</li><li>確認完整首頁</li><li>確認內頁與 RWD</li></ul>
+          <ul class="chips"><li>提供資料與素材</li><li>選定方向</li><li>確認視覺</li><li>確認動態</li><li>操作 ChatGPT 產圖</li><li>圖片轉檔與容量檢核</li><li>確認核心片段</li><li>確認完整首頁</li><li>確認內頁與 RWD</li></ul>
         </div>
         <b class="duty-swap" aria-hidden="true">⇄</b>
         <div class="duty-col">
           <span class="pill pill-accent">Skill 負責</span>
           <h3>整理、提案、製作與自查</h3>
-          <ul class="chips"><li>盤點內容與缺口</li><li>判斷製作模式</li><li>提案與動態分鏡</li><li>製作與處理素材</li><li>切版與瀏覽器預覽</li><li>2560×1280 自查</li><li>修正並回填紀錄</li></ul>
+          <ul class="chips"><li>盤點內容與缺口</li><li>判斷製作模式</li><li>提案與動態分鏡</li><li>提供產圖 Prompt 與存放位置</li><li>列出圖片格式與大小</li><li>切版與瀏覽器預覽</li><li>桌機與 RWD 自查</li><li>修正並回填紀錄</li></ul>
         </div>
       </div>
     </section>
 
 <section class="sec" id="package" aria-labelledby="package-title">
       <div class="sec-head">
-        <p class="kicker">套件內容</p>
-        <h2 id="package-title">裝一次，得到 11 支 Skill</h2>
-        <p>安裝程式會一起裝好主 Skill、8 支 GSAP 技術參考與 2 支 Eagle 工具。平常只需要叫主 Skill，其他的會在需要時自動讀取。</p>
+        <p class="kicker">Skill 分工</p>
+        <h2 id="package-title">Skill 已統一設定，直接接續 layout 第一次製作完整流程</h2>
+        <p>Visual-Solution-Workflow 負責整體視覺流程，Lin-EVO 負責切版，Miffy-EVO 負責 EVO 轉換。Skill 與必要技術規範由維護者統一設定，設計師不需自行下載或安裝。</p>
       </div>
       <div class="pkg">
         <article class="pkg-card pkg-main">
           <span class="pill pill-invert">整體視覺案件從這裡開始</span>
           <h3>整體視覺網站設計與製作</h3>
-          <code>visual-solution-immersive-director</code>
-          <p>整體視覺網站的唯一主入口：內容盤點、方向與視覺提案、動態分鏡、核心片段試做、完整桌機首頁，到確認後的內頁延伸。</p>
+          <code>Visual-Solution-Workflow</code>
+          <p>整體視覺案件的起點：內容盤點、方向與視覺提案、動態分鏡、核心片段試做。核心片段確認後，記錄設計、動態與素材位置，交給 Lin-EVO 延伸完整網站。</p>
         </article>
         <article class="pkg-card">
-          <span class="pill pill-quiet">收藏案例時叫它</span>
-          <h3>案例分析與 Eagle 整理</h3>
-          <code>eagle-visual-solution-curator</code>
-          <p>把喜歡的網站、截圖或影片，整理成可貼進 Eagle 的名稱、分類、標籤與備註。</p>
+          <span class="pill pill-quiet">依階段指定工作</span>
+          <h3>Lin-EVO ＋ Miffy-EVO</h3>
+          <code>lin-evo-miffy-evo</code>
+          <p>Lin-EVO 依確認設計製作完整首頁、內頁、RWD 與切版修正；Miffy-EVO 將確認的靜態網站轉為 EVO「整站匯入」ZIP，並依後台錯誤報告修復。</p>
         </article>
         <article class="pkg-card pkg-gsap">
-          <span class="pill pill-quiet">不用叫，主 Skill 自動讀取</span>
+          <span class="pill pill-quiet">由維護者統一設定</span>
           <h3>GSAP 動態技術參考</h3>
           <div class="gsap-chips"><code>gsap-core</code><code>gsap-timeline</code><code>gsap-scrolltrigger</code><code>gsap-performance</code><code>gsap-plugins</code><code>gsap-utils</code><code>gsap-react</code><code>gsap-frameworks</code></div>
-          <p>做捲動連動、時間軸或效能調整時按需讀取；安裝 Skill 不會另外安裝 GSAP 套件。</p>
+          <p>做捲動連動、時間軸或效能調整時按需讀取；缺少規範時交由維護者處理。</p>
         </article>
         <article class="pkg-card">
           <span class="pill pill-quiet">通常不用叫</span>
           <h3>Eagle 資源庫操作</h3>
           <code>eagle</code>
-          <p>搜尋、資料夾與標籤操作，其他 Skill 需要時會讀。也可以直接請它搜尋 Eagle。</p>
+          <p>只有 App 已連接並授權 Eagle 工具時，才能搜尋或修改資源庫；否則由你提供素材，Claude 整理可手動貼入的名稱與標籤。</p>
         </article>
       </div>
       <div class="fit">
@@ -174,15 +174,21 @@
     </section>
 
 <section class="sec" id="operations" aria-labelledby="operations-title">
-<div class="sec-head"><p class="kicker">操作入口</p><h2 id="operations-title">知道觀念後，接回目前流程</h2><p>先依環境選擇入口：Claude 網頁／App 用 Visual-Solution-Workflow，本機整體視覺用 visual-solution-immersive-director；切版用 Lin-EVO，轉 EVO 用 Miffy-EVO。首次設定、資料準備、校稿與修改，都使用目前手冊的操作步驟。</p></div>
-<div class="trio"><div><strong>第一次設定與準備案件</strong><p><a href="使用教學.html#skill-environment">環境與上傳包</a> → <a href="使用教學.html#setup">本機首次設定</a> → <a href="使用教學.html#prepare">準備案件資料夾</a> → <a href="使用教學.html#start">開始案件</a>。維護者安裝細節見 <a href="INSTALL.md">INSTALL.md</a>。</p></div><div><strong>首頁之後的製作</strong><p><a href="使用教學.html#inner">延伸內頁</a> → <a href="使用教學.html#mobile">完成 RWD</a> → <a href="使用教學.html#client">取得 62 DEMO 校稿連結</a>。</p></div><div><strong>收到修改與交付</strong><p><a href="使用教學.html#revisions">下載既有專案、修改後同步</a> → <a href="使用教學.html#delivery">整理靜態交付</a>。已有成果也可從 <a href="快速索引.html">依情境</a>找到入口。</p></div></div>
+<div class="sec-head"><p class="kicker">操作入口</p><h2 id="operations-title">知道觀念後，接回目前流程</h2><p>設計、切版與 EVO 轉換都在 Claude App 接續：整體視覺用 Visual-Solution-Workflow，切版用 Lin-EVO，轉 EVO 用 Miffy-EVO。需要產圖時，由你將 Claude 提供的 Prompt 貼到 ChatGPT 操作。</p></div>
+<div class="trio"><div><strong>登入並準備案件</strong><p><a href="使用教學.html#skill-environment">Skill 分工</a> → <a href="使用教學.html#setup">登入與確認</a> → <a href="使用教學.html#prepare">準備案件資料夾</a> → <a href="使用教學.html#start">開始案件</a>。</p></div><div><strong>首頁之後的製作</strong><p><a href="使用教學.html#mobile">PC 確認後完成首頁 RWD</a> → <a href="使用教學.html#client">推送 Git 並取得首頁校稿連結</a>。要做內頁時，接續<a href="快速索引.html#case-3">情境 02｜EVO首頁已完成，要接續做內頁</a>。</p></div><div><strong>收到修改與交付</strong><p><a href="快速索引.html#case-6">情境 01｜靜態頁面需要修改資料時</a>、<a href="快速索引.html#case-7">情境 04｜靜態頁面轉 EVO</a>。其他工作從<a href="快速索引.html">依情境</a>選擇，不必重走首次製作流程。</p></div></div>
+<h3>已有 Git 專案，先確認版本再工作</h3>
+<p>已有專案就直接開啟，不重複 Clone 或初始化。Lin-EVO 每輪工作前會先確認 Git 遠端狀態，回報是否已同步、有更新要拉取，或有尚未推送的提交；不能只看 VSCode 左下角沒有數字就當成最新版。有未提交修改或雙方都有新提交時，先確認差異再處理；沒有工具或連線失敗時，明確說明尚未確認最新版。</p>
+<p>修改直接在已連結的原 Git 專案進行，不需另外下載再搬回。Claude 可以帶著操作 Git，但要先問你是否需要協助，並確認本次提交與推送範圍；完成 commit、push 後，到 62 DEMO 檢查更新結果。</p>
+<h3>轉 EVO 與後續修改</h3>
+<p>Miffy-EVO 處理完成後，將 ZIP 上傳案件後台的「整站匯入」。有錯誤就把報告交回 Claude 修復、重新打包與上傳，直到 0 錯誤；匯入成功後再逐頁檢查。完整步驟與內部教學見<a href="快速索引.html#case-7">情境 04｜靜態頁面轉 EVO</a>。</p>
+<p class="note evo-warning"><strong>重點：已轉 EVO 的案件，原 Git 專案視同廢棄，任何後續修改請直接至 EVO 處理，不再修改或推送原 Git 專案。</strong></p>
 </section>
 
 <section class="sec" id="flow" aria-labelledby="flow-title">
       <div class="sec-head">
         <p class="kicker">流程與確認點</p>
         <h2 id="flow-title">你只要顧這 5 個確認點</h2>
-        <p>Skill 依序推進，只在琥珀色的確認點停下來等你。忠實重建的案子跳過方向確認，視覺與動態提案改成來源對照與還原分鏡。</p>
+        <p>五個設計確認點以琥珀色標示；後續 RWD 看稿與 Git 發布另依流程確認。忠實重建的案子跳過方向確認，視覺與動態提案改成來源對照與還原分鏡。</p>
       </div>
       <ol class="flow" aria-label="人工與 Skill 依序協作的十四個步驟">
         <li class="is-human"><span class="no">01</span><span class="tag-human">人工</span><strong>開案</strong><p>提供案件資料夾、客戶資料、CIS 與素材。</p></li>
@@ -195,13 +201,13 @@
         <li class="is-human"><span class="no">08</span><span class="tag-human">人工</span><strong>③ 動態確認</strong><p>先看分鏡，確認後才進實作。</p></li>
         <li><span class="no">09</span><span class="tag-skill">Skill</span><strong>核心片段試做</strong><p>素材、規格與可操作預覽，在 2560×1280 自查。</p></li>
         <li class="is-human"><span class="no">10</span><span class="tag-human">人工</span><strong>④ 核心片段確認</strong><p>實際捲動與操作，不是看截圖。</p></li>
-        <li><span class="no">11</span><span class="tag-skill">Skill</span><strong>完整桌機首頁</strong><p>全頁內容、動態節奏、Nav、Footer 與 CTA，自查到頁尾。</p></li>
+        <li><span class="no">11</span><span class="tag-skill">Lin-EVO</span><strong>完整桌機首頁</strong><p>沿用確認的核心片段，完成全頁內容、動態、Nav、Footer 與 CTA，自查到頁尾。</p></li>
         <li class="is-human"><span class="no">12</span><span class="tag-human">人工</span><strong>⑤ 完整首頁確認</strong><p>整頁一次確認。</p></li>
-        <li class="is-human is-later"><span class="no">13</span><span class="tag-human">人工</span><strong>提出內頁</strong><p>代表頁先確認，再展開同類頁。</p></li>
-        <li class="is-human is-later"><span class="no">14</span><span class="tag-human">人工</span><strong>接續 RWD</strong><p>桌機內部確認後製作，檢查完成才交客戶校稿。</p></li>
+        <li class="is-later"><span class="no">13</span><span class="tag-skill">Lin-EVO</span><strong>完成首頁 RWD</strong><p>桌機內部確認後製作平板與手機版，檢查後交人工看稿。</p></li>
+        <li class="is-human is-later"><span class="no">14</span><span class="tag-human">人工</span><strong>Git 發布與校稿</strong><p>確認後 commit、push，檢查 62 DEMO，再提供客戶校稿。</p></li>
       </ol>
       <div class="legend" aria-label="圖例"><span><i class="h"></i>人工確認點</span><span><i></i>Skill 自動推進</span><span><i class="d"></i>後續製作階段</span></div>
-      <p class="note">開案時 Skill 會先問你是否授權 Codex 執行已定規格，以及產圖方式，答案記在進度檔。核心片段確認後，若已授權且場景表、規格與素材齊全，完整首頁與內頁的實作可交給 Codex，Claude 做最後實看。產圖預設由 Claude 操作 ChatGPT 網頁生成、你下載成品，不用 Codex 產圖。<strong>這是建議分工，不是強制。</strong></p>
+      <p class="note">首頁與 RWD 確認後即可發布校稿，不必等所有內頁完成；內頁製作接續<a href="快速索引.html#case-3">情境 02</a>。需要產圖時，Claude 提供 Prompt、檔名與 <code>image/</code> 完整位置，由你貼到 ChatGPT 產圖並下載。切版後由 Lin 列出圖片格式與大小，設計師處理 WebP 轉檔、縮圖與壓縮（SVG 保留），確認畫質與整體檔案大小，再由 Lin 更新引用並檢查破圖。</p>
 
       <div class="sub">
         <h3 class="sub-title">每個確認點看什麼</h3>
@@ -398,7 +404,7 @@
               <dl class="dl">
                 <div><dt>Skill 交付</dt><dd>可操作的瀏覽器預覽，包含 Hero → 首次轉變 → 代表場景，以及一段真實內容的閱讀段；已在 2560×1280 自查，附預覽方式。</dd></div>
                 <div><dt>你要看</dt><dd>自己在 2560×1280 操作：往下捲、往回捲、快速捲，實際 hover 與點擊。閱讀段停留時間夠不夠，有沒有卡頓、露底或空白帶。</dd></div>
-                <div><dt>可以這樣回</dt><dd class="says"><q>片段確認，展開完整首頁</q></dd></div>
+                <div><dt>可以這樣回</dt><dd class="says"><q>片段確認，請記錄規格與素材位置，使用 Lin-EVO 展開完整首頁</q></dd></div>
               </dl>
               <p class="warn">截圖和錄影不能代替實際操作。</p>
             </div>
@@ -495,7 +501,7 @@
       <ol class="rules">
         <li><span class="n">01</span><strong>五個確認點分開算</strong><p>方向、視覺、動態、核心片段、完整首頁各自記錄版本與範圍。</p></li>
         <li><span class="n">02</span><strong>只涵蓋當下展示的</strong><p>還沒展示過的結果不算確認；靜態視覺不代表動態，片段不代表整頁。</p></li>
-        <li><span class="n">03</span><strong>中間不會一直問你</strong><p>素材處理、細節、程式修正與重新檢查，會在已授權範圍內連續做完。</p></li>
+        <li><span class="n">03</span><strong>中間不會一直問你</strong><p>版面細節、程式修正與重新檢查會在已授權範圍內連續做完；需要你產圖、圖片轉檔或確認 Git 操作時，會另外說明。</p></li>
         <li><span class="n">04</span><strong>回饋先寫回正本</strong><p>像「人物不要拆」這類回饋會變成素材約定，寫進正本後才實作，不會只留在對話裡。</p></li>
         <li><span class="n">05</span><strong>三種狀態分開記</strong><p>AI 自查通過、AI 自評、你的確認是三件事；分數不代表完成。</p></li>
         <li><span class="n">06</span><strong>做不出來就修到成立</strong><p>不會包裝成「完成，之後可優化」。同一原因修兩輪沒改善就換做法；要改已確認方向時，會帶方案來問你。</p></li>
@@ -576,7 +582,7 @@
       <div class="sec-head">
         <p class="kicker">案件資料夾</p>
         <h2 id="folders-title">進度寫在檔案裡，不靠對話記憶</h2>
-        <p>新案件依這個結構整理；既有案件不會自動搬移，要整理時會先提計畫給你確認。</p>
+        <p>案件資料依完整流程的標準目錄整理；搬移既有檔案時同步更新資源路徑、預覽入口與 README.md。已建立的 Git 切版專案沿用原資料夾，不因整理文件而重複初始化。</p>
       </div>
       <div class="folders">
         <ul class="tree" aria-label="案件資料夾結構">
@@ -588,17 +594,19 @@
           <li style="--d:1"><span class="nm">03_頁面製作素材/</span><span class="ds">依頁面與區塊順序編號</span></li>
           <li style="--d:2"><span class="nm">03_01_首頁/</span><span class="ds"></span></li>
           <li style="--d:3"><span class="nm">03_01_01_Hero/</span><span class="ds">該區的需求、文案與素材連結</span></li>
-          <li style="--d:3"><span class="nm">實作/</span><span class="ds">靜態原型：index.html、css、js、assets</span></li>
+          <li style="--d:3"><span class="nm">實作/</span><span class="ds">核心片段試作；正式工程放在 06-切版/</span></li>
           <li style="--d:3"><span class="nm">qa/</span><span class="ds">QA 截圖與驗收證據</span></li>
           <li style="--d:1"><span class="nm">04_型錄與原始素材/</span><span class="ds">客戶提供的原件</span></li>
           <li style="--d:1"><span class="nm">05_待確認與交接/</span><span class="ds">experience-status.md、設計日誌、決策與待辦</span></li>
+          <li class="is-file" style="--d:2"><span class="nm">工程師交接說明.md</span><span class="ds">切版後建立並持續更新的唯一交接文件</span></li>
+          <li style="--d:1"><span class="nm">06-切版/</span><span class="ds">正式網站程式與使用素材，第 7 步開始使用</span></li>
           <li style="--d:1"><span class="nm">99_歸檔/</span><span class="ds">已被取代的提案與試作</span></li>
         </ul>
         <div class="keyfiles">
           <article><code>README.md</code><p>首屏列出目前唯一的工作入口與預覽方式、已確認版本、PRD 與設計正本、狀態文件、未解問題與下一步。</p></article>
           <article><code>experience-status.md</code><p>進度唯一正本：模式、階段、確認紀錄、素材與預覽路徑、驗證尺寸、缺陷與下一步。</p></article>
           <p class="note">想知道案子做到哪裡、預覽怎麼開，<strong>先看這兩個檔案</strong>。</p>
-          <p class="note">案件工作資料放在自己的 <strong>Google Drive 同步資料夾</strong>，請勿直接在共用區執行。校稿網站另外複製到本機 <code>project/案件版號/</code>；操作方式見<a href="使用教學.html#prepare">第 1 步</a>與<a href="使用教學.html#client">第 10 步</a>。</p>
+          <p class="note">首次製作的需求與素材放在自己的 <strong>Google Drive 案件資料夾</strong>，不在共用區執行。首次 Git 發布時，將 <code>06-切版/</code> 裡面的網站內容複製到本機 <code>project/網站代號/</code>，不多包一層資料夾。之後直接連結並修改原 Git 專案，不反覆複製搬回；詳見<a href="使用教學.html#prepare">第 1 步</a>、<a href="使用教學.html#client">第 9 步</a>與<a href="快速索引.html#case-6">靜態頁面修改</a>。已轉 EVO 的案件改至 EVO 維護。</p>
         </div>
       </div>
     </section>
@@ -633,9 +641,10 @@
         <article><h3>為什麼先看 2560×1280？</h3><p>這是第一階段的驗收尺寸，構圖、裁切、字級、捲動距離與效能都在這個尺寸實看。桌機內部確認後接續 RWD，完成檢查才交客戶校稿；本案需要其他桌機尺寸時可以直接指定。</p></article>
         <article><h3>可以不做片段，直接要完整首頁嗎？</h3><p>可以明確要求。Skill 會先完成全頁構圖、素材與動態強弱的規劃再實作，不會只做 Banner。</p></article>
         <article><h3>可以沿用高效方案的母版或案例嗎？</h3><p>不能直接沿用。高效方案的母版策略、產圖管道、案例結論與額度換算都不適用，歷史案例只供查閱。</p></article>
-        <article><h3>會自動叫 Codex 或開多個 AI 代理嗎？</h3><p>不會自動叫。每個案件開始時 Skill 會先問你要不要授權 Codex 執行已定規格，以及產圖方式，答案記在進度檔，之後不重問；沒授權就全部由 Claude 做。建議的分工是：Claude 負責到核心片段確認的設計工作與之後每一輪的實看；核心片段確認後，場景表、規格與素材齊全時，可交給 Codex 執行完整首頁與內頁，Claude 只做最後實看。產圖不走 Codex：由 Claude 操作 ChatGPT 網頁生成、你下載成品。</p></article>
-        <article><h3>工具授權或設定有問題怎麼辦？</h3><p>把出現的訊息交給維護者，核對目前工具與案件設定。安裝與更新方式見 <a href="INSTALL.md">INSTALL.md</a>，案件內的設定依現有規範處理。</p></article>
-        <article><h3>換電腦或換模型要注意什麼？</h3><p>先請 Skill 更新 <code>experience-status.md</code>：目前階段、已確認與未確認項目、不可改的內容、素材與預覽路徑、動態規格、已知問題和下一步。接手時說「繼續這個案件」即可；換電腦時等雲端硬碟同步完成再開始。</p></article>
+        <article><h3>需要切換其他 AI 工具嗎？</h3><p>設計、切版與 EVO 轉換都在 Claude App 接續；需要產圖時，由 Claude 提供 Prompt，你貼到 ChatGPT 產圖，確認後依指定檔名下載到 <code>image/</code>。圖片轉檔與壓縮由設計師處理，Lin 負責列出格式、容量與更新引用。若缺少檔案或後台操作工具，Claude 提供步驟，由你操作並回傳結果。</p></article>
+        <article><h3>工具授權或設定有問題怎麼辦？</h3><p>把出現的訊息交給維護者，核對目前工具與案件設定。登入與確認方式見 <a href="使用教學.html#setup">登入與確認</a>，案件內的設定依現有規範處理。</p></article>
+        <article><h3>下班換電腦怎麼接續？</h3><p>尚未轉 EVO 的 Git 切版專案，離開前先整理 handoff 與必要檔案，一定要完成 commit 並確認 push 成功。另一台電腦沒有專案就 Clone，已有專案就確認本機修改後 pull；核對同一分支與版本，將檔案連結給 Claude，先讀交接再接續。詳見<a href="快速索引.html#case-8">情境 05｜下班換電腦怎麼接續</a>。已轉 EVO 的案件直接至 EVO 處理，不再推送原 Git 專案。</p></article>
+        <article><h3>換模型或開新對話呢？</h3><p>先更新原本的進度檔，記錄目前階段、已確認內容、素材與預覽位置、問題和下一步；新對話重新連結案件檔案，請 Claude 先讀交接再繼續，不重新提案。</p></article>
         <article><h3>覺得不對，但說不出哪裡不對？</h3><p>請它「先自查，列出目前最弱的三處並修正」，再從修正結果往下討論。</p></article>
       </div>
     </section>
@@ -655,7 +664,7 @@
             <tbody>
               <tr>
                 <td>找不到 Skill 或缺工具</td>
-                <td>貼完整回覆給維護者，請 AI 列出缺少項目與安裝來源</td>
+                <td>貼完整回覆給維護者，請 AI 列出缺少的 Skill、工具或權限</td>
               </tr>
               <tr>
                 <td>AI 讀錯案件或使用舊版本</td>
@@ -714,12 +723,12 @@
         <article><strong>檔案管理、用量與 Git</strong><code>project-files.md</code><code>usage-accounting.md</code><code>git-workflow.md</code></article>
         <article><strong>GSAP 技術</strong><code>gsap-skills.md</code></article>
         <article><strong>Eagle 案例整理</strong><code>skills/eagle-visual-solution-curator/SKILL.md</code></article>
-        <article><strong>安裝細節</strong><code>INSTALL.md</code><code>install.py</code>（套件根目錄）</article>
+        <article><strong>Claude App 設定</strong><a href="使用教學.html#setup">登入並確認 Skill 可用</a></article>
       </div>
-      <p class="note">本頁整理舊版圖文教學的觀念與工具說明；操作順序請看<a href="使用教學.html">完整流程</a>。手冊附有歐群生醫與毅嘉科技展示案例，其餘案例資料庫另行維護。</p>
+      <p class="note">本頁整理分工、確認點與共通規則；首次製作請看<a href="使用教學.html">完整流程</a>，既有案件接續、修改與 EVO 轉換請看<a href="快速索引.html">依情境</a>。手冊附有歐群生醫與毅嘉科技展示案例，其餘案例資料庫另行維護。</p>
     </section></div>
 </main>
-<footer class="site-footer"><span>方案產業AI化_操作手冊 ／ 使用須知</span><span>最後更新 2026-10-14</span></footer>
+<footer class="site-footer"><span>方案產業AI化_操作手冊 ／ 使用須知</span><span>最後更新 2026-10-22</span></footer>
   <script>
     (() => {
       'use strict';

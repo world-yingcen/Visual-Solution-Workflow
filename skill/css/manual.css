@@ -54,6 +54,9 @@ h1 { margin: 0px 0px 22px; font-size: 70px; font-weight: bold; line-height: 1.2;
 .sub-lead { max-width: 52em; margin: -10px 0px 24px; color: var(--muted); font-size: 17px; line-height: 1.8; }
 .note { margin: 20px 0px 0px; padding: 18px 20px; border-left: 3px solid var(--accent); background: var(--raised); color: var(--muted); font-size: 16px; line-height: 1.75; }
 .note strong { color: var(--text); }
+.note.evo-warning { border-left-color: var(--danger); color: var(--danger); font-size: clamp(20px, 1.5vw, 24px); }
+.note.evo-warning strong { color: inherit; }
+.page-scenarios .scenario-warning { color: var(--danger); font-size: clamp(20px, 1.5vw, 24px); font-weight: 700; }
 .note code { color: var(--accent); }
 .pill { display: inline-block; width: max-content; max-width: 100%; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: 0.03em; line-height: 1.5; }
 .pill-accent { background: var(--accent); color: var(--accent-ink); }
@@ -294,14 +297,15 @@ h1 { margin: 0px 0px 22px; font-size: 70px; font-weight: bold; line-height: 1.2;
 .record dd li b { color: var(--accent); font-weight: 600; }
 .folders { display: grid; grid-template-columns: minmax(0px, 7fr) minmax(0px, 5fr); gap: 12px; margin-top: 40px; align-items: start; }
 .tree { margin: 0px; padding: 10px 0px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); list-style: none; }
-.tree li { display: grid; grid-template-columns: minmax(0px, max-content) minmax(0px, 1fr); gap: 6px 18px; align-items: baseline; padding: 7px 20px 7px calc(20px + var(--d,0) * 22px); font-size: 15px; }
-.tree .nm { display: flex; align-items: center; gap: 8px; font: 14px var(--mono); white-space: nowrap; }
+.tree li { display: grid; grid-template-columns: minmax(0px, max-content) minmax(0px, 1fr); gap: 6px 18px; align-items: baseline; padding: 7px 20px 14px calc(20px + var(--d,0) * 22px); font-size: 15px; border-bottom: 1px solid var(--line); }
+.tree li:last-child { border-bottom: 0; }
+.tree .nm { display: flex; align-items: center; gap: 8px; font: 18px var(--mono); white-space: nowrap; font-weight: bold; }
 .tree .nm::before { content: ""; width: 15px; height: 12px; flex: 0 0 auto; border: 1.5px solid var(--muted); border-radius: 2px 3px 3px; opacity: 0.8; }
 .tree .is-file .nm::before { width: 11px; height: 14px; border-radius: 2px; }
 .tree .is-key { background: var(--raised); }
 .tree .is-key .nm { color: var(--accent); }
 .tree .is-key .nm::before { border-color: var(--accent); }
-.tree .ds { color: var(--muted); font-size: 15px; line-height: 1.6; }
+.tree .ds { color: var(--muted); font-size: 15px; line-height: 1.6; text-align: right; }
 .keyfiles { display: grid; gap: 12px; }
 .keyfiles article { padding: 22px; border: 1px solid var(--accent); border-radius: 12px; background: var(--bg); }
 .keyfiles code { color: var(--accent); font-size: 16px; }
@@ -415,6 +419,7 @@ h1 { margin: 0px 0px 22px; font-size: 70px; font-weight: bold; line-height: 1.2;
   .thead { display: none; }
   .trow > div[data-label]::before { content: attr(data-label); display: block; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; }
   .tree li { grid-template-columns: minmax(0px, 1fr); gap: 0px; padding-right: 14px; padding-left: calc(14px + var(--d,0) * 14px); }
+  .tree .nm { white-space: normal; overflow-wrap: anywhere; }
   .tree .ds { padding-left: 23px; font-size: 14px; }
   .record > div { grid-template-columns: minmax(0px, 1fr); gap: 2px; }
   .model h3 { font-size: 26px; }
@@ -424,21 +429,32 @@ h1 { margin: 0px 0px 22px; font-size: 70px; font-weight: bold; line-height: 1.2;
   html { scroll-behavior: auto; }
   *, ::before, ::after { transition: none !important; }
 }
-.scenario-grid { display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 16px; margin: 36px 0px 0px; }
-.scenario-card { padding: 24px; text-decoration: none; transition: border-color 0.18s, background 0.18s; }
+.scenario-grid { display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px; margin: 36px 0px 0px; }
+.scenario-card { gap: 0; padding: 28px; text-decoration: none; transition: border-color 0.18s, background 0.18s; }
 .scenario-card:hover, .scenario-card:focus-visible { border-color: var(--accent); background: var(--raised); }
-.scenario-card h3 { font-size: 23px; line-height: 1.5; margin: 0px; }
-.scenario-card figure { width: 100%; }
+.scenario-card h3 { font-size: 23px; line-height: 1.5; margin: 0 0 10px; }
+.scenario-card figure { width: 100%; margin: 20px 0 24px; }
 .scenario-card svg { display: block; width: 100%; height: auto; }
-.scenario-card .route { font-size: 14px; color: var(--accent); margin-top: auto; padding-top: 10px; }
-.scenario-card .card-no { font: 14px var(--mono); color: var(--accent); }
-.scenario-card .open { font-size: 15px; font-weight: 650; display: block; margin-top: 4px; }
+.scenario-card .card-no { display: inline-flex; align-self: flex-start; padding: 5px 10px; border-radius: 6px; background: var(--accent, #436634); color: var(--accent-ink, #ffffff); font: 600 14px/1.5 var(--mono); }
 .guide pre { padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--field); white-space: pre-wrap; overflow-wrap: anywhere; font: 16px/1.9 var(--sans); }
 .guide pre code { font: inherit; white-space: inherit; }
 .guide p, .guide li { line-height: 1.9; overflow-wrap: anywhere; }
 .guide .sec-head h2 { font-size: clamp(28px, 3vw, 42px); }
 .guide .sec + .sec { margin-top: 44px; }
 .toc ol { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: thin; padding-bottom: 4px; }
+/* 完整流程與情境索引：桌機正文與右側錨點並排；窄螢幕沿用橫向導覽。 */
+@media (min-width: 1201px) {
+  :is(.page-flow, .page-scenarios) main { display: grid; grid-template-columns: minmax(0, 1fr) 240px; column-gap: 28px; max-width: 1880px; padding: 0 32px; }
+  :is(.page-flow, .page-scenarios) .intro { grid-column: 1 / -1; }
+  :is(.page-flow, .page-scenarios) .panel { grid-column: 1; grid-row: 2; min-width: 0; margin: 28px 0 0; }
+  :is(.page-flow, .page-scenarios) .toc { grid-column: 2; grid-row: 2; align-self: start; position: sticky; top: 24px; margin-top: 28px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; }
+  :is(.page-flow, .page-scenarios) .toc ol { display: flex; flex-direction: column; gap: 4px; max-height: calc(100vh - 74px); margin: 0; padding: 4px; overflow-x: hidden; overflow-y: auto; }
+  :is(.page-flow, .page-scenarios) .toc a { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-color: transparent; font-size: 14px; line-height: 1.5; white-space: normal; }
+  :is(.page-flow, .page-scenarios) .toc a[href^="#"]::before { content: ""; flex: 0 0 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .35; }
+  :is(.page-flow, .page-scenarios) .toc a[aria-current="location"] { border-color: var(--accent); }
+  :is(.page-flow, .page-scenarios) .toc a[aria-current="location"]::before { opacity: 1; }
+  :is(.page-flow, .page-scenarios) .sec { scroll-margin-top: 24px; }
+}
 .short-flow { display: flex; gap: 8px; flex-wrap: wrap; margin: 24px 0px 0px; }
 .short-flow span { padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--raised); font-size: 16px; }
 .short-flow b { align-self: center; color: var(--accent); }
@@ -446,7 +462,7 @@ h1 { margin: 0px 0px 22px; font-size: 70px; font-weight: bold; line-height: 1.2;
   .scenario-grid { grid-template-columns: repeat(2, minmax(0px, 1fr)); }
 }
 @media (max-width: 600px) {
-  .scenario-grid { grid-template-columns: minmax(0px, 1fr); }
+  .scenario-grid { grid-template-columns: minmax(0px, 1fr); gap: 20px; }
   .intro h1 { font-size: 34px; }
   .scenario-card { padding: 22px; }
 }
@@ -472,6 +488,7 @@ h1 { margin: 0px 0px 22px; font-size: 70px; font-weight: bold; line-height: 1.2;
 .setup-flow, .folder-prep-flow { --cols: 3; }
 .client-review-flow { --cols: 5; }
 .folder-result { margin: 24px 0; }
+.folder-result .fig-note { border-top: 0; }
 .folder-result .is-child { --d: 1; }
 .copy-block { position: relative; margin: 16px 0; }
 .copy-button { position: absolute; top: 12px; right: 12px; min-height: 36px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 7px; background: var(--raised); color: var(--text); font-size: 14px; line-height: 1.6; }
@@ -502,6 +519,13 @@ h1 { margin: 0px 0px 22px; font-size: 70px; font-weight: bold; line-height: 1.2;
   .example-frames { grid-template-columns: minmax(0, 1fr); }
 }
 .page-flow .intro { padding-top: 60px; padding-bottom: 50px; }
+.page-flow .note.git-reminder { font-size: clamp(20px, 1.5vw, 24px); color: var(--text, #242620); }
+.page-flow .scenario-action { display: flex; justify-content: center; margin-top: 48px; }
+.page-flow .scenario-action a { display: inline-flex; align-items: center; justify-content: center; width: 280px; max-width: 100%; min-height: 56px; padding: 14px 24px; border-radius: 999px; background: var(--accent, #436634); color: var(--accent-ink, #ffffff); font-weight: 700; text-align: center; text-decoration: none; }
+.page-flow .scenario-action a:is(:active, :focus-visible) { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) {
+  .page-flow .scenario-action a:hover { text-decoration: underline; }
+}
 @media (max-width: 700px) {
   .page-flow .intro { padding-top: 40px; padding-bottom: 34px; }
 }
