@@ -55,7 +55,7 @@ CIS 不完整或沒有 CIS 時，依 [視覺提案](references/visual-proposal.m
 
 案件製作全程使用 Claude App，依下方「Claude App 與人工操作分工」接續工作，不自動呼叫 Codex 或操作 ChatGPT 產圖。實作規格供同一案件接續使用，不要求使用者在 AI 工具間搬運指令。工具不可用時如實標記缺口，不虛構已讀取本機檔案、已產圖、已測試或已匯入。
 
-涉及切版、程式修改或校稿前，必讀 [獨立 Lin-EVO 接入](references/frontend-standards.md)，使用本執行端的 Lin-EVO 更新並重讀共用規範。本方案只補方案差異，不使用歷史工程條文副本。
+涉及切版、程式修改或校稿前，必讀 [獨立 Lin-EVO 接入](references/frontend-standards.md)，依本執行端的 Lin-EVO 安裝配置核對更新方式並重讀共用規範。本方案只補方案差異，不使用歷史工程條文副本。
 
 ## 品質與工作方式
 

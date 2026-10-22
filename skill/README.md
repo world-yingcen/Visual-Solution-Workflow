@@ -34,7 +34,7 @@ Skill 由維護者事先在 Claude 網頁版統一設定與更新，設計師使
 
 設計師直接使用 Visual-Solution-Workflow、Lin-EVO 與 Miffy-EVO。設定、版本更新與必要技術規範由維護者統一處理；缺少項目時聯絡維護者，不要求設計師取得 Skill 包。
 
-Lin／Miffy 的來源由獨立 [lin-skill](https://github.com/world-yingcen/lin-skill) 維護。工程師 HTML 套件由人工更新；既有 JSON 案件沿用原流程。維護打包方式保留在 [INSTALL.md](INSTALL.md)，不屬於設計師操作步驟。
+Lin／Miffy 依各自來源資料夾維護；本機 Lin 在 `skills/lin-skill/Lin-EVO`，Miffy 在 `skills/Miffy-EVO`，不再假設共用同一個 Git 來源。工程師 HTML 套件由人工更新；既有 JSON 案件沿用原流程。維護打包方式保留在 [INSTALL.md](INSTALL.md)，不屬於設計師操作步驟。
 
 [情境 4｜靜態頁面轉 EVO](快速索引.html#case-7) 整合轉換打包、後台預檢與匯入、編輯儲存與發布後前台驗證。匯入與發布須指定目標及授權，缺後台工具時由設計師操作並回傳結果。
 

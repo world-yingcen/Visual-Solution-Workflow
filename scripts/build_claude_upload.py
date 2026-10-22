@@ -51,7 +51,7 @@ def prepare(package):
                    '這不免除案件工作前的 Git 檢查：有實際案件 Git 工具時依工作前規則 fetch 與核對版本；'
                    '缺工具則說明限制並詢問是否需要帶著操作，不把快照當遠端最新版。'
                    '已轉 EVO 停用的原靜態 Git 不再更新或推送。')
-    text = text.replace('使用本執行端的 Lin-EVO 更新並重讀共用規範',
+    text = text.replace('依本執行端的 Lin-EVO 安裝配置核對更新方式並重讀共用規範',
                         '使用本次已啟用的獨立 Lin-EVO Skill 與本輪對應參考')
     # Keep the maintained Claude/manual-image division unchanged.
     p.write_text(text)

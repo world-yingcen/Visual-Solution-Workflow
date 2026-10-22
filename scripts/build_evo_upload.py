@@ -17,22 +17,72 @@ IGNORE = shutil.ignore_patterns('.DS_Store', '__pycache__', '*.pyc', '.git',
                                 'node_modules', 'agents')
 
 
-def build(source, output):
+def resolve_sources(source=None, lin_source=None, miffy_source=None):
+    configured = {}
+    if source is not None:
+        source = source.expanduser().resolve()
+        config = source / 'skill-sources.json'
+        if config.is_file():
+            configured = json.loads(config.read_text())
+    result = {}
+    for name, override in (('Lin-EVO', lin_source), ('Miffy-EVO', miffy_source)):
+        if override is not None:
+            path = override.expanduser().resolve()
+        elif source is not None:
+            path = (source / configured.get(name, name)).resolve()
+        else:
+            raise ValueError('請提供 --source，或同時提供 --lin-source 與 --miffy-source。')
+        if not (path / 'SKILL.md').is_file() or not (path / 'references').is_dir():
+            raise ValueError(f'{name} 來源不完整：{path}')
+        result[name] = path
+    return result
+
+
+def source_record(path):
+    record = {'path': str(path), 'git_root': None, 'commit': None,
+              'working_tree_modified': None}
+    # Do not attribute an untracked external skill to an unrelated parent repo.
+    try:
+        repo = Path(subprocess.check_output(
+            ['git', '-C', str(path), 'rev-parse', '--show-toplevel'],
+            text=True, stderr=subprocess.DEVNULL).strip()).resolve()
+        relative = (path / 'SKILL.md').relative_to(repo).as_posix()
+        subprocess.check_output(['git', '-C', str(repo), 'ls-files',
+                                 '--error-unmatch', '--', relative],
+                                stderr=subprocess.DEVNULL)
+        record.update({
+            'git_root': str(repo),
+            'commit': subprocess.check_output(['git', '-C', str(repo), 'rev-parse', 'HEAD'], text=True).strip(),
+            'working_tree_modified': bool(subprocess.check_output(
+                ['git', '-C', str(path), 'status', '--porcelain', '--', '.'], text=True).strip()),
+        })
+    except (subprocess.CalledProcessError, OSError, ValueError):
+        pass
+    record['files'] = {
+        p.relative_to(path).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+        for p in sorted(path.rglob('*')) if p.is_file()
+        and not any(part in ('.DS_Store', '__pycache__', '.git', 'node_modules', 'agents')
+                    for part in p.relative_to(path).parts) and p.suffix != '.pyc'
+    }
+    return record
+
+
+def build(source, output, lin_source=None, miffy_source=None):
     if output.exists():
         raise ValueError(f'輸出已存在，不覆蓋：{output}')
-    kit = source / 'Miffy-EVO/evomni-html'
+    sources = resolve_sources(source, lin_source, miffy_source)
+    kit = sources['Miffy-EVO'] / 'evomni-html'
     for name in ('VERSION', 'SKILL.md', 'references/spec.md',
                  'references/checklist.md', 'scripts/check-site.mjs',
                  'example-site/index.html'):
         if not (kit / name).is_file():
             raise ValueError(f'缺少工程師套件檔案：{name}')
-    commit = subprocess.check_output(['git', '-C', str(source), 'rev-parse', 'HEAD'], text=True).strip()
-    dirty = bool(subprocess.check_output(['git', '-C', str(source), 'status', '--porcelain'], text=True).strip())
+    provenance = {name: source_record(path) for name, path in sources.items()}
     with tempfile.TemporaryDirectory() as temp:
         package = Path(temp) / NAME
         for name in ('Lin-EVO', 'Miffy-EVO'):
             target = package / 'resources' / name
-            shutil.copytree(source / name, target, ignore=IGNORE)
+            shutil.copytree(sources[name], target, ignore=IGNORE)
             (target / 'SKILL.md').rename(target / 'GUIDE.md')
         # Preserve the engineer kit byte-for-byte; adapt only wrapper links.
         for path in (package / 'resources').rglob('*.md'):
@@ -75,7 +125,7 @@ description: 在 Claude 網頁／App 製作與校稿靜態網站，或將已確�
 - 圖片處理沿用本案分工；不因打包而擅自降低畫質。工程師套件、示範網站與本包來源紀錄
   不混進客戶網站交付 ZIP。
 
-來源 commit、工程師套件版本與檔案雜湊見 SOURCE.json。打包驗證不代表已在 Claude
+兩個 Skill 各自的來源路徑、可用的 Git commit、工程師套件版本與檔案雜湊見 SOURCE.json。打包驗證不代表已在 Claude
 上傳執行，也不代表已在本案 EVO 後台完成驗收。
 ''')
         failures = []
@@ -99,8 +149,7 @@ description: 在 Claude 網頁／App 製作與校稿靜態網站，或將已確�
                   for p in sorted(package.rglob('*')) if p.is_file()}
         (package / 'SOURCE.json').write_text(json.dumps({
             'built_at': datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),
-            'source': 'https://github.com/world-yingcen/lin-skill',
-            'commit': commit, 'working_tree_modified': dirty,
+            'sources': provenance,
             'engineer_kit_version': (kit / 'VERSION').read_text().strip(),
             'files': hashes,
         }, ensure_ascii=False, indent=2) + '\n')
@@ -117,7 +166,12 @@ description: 在 Claude 網頁／App 製作與校稿靜態網站，或將已確�
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--source', required=True, type=Path)
+    parser.add_argument('--source', type=Path, help='來源管理資料夾；有 skill-sources.json 時依設定定位兩個 Skill')
+    parser.add_argument('--lin-source', type=Path, help='Lin-EVO 資料夾，可覆寫 --source 的設定')
+    parser.add_argument('--miffy-source', type=Path, help='Miffy-EVO 資料夾，可覆寫 --source 的設定')
     parser.add_argument('--output', required=True, type=Path)
     args = parser.parse_args()
-    build(args.source.expanduser().resolve(), args.output.expanduser().resolve())
+    try:
+        build(args.source, args.output.expanduser().resolve(), args.lin_source, args.miffy_source)
+    except (ValueError, OSError) as error:
+        parser.exit(1, f'打包未完成：{error}\n')

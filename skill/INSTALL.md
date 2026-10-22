@@ -53,25 +53,56 @@ python3 install.py --target ~/.codex/skills
 
 既有舊角色安裝不會自動刪除；若要清理，先核對安裝位置與來源，再另外處理。工程工具依案件實際需要準備，不要求每案固定安裝 Sass、Node、Eagle 或 VS Code。
 
-## Lin-EVO 共用規範（必要依賴）
+## Lin-EVO 與 Miffy-EVO：來源及安裝
 
-切版／校稿及 EVO 轉換另需安裝 [lin-skill](https://github.com/world-yingcen/lin-skill) 的 Lin-EVO＋Miffy-EVO。此整體視覺套件／Plugin 不內含工程條文副本；請 clone 獨立 repo，依其 README 安裝兩個 Skill，並核對 `Miffy-EVO/evomni-html/` 的 VERSION、規範、範例與檢查器。Lin／Miffy 共用同一份工程師套件；工程師套件由人工更新，不以 Git 更新成功推定其為工程師最新版。缺少或更新失敗必須回報。方案設計流程與 RWD 範圍不變。
+整體視覺套件／Plugin 不內附兩者的工程條文。切版與校稿使用 Lin-EVO，轉 EVO 使用 Miffy-EVO。
+
+目前維護者本機配置（其他機器改用已確認的實際路徑）：
+
+| 用途 | 位置 |
+|---|---|
+| 修改 Lin-EVO | `/Users/wd-t160/LINS/git/skills/lin-skill/Lin-EVO/` |
+| 修改 Miffy-EVO | `/Users/wd-t160/LINS/git/skills/Miffy-EVO/` |
+| 共用安裝器與路徑設定 | `/Users/wd-t160/LINS/git/skills/lin-skill/install.py`、`skill-sources.json` |
+| 工程師 HTML 套件 | Miffy-EVO 裡的 `evomni-html/` |
+
+Codex／Claude 本機目前直接連結上述來源；修改後下次讀取即可使用。核對各工具自己的安裝紀錄與實際連結，不能只看資料夾名稱。本機同步範例：
+
+```bash
+python3 /Users/wd-t160/LINS/git/skills/lin-skill/install.py --tool claude --skill Lin-EVO --link
+python3 /Users/wd-t160/LINS/git/skills/lin-skill/install.py --tool claude --skill Miffy-EVO --link
+```
+
+Codex 改 `--tool codex`，安裝前核對來源及既有修改。部分拆分期間，舊整包 Git 更新已停用，同步不加 `--update`；不要把 Miffy 搬回舊位置或自行建立遠端。這不影響本 workflow 本身的 Git 更新，但 workflow 更新也不代表兩個外部 Skill 已更新。
+
+Lin／Miffy 共用同一份工程師套件。每輪讀實際 VERSION、規範與檢查器；套件由人工更新，不以 Git 更新成功推定為工程師最新版。缺少來源或無法確認版本時明列限制。
 
 ## Claude 網頁／App：Lin-EVO＋Miffy-EVO 整合包
 
-維護者可使用 repo 根目錄的 `dist/claude-upload/Lin-EVO-Miffy-EVO-20261022.zip`，來自獨立 lin-skill 的同一份來源，含工程師 `evomni-html 1.1.0`。啟用後可用「使用 Lin-EVO」或「使用 Miffy-EVO」分流；停用舊版獨立 Lin／Miffy 上傳包。整體視覺流程另啟用 `dist/claude-upload/Visual-Solution-Workflow-20261022.zip`。這兩包包含工作前 Git 檢查、換電腦前 commit／push 與已轉 EVO 後停用原 Git 的最新規則。
+本機安裝與 Claude App 上傳是不同位置；來源改動後要重新打包及上傳才會生效。已產生的 ZIP 是歷次快照，不因本機搬移自動更新；不得只憑日期宣稱為最新。
 
-本機 Codex／Claude Code 安裝與 Claude App 雲端上傳是不同位置。安裝器同步成功，不代表雲端 Skill 已更新；需在 Claude App 重新上傳這兩包、啟用新版並停用舊版，於新對話確認能讀取新版規則。
+維護者可明確指定兩個來源，在本 repo 根目錄執行：
 
-維護者核對獨立來源後，在本 repo 根目錄執行（替換實際來源與日期）：
+```bash
+python3 scripts/build_evo_upload.py \
+  --lin-source /Users/wd-t160/LINS/git/skills/lin-skill/Lin-EVO \
+  --miffy-source /Users/wd-t160/LINS/git/skills/Miffy-EVO \
+  --output dist/claude-upload/Lin-EVO-Miffy-EVO-YYYYMMDD.zip
+```
+
+也支援原本的來源管理目錄參數：
 
 ```bash
 python3 scripts/build_evo_upload.py --source /你的本機路徑/lin-skill --output dist/claude-upload/Lin-EVO-Miffy-EVO-YYYYMMDD.zip
 ```
 
-打包器只讀來源；將 Lin／Miffy 入口轉為包內指南，保留工程師套件原檔，核對參考連結、套件逐檔一致及 ZIP 完整性，並將來源 commit、版本與雜湊寫入 SOURCE.json。不覆蓋既有包，不安裝或推送。這是 Skill 上傳包，不是客戶網站匯入 ZIP。
+有 `skill-sources.json` 時依其設定定位，沒有時才使用來源目錄下的 `Lin-EVO/`、`Miffy-EVO/`。明確的 `--lin-source`／`--miffy-source` 優先於管理目錄設定。缺來源直接回報，不從歷史包或其他機器路徑猜替代檔案。
 
-工程師提供新版時先依 Miffy 規範人工更新來源，再重建整合包並更新受管理帳號或組織的 Skill 設定。打包檢查不代表已通過 Claude 實際上傳或案件後台驗收。網頁／App 沒有本機檔案或內網存取能力時，需提供案件檔案；無法執行檢查器時依清單檢核後交後台預檢，不能偽造檢查報告。
+打包器只讀來源，將入口轉為包內指南，保留工程師套件原檔，核對參考連結、逐檔一致及 ZIP 完整性。SOURCE.json 分別記錄兩個來源的路徑、來源檔案雜湊與可用的 Git commit；來源未受 Git 追蹤時其 commit 為 null，不冒用另一個 Skill 的版本。工程師版本讀實際 VERSION，不寫死。
+
+既有同名包不覆蓋；這是 Claude Skill 包，不是客戶網站匯入 ZIP。使用整合包時停用重複的舊 Lin／Miffy 上傳包；若採分別上傳的兩個 Skill，維持各自啟用，不再疊加整合包。整體視覺 workflow 包另行啟用。
+
+工程師提供新版時依 Miffy 規範人工更新實際來源，再重建相關包。打包通過不代表已在 Claude 實際上傳或完成 EVO 後台驗收；無本機或內網存取能力時需提供案件檔案，不能偽造檢查報告。
 
 ## Claude 網頁／App：專用上傳 ZIP
 
