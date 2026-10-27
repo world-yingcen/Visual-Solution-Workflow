@@ -57,23 +57,23 @@ python3 install.py --target ~/.codex/skills
 
 整體視覺套件／Plugin 不內附兩者的工程條文。切版與校稿使用 Lin-EVO，轉 EVO 使用 Miffy-EVO。
 
-目前維護者本機配置（其他機器改用已確認的實際路徑）：
+Lin／Miffy 可由不同 Git repo 維護。先核對 lin-skill repo 內的 `skill-sources.json` 是否指向兩個實際來源；相對路徑以 lin-skill repo 為基準。其他機器使用自己的已確認路徑，不照抄下列表格。
 
 | 用途 | 位置 |
 |---|---|
-| 修改 Lin-EVO | `/Users/wd-t160/LINS/git/skills/lin-skill/Lin-EVO/` |
-| 修改 Miffy-EVO | `/Users/wd-t160/LINS/git/skills/Miffy-EVO/` |
-| 共用安裝器與路徑設定 | `/Users/wd-t160/LINS/git/skills/lin-skill/install.py`、`skill-sources.json` |
+| 修改 Lin-EVO | `<工具庫>/lin-skill/Lin-EVO/` |
+| 修改 Miffy-EVO | `<工具庫>/Miffy-EVO/` |
+| 安裝器與本機路徑設定 | `<工具庫>/lin-skill/install.py`、`skill-sources.json` |
 | 工程師 HTML 套件 | Miffy-EVO 裡的 `evomni-html/` |
 
 Codex／Claude 本機目前直接連結上述來源；修改後下次讀取即可使用。核對各工具自己的安裝紀錄與實際連結，不能只看資料夾名稱。本機同步範例：
 
 ```bash
-python3 /Users/wd-t160/LINS/git/skills/lin-skill/install.py --tool claude --skill Lin-EVO --link
-python3 /Users/wd-t160/LINS/git/skills/lin-skill/install.py --tool claude --skill Miffy-EVO --link
+python3 <工具庫>/lin-skill/install.py --tool claude --skill Lin-EVO --link
+python3 <工具庫>/lin-skill/install.py --tool claude --skill Miffy-EVO --link
 ```
 
-Codex 改 `--tool codex`，安裝前核對來源及既有修改。部分拆分期間，舊整包 Git 更新已停用，同步不加 `--update`；不要把 Miffy 搬回舊位置或自行建立遠端。這不影響本 workflow 本身的 Git 更新，但 workflow 更新也不代表兩個外部 Skill 已更新。
+Codex 改 `--tool codex`，安裝前核對來源及既有修改。Miffy 人工換入工程師套件後，同步不加 `--update`；只有獨立 Miffy Git 乾淨、遠端已確認且確實要更新規範時才安全更新。不要把 Miffy 搬回 lin-skill 舊位置。這不影響本 workflow 本身的 Git 更新，但 workflow 更新也不代表兩個外部 Skill 已更新。
 
 Lin／Miffy 共用同一份工程師套件。每輪讀實際 VERSION、規範與檢查器；套件由人工更新，不以 Git 更新成功推定為工程師最新版。缺少來源或無法確認版本時明列限制。
 
@@ -85,8 +85,8 @@ Lin／Miffy 共用同一份工程師套件。每輪讀實際 VERSION、規範與
 
 ```bash
 python3 scripts/build_evo_upload.py \
-  --lin-source /Users/wd-t160/LINS/git/skills/lin-skill/Lin-EVO \
-  --miffy-source /Users/wd-t160/LINS/git/skills/Miffy-EVO \
+  --lin-source <工具庫>/lin-skill/Lin-EVO \
+  --miffy-source <工具庫>/Miffy-EVO \
   --output dist/claude-upload/Lin-EVO-Miffy-EVO-YYYYMMDD.zip
 ```
 
