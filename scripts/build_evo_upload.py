@@ -71,7 +71,14 @@ def build(source, output, lin_source=None, miffy_source=None):
     if output.exists():
         raise ValueError(f'輸出已存在，不覆蓋：{output}')
     sources = resolve_sources(source, lin_source, miffy_source)
-    kit = sources['Miffy-EVO'] / 'evomni-html'
+    miffy = sources['Miffy-EVO']
+    required = ('VERSION', 'SKILL.md', 'references/spec.md',
+                'scripts/check-site.mjs', 'example-site/index.html')
+    root_is_kit = all((miffy / name).is_file() for name in required)
+    kit = miffy if root_is_kit else miffy / 'evomni-html'
+    if root_is_kit and (miffy / 'evomni-html/VERSION').exists():
+        raise ValueError('Miffy 根目錄與內層同時有工程師套件，請先整理為單一來源。')
+    kit_resource = 'resources/Miffy-EVO/' if root_is_kit else 'resources/Miffy-EVO/evomni-html/'
     for name in ('VERSION', 'SKILL.md', 'references/spec.md',
                  'references/checklist.md', 'scripts/check-site.mjs',
                  'example-site/index.html'):
@@ -128,6 +135,13 @@ description: 在 Claude 網頁／App 製作與校稿靜態網站，或將已確�
 兩個 Skill 各自的來源路徑、可用的 Git commit、工程師套件版本與檔案雜湊見 SOURCE.json。打包驗證不代表已在 Claude
 上傳執行，也不代表已在本案 EVO 後台完成驗收。
 ''')
+        entry = package / 'SKILL.md'
+        entry_text = entry.read_text().replace('resources/Miffy-EVO/evomni-html/', kit_resource)
+        if root_is_kit:
+            entry_text = entry_text.replace('每輪讀 VERSION 與 SKILL.md', '每輪讀 VERSION 與 GUIDE.md')
+            entry_text = entry_text.replace('既有 JSON 案件沿用 Miffy 的 legacy-workflow.md，',
+                                            '本次 Miffy 為工程師整站 HTML 套件；舊 JSON 案件需另提供其有效契約，')
+        entry.write_text(entry_text)
         failures = []
         for path in package.rglob('*.md'):
             if 'evomni-html' in path.parts:
@@ -142,7 +156,10 @@ description: 在 Claude 網頁／App 製作與校稿靜態網站，或將已確�
             raise ValueError('參考連結缺漏：\n' + '\n'.join(failures))
         for path in kit.rglob('*'):
             if path.is_file() and not any(part in ('.DS_Store', '__pycache__', '.git', 'node_modules', 'agents') for part in path.parts) and path.suffix != '.pyc':
-                copied = package / 'resources/Miffy-EVO/evomni-html' / path.relative_to(kit)
+                relative = path.relative_to(kit)
+                if root_is_kit and relative.as_posix() == 'SKILL.md':
+                    relative = Path('GUIDE.md')
+                copied = package / kit_resource / relative
                 if path.read_bytes() != copied.read_bytes():
                     raise ValueError(f'工程師套件內容不一致：{path}')
         hashes = {p.relative_to(package).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
